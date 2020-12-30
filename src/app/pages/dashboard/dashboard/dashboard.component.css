@@ -1,5 +1,10 @@
 /* dashboard css */
 
+select {
+  
+  width: 100%;
+    
+}
 
 .change {
     color: green;

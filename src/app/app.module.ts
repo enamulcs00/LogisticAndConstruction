@@ -80,6 +80,32 @@ import { AllUserTraderComponent } from './pages/dashboard/all-user-trader/all-us
 import { FiatComponent } from './pages/fiat-management/fiat/fiat.component';
 import { SendMoneyComponent } from './pages/fiat-management/send-money/send-money.component';
 import { FooterComponent } from './pages/footer/footer.component';
+import { ListOfCompaniesComponent } from './list-of-companies/list-of-companies.component';
+import { ListOfSitesComponent } from './list-of-sites/list-of-sites.component';
+import { CompanyUserManagementComponent } from './company-user-management/company-user-management.component';
+import { MyBookingComponent } from './my-booking/my-booking.component';
+import { QuotesComponent } from './quotes/quotes.component';
+import { BillingComponent } from './billing/billing.component';
+import { ListOfFleetOwnerComponent } from './list-of-fleet-owner/list-of-fleet-owner.component';
+import { ListOfTruckComponent } from './list-of-truck/list-of-truck.component';
+import { ListOfBidByFleetComponent } from './list-of-bid-by-fleet/list-of-bid-by-fleet.component';
+import { ListOfBookingDetailsComponent } from './list-of-booking-details/list-of-booking-details.component';
+import { BillingLatestComponent } from './billing-latest/billing-latest.component';
+import { ListOfDriverComponent } from './list-of-driver/list-of-driver.component';
+import { ListOfSupplierComponent } from './list-of-supplier/list-of-supplier.component';
+import { MyBookingSupplierComponent } from './my-booking-supplier/my-booking-supplier.component';
+import { QuotesSupplierComponent } from './quotes-supplier/quotes-supplier.component';
+import { BillingSupplierComponent } from './billing-supplier/billing-supplier.component';
+import { ListOfBidToFleetOwnerComponent } from './list-of-bid-to-fleet-owner/list-of-bid-to-fleet-owner.component';
+import { ListOfBookingDetailsFleetComponent } from './list-of-booking-details-fleet/list-of-booking-details-fleet.component';
+import { BillingFleetComponent } from './billing-fleet/billing-fleet.component';
+import { AddContactUsComponent } from './add-contact-us/add-contact-us.component';
+import { AddTruckTypeComponent } from './add-truck-type/add-truck-type.component';
+import { AddMaterialComponent } from './add-material/add-material.component';
+import { AddThermalPlantsComponent } from './add-thermal-plants/add-thermal-plants.component';
+import { UserRollManagementComponent } from './user-roll-management/user-roll-management.component';
+import { NotificationListMgtComponent } from './notification-list-mgt/notification-list-mgt.component';
+import { OthersComponent } from './others/others.component';
 
 @NgModule({
   declarations: [
@@ -150,6 +176,32 @@ import { FooterComponent } from './pages/footer/footer.component';
     FiatComponent,
     SendMoneyComponent,
     FooterComponent,
+    ListOfCompaniesComponent,
+    ListOfSitesComponent,
+    CompanyUserManagementComponent,
+    MyBookingComponent,
+    QuotesComponent,
+    BillingComponent,
+    ListOfFleetOwnerComponent,
+    ListOfTruckComponent,
+    ListOfBidByFleetComponent,
+    ListOfBookingDetailsComponent,
+    BillingLatestComponent,
+    ListOfDriverComponent,
+    ListOfSupplierComponent,
+    MyBookingSupplierComponent,
+    QuotesSupplierComponent,
+    BillingSupplierComponent,
+    ListOfBidToFleetOwnerComponent,
+    ListOfBookingDetailsFleetComponent,
+    BillingFleetComponent,
+    AddContactUsComponent,
+    AddTruckTypeComponent,
+    AddMaterialComponent,
+    AddThermalPlantsComponent,
+    UserRollManagementComponent,
+    NotificationListMgtComponent,
+    OthersComponent,
     
   ],
   imports: [

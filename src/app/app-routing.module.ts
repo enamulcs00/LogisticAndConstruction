@@ -45,7 +45,6 @@ import { StandardTradingFeeComponent } from './pages/fee-management/standard-tra
 import { MinTradingFeeComponent } from './pages/fee-management/min-trading-fee/min-trading-fee.component';
 import { ChangePasswordComponent } from './pages/dashboard/change-password/change-password.component';
 import { ContentManagementComponent } from './pages/dashboard/content-management/content-management.component';
-import { UserManagementAdminComponent } from './pages/admin-management/user-management-admin/user-management-admin.component';
 import { AdminDetailComponent } from './pages/admin-management/admin-detail/admin-detail.component';
 import { AddAdministerComponent } from './pages/admin-management/add-administer/add-administer.component';
 import { DepositeWalletComponent } from './pages/dashboard/deposite-wallet/deposite-wallet.component';
@@ -64,16 +63,68 @@ import { FiatComponent } from './pages/fiat-management/fiat/fiat.component';
 import { SendMoneyComponent } from './pages/fiat-management/send-money/send-money.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { LoginComponent } from './pages/login/login.component';
+import { QuotesSupplierComponent } from './quotes-supplier/quotes-supplier.component';
+import { QuotesComponent } from './quotes/quotes.component';
+import { MyBookingSupplierComponent } from './my-booking-supplier/my-booking-supplier.component';
+import { MyBookingComponent } from './my-booking/my-booking.component';
+import { ListOfTruckComponent } from './list-of-truck/list-of-truck.component';
+import { ListOfSupplierComponent } from './list-of-supplier/list-of-supplier.component';
+import { ListOfSitesComponent } from './list-of-sites/list-of-sites.component';
+import { ListOfFleetOwnerComponent } from './list-of-fleet-owner/list-of-fleet-owner.component';
+import { ListOfDriverComponent } from './list-of-driver/list-of-driver.component';
+import { ListOfCompaniesComponent } from './list-of-companies/list-of-companies.component';
+import { ListOfBookingDetailsFleetComponent } from './list-of-booking-details-fleet/list-of-booking-details-fleet.component';
+import { ListOfBookingDetailsComponent } from './list-of-booking-details/list-of-booking-details.component';
+import { ListOfBidToFleetOwnerComponent } from './list-of-bid-to-fleet-owner/list-of-bid-to-fleet-owner.component';
+import { ListOfBidByFleetComponent } from './list-of-bid-by-fleet/list-of-bid-by-fleet.component';
+import { CompanyUserManagementComponent } from './company-user-management/company-user-management.component';
+import { BillingSupplierComponent } from './billing-supplier/billing-supplier.component';
+import { BillingLatestComponent } from './billing-latest/billing-latest.component';
+import { BillingFleetComponent } from './billing-fleet/billing-fleet.component';
+import { BillingComponent } from './billing/billing.component';
+import { AddContactUsComponent } from './add-contact-us/add-contact-us.component';
+import { AddTruckTypeComponent } from './add-truck-type/add-truck-type.component';
+import { AddMaterialComponent } from './add-material/add-material.component';
+import { AddThermalPlantsComponent } from './add-thermal-plants/add-thermal-plants.component';
+import { UserRollManagementComponent } from './user-roll-management/user-roll-management.component';
+import { NotificationListMgtComponent } from './notification-list-mgt/notification-list-mgt.component';
+import { OthersComponent } from './others/others.component';
+
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent},
-  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'others', component: OthersComponent},
+  { path: 'add_thermal_plants', component: AddThermalPlantsComponent},
+  { path: 'notification_list_mgt', component: NotificationListMgtComponent},
+  { path: 'user_roll_management', component: UserRollManagementComponent},
+  { path: 'add_material', component: AddMaterialComponent},
+  { path: 'terms_and_conditions', component: TermsAndConditionsComponent},
+  { path: 'quotes_supplier', component: QuotesSupplierComponent},
+  { path: 'quotes', component: QuotesComponent},
+  { path: 'my_booking_supplier', component: MyBookingSupplierComponent},
+  { path: 'my_booking', component: MyBookingComponent},
+  { path: 'list_of_truck', component: ListOfTruckComponent},
+  { path: 'list_of_supplier', component: ListOfSupplierComponent},
+  { path: 'list_of_sites', component: ListOfSitesComponent },
+  { path: 'list_of_fleet_owner', component: ListOfFleetOwnerComponent},
+  { path: 'list_of_driver', component: ListOfDriverComponent},
+  { path: 'list_of_companies', component: ListOfCompaniesComponent},
+  { path: 'list_of_booking_details_fleet', component: ListOfBookingDetailsFleetComponent},
+  { path: 'list_of_booking_details', component: ListOfBookingDetailsComponent},
+  { path: 'list_of_bid_to_fleet_owner', component: ListOfBidToFleetOwnerComponent},
+  { path: 'list_of_bid_by_fleet', component: ListOfBidByFleetComponent},
+  { path: 'company_user_management', component: CompanyUserManagementComponent},
+  { path: 'billing_supplier', component: BillingSupplierComponent},
+  { path: 'billing_latest', component: BillingLatestComponent},
+  { path: 'billing_fleet', component: BillingFleetComponent},
+  { path: 'billing', component: BillingComponent},
+  { path: 'add_contact_us', component: AddContactUsComponent},
   { path: 'reset-password', component: ResetPasswordComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'user-management', component: UserManagementComponent },
-  { path: 'user-details/:id1/:id2', component: UserDetailsComponent },
+  { path: 'company_management', component: DashboardComponent },
+  { path: 'fleet-management', component: UserManagementComponent },
+  { path: 'supplier_management', component: UserDetailsComponent },
   { path: 'wallet-details/:id', component: WalletDetailsComponent },
   { path: 'kyc-management', component: KycManagementComponent },
   { path: 'wallet-management', component: UserDetailsComponent },
@@ -114,7 +165,7 @@ const routes: Routes = [
   { path: 'withdrawl-fee', component: WithdrawlFeeComponent },
   { path: 'withdrawl-limit', component: WithdrawlLimitComponent },
 
-  { path: 'user-management-admin', component: UserManagementAdminComponent },
+  { path: 'add_truck_type', component: AddTruckTypeComponent },
   { path: 'admin-detail', component: AdminDetailComponent },
   { path: 'add-administator', component: AddAdministerComponent },
   { path: 'kyc-detail', component: KycDetailComponent},

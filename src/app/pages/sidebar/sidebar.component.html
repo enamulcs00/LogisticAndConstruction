@@ -22,6 +22,8 @@
                 </button>
                 <button class="btn btn-outline-secondary btn-mobsearch" type="button">
                     <i class="fas fa-search" aria-hidden="true"></i></button>
+                    <h5 style="color:white;position: relative;
+                    left: 135%;">{{ currentText }}</h5>
             </div>
         </nav>
     </header> 
@@ -58,22 +60,42 @@
                     
                 </div>  -->
                 
-                <div class="menu-box" [ngClass]="{'active':currUrl == 'dashboard'}">
-                    <div class="card-header clearfix" id="headingOne">
-                        <a class="side_menu" [routerLink]="['/dashboard']" routerLinkActive="active">
+                <div class="menu-box dropdown" [ngClass]="{'active':currUrl == 'company_management'}" style="width:100%;">
+                    <div class="card-header clearfix  dropbtn" id="headingOne">
+                        <a class="side_menu" [routerLink]="['/company_management']" routerLinkActive="active" onclick="showText();">
                             
                             <span class="side_page_name">Company Management</span>
                         </a>
+                        
                     </div>
+                    <div>
+                        <div class="dropdown-content">
+                            <a [routerLink]="['/list_of_companies']">List of Companies</a>
+                            <a [routerLink]="['/list_of_sites']">List of Sites</a>
+                            <a [routerLink]="['/company_user_management']">Company User Management</a>
+                            <a [routerLink]="['/my_booking']">My Booking</a>
+                            <a [routerLink]="['/quotes']">Quotes</a>
+                            <a [routerLink]="['/billing']">Billing</a>
+                          </div>
+                    </div>
+                    
                 </div>
-                <div class="menu-box"
-                    [ngClass]="{'active':currUrl == 'user-management' || currUrl == 'wallet-details'}">
-                    <div class="card-header clearfix" id="headingTwo">
-                        <a class="side_menu" [routerLink]="['/user-management']" routerLinkActive="active">
+                <div class="menu-box dropdown"
+                    [ngClass]="{'active':currUrl == 'fleet-management' || currUrl == 'wallet-details'}" style="width:100%;">
+                    <div class="card-header clearfix dropbtn" id="headingTwo">
+                        <a class="side_menu" [routerLink]="['/fleet-management']" routerLinkActive="active">
                             
                             <span class="side_page_name">Fleet Management</span>
                         </a>
                     </div>
+                    <div class="dropdown-content">
+                        <a>List Of Fleet Owner</a>
+                            <a>List Of Truck</a> 
+                            <a>List Of Bid By Fleet</a>
+                            <a>List Of Booking Details</a>
+                            <a>Billing</a>
+                            <a>List Of Driver</a>
+                      </div>
                 </div>
                 <!-- <div class="menu-box"
                     [ngClass]="{'active':currUrl == 'all-user-trader' }">
@@ -87,43 +109,52 @@
                         </a>
                     </div>
                 </div> -->
-                <div class="menu-box"
-                    [ngClass]="{'active':currUrl == 'hot-wallet-management'|| currUrl == 'user-details' || currUrl == 'hot-cold-wallet-management' || currUrl=='view-hot-cold-wallet-management'}">
-                    <div class="card-header clearfix" id="headingThree">
-                        <a class="side_menu" [routerLink]="['/user-details']" routerLinkActive="active">
+                <div class="menu-box dropdown" style="width:100%;"
+                    [ngClass]="{'active':currUrl == 'hot-wallet-management'|| currUrl == 'supplier_management' || currUrl == 'hot-cold-wallet-management' || currUrl=='view-hot-cold-wallet-management'}">
+                    <div class="card-header clearfix dropbtn" id="headingThree">
+                        <a class="side_menu" [routerLink]="['/supplier_management']" routerLinkActive="active">
                             
                             <span class="side_page_name"> Supplier Management</span>
                         </a>
                     </div>
+                    <div class="dropdown-content">
+                            <a>List Of Supplier</a>
+                            <a>My Booking</a> 
+                            <a>Quotes</a>
+                            <a>Billing</a>
+                            <a>List Of Bid To Fleet Owner</a>
+                            <a>List Of Booking Details Fleet</a>
+                            <a>Billing Fleet</a>
+                      </div>
                 </div>
-                <div class="menu-box"
-                    [ngClass]="{'active':currUrl == 'user-management-admin' || currUrl == 'admin-detail' || currUrl == 'add-administator'}">
+                <div class="menu-box" style="width:100%;"
+                    [ngClass]="{'active':currUrl == 'add_truck_type' || currUrl == 'admin-detail' || currUrl == 'add-administator'}">
                     <div class="card-header clearfix" id="headingThree">
-                        <a class="side_menu" [routerLink]="['/user-management-admin']" routerLinkActive="active">
+                        <a class="side_menu" [routerLink]="['/add_truck_type']" routerLinkActive="active">
                             
                             <span class="side_page_name">Add Truck Type</span>
                         </a>
                     </div>
                 </div>
-                <div class="menu-box" [ngClass]="{'active':currUrl == 'kyc-detail' || currUrl == 'kyc-update'}">
+                <div class="menu-box" [ngClass]="{'active':currUrl == 'add_material' || currUrl == 'add_material'}" style="width:100%;">
                     <div class="card-header clearfix" id="headingThree">
-                        <a class="side_menu" [routerLink]="['/kyc-update']" routerLinkActive="active">
+                        <a class="side_menu" [routerLink]="['/add_material']" routerLinkActive="active">
                             
                             <span class="side_page_name">Add Material 1</span>
                         </a>
                     </div>
                 </div>
-                <div class="menu-box" [ngClass]="{'active':currUrl == 'token-management' || currUrl == 'add-token' || currUrl == 'edit-token' || currUrl == 'view-token'}">
+                <div class="menu-box" style="width:100%;" [ngClass]="{'active':currUrl == 'add_thermal_plants' || currUrl == 'add_thermal_plants' || currUrl == 'edit-token' || currUrl == 'view-token'}">
                     <div class="card-header clearfix" id="headingThree">
-                        <a class="side_menu" [routerLink]="['/token-management']" routerLinkActive="active">
+                        <a class="side_menu" [routerLink]="['/add_thermal_plants']" routerLinkActive="active">
                             
                             <span class="side_page_name">Add Thermal Plants</span>
                         </a>
                     </div>
                 </div>
-                <div class="menu-box" [ngClass]="{'active':currUrl == 'transaction-management' || currUrl == 'view-transaction'}">
+                <div class="menu-box" style="width:100%;" [ngClass]="{'active':currUrl == 'user_roll_management' || currUrl == 'user_roll_management'}">
                     <div class="card-header clearfix" id="headingThree">
-                        <a class="side_menu" [routerLink]="['/transaction-management']" routerLinkActive="active">
+                        <a class="side_menu" [routerLink]="['/user_roll_management']" routerLinkActive="active">
                             
                             <span class="side_page_name">User Roll Management</span>
                         </a>
@@ -177,23 +208,28 @@
                 
                 
                 
-                <div class="menu-box"
-                    [ngClass]="{'active':currUrl == 'static-content-management' || currUrl == 'AboutUs' || currUrl == 'PrivacyPolicy' ||  currUrl == 'TermsAndCondition'}">
+                <div class="menu-box" style="width:100%;"
+                    [ngClass]="{'active':currUrl == 'notification_list_mgt' || currUrl == 'AboutUs' || currUrl == 'PrivacyPolicy' ||  currUrl == 'TermsAndCondition'}">
                     <div class="card-header clearfix" id="headingThree">
-                        <a class="side_menu" [routerLink]="['/static-content-management']" routerLinkActive="active">
+                        <a class="side_menu" [routerLink]="['/notification_list_mgt']" routerLinkActive="active">
                             
                             <span class="side_page_name">Notification List and Mgt</span>
                         </a>
                     </div>
                 </div>
-                <div class="menu-box"
-                    [ngClass]="{'active':currUrl == 'faq-management' || currUrl == 'add-faq' || currUrl == 'edit-faq' ||  currUrl == 'terms-and-conditions'}">
-                    <div class="card-header clearfix" id="headingThree">
-                        <a class="side_menu" [routerLink]="['/faq-management']" routerLinkActive="active">
+                <div class="menu-box dropdown" style="width:100%;"
+                    [ngClass]="{'active':currUrl == 'others' || currUrl == 'add-faq' || currUrl == 'edit-faq' ||  currUrl == 'terms-and-conditions'}">
+                    <div class="card-header clearfix dropbtn" id="headingThree">
+                        <a class="side_menu" [routerLink]="['/others']" routerLinkActive="active">
                             
                             <span class="side_page_name">Others</span>
                         </a>
                     </div>
+                    <div class="dropdown-content">
+                        <a>Add Contact Us Mobile No And E-mail Id</a>
+                        <a>Terms And Conditions</a>
+                        
+                      </div>
                 </div>
                 
                 <!-- <div class="menu-box"
@@ -208,7 +244,7 @@
                     </div>
                 </div> -->
                 
-                <div class="menu-box">
+                <div class="menu-box" style="width:100%;"> 
                     <div class="card-header clearfix">
                         <a class="side_menu" href="#signout_modal" data-toggle="modal">
                             
@@ -256,9 +292,9 @@
                     </div>
                 </div>
                 <div class="menu-box" *ngIf="staticusermgmt==true"
-                    [ngClass]="{'active':currUrl == 'user-management' || currUrl == 'user-details'|| currUrl == 'wallet-details'}">
+                    [ngClass]="{'active':currUrl == 'fleet-management' || currUrl == 'supplier_management'|| currUrl == 'wallet-details'}">
                     <div class="card-header clearfix" id="headingTwo">
-                        <a class="side_menu" [routerLink]="['/user-management']" routerLinkActive="active">
+                        <a class="side_menu" [routerLink]="['/fleet-management']" routerLinkActive="active">
                             <span class="side_menu_icon">
                                 <img src="assets/img/user-manage.png" alt="icon" />
                             </span>
@@ -267,9 +303,9 @@
                     </div>
                 </div>
                 <div class="menu-box" *ngIf="staticwalletmgmt==true"
-                    [ngClass]="{'active':currUrl == 'hot-wallet-management'|| currUrl == 'user-details' || currUrl == 'hot-cold-wallet-management' || currUrl=='view-hot-cold-wallet-management'}">
+                    [ngClass]="{'active':currUrl == 'hot-wallet-management'|| currUrl == 'supplier_management' || currUrl == 'hot-cold-wallet-management' || currUrl=='view-hot-cold-wallet-management'}">
                     <div class="card-header clearfix" id="headingThree">
-                        <a class="side_menu" [routerLink]="['/user-details']" routerLinkActive="active">
+                        <a class="side_menu" [routerLink]="['/supplier_management']" routerLinkActive="active">
                             <span class="side_menu_icon">
                                 <img src="assets/img/stable (1).png" alt="icon" />
                             </span>

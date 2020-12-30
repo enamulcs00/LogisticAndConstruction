@@ -38,7 +38,7 @@ export class SidebarComponent implements OnInit {
   userID: any;
   previlage: any;
   profile: any;
-
+  currentText: any;
   constructor(private routes: Router, public service: MainService) {
     routes.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
@@ -48,7 +48,7 @@ export class SidebarComponent implements OnInit {
           
           this.service.changeLoginSub('login')
           if ((this.currUrl == `login` || this.currUrl == `forgot-password` || this.currUrl == `reset-password` || this.currUrl == ``)) {
-            this.routes.navigate([`/dashboard`])
+            this.routes.navigate([`/company_management`])
           }
         } else {
           if (!(this.currUrl == `login` || this.currUrl == `forgot-password` || this.currUrl.includes(`reset-password`) || this.currUrl == ``)) {
@@ -62,13 +62,13 @@ export class SidebarComponent implements OnInit {
   
 
   ngOnInit() {
-
     this.service.loginObs.subscribe(response => {
       if (response == 'login') {
         this.isLoggedIn = true;
         console.log('jf', this.isLoggedIn);
         
         this.myProfile();
+        this.showText();
       }
       else {
         this.isLoggedIn = false;
@@ -86,6 +86,11 @@ export class SidebarComponent implements OnInit {
       //   document.getElementById("mysidebar").className ="lg-logo";
       // }
       
+  }
+  showText(){
+    if(this.currUrl==`company_management` || this.currUrl ==`list_of_companies`){
+      this.currentText = 'List of Companies';
+    }
   }
 
   // My Profile Functionality
@@ -116,7 +121,7 @@ myProfile(){
       if(this.permissionList[i]=="STATIC_CONTENT"){
         this.staticflag=true   
       }
-      if(this.permissionList[i]=="USER_MANAGEMENT"){
+      if(this.permissionList[i]=="FLEET_MANAGEMENT"){
         this.staticusermgmt=true
       }
       
@@ -138,7 +143,7 @@ myProfile(){
       if(this.permissionList[i]==="SUBADMIN_MANAGEMENT"){
         this.staticsubmgmt=true
       }
-      if(this.permissionList[i]==="DASHBOARD"){
+      if(this.permissionList[i]==="Company_management"){
         this.staticdasmgmt=true
       }
       
