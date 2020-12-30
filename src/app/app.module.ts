@@ -106,6 +106,8 @@ import { AddThermalPlantsComponent } from './add-thermal-plants/add-thermal-plan
 import { UserRollManagementComponent } from './user-roll-management/user-roll-management.component';
 import { NotificationListMgtComponent } from './notification-list-mgt/notification-list-mgt.component';
 import { OthersComponent } from './others/others.component';
+import { AddCrushersComponent } from './add-crushers/add-crushers.component';
+import { SignupDataComponent } from './signup-data/signup-data.component';
 
 @NgModule({
   declarations: [
@@ -202,6 +204,8 @@ import { OthersComponent } from './others/others.component';
     UserRollManagementComponent,
     NotificationListMgtComponent,
     OthersComponent,
+    AddCrushersComponent,
+    SignupDataComponent,
     
   ],
   imports: [

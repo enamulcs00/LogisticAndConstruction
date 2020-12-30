@@ -48,7 +48,7 @@ export class SidebarComponent implements OnInit {
           
           this.service.changeLoginSub('login')
           if ((this.currUrl == `login` || this.currUrl == `forgot-password` || this.currUrl == `reset-password` || this.currUrl == ``)) {
-            this.routes.navigate([`/company_management`])
+            this.routes.navigate([`/list_of_companies`])
           }
         } else {
           if (!(this.currUrl == `login` || this.currUrl == `forgot-password` || this.currUrl.includes(`reset-password`) || this.currUrl == ``)) {
@@ -88,8 +88,23 @@ export class SidebarComponent implements OnInit {
       
   }
   showText(){
-    if(this.currUrl==`company_management` || this.currUrl ==`list_of_companies`){
+    if(this.currUrl==`list_of_companies` || this.currUrl ==`list_of_companies`){
       this.currentText = 'List of Companies';
+    }
+    if(this.currUrl==`list_of_sites`){
+      this.currentText = 'List of Sites';
+    }
+    if(this.currUrl==`company_user_management`){
+      this.currentText = 'User Management';
+    }
+    if(this.currUrl==`my_booking`){
+      this.currentText = 'Bookings';
+    }
+    if(this.currUrl==`quotes`){
+      this.currentText = 'Quotes';
+    }
+    if(this.currUrl==`billing`){
+      this.currentText = 'Billing';
     }
   }
 

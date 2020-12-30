@@ -9,38 +9,40 @@
                             <div class="row">
                                 <div class="col-lg-3 mt-4">
                                      <label class="ml-3">Company Name</label><br>
-                                     <select>
+                                     <select class="selectBox">
                                          <option>Select Company Name</option>
                                      </select>
                                 </div>
                                 <div class="col-lg-2 mt-4">
-                                    <label class="ml-5">Location</label><br>
-                                     <select>
-                                         <option>Location</option>
+                                    <label class="ml-5">Site</label><br>
+                                     <select class="selectBox">
+                                         <option>Site</option>
                                      </select>
                                 </div>
                                 <div class="col-lg-2 mt-4">
-                                    <label class="ml-5">State</label><br>
-                                     <select>
-                                         <option>State</option>
+                                    <label class="ml-5">First Name</label><br>
+                                     <select class="selectBox">
+                                         <option>First Name</option>
                                      </select>
                                 </div>
                                 <div class="col-lg-2 mt-4">
-                                    <label class="ml-5">City</label><br>
-                                     <select>
-                                         <option>City</option>
+                                    <label class="ml-5">Last Name</label><br>
+                                     <select class="selectBox">
+                                         <option>Last Name</option>
                                      </select>
                                 </div>
                                 <div class="col-lg-3 mt-4">
                                     <label class="ml-5">Mobile</label><br>
-                                     <select>
+                                     <select class="selectBox">
                                          <option>Mobile</option>
                                      </select>
                                 </div>
                             </div>
                             <div class="row  d-flex justify-content-end w_100 mt-3">
                                     <i class='fas fa-file-csv mr-1' style='font-size:48px;color:green' (click)="ExportToCsv()"></i>
-                                    <input type="search" placeholder="Search" style="background-color: black;color:white;">
+                                    <button type="button" style="background: black;
+                                    color: white;
+                                    width: 18%;">Search</button>
                             </div>
 
 
@@ -48,13 +50,13 @@
                                 <table class="table table-bordered" aria-describedby="user list" id = "pdfcontent">
                                     <thead>
                                         <tr class="no_wrap_th">
-                                            <th scope="col">S.No</th>
-                                            <th scope="col">User Name</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">User ID</th>
-                                            <th scope="col">Phone Number</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Registration Date</th>
+                                            <th scope="col">Company Name</th>
+                                            <th scope="col">Mobile No</th>
+                                            <th scope="col">Mobile</th>
+                                            <th scope="col">First Name</th>
+                                            <th scope="col">Last Name</th>
+                                            <th scope="col">Site</th>
+                                            <th scope="col">Roll Type</th>
                                             <th scope="col" class="action_td_btn3">Action</th>
                                             
                                         </tr>

@@ -8,39 +8,35 @@
                         <div class="tab-pane1">
                             <div class="row">
                                 <div class="col-lg-3 mt-4">
-                                     <label class="ml-3">Company Name</label><br>
-                                     <select>
-                                         <option>Select Company Name</option>
+                                     <label class="ml-3">Invoice No</label><br>
+                                     <input class="selectBox" type="text" placeholder="Invoice No"> 
+                                </div>
+                                <div class="col-lg-2 mt-4">
+                                    <label class="ml-5">Supplier</label><br>
+                                     <select class="selectBox">
+                                         <option>Supplier</option>
                                      </select>
                                 </div>
                                 <div class="col-lg-2 mt-4">
-                                    <label class="ml-5">Location</label><br>
-                                     <select>
-                                         <option>Location</option>
+                                    <label class="ml-5">Month</label><br>
+                                     <select class="selectBox">
+                                         <option>Month</option>
                                      </select>
                                 </div>
                                 <div class="col-lg-2 mt-4">
-                                    <label class="ml-5">State</label><br>
-                                     <select>
-                                         <option>State</option>
-                                     </select>
-                                </div>
-                                <div class="col-lg-2 mt-4">
-                                    <label class="ml-5">City</label><br>
-                                     <select>
-                                         <option>City</option>
-                                     </select>
+                                    <label class="ml-5">From Date</label><br>
+                                     <input type="date" class="selectBox">
                                 </div>
                                 <div class="col-lg-3 mt-4">
-                                    <label class="ml-5">Mobile</label><br>
-                                     <select>
-                                         <option>Mobile</option>
-                                     </select>
+                                    <label class="ml-5">To Date</label><br>
+                                    <input type="date" class="selectBox">
                                 </div>
                             </div>
                             <div class="row  d-flex justify-content-end w_100 mt-3">
                                     <i class='fas fa-file-csv mr-1' style='font-size:48px;color:green' (click)="ExportToCsv()"></i>
-                                    <input type="search" placeholder="Search" style="background-color: black;color:white;">
+                                    <button type="button" style="background: black;
+                                    color: white;
+                                    width: 18%;">Search</button>
                             </div>
 
 
@@ -48,13 +44,22 @@
                                 <table class="table table-bordered" aria-describedby="user list" id = "pdfcontent">
                                     <thead>
                                         <tr class="no_wrap_th">
-                                            <th scope="col">S.No</th>
+                                            <th scope="col">Invoice No</th>
+                                            <th scope="col">Invoice Date</th>
+                                            <th scope="col">Booking ID</th>
+                                            <th scope="col">Supplier</th>
+                                            <th scope="col">Material</th>
+                                            <th scope="col">Weight</th>
+                                            <th scope="col">Delivery Date</th>
+                                            <th scope="col">Location</th>
                                             <th scope="col">User Name</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">User ID</th>
-                                            <th scope="col">Phone Number</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Registration Date</th>
+                                            <th scope="col">Amount</th>
+                                            <th scope="col">PO Number</th>
+                                            <th scope="col">Vehicle Number</th>
+                                            <th scope="col">Vehicle Type</th>
+                                            <th scope="col">Driver Name</th>
+                                            <th scope="col">Driver Mobile</th>
+                                            <th scope="col">Route ID</th>
                                             <th scope="col" class="action_td_btn3">Action</th>
                                             
                                         </tr>

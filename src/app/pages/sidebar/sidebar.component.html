@@ -24,6 +24,7 @@
                     <i class="fas fa-search" aria-hidden="true"></i></button>
                     <h5 style="color:white;position: relative;
                     left: 135%;">{{ currentText }}</h5>
+                    <img src="/assets/img/profile-img.jpg">
             </div>
         </nav>
     </header> 
@@ -60,9 +61,9 @@
                     
                 </div>  -->
                 
-                <div class="menu-box dropdown" [ngClass]="{'active':currUrl == 'company_management'}" style="width:100%;">
+                <div class="menu-box dropdown" [ngClass]="{'active':currUrl == 'list_of_companies'}" style="width:100%;border-bottom: 1px solid grey;">
                     <div class="card-header clearfix  dropbtn" id="headingOne">
-                        <a class="side_menu" [routerLink]="['/company_management']" routerLinkActive="active" onclick="showText();">
+                        <a class="side_menu"  routerLinkActive="active" onclick="showText();">
                             
                             <span class="side_page_name">Company Management</span>
                         </a>
@@ -81,7 +82,7 @@
                     
                 </div>
                 <div class="menu-box dropdown"
-                    [ngClass]="{'active':currUrl == 'fleet-management' || currUrl == 'wallet-details'}" style="width:100%;">
+                    [ngClass]="{'active':currUrl == 'fleet-management' || currUrl == 'wallet-details'}" style="width:100%;border-bottom: 1px solid grey;">
                     <div class="card-header clearfix dropbtn" id="headingTwo">
                         <a class="side_menu" [routerLink]="['/fleet-management']" routerLinkActive="active">
                             
@@ -109,7 +110,7 @@
                         </a>
                     </div>
                 </div> -->
-                <div class="menu-box dropdown" style="width:100%;"
+                <div class="menu-box dropdown" style="width:100%;border-bottom: 1px solid grey;"
                     [ngClass]="{'active':currUrl == 'hot-wallet-management'|| currUrl == 'supplier_management' || currUrl == 'hot-cold-wallet-management' || currUrl=='view-hot-cold-wallet-management'}">
                     <div class="card-header clearfix dropbtn" id="headingThree">
                         <a class="side_menu" [routerLink]="['/supplier_management']" routerLinkActive="active">
@@ -208,16 +209,25 @@
                 
                 
                 
-                <div class="menu-box" style="width:100%;"
-                    [ngClass]="{'active':currUrl == 'notification_list_mgt' || currUrl == 'AboutUs' || currUrl == 'PrivacyPolicy' ||  currUrl == 'TermsAndCondition'}">
+                <div class="menu-box" style="width:100%;border-bottom: 1px solid grey;"
+                    [ngClass]="{'active':currUrl == 'add_crushers_and_mining_info' || currUrl == 'AboutUs' || currUrl == 'PrivacyPolicy' ||  currUrl == 'TermsAndCondition'}">
                     <div class="card-header clearfix" id="headingThree">
-                        <a class="side_menu" [routerLink]="['/notification_list_mgt']" routerLinkActive="active">
+                        <a class="side_menu" [routerLink]="['/add_crushers_and_mining_info']" routerLinkActive="active">
                             
-                            <span class="side_page_name">Notification List and Mgt</span>
+                            <span class="side_page_name">Add Crushers And Mining Info</span>
                         </a>
                     </div>
                 </div>
-                <div class="menu-box dropdown" style="width:100%;"
+                <div class="menu-box" style="width:100%;border-bottom: 1px solid grey;"
+                    [ngClass]="{'active':currUrl == 'signup_data' || currUrl == 'AboutUs' || currUrl == 'PrivacyPolicy' ||  currUrl == 'TermsAndCondition'}">
+                    <div class="card-header clearfix" id="headingThree">
+                        <a class="side_menu" [routerLink]="['/signup_data']" routerLinkActive="active">
+                            
+                            <span class="side_page_name">Signup Data</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="menu-box dropdown" style="width:100%;border-bottom: 1px solid grey;"
                     [ngClass]="{'active':currUrl == 'others' || currUrl == 'add-faq' || currUrl == 'edit-faq' ||  currUrl == 'terms-and-conditions'}">
                     <div class="card-header clearfix dropbtn" id="headingThree">
                         <a class="side_menu" [routerLink]="['/others']" routerLinkActive="active">

@@ -38,9 +38,11 @@ select {
     -moz-appearance: none !important;
     appearance: none !important;
     box-shadow: none;
-    border-radius: 2px;
+    /* border-radius: 2px; */
 }
-
+input,select{
+    padding:5px;
+}
 a,
 input,
 button,
@@ -2222,6 +2224,9 @@ header nav.navbar {
     box-shadow: 0 0px 5px rgba(0, 0, 0, 0.3);
     display: block;
 }
+input{
+    border: 1px solid black;
+}
 
 .btn.btn-toggle {
     background: #828282;
@@ -2751,7 +2756,7 @@ aside.sidebar {
 .menu-box .side_menu span {
     font-weight: 300;
    /* font-family: Arial;*/
-   font-family: Metropolis Extra Light;
+   font-family: system-ui;
    /* font-size: 12px;*/
     letter-spacing: 1px;
     font-size: 15px;
@@ -4431,10 +4436,14 @@ aside.sidebar {
     /*background: #2d3498;*/
     background-color: black;
     padding: 0.5rem 0.75rem;
-    font-size: 15px;
+    font-size: 14px;
     text-align: center;
 }
 
+th{
+    font-family: monospace;
+}
+.selectBox{border-radius:20px;border:1px solid #AAAAAA;}
 .filter_search .form-control {
     border: 1px solid #ccc;
     background: #fff;
