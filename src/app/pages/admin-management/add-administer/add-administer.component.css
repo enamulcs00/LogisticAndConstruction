@@ -1,0 +1,23 @@
+
+.check{
+    position: relative;
+    margin-right: 9%;
+}
+.box{
+    position: absolute;
+    right: 95%;
+    top: 18%;
+}
+.text{
+    font-size: 18px;
+}
+.user-profile .image-box {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 20px;
+    position: relative;
+}
+.order-view{
+    padding-bottom: 1px;
+}

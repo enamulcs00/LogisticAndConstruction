@@ -1,0 +1,72 @@
+<main class="middle-content">
+    <div class="content-section">
+        
+        <div class="page_title_block pL0 pR0">
+            <h1 class="page_title" style="color:#26272d">VIEW USER TRADING DETAIL</h1>
+        </div>
+        <div class="order-view mt30 max-WT-700 mrgn-0-auto" style="max-width: 600px !important;">
+       
+        <div class="padd_6" style="margin-top: 2%;
+        margin-left: 15%;">
+            <div class="form-group row" >
+                <label class="col-md-5 text" for="" style="font-size: 16px;font-weight: 600;">Transaction ID</label>
+                <span class="col-md-1">:</span>
+                <p class="tooltip" style="font-size: 14px;padding-left: 12px; " >{{detail?.basicTradeHistoryId}}</p>
+            </div><hr style="width: 80%;margin-top: -1rem;border-top: 1px solid lightgrey;">
+            
+            <div class="form-group row" >
+                <label class="col-md-5 text" for="" style="font-size: 16px;font-weight: 600;">Base Currency</label>
+                <span class="col-md-1">:</span>
+                <p class="col-md-5" style="font-size: 14px;">{{detail?.baseCoinName}}</p>
+            </div><hr style="width: 80%;margin-top: -1rem;border-top: 1px solid rgb(163, 158, 158);">
+            <div class="form-group row" >
+                <label class="col-md-5 text" for="" style="font-size: 16px;font-weight: 600;">Executable Currency</label>
+                <span class="col-md-1">:</span>
+                <p class="col-md-5" style="font-size: 14px;">{{detail?.execCoinName}}</p>
+            </div><hr style="width: 80%;margin-top: -1rem;border-top: 1px solid lightgrey;">
+            <div class="form-group row" >
+                <label class="col-md-5 text" for="" style="font-size: 16px;font-weight: 600;">Price</label>
+                <span class="col-md-1">:</span>
+                <p class="col-md-5" style="font-size: 14px;">{{detail?.baseCoinMarketPrice}}</p>
+            </div><hr style="width: 80%;margin-top: -1rem;border-top: 1px solid lightgrey;">
+            <div class="form-group row" >
+                <label class="col-md-5 text" for="" style="font-size: 16px;font-weight: 600;">Amount(Token)</label>
+                <span class="col-md-1">:</span>
+                <p class="col-md-5" style="font-size: 14px;">{{detail?.baseCoinamount}}</p>
+            </div><hr style="width: 80%;margin-top: -1rem;border-top: 1px solid lightgrey;">
+            <div class="form-group row" >
+                <label class="col-md-5 text" for="" style="font-size: 16px;font-weight: 600;">Type</label>
+                <span class="col-md-1">:</span>
+                <p class="col-md-5" style="font-size: 14px;">{{detail?.orderType}}</p>
+            </div><hr style="width: 80%;margin-top: -1rem;border-top: 1px solid lightgrey;">
+            <div class="form-group row" >
+                <label class="col-md-5 text" for="" style="font-size: 16px;font-weight: 600;">Date and Time</label>
+                <span class="col-md-1">:</span>
+                <p class="col-md-5" style="font-size: 14px;">{{detail?.creationTime | date:'medium'}}</p>
+            </div><hr style="width: 80%;margin-top: -1rem;border-top: 1px solid lightgrey;">
+            <div class="form-group row" >
+                <label class="col-md-5 text" for="" style="font-size: 16px;font-weight: 600;">Transaction To</label>
+                <span class="col-md-1">:</span>
+                <p class="col-md-5" style="font-size: 14px;">{{detail?.userEmail}}</p>
+            </div><hr style="width: 80%;margin-top: -1rem;border-top: 1px solid lightgrey;">
+           
+        </div>
+        <div class="head_flt_select">
+            <div class="head_flt_select input-label" style="margin-left: 1%">
+                <button  routerLink='/transaction-management' type="submit" class="btn  btn-theme" style="width: 15%;margin-left: 40%;margin-bottom: 3%;">BACK</button>
+            </div>
+    </div>
+   
+    </div>
+    </div>
+    
+    
+</main>
+
+<!-- <footer style="background-color: black;;">
+    <div class="container-fluid">
+        <p class="copyright">Copyright @ 2020 All Rights Reserved  <strong class="theme-text-color"></strong> 
+            </p>
+    </div>
+</footer> -->
+<app-footer></app-footer>

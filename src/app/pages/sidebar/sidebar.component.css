@@ -1,0 +1,11 @@
+/* css */
+.side_menu_icon {
+    left: 6px !important;
+    top: calc(50% - 11px);
+}
+@media (min-width: 1025px){
+.toggle-wrapper aside, .toggle-wrapper .logo-box {
+    width: 45px;
+    transition: 0.5s;
+}
+}

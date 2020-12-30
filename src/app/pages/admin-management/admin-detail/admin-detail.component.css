@@ -1,0 +1,17 @@
+/* css */
+/* .form-group{
+    padding-left: 10%;
+} */
+.user-profile .image-box {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 20px;
+    position: relative;
+}
+.col-md-6{
+    font-size: 16px;
+}
+.order-view{
+    padding-bottom: 1px;
+}

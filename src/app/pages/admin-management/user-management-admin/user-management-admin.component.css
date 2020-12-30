@@ -1,0 +1,35 @@
+/* css */
+tr.no_wrap_th{
+    background-color: white;
+}
+/* .form-control{
+    width: 80%;
+} */
+.fa-ban{
+    font-size: 25px;
+}
+.fa-trash{
+    font-size: 25px;
+}
+.fa-eye{
+    font-size: 20px;
+}
+
+.input-label span {
+    /* position: absolute;
+    left: 5px;
+    top: 8px; */
+    height: 100%;
+    font-size: 16px;
+}
+button.btn.btn-theme.cus-mr {
+    margin-right: 0px; 
+}
+.form-group{
+    margin-bottom: 0px;
+}
+.input-group-append {
+    margin-left: -1px;
+    margin-top: 2px;
+    margin-right: 40px;
+  }

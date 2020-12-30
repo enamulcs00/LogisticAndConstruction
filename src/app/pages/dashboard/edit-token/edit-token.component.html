@@ -1,0 +1,173 @@
+<!-- 
+ <main class="middle-content">
+                  <div class="content-section">
+                      <div class="page_title_block pL0 pR0">
+                          <h1 class="page_title" style="color:#26272d">Edit Token</h1>
+                      </div>
+                      <div class="tab-pane active show" >
+                            <div class="order-view mt30 max-WT-700 mrgn-0-auto">
+                                <div class="main-block-innner mb40 mt40">
+                                    <div class="add-store-block input-style">
+                      
+                         <form [formGroup]="addForm">
+                          <div class="form-group row" >
+                            <label class="col-md-5 text" for="" style="font-size: 18px;">Token Name</label>
+                            <span class="col-md-1" style="font-size: 18px;">:</span>
+                            <div class="col-md-6">
+                            <p style="font-size: 16px;">ABC token</p>
+                            </div>
+                        </div>
+                        <div class="form-group row" >
+                            <label class="col-md-5 text" for="" style="font-size: 18px;">Token ID</label>
+                            <span class="col-md-1" style="font-size: 18px;">:</span>
+                            <div class="col-md-6">
+                            <p style="font-size: 16px;">2457XX</p>
+                        </div>     
+                        </div>
+                        <div class="form-group row" >
+                            <label class="col-md-5 text" for="" style="font-size: 18px;">Token Per ETH</label>
+                            <span class="col-md-1" style="font-size: 18px;">:</span>
+                            <div class="col-md-6">
+                            <input  type="text" formControlName="token" class="form-control" placeholder="decimal">
+                            </div>
+                            <div
+                                 *ngIf="addForm.get('token').hasError('required') && addForm.get('token').touched" style="margin-left: 52%">
+                                  <span  class="error">*Token is required.</span>
+                                  </div>
+                        </div>
+                        <div class="form-group row" >
+                                    <label class="col-md-5 text" for="">Token Address</label>
+                                    <span class="col-md-1">:</span>
+                                   <div class="col-md-6">
+                                    <p>New Delhi</p>
+                                   </div> 
+                                          
+                                </div>
+                        <div class="form-group row" >
+                            <label class="col-md-5 text" for="">Price</label>
+                            <span class="col-md-1">:</span>
+                            <div class="col-md-6">
+                                    <p>$125</p>
+                                </div> 
+                        </div>
+                     </form>
+                        
+                                  
+
+                                  <div class="text-left mt40 text-center">
+                                        <a routerLink="/token-management" class="btn btn-large  max-WT-200 font-100 btn-green" (click)="editToken()">Update</a>
+                                    </div>
+
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                
+                
+                
+                
+                      </div>
+                    </main>
+                    <footer>
+                        <div class="container-fluid">
+                            <p class="copyright">Alende  <strong class="theme-text-color"></strong> 
+                                </p>
+                        </div>
+                    </footer>
+               -->
+<section>
+<div class="container1440 mt-5">           
+ <main class="middle-content" style="margin-bottom: 60px;">
+    <div class="content-section">
+        <div class="page_title_block pL0 pR0">
+            <h1 class="page_title" style="color:#26272d">EDIT TOKEN</h1>
+        </div>
+        <div class="tab-pane active show" >
+          <div class="order-view mt30 max-WT-700 mrgn-0-auto" style="min-width: 700px;padding-bottom: 1px;">
+            <form [formGroup]="addForm">
+              <div class="main-block-innner mb40 mt40">
+                  <div class="add-store-block input-style" style="margin-top: -5%;">
+
+            <div class="form-group row" >
+              <label class="col-md-4 text" for="" style="font-size: 16px;padding-left: 10%;font-weight: 600;">Token Image</label>
+              <span class="col-md-1"  style="font-size: 18px;">:</span>
+              <div class="col-md-6">
+              <img [src]="profile?profile: 'assets/img/dummy.png'" alt="">
+              <input type="file" (change)="handleInputChange($event)" class="hidden" accept=".png, .jpg, .jpeg" >
+              </div>
+          </div>
+          <div class="form-group row" >
+            <label class="col-md-4 text" for=""  style="font-size: 16px;padding-left: 10%;font-weight: 600;">Token Name</label>
+            <span class="col-md-1"  style="font-size: 18px;">:</span>
+            <div class="col-md-6">
+              <input  type="text" formControlName="tokenname" class="form-control" disabled>
+              </div>
+        </div>
+          <div class="form-group row" >
+              <label class="col-md-4 text" for=""  style="font-size: 16px;padding-left: 10%;font-weight: 600;">Contact Address</label>
+              <span class="col-md-1"  style="font-size: 18px;">:</span>
+              <div class="col-md-6">
+                <input  type="text" formControlName="address" class="form-control">
+                <span class="error"
+                *ngIf="addForm.get('address').hasError('required') && (addForm.get('address').dirty || addForm.get('address').touched )"
+                   class="error">
+                   <p>
+                       *Field is required
+                   </p>
+           </span>
+                </div>     
+          </div>
+          
+          <div class="form-group row" >
+                      <label class="col-md-4 text" for=""  style="font-size: 16px;padding-left: 10%;font-weight: 600;">Decimal</label>
+                      <span class="col-md-1"  style="font-size: 18px;">:</span>
+                      <div class="col-md-6">
+                        <input  type="text" formControlName="decimal" class="form-control">
+                        <span class="error"
+                *ngIf="addForm.get('decimal').hasError('required') && (addForm.get('decimal').dirty || addForm.get('decimal').touched )"
+                   class="error">
+                   <p>
+                       *Field is required
+                   </p>
+           </span>
+                        </div>
+                            
+                  </div>
+          <div class="form-group row" >
+              <label class="col-md-4 text" for=""  style="font-size: 16px;padding-left: 10%;font-weight: 600;">Price</label>
+              <span class="col-md-1"  style="font-size: 18px;">:</span>
+              <div class="col-md-6">
+                <input  type="text" formControlName="price" class="form-control">
+                <span class="error"
+                *ngIf="addForm.get('price').hasError('required') && (addForm.get('price').dirty || addForm.get('price').touched )"
+                   class="error">
+                   <p>
+                       *Field is required
+                   </p>
+           </span>
+                </div> 
+          </div>
+          
+                    
+
+          <div class="text-left mt40 text-center">
+            <button  class="btn btn-theme"   (click)="editToken()" [disabled]="!addForm.valid" style="font-size: 15px;color: white;">UPDATE</button>
+        </div>
+                    </div>
+                  </div>  
+                </form>
+              </div>
+          </div>
+  
+  
+        </div>
+      </main>
+</div>
+</section>
+      <!-- <footer style="background: black;">
+          <div class="container-fluid">
+              <p class="copyright">Copyright @ 2020 All Rights Reserved<strong class="theme-text-color"></strong> 
+                  </p>
+          </div>
+      </footer> -->
+      <app-footer></app-footer>

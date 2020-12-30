@@ -1,0 +1,46 @@
+<section>
+    <div class="container1440 mt-5" >
+    <!-- Aside End -->
+    <main class="middle-content">
+        <!-- Page Title Start -->
+        <div class="page_title_block">
+            <h1 class="page_title" style="color:black">ABOUT US</h1>
+           
+        </div>
+        <!-- Page Title End -->
+        <div class="content-section" style="margin-top: -2%;">
+            <div class="order-view mt30 max-WT-700 mrgn-0-auto" style="min-width:654px">
+                <div class="main-block-innner mb40 mt40">
+                    <div class="add-store-block input-style" style="margin-top: -7%;">
+                        <div class="form-group row ">
+                            
+                            <div class="col-md-12">
+                                <textarea class="form-control common-textarea" [(ngModel)]="dataa.pageKey" placeholder="PAGE NAME"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row ">
+                            
+                            <div class="col-md-12">
+                                <!-- <ck-editor name="editor1" aria-placeholder="Description"  [(ngModel)]="dataa.pageData" debounce="500"
+                                skin="moono-lisa" language="en" [fullPage]="true"></ck-editor> -->
+                            </div>
+                        </div>
+                        <div class="text-center mt40">
+                            <a  class="btn btn-large  max-WT-200 font-100 btn-green mr-2" (click)="saveAboutUS()">Save</a>
+                            <a href="javascript:void(0)" class="btn btn-large  max-WT-200 font-100 btn-grey ml5" [routerLink]="['/static-content-management']">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Middle Content End -->
+    </div>
+</section>
+<!-- <footer style="background: black;">
+    <div class="container-fluid">
+        <p class="copyright">Copyright @ 2020 All Rights Reserved<strong class="theme-text-color"></strong> 
+            </p>
+    </div>
+</footer> -->
+<app-footer></app-footer>

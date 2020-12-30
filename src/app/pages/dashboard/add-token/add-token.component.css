@@ -1,0 +1,5 @@
+/* css */
+.btn:disabled {
+    opacity: 0.8;
+    background-color: grey;
+}
