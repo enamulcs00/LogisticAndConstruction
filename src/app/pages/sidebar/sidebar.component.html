@@ -210,7 +210,7 @@
                 
                 
                 <div class="menu-box" style="width:100%;border-bottom: 1px solid grey;"
-                    [ngClass]="{'active':currUrl == 'add_crushers_and_mining_info' || currUrl == 'AboutUs' || currUrl == 'PrivacyPolicy' ||  currUrl == 'TermsAndCondition'}">
+                    [ngClass]="{'active':currUrl == 'add_crushers_and_mining_info' || currUrl == 'AboutUs'  ||  currUrl == 'TermsAndCondition'}">
                     <div class="card-header clearfix" id="headingThree">
                         <a class="side_menu" [routerLink]="['/add_crushers_and_mining_info']" routerLinkActive="active">
                             
@@ -219,7 +219,7 @@
                     </div>
                 </div>
                 <div class="menu-box" style="width:100%;border-bottom: 1px solid grey;"
-                    [ngClass]="{'active':currUrl == 'signup_data' || currUrl == 'AboutUs' || currUrl == 'PrivacyPolicy' ||  currUrl == 'TermsAndCondition'}">
+                    [ngClass]="{'active':currUrl == 'signup_data' || currUrl == 'AboutUs' ||  currUrl == 'TermsAndCondition'}">
                     <div class="card-header clearfix" id="headingThree">
                         <a class="side_menu" [routerLink]="['/signup_data']" routerLinkActive="active">
                             
@@ -230,15 +230,15 @@
                 <div class="menu-box dropdown" style="width:100%;border-bottom: 1px solid grey;"
                     [ngClass]="{'active':currUrl == 'others' || currUrl == 'add-faq' || currUrl == 'edit-faq' ||  currUrl == 'terms-and-conditions'}">
                     <div class="card-header clearfix dropbtn" id="headingThree">
-                        <a class="side_menu" [routerLink]="['/others']" routerLinkActive="active">
+                        <a class="side_menu"  routerLinkActive="active">
                             
                             <span class="side_page_name">Others</span>
                         </a>
                     </div>
                     <div class="dropdown-content">
-                        <a>Add Contact Us Mobile No And E-mail Id</a>
-                        <a>Terms And Conditions</a>
-                        
+                        <a [routerLink]="['/add_contact_us']">Add Contact Us Mobile No And E-mail Id</a>
+                        <a [routerLink]="['/terms_and_conditions']">Terms And Conditions</a>
+                        <a [routerLink]="['/PrivacyPolicy']">Privacy Policy</a>
                       </div>
                 </div>
                 

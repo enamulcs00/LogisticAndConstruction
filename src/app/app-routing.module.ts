@@ -149,7 +149,7 @@ const routes: Routes = [
   { path: 'hot-wallet-management', component:HotWalletManagementComponent},
   { path: 'static-content-management', component: StaticContentManagementComponent },
   { path: 'TermsAndCondition/:id', component: TermsAndConditionsComponent },
-  { path: 'PrivacyPolicy/:id', component: PrivacyPolicyComponent },
+  { path: 'PrivacyPolicy', component: PrivacyPolicyComponent },
   { path: 'AboutUs/:id', component: AboutUsComponent },
   { path: 'faq-management',component:FaqComponent},
   { path: 'add-faq', component:AddFaqComponent},

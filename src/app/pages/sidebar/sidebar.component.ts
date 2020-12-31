@@ -142,6 +142,27 @@ export class SidebarComponent implements OnInit {
     if(this.currUrl==`add_truck_type`){
       this.currentText = 'Truck Types';
     }
+    if(this.currUrl==`add_material`){
+      this.currentText = 'Materials';
+    }
+    if(this.currUrl==`add_thermal_plants`){
+      this.currentText = 'Thermal Plants';
+    }
+    if(this.currUrl==`add_crushers_and_mining_info`){
+      this.currentText = 'Crushers And Mining Info';
+    }
+    if(this.currUrl==`signup_data`){
+      this.currentText = 'List Of Companies';
+    }
+    if(this.currUrl==`add_contact_us`){
+      this.currentText = 'Contact No And E-Mail ID';
+    }
+    if(this.currUrl==`terms_and_conditions`){
+      this.currentText = 'Terms And Conditions';
+    }
+    if(this.currUrl==`PrivacyPolicy`){
+      this.currentText = 'Privacy Policy';
+    }
   }
 
   // My Profile Functionality
