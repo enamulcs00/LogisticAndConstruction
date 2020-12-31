@@ -93,7 +93,7 @@ login(){
     }
 
        this.service.changeLoginSub('login');
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['billing']);
        }
     },
     (err : any)=>{

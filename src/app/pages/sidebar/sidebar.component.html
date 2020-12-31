@@ -84,18 +84,18 @@
                 <div class="menu-box dropdown"
                     [ngClass]="{'active':currUrl == 'fleet-management' || currUrl == 'wallet-details'}" style="width:100%;border-bottom: 1px solid grey;">
                     <div class="card-header clearfix dropbtn" id="headingTwo">
-                        <a class="side_menu" [routerLink]="['/fleet-management']" routerLinkActive="active">
+                        <a class="side_menu"  routerLinkActive="active">
                             
                             <span class="side_page_name">Fleet Management</span>
                         </a>
                     </div>
                     <div class="dropdown-content">
-                        <a>List Of Fleet Owner</a>
-                            <a>List Of Truck</a> 
-                            <a>List Of Bid By Fleet</a>
+                        <a [routerLink]="['/list_of_fleet_owner']">List Of Fleet Owner</a>
+                            <a [routerLink]="['/list_of_truck']">List Of Truck</a> 
+                            <a [routerLink]="['/list_of_bid_by_fleet']">List Of Bid By Fleet</a>
                             <a>List Of Booking Details</a>
                             <a>Billing</a>
-                            <a>List Of Driver</a>
+                            <a [routerLink]="['/list_of_driver']">List Of Driver</a>
                       </div>
                 </div>
                 <!-- <div class="menu-box"
@@ -113,16 +113,16 @@
                 <div class="menu-box dropdown" style="width:100%;border-bottom: 1px solid grey;"
                     [ngClass]="{'active':currUrl == 'hot-wallet-management'|| currUrl == 'supplier_management' || currUrl == 'hot-cold-wallet-management' || currUrl=='view-hot-cold-wallet-management'}">
                     <div class="card-header clearfix dropbtn" id="headingThree">
-                        <a class="side_menu" [routerLink]="['/supplier_management']" routerLinkActive="active">
+                        <a class="side_menu"  routerLinkActive="active">
                             
                             <span class="side_page_name"> Supplier Management</span>
                         </a>
                     </div>
                     <div class="dropdown-content">
-                            <a>List Of Supplier</a>
-                            <a>My Booking</a> 
-                            <a>Quotes</a>
-                            <a>Billing</a>
+                            <a [routerLink]="['/list_of_supplier']">List Of Supplier</a>
+                            <a [routerLink]="['/my_booking_supplier']">My Booking</a> 
+                            <a [routerLink]="['/quotes_supplier']">Quotes</a>
+                            <a [routerLink]="['/billing_supplier']">Billing</a>
                             <a>List Of Bid To Fleet Owner</a>
                             <a>List Of Booking Details Fleet</a>
                             <a>Billing Fleet</a>

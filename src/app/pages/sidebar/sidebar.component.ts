@@ -106,6 +106,30 @@ export class SidebarComponent implements OnInit {
     if(this.currUrl==`billing`){
       this.currentText = 'Billing';
     }
+    if(this.currUrl==`list_of_fleet_owner`){
+      this.currentText = 'List Of Fleet Owners';
+    }
+    if(this.currUrl==`list_of_truck`){
+      this.currentText = 'List Of Trucks';
+    }
+    if(this.currUrl==`list_of_bid_by_fleet`){
+      this.currentText = 'List Of Trucks';
+    }
+    if(this.currUrl==`list_of_driver`){
+      this.currentText = 'Drivers List';
+    }
+    if(this.currUrl==`list_of_supplier`){
+      this.currentText = 'List Of Suppliers';
+    }
+    if(this.currUrl==`my_booking_supplier`){
+      this.currentText = 'Client Bookings';
+    }
+    if(this.currUrl==`quotes_supplier`){
+      this.currentText = 'Company Quotes';
+    }
+    if(this.currUrl==`billing_supplier`){
+      this.currentText = 'Billing';
+    }
   }
 
   // My Profile Functionality
