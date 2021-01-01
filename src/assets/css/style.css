@@ -64,6 +64,7 @@ a {
 
 img {
     max-width: 100%;
+
 }
 
 li {
@@ -2759,7 +2760,7 @@ aside.sidebar {
    font-family: system-ui;
    /* font-size: 12px;*/
     letter-spacing: 1px;
-    font-size: 15px;
+    font-size: 19px;
 }
 
 .menu-box .card-body {
@@ -4441,7 +4442,7 @@ aside.sidebar {
 }
 
 th{
-    font-family: monospace;
+    font-family: inherit;
 }
 .selectBox{border-radius:20px;border:1px solid #AAAAAA;}
 .filter_search .form-control {
