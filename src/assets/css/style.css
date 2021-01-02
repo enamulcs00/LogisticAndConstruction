@@ -15,7 +15,7 @@ body {
     color: #191b24;
     font-size: 14px;
    /* font-family: Arial;*/
-   font-family: Metropolis Extra Light;
+   /* font-family: Metropolis Extra Light; */
 }
 
 input:-webkit-autofill {
@@ -75,17 +75,17 @@ li {
     color: #1e8ea8 !important;
 }
 
-.font_uni_sans {
-   /* font-family: "Uni Sans Heavy CAPS" !important;*/
+/* .font_uni_sans {
+   font-family: "Uni Sans Heavy CAPS" !important;
    font-family: Metropolis Extra Light;
-}
+} */
 
-.modal-footer .btn,
+/* .modal-footer .btn,
 .calendar-action .btn,
 .font_uni_sans_italic {
-   /* font-family: Uni Sans Heavy Italic CAPS;*/
+   font-family: Uni Sans Heavy Italic CAPS;
    font-family: Metropolis Extra Light;
-}
+} */
 
 .btn.btn-navy-blue {
     background: #1e8ea8;
@@ -1818,7 +1818,7 @@ label.error {
     display: inline-block;
     width: 100%;
    /* font-family: "Arial";*/
-   font-family: Metropolis Extra Light;
+   /* font-family: Metropolis Extra Light; */
     margin-top: 3px;
 }
 
@@ -1922,7 +1922,7 @@ label.error {
     font-weight: 400;
     font-size: 30px;
    /* font-family: "Uni Sans Thin CAPS";*/
-   font-family: Metropolis Extra Light;
+   /* font-family: Metropolis Extra Light; */
     width: 100%;
 }
 
@@ -2084,7 +2084,7 @@ body.beforelogin {
 
 .box-title h2 {
    /* font-family: "Gill Sans MT Condensed";*/
-   font-family: Metropolis Extra Light;
+   /* font-family: Metropolis Extra Light; */
     margin: 0 0 15px;
     font-size: 35px;
     color: #4c4c4c;
@@ -2713,7 +2713,7 @@ aside.sidebar {
 
 .sidebar-menu .card-header .btn-link:before {
    /* font-family: "Font Awesome 5 Free";*/
-   font-family: Metropolis Extra Light;
+   /* font-family: Metropolis Extra Light; */
     position: absolute;
     font-weight: 600;
     color: #fff;
@@ -2728,6 +2728,10 @@ aside.sidebar {
 .sidebar-menu .card-header .btn-link[aria-expanded="true"]:before {
     content: "\f078";
 }
+label{
+    font-weight: 500;
+    font-family: unset;
+}
 
 .side_menu {
     display: block;
@@ -2736,9 +2740,10 @@ aside.sidebar {
     color: #ffffff;
     font-size: 15px;
     /*font-family: "Gill Sans MT Pro";*/
-    font-family: Metropolis Extra Light;
+    /* font-family: Metropolis Extra Light; */
     position: relative;
     height: 50px;
+    font-family: Metropolis Medium;
 }
 
 .side_menu:hover,
@@ -2756,8 +2761,8 @@ aside.sidebar {
 
 .menu-box .side_menu span {
     font-weight: 300;
-   /* font-family: Arial;*/
-   font-family: system-ui;
+   /* font-family: Arial; */
+   /* font-family: system-ui; */
    /* font-size: 12px;*/
     letter-spacing: 1px;
     font-size: 16px;
@@ -2782,7 +2787,7 @@ aside.sidebar {
     color: #fff;
     text-decoration: none !important;
    /* font-family: "Gill Sans MT Pro";*/
-    font-family: Metropolis Extra Light;
+    /* font-family: Metropolis Extra Light; */
     font-size: 16px;
 }
 
@@ -2901,7 +2906,7 @@ table.plant_table tbody tr td + td {
 .pagination_block .page-link {
     color: #6f7072;
     /*font-family: arial;*/
-    font-family: Metropolis Extra Light;
+    /* font-family: Metropolis Extra Light; */
     font-size: 14px;
     background: none;
     border: none;
@@ -3151,7 +3156,7 @@ table.plant_table tbody tr td + td {
     font-size: 22px;
     color: #333346;
    /* font-family: "Gill Sans MT Pro";*/
-   font-family: Metropolis Extra Light;
+   /* font-family: Metropolis Extra Light; */
     margin: 0 0 15px;
 }
 
@@ -3171,7 +3176,7 @@ table.plant_table tbody tr td + td {
     color: #4c4c4c;
     font-size: 22px;
    /* font-family: "Gill Sans MT Condensed";*/
-   font-family: Metropolis Extra Light;
+   /* font-family: Metropolis Extra Light; */
     border-bottom: 1px solid #ddd;
     margin-bottom: 15px;
     text-align: center;
@@ -4435,7 +4440,12 @@ aside.sidebar {
     border: 1px solid #ccc;
     /*text-align: center;*/
 }
-
+button{
+    height: 35px;
+}
+/* .fa-file-csv{
+    font-size: 35px;
+} */
 .global-table .table-bordered th {
     color: #f8f9fa;
     /*background: #2d3498;*/
@@ -4443,11 +4453,13 @@ aside.sidebar {
     padding: 0.5rem 0.75rem;
     font-size: 14px;
     text-align: center;
+    font-weight: 500;
+    font-family: -webkit-pictograph;
 }
 
-th{
+/* th{
     font-family: inherit;
-}
+} */
 .selectBox{border-radius:20px;border:1px solid #AAAAAA;}
 .filter_search .form-control {
     border: 1px solid #ccc;
@@ -4607,7 +4619,7 @@ th{
     margin: 0;
     font-size: 28px;
    /* font-family: Gill Sans MT Pro;*/
-   font-family: Metropolis Extra Light;
+   /* font-family: Metropolis Extra Light; */
     color: #464646;
     font-weight: bold;
 }
@@ -5393,7 +5405,7 @@ select.form-control.select_opt {
     font-size: 24px;
     color: #464646;
    /* font-family: "Gill Sans MT Pro";*/
-   font-family: Metropolis Extra Light;
+   /* font-family: Metropolis Extra Light; */
     font-weight: bold;
 }
 
@@ -5627,7 +5639,7 @@ select.form-control.select_opt {
 .sigintext-block h2 {
     color: #1b24bf;
    /* font-family: "Gill Sans MT Pro";*/
-   font-family: Metropolis Extra Light;
+   /* font-family: Metropolis Extra Light; */
     font-size: 34px;
     font-weight: bold;
     margin: 0 0 10px;
@@ -5635,7 +5647,7 @@ select.form-control.select_opt {
 
 .sigintext-block p {
    /* font-family: "Gill Sans MT Pro";*/
-   font-family: Metropolis Extra Light;
+   /* font-family: Metropolis Extra Light; */
     font-size: 16px;
 }
 
