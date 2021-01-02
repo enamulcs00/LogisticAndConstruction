@@ -2761,7 +2761,7 @@ label{
 
 .menu-box .side_menu span {
     font-weight: 300;
-   /* font-family: Arial; */
+   font-family: Arial;
    /* font-family: system-ui; */
    /* font-size: 12px;*/
     letter-spacing: 1px;
@@ -4460,7 +4460,7 @@ button{
 /* th{
     font-family: inherit;
 } */
-.selectBox{border-radius:20px;border:1px solid #AAAAAA;}
+.selectBox{border-radius:7px;border:1px solid #AAAAAA;}
 .filter_search .form-control {
     border: 1px solid #ccc;
     background: #fff;

@@ -97,6 +97,7 @@ import { SignupDataComponent } from './signup-data/signup-data.component';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent},
+  { path: 'forgot_password', component: ForgotPasswordComponent},
   { path: 'signup_data', component: SignupDataComponent},
   { path: 'add_crushers_and_mining_info', component: AddCrushersComponent},
   { path: 'others', component: OthersComponent},

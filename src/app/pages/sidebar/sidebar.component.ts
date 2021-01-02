@@ -47,11 +47,11 @@ export class SidebarComponent implements OnInit {
           console.log('hh', localStorage.data);
           
           this.service.changeLoginSub('login')
-          if ((this.currUrl == `login` || this.currUrl == `forgot-password` || this.currUrl == `reset-password` || this.currUrl == ``)) {
+          if ((this.currUrl == `login` || this.currUrl == `reset-password` || this.currUrl == ``)) {
             this.routes.navigate([`/list_of_companies`])
           }
         } else {
-          if (!(this.currUrl == `login` || this.currUrl == `forgot-password` || this.currUrl.includes(`reset-password`) || this.currUrl == ``)) {
+          if (!(this.currUrl == `login` || this.currUrl.includes(`reset-password`) || this.currUrl == ``)) {
             this.routes.navigate([`/login`])
           }
           this.service.changeLoginSub('logout');
@@ -113,7 +113,10 @@ export class SidebarComponent implements OnInit {
       this.currentText = 'List Of Trucks';
     }
     if(this.currUrl==`list_of_bid_by_fleet`){
-      this.currentText = 'List Of Trucks';
+      this.currentText = 'Bids';
+    }
+    if(this.currUrl==`list_of_booking_details`){
+      this.currentText = 'Bookings';
     }
     if(this.currUrl==`list_of_driver`){
       this.currentText = 'Drivers List';
