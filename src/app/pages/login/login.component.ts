@@ -61,7 +61,7 @@ forgotPassword() {
   this.router.navigateByUrl('forgot-password')
 }
 
- 
+
 login(){
   // localStorage.setItem('Auth','token');
   // localStorage.setItem('data','eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwaC1yYWtlc2hrdW1hckBtb2JpbG9pdHRlLmNvbSIsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwicm9sZSI6IkFETUlOIiwiYXV0aGVudGljYXRlZCI6dHJ1ZSwidXNlcklkIjoyLCJ1c2VybmFtZSI6InBoLXJha2VzaGt1bWFyQG1vYmlsb2l0dGUuY29tIiwiaWF0IjoxNjA1NTA4MTcwLCJleHAiOjE2MDU1OTQ1NzB9.0KrFklXTfXLFVmqCJvlJju2ymWGiVefgltkPQXGWkR3vJe1wg35pCTBSiRylxmsQZ6C6jcuWvb5NSKej7aRhDg');
@@ -78,6 +78,7 @@ login(){
      this.service.hideSpinner()
      console.log("res:::::", res)
        if(res['responseCode'] == '200'){
+         this.router.navigate(['company_management'])
        localStorage.setItem('Auth',res['result']['token']);
        console.log(res)
        this.service.toasterSucc(res['message'])
@@ -89,7 +90,7 @@ login(){
           // "password":window.btoa(this.loginForm.value.password)
         }
         localStorage.setItem('rememberMe',JSON.stringify(remData))
-  
+
     }
 
        this.service.changeLoginSub('login');
@@ -97,7 +98,7 @@ login(){
        }
     },
     (err : any)=>{
-      
+
       this.service.hideSpinner();
       if(err['responseCode']=='401'){
         this.service.toasterErr(err['error']['message']);
@@ -113,7 +114,7 @@ this.Obj={
 
 }
   localStorage.setItem('data',JSON.stringify(this.Obj));
-  
+
 }
 
 //--------------------myAccount api integrate ----------------------//
