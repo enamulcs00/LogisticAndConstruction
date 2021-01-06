@@ -1,3 +1,4 @@
+import { ViewSupplierDetailsComponent } from './list-of-supplier/view-supplier-details/view-supplier-details.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard/dashboard.component';
@@ -130,6 +131,7 @@ const routes: Routes = [
   { path: 'company_management', component: DashboardComponent },
   { path: 'fleet-management', component: UserManagementComponent },
   { path: 'supplier_management', component: UserDetailsComponent },
+  { path: 'view-supplier', component: ViewSupplierDetailsComponent},
   { path: 'wallet-details/:id', component: WalletDetailsComponent },
   { path: 'kyc-management', component: KycManagementComponent },
   { path: 'wallet-management', component: UserDetailsComponent },
@@ -160,7 +162,7 @@ const routes: Routes = [
   { path: 'edit-announcement', component:EditAnnouncementComponent},
   { path: 'view-announcement', component:ViewAnnouncementComponent},
   { path: 'content-management', component:ContentManagementComponent},
-  
+
   { path:'login-session-activity' ,component : LoginSessionActivityComponent},
   { path:'view-user-trading-detail' ,component : ViewUserTradingDetailComponent},
   { path: 'setting', component: SettingsComponent },
@@ -196,7 +198,7 @@ const routes: Routes = [
   { path: 'send-money', component:SendMoneyComponent},
   { path: '**', component: PageNotFoundComponent },
   { path: 'footer', component: FooterComponent},
-  
+
 ];
 
 @NgModule({

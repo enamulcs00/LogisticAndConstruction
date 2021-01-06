@@ -13,7 +13,7 @@
                                          <option>Select Supplier Name</option>
                                      </select>
                                 </div>
-                                
+
                                 <div class="col-lg-2 mt-4">
                                     <label class="ml-5">Location</label><br>
                                      <select class="selectBox">
@@ -46,10 +46,8 @@
                                     width: 14%;">Search</button>
                                     <button type="button" style="background: black;
                                     color: white;
-                                    width: 14%;">Reset</button>  
+                                    width: 14%;">Reset</button>
                             </div>
-
-
                             <div class="table-responsive">
                                 <table class="table table-bordered" aria-describedby="user list" id = "pdfcontent">
                                     <thead>
@@ -64,11 +62,29 @@
                                             <th scope="col">GSTIN</th>
                                             <th scope="col">Date Of Creation</th>
                                             <th scope="col" class="action_td_btn3">Action</th>
-                                            
+
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let item of listing| paginate: { 
+                                      <tr>
+                                        <td>General Store</td>
+                                        <td>Enamul</td>
+                                        <td>enamulcs008@gmail.com</td>
+                                        <td>enamulcs00</td>
+                                        <td>8946818146</td>
+                                        <td>ACTIVE</td>
+                                        <td>ACTIVE</td>
+                                        <td>9:30</td>
+                                        <td>ACTIVE</td>
+                                        <td class="action_td_btn3" style="cursor: pointer">
+                                            <a ><i class="fa fa-eye" (click)="userDetails()"></i></a>
+                                            <!-- <a><i class="fa fa-trash" (click)="openModal()"></i></a> -->
+                                            <!-- <a  (click)="openModal()"><i class="fa fa-ban" style="color: green;"></i></a> -->
+                                            <!-- <a *ngIf="item?.userStatus == 'BLOCK'" (click)="openModal('ACTIVE',item?.userId)"><i class="fa fa-ban"></i></a> -->
+
+                                        </td>
+                                      </tr>
+                                        <!-- <tr *ngFor="let item of listing| paginate: {
                                     itemsPerPage: itemsPerPage,
                                     currentPage: pageNumber,
                                     totalItems: totalRecords };let i = index ">
@@ -87,7 +103,7 @@
                                                 <a *ngIf="item?.userStatus == 'BLOCK'" (click)="openModal('ACTIVE',item?.userId)"><i class="fa fa-ban"></i></a>
 
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                     <tbody *ngIf="listing?.length==0">
                                         <tr>
@@ -111,9 +127,9 @@
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
     </main>
-    
+
     </div>
 
 </section>
@@ -146,7 +162,7 @@
                 </tr>
             </tbody>
         </table>
-    </div>       
+    </div>
 </div> -->
 
 

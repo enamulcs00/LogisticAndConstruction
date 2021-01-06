@@ -108,6 +108,7 @@ import { NotificationListMgtComponent } from './notification-list-mgt/notificati
 import { OthersComponent } from './others/others.component';
 import { AddCrushersComponent } from './add-crushers/add-crushers.component';
 import { SignupDataComponent } from './signup-data/signup-data.component';
+import  { ViewSupplierDetailsComponent } from './list-of-supplier/view-supplier-details/view-supplier-details.component'
 
 @NgModule({
   declarations: [
@@ -206,7 +207,8 @@ import { SignupDataComponent } from './signup-data/signup-data.component';
     OthersComponent,
     AddCrushersComponent,
     SignupDataComponent,
-    
+    ViewSupplierDetailsComponent,
+
   ],
   imports: [
     BrowserModule,

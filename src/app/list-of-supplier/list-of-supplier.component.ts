@@ -43,7 +43,7 @@ export class ListOfSupplierComponent implements OnInit {
       'enddate': new FormControl('', Validators.required),
       'searchText': new FormControl(''),
     })
-    
+
     let date = new Date()
     this.fromDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() : '0'+ (date.getMonth() + 1) )+ '-' + date.getFullYear()
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
@@ -80,7 +80,7 @@ export class ListOfSupplierComponent implements OnInit {
       console.log('kfg',this.listing);
       this.totalRecords = res.data.totalCount
       console.log('kn', this.totalRecords);
-      
+
     })
   }
   // ------------------------pagination -------------------------//
@@ -118,7 +118,7 @@ export class ListOfSupplierComponent implements OnInit {
   // ------------------------------reset filter------------------------------//
   resetForm(){
     this.userForm.reset()
-    this.getlist();    
+    this.getlist();
   }
 
   //========modal=======//
@@ -199,8 +199,8 @@ export class ListOfSupplierComponent implements OnInit {
   }
 
   //------------------- user details navigation------------------------------//
-  userDetails(id,email){
-    this.router.navigate(['/user-details',id,email] )
+  userDetails(){
+    this.router.navigate(['/supplier_management'])
 
   }
 
@@ -250,15 +250,15 @@ export class ListOfSupplierComponent implements OnInit {
         "UserID": element.userId ? element.userId : 'N/A',
         "PhoneNumber": String(element.phoneNo) ? String(element.phoneNo) : 'N/A',
         "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-        "Registration Date": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A', 
+        "Registration Date": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A',
       }
       listingArr.push(obj)
     });
-    const options = { 
+    const options = {
       fieldSeparator: ',',
       quoteStrings: '"',
       decimalSeparator: '.',
-      showLabels: true, 
+      showLabels: true,
       showTitle: true,
       title: 'Candidate Details CSV',
       useTextFile: false,
@@ -266,11 +266,11 @@ export class ListOfSupplierComponent implements OnInit {
       useKeysAsHeaders: true,
     };
     // const csvExporter = new ExportToCsv(options);
-    //  csvExporter.generateCsv(listingArr); 
+    //  csvExporter.generateCsv(listingArr);
   }
 
   //--------------------------------export pdf ----------------------------------------
-  
+
   exportPDF(){
     this.service.showSpinner();
     setTimeout( r => {
@@ -282,12 +282,12 @@ export class ListOfSupplierComponent implements OnInit {
           paperSize: "A2",
           margin: { top: "0.8cm", bottom: "1cm" },
           scale: 0.8,
-          height: 400,          
+          height: 400,
         })
       .then(function (group) {
         kendo.drawing.pdf.saveAs(group, "Exported.pdf")
       });
-    
+
   }
 
 
