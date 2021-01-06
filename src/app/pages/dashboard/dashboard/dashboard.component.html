@@ -116,7 +116,7 @@
 
 <app-footer></app-footer>
 
-<!-- <div id = "pdfcontent">
+<div id = "pdfcontent">
     <div class="upload-info more-content">
         <p class="up-load head-ings">USER DETAILS</p>
         <table>
@@ -143,11 +143,10 @@
             </tbody>
         </table>
     </div>       
-</div> -->
+</div>
 
 
 
-<!-- delete_modal Start -->
 <div class="modal fade global-modal reset-modal" id="deleteModal">
     <div class="modal-dialog max-WT-500">
         <form class="change_password">
@@ -176,9 +175,8 @@
         </form>
     </div>
 </div>
-<!-- delete_modal End -->
 
-<!-- block_modal Start -->
+
 <div class="modal fade global-modal reset-modal" id="block">
     <div class="modal-dialog max-WT-500">
         <form class="change_password">
@@ -186,17 +184,12 @@
                 <div>
                     <div class="modal-body">
                         <h3 style="text-align: center;font-size: 20px; ">Block User </h3>
-
-                        <!-- <h3 *ngIf="userStatus=='ACTIVE'" style="text-align: center; ">Unblock  </h3>
-                        <h3  *ngIf="userStatus=='BLOCK'" style="text-align: center; ">Block  </h3> -->
                         <hr>
                         <button type="button" class="close" data-dismiss="modal"
                             style="margin-top: -85px;">&times;</button>
                         <div class="text-center modal_flax_height d-flex align-items-center justify-content-center">
                             <div class="w-100">
                                 <p style="font-size: 18px;">Are you sure you want to block this user?</p>
-                                <!-- <p  *ngIf="userStatus=='ACTIVE'" style="font-size: 25px;">Are you sure you want to unblock?</p>
-                                <p  *ngIf="userStatus=='BLOCK'" style="font-size: 25px;">Are you sure you want to block?</p> -->
                                 <div>
                                     <button type="submit" class="btn btn-info mr-2 "
                                         style="width: 25%;background-color: black;" (click)="blockUser()">Yes</button>
@@ -212,7 +205,7 @@
     </div>
 </div>
 
-<!-- active Start -->
+
 <div class="modal fade global-modal reset-modal" id="active">
     <div class="modal-dialog max-WT-500">
         <form class="change_password">

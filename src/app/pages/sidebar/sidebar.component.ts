@@ -43,15 +43,21 @@ export class SidebarComponent implements OnInit {
     routes.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.currUrl = event.url.split('/')[1];
+        console.log("current url",this.currUrl)
         if (localStorage.data) {
           console.log('hh', localStorage.data);
           
           this.service.changeLoginSub('login')
           if ((this.currUrl == `login` || this.currUrl == `reset-password` || this.currUrl == ``)) {
-            this.routes.navigate([`/list_of_companies`])
+            // this.routes.navigate([`/list_of_companies`])
+            this.routes.navigate([`/dashboard`])
           }
         } else {
-          if (!(this.currUrl == `login` || this.currUrl.includes(`reset-password`) || this.currUrl == ``)) {
+        console.log("else url",this.currUrl)
+
+          if (!(this.currUrl == `login` || this.currUrl.includes(`reset-password`) || this.currUrl.includes(`forgot-password`) || this.currUrl == ``)) {
+        console.log("else if url",this.currUrl)
+
             this.routes.navigate([`/login`])
           }
           this.service.changeLoginSub('logout');
@@ -67,7 +73,7 @@ export class SidebarComponent implements OnInit {
         this.isLoggedIn = true;
         console.log('jf', this.isLoggedIn);
         
-        this.myProfile();
+        // this.myProfile();
         this.showText();
       }
       else {
@@ -218,7 +224,8 @@ myProfile(){
       if(this.permissionList[i]==="SUBADMIN_MANAGEMENT"){
         this.staticsubmgmt=true
       }
-      if(this.permissionList[i]==="Company_management"){
+      // if(this.permissionList[i]==="Company_management"){
+      if(this.permissionList[i]==="dashboard"){
         this.staticdasmgmt=true
       }
       

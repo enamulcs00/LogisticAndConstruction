@@ -72,7 +72,16 @@
                             </div>
                     
                 </div>  -->
-                
+                <div class="menu-box" [ngClass]="{'active':currUrl == 'dashboard'}">
+                    <div class="card-header clearfix" id="headingOne">
+                        <a class="side_menu" [routerLink]="['/dashboard']" routerLinkActive="active">
+                            <!-- <span class="side_menu_icon">
+                                <img src="assets/img/dashboard-icon.png" alt="icon" />
+                            </span> -->
+                            <span class="side_page_name">Dashboard</span>
+                        </a>
+                    </div>
+                </div>
                 <div class="menu-box dropdown" [ngClass]="{'active':currUrl == 'list_of_companies'}" style="width:100%;border-bottom: 1px solid grey;">
                     <div class="card-header clearfix  dropbtn" id="headingOne">
                         <a class="side_menu"  routerLinkActive="active" onclick="showText();">
@@ -304,7 +313,8 @@
                         </div>
                 
             </div>
-                <div class="menu-box" *ngIf="staticdasmgmt==true" [ngClass]="{'active':currUrl == 'dashboard'}">
+                <!-- <div class="menu-box" *ngIf="staticdasmgmt==true" [ngClass]="{'active':currUrl == 'dashboard'}"> -->
+                <div class="menu-box" [ngClass]="{'active':currUrl == 'dashboard'}">
                     <div class="card-header clearfix" id="headingOne">
                         <a class="side_menu" [routerLink]="['/dashboard']" routerLinkActive="active">
                             <span class="side_menu_icon">
