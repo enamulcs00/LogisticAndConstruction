@@ -108,6 +108,7 @@ import { NotificationListMgtComponent } from './notification-list-mgt/notificati
 import { OthersComponent } from './others/others.component';
 import { AddCrushersComponent } from './add-crushers/add-crushers.component';
 import { SignupDataComponent } from './signup-data/signup-data.component';
+import { NgOtpInputModule } from  'ng-otp-input';
 
 @NgModule({
   declarations: [
@@ -225,6 +226,7 @@ import { SignupDataComponent } from './signup-data/signup-data.component';
     // AngularMyDatePickerModule,
     // AngularEditorModule,
     // CKEditorModule
+    NgOtpInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

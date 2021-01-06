@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 formValidation(){
   this.loginForm= new FormGroup({
     // 'email': new FormControl('',[Validators.required, Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,9}|[0-9]{1,3})(\]?)$/i)]),
-    'phoneNo': new FormControl('',[Validators.required, Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,9}|[0-9]{1,3})(\]?)$/i)]),
+    'phoneNo': new FormControl('',[Validators.required]),
     'password': new FormControl('',[Validators.required]),
     'rememberMe': new FormControl('',[Validators.required]),
   })

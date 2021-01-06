@@ -2014,7 +2014,7 @@ body.beforelogin {
 
 .login-box-body {
     width: 100%;
-    max-width: 380px;
+    /* max-width: 380px; */
     margin: 0 auto;
 }
 

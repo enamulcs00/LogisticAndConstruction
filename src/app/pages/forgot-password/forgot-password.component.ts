@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MainService } from 'src/app/provider/main.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,6 +11,19 @@ import { Router } from '@angular/router';
 export class ForgotPasswordComponent implements OnInit {
   forgotPassword: FormGroup;
   email: any;
+  @ViewChild('ngOtpInput', { static: false }) ngOtpInput: any;
+  config = {
+    allowNumbersOnly: false,
+    length: 5,
+    isPasswordInput: false,
+    disableAutoFocus: false,
+    placeholder: '',
+    inputStyles: {
+      'width': '50px',
+      'height': '50px'
+    }
+  };
+  otp: any;
 
   constructor(
     private router : Router,
@@ -19,7 +32,10 @@ export class ForgotPasswordComponent implements OnInit {
 
   ngOnInit() {
     this.forgotPassword = new FormGroup({
+      'phoneNo': new FormControl(''),
+
       'email': new FormControl('',Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/i)),
+
     })
   }
 
@@ -60,6 +76,9 @@ onForgot(){
   // }
 
 
+  onOtpChange(e) {
+    this.otp = e;
+  }
 }
 
 
