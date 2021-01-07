@@ -1,3 +1,5 @@
+import { DeleteSupplierComponent } from './list-of-supplier/delete-supplier/delete-supplier.component';
+import { EditSupplierComponent } from './list-of-supplier/edit-supplier/edit-supplier.component';
 import { AddSupplerComponent } from './list-of-supplier/add-suppler/add-suppler.component';
 import { ViewSupplierDetailsComponent } from './list-of-supplier/view-supplier-details/view-supplier-details.component';
 import { NgModule } from '@angular/core';
@@ -134,6 +136,8 @@ const routes: Routes = [
   { path: 'supplier_management', component: UserDetailsComponent },
   { path: 'view-supplier', component: ViewSupplierDetailsComponent},
   { path: 'add-supplier',component: AddSupplerComponent},
+  {path: 'edit-supplier', component: EditSupplierComponent},
+  {path: 'delete-supplier', component: DeleteSupplierComponent},
   { path: 'wallet-details/:id', component: WalletDetailsComponent },
   { path: 'kyc-management', component: KycManagementComponent },
   { path: 'wallet-management', component: UserDetailsComponent },

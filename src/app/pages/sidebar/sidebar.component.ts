@@ -31,7 +31,7 @@ export class SidebarComponent implements OnInit {
   staticdasmgmt: boolean=false;
   statictokmgmt: boolean=false;
   staticsubmgmt: boolean=false;
-  
+
   staticFaqmgmt: boolean;
   showLogo: boolean=false;
   statictransmgmt: boolean=false;
@@ -45,7 +45,7 @@ export class SidebarComponent implements OnInit {
         this.currUrl = event.url.split('/')[1];
         if (localStorage.data) {
           console.log('hh', localStorage.data);
-          
+
           this.service.changeLoginSub('login')
           if ((this.currUrl == `login` || this.currUrl == `reset-password` || this.currUrl == ``)) {
             this.routes.navigate([`/list_of_companies`])
@@ -59,14 +59,14 @@ export class SidebarComponent implements OnInit {
       }
     })
   }
-  
+
 
   ngOnInit() {
     this.service.loginObs.subscribe(response => {
       if (response == 'login') {
         this.isLoggedIn = true;
         console.log('jf', this.isLoggedIn);
-        
+
         this.myProfile();
         this.showText();
       }
@@ -81,11 +81,11 @@ export class SidebarComponent implements OnInit {
       // if (document.getElementById("mysidebar").className =="lg-logo") {
       //   document.getElementById("mysidebar").className ="lg-logo1";
       // }
-    
+
       // else if (document.getElementById("mysidebar").className =="lg-logo1") {
       //   document.getElementById("mysidebar").className ="lg-logo";
       // }
-      
+
   }
   showText(){
     if(this.currUrl==`list_of_companies` || this.currUrl ==`list_of_companies`){
@@ -123,6 +123,18 @@ export class SidebarComponent implements OnInit {
     }
     if(this.currUrl==`list_of_supplier`){
       this.currentText = 'List Of Suppliers';
+    }
+    if(this.currUrl==`view-supplier`){
+      this.currentText = 'View Supplier';
+    }
+    if(this.currUrl==`add-supplier`){
+      this.currentText = 'Add Supplier';
+    }
+    if(this.currUrl==`edit-supplier`){
+      this.currentText = 'Edit Supplier';
+    }
+    if(this.currUrl==`delete-supplier`){
+      this.currentText = 'Delete Supplier';
     }
     if(this.currUrl==`my_booking_supplier`){
       this.currentText = 'Client Bookings';
@@ -173,9 +185,9 @@ myProfile(){
   var url = 'account/my-account';
   this.service.showSpinner();
   this.service.get(url).subscribe(res=>{
-  
+
     this.service.hideSpinner();
-    if(res['status'] == 200){      
+    if(res['status'] == 200){
      this.userDetail = res['data'];
      this.profile=this.userDetail.imageUrl;
      this.userID=res['data'].userId;
@@ -190,16 +202,16 @@ myProfile(){
 
      if(this.getrole=="SUBADMIN"){
       this.flag=true;
-     
+
     }
     for (let i = 0; i < this.permissionList.length; i++) {
       if(this.permissionList[i]=="STATIC_CONTENT"){
-        this.staticflag=true   
+        this.staticflag=true
       }
       if(this.permissionList[i]=="FLEET_MANAGEMENT"){
         this.staticusermgmt=true
       }
-      
+
       if(this.permissionList[i]=="WALLET_MANAGEMENT"){
         this.staticwalletmgmt=true
       }
@@ -207,7 +219,7 @@ myProfile(){
       if(this.permissionList[i]=="KYC_MANAGEMENT"){
         this.statickycmgmt=true
       }
-   
+
       if(this.permissionList[i]==="TOKEN_MANAGEMENT"){
         this.statictokmgmt=true
       }
@@ -221,18 +233,18 @@ myProfile(){
       if(this.permissionList[i]==="Company_management"){
         this.staticdasmgmt=true
       }
-      
+
 
     }
-    
-    
-   
-    
+
+
+
+
     }else {
       this.service.toasterErr(res['message']);
     }
   },err=>{
-  
+
     this.service.hideSpinner();
     if(err['status']=='401'){
       this.service.onLogout();
@@ -244,7 +256,7 @@ myProfile(){
 }
 
 
-  
+
 
   // logout
   onLogout() {
