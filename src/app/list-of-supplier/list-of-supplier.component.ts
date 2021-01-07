@@ -200,7 +200,7 @@ export class ListOfSupplierComponent implements OnInit {
 
   //------------------- user details navigation------------------------------//
   userDetails(){
-    this.router.navigate(['/supplier_management'])
+    this.router.navigate(['/view-supplier'])
 
   }
 
