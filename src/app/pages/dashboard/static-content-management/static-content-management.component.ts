@@ -17,7 +17,7 @@ export class StaticContentManagementComponent implements OnInit {
   constructor(public service: MainService, public router:Router) { }
 
   ngOnInit() {
-    this.getEnglishStaticData()
+    // this.getEnglishSta ticData()
 
   }
 

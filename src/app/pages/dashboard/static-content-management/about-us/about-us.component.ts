@@ -32,7 +32,7 @@ export class AboutUsComponent implements OnInit {
     this.route.params.subscribe(x=>{
       this.id= x['id'];
     })
-    this.getListCode();
+    // this.getListCode();
     
   }
   // about language translator

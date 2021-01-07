@@ -14,6 +14,15 @@ declare var kendo: any;
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  activeUserLength: any;
+  blockedUserLength: any;
+  userListLength: any;
+  pendingUserLength: any;
+  kycpendingListlength: any;
+  TotalUserCount: any;
+  totalDepositeCount: any;
+  totalCoinCount: any;
+  // 
   userForm: FormGroup;
   listing: any = [];
   id: number;

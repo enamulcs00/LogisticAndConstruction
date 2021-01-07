@@ -30,7 +30,7 @@ export class PrivacyPolicyComponent implements OnInit {
     
       this.id= x['id'];
     })
-    this.getListCode();
+    // this.getListCode();
     
    }
 
