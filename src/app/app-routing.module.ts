@@ -1,3 +1,4 @@
+import { AddSupplerComponent } from './list-of-supplier/add-suppler/add-suppler.component';
 import { ViewSupplierDetailsComponent } from './list-of-supplier/view-supplier-details/view-supplier-details.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -132,6 +133,7 @@ const routes: Routes = [
   { path: 'fleet-management', component: UserManagementComponent },
   { path: 'supplier_management', component: UserDetailsComponent },
   { path: 'view-supplier', component: ViewSupplierDetailsComponent},
+  { path: 'add-supplier',component: AddSupplerComponent},
   { path: 'wallet-details/:id', component: WalletDetailsComponent },
   { path: 'kyc-management', component: KycManagementComponent },
   { path: 'wallet-management', component: UserDetailsComponent },

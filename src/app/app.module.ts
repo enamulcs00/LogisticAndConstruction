@@ -108,7 +108,10 @@ import { NotificationListMgtComponent } from './notification-list-mgt/notificati
 import { OthersComponent } from './others/others.component';
 import { AddCrushersComponent } from './add-crushers/add-crushers.component';
 import { SignupDataComponent } from './signup-data/signup-data.component';
-import  { ViewSupplierDetailsComponent } from './list-of-supplier/view-supplier-details/view-supplier-details.component'
+import  { ViewSupplierDetailsComponent } from './list-of-supplier/view-supplier-details/view-supplier-details.component';
+import { AddSupplerComponent } from './list-of-supplier/add-suppler/add-suppler.component';
+import { EditSupplierComponent } from './list-of-supplier/edit-supplier/edit-supplier.component';
+import { DeleteSupplierComponent } from './list-of-supplier/delete-supplier/delete-supplier.component'
 
 @NgModule({
   declarations: [
@@ -208,6 +211,9 @@ import  { ViewSupplierDetailsComponent } from './list-of-supplier/view-supplier-
     AddCrushersComponent,
     SignupDataComponent,
     ViewSupplierDetailsComponent,
+    AddSupplerComponent,
+    EditSupplierComponent,
+    DeleteSupplierComponent,
 
   ],
   imports: [
