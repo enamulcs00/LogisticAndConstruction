@@ -18,8 +18,8 @@ export class MainService {
   loginObs = this.loginSub.asObservable();
   code: string;
   httpOptions: { headers: HttpHeaders; };
-   public baseUrl = "http://182.72.203.245:1816/"
-   // public baseUrl = "http://182.72.203.244:4032/" // stagging Url Original of this projcet
+  // public baseUrl = "http://182.72.203.245:1816/"
+  public baseUrl = "http://182.72.203.244:4032/" // stagging Url
   // public baseUrl = "http://182.72.203.244:5065/"
   // public baseUrl = "http://182.72.203.244:3023/"
   // public baseUrl = "https://fullstackblockchain-java.mobiloitte.com/"
@@ -28,6 +28,7 @@ export class MainService {
   // public baseUrl = "http://182.72.203.244:4042/"//prabhakar
   //  public baseUrl = "https://java-stellarblockchain.mobiloitte.com/"
   // websiteURL = 'http://172.16.0.217:5065/'
+
   public websiteURL = "https://stellaradminpanel.mobiloitte.com/"
   // public websiteURL = "ec2-35-176-66-190.eu-west-2.compute.amazonaws.com:1649/"
   // public websiteURL = "https://fullstackblockchain-adminpanel.mobiloitte.com/"
@@ -67,7 +68,7 @@ export class MainService {
   }
 
   getThirdPartyApi(url) {
-    return this.http.get(url,{observe:'response'})
+    return this.http.get(url, { observe: 'response' })
   }
 
   // Form Data Api Structure
@@ -100,7 +101,7 @@ export class MainService {
   toasterErr(msg) {
     this.toastr.error(msg)
   }
-  toasterInfo(msg){
+  toasterInfo(msg) {
     this.toastr.info(msg)
   }
 
