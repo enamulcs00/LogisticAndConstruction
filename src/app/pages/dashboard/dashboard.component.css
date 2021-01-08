@@ -1,0 +1,135 @@
+/* dashboard css */
+.dash_list li {
+    min-height: 100px;
+  }
+  
+  .dash-list .dash-list-inner {
+    min-height: 100px;
+  }
+  .dash-list .dash-list-inner {
+    /* width: calc(25.3% - 16px); */
+    padding: 15px;
+    border: 1px solid #191b24;
+    /* width: 295px; */
+    margin: 10px 0px;
+    border-radius: 5px;
+    min-height: 125px;
+    /* background: #000000; */
+  }
+  .dash-border {
+    border: 1px solid #191b24;
+    border-radius: 5px;
+    margin: 0px;
+  }
+  .dash-select .dash-select-inner {
+    margin: 10px 0px;
+  }
+  
+  .dash-gray {
+    background-color: #808080;
+    color: #fff;
+  }
+  
+  /* extra */
+  select {
+    width: 100%;
+  }
+  
+  .change {
+    color: green;
+  }
+  
+  span.mydpicon.icon-mydpcalendar {
+    margin-top: 9px !important;
+    margin-left: 5px !important;
+  }
+  
+  .mydp .mydpicon {
+    margin-top: 7px !important;
+    margin-left: 5px !important;
+  }
+  
+  /* .input-label span {
+      position: absolute;
+      left: 2px!important;
+      top: 8px!important;
+      height: 100%;
+    } */
+  /* table{
+    text-align: center;
+    } */
+  table,
+  td {
+    font-size: 20px;
+  }
+  
+  .global-modal .modal-content {
+    width: 632px !important;
+    border-radius: 7px;
+  }
+  .w_100 {
+    width: 100% !important;
+    margin: 0;
+    margin-right: 3% !important;
+    margin-bottom: 1%;
+  }
+  .max-WT-700 {
+    max-width: 602px !important;
+  }
+  .user-main-head {
+    margin: 4px 0px;
+  }
+  .userdetails-table tr th,
+  .userdetails-table tr td {
+    text-align: left;
+    padding-left: 13px;
+  }
+  .spacng {
+    padding: 0px;
+  }
+  .modal_flax_height {
+    min-height: 98px;
+  }
+  .change_password .modal-body {
+    padding: 2rem 18px;
+  }
+  .registration-div {
+    width: 50%;
+  }
+  .registration-div2 {
+    display: flex;
+    width: 50%;
+    justify-content: space-around;
+  }
+  .pagination a.active {
+    background-color: #4caf50;
+    color: white;
+    border: 1px solid #4caf50;
+  }
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    border: 1px solid #ddd;
+  }
+  .input-label span {
+    /* position: absolute;
+      left: 5px;
+      top: 8px; */
+    height: 100%;
+    font-size: 16px;
+  }
+  button.btn.btn-theme.cus-mr {
+    margin-right: 0px;
+  }
+  .form-group {
+    margin-bottom: 0px;
+  }
+  .input-group-append {
+    margin-left: -1px;
+    margin-top: 2px;
+    margin-right: 40px;
+  }
+  
