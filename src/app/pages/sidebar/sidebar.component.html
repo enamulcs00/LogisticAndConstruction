@@ -71,7 +71,7 @@
                     </div>
                 </div>
 
-                <div class="menu-box dropdown" [ngClass]="{'active':currUrl == 'list-of-companies'}"
+                <div class="menu-box dropdown" [ngClass]="{'active':currUrl == 'list-of-companies' || currUrl.includes('add-company')}"
                     style="width:100%;border-bottom: 1px solid grey;">
                     <div class="card-header clearfix  dropbtn" id="headingOne">
                         <a class="side_menu" routerLinkActive="active" onclick="showText();">

@@ -291,5 +291,13 @@ export class ListOfSitesComponent implements OnInit {
     
   }
 
-
+  addSite(){
+    this.router.navigate(['/add-site'])
+  }
+  viewSite(){
+    this.router.navigate(['/view-site'])
+  }
+  deleteSite(){
+    this.router.navigate(['/delete-site'])
+  }
 }

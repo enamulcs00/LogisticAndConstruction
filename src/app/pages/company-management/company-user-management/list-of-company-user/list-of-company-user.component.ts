@@ -290,6 +290,19 @@ export class ListOfCompanyUserComponent implements OnInit {
     
   }
 
+  addCompanyUser(){
+    this.router.navigate(['/add-company-user'])
+  }
+  viewCompanyUser(){
+    this.router.navigate(['/view-company-user'])
+  }
+  deleteCompanyUser(){
+    this.router.navigate(['/delete-company-user'])
+  }
+  resetPassword(){
+    console.log("reset password calickw")
+    this.router.navigate(['/reset-password'])
+  }
 
 }
 
