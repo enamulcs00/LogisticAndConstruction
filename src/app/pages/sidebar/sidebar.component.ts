@@ -94,22 +94,30 @@ export class SidebarComponent implements OnInit {
       
   }
   showText(){
-    if(this.currUrl==`list_of_companies` || this.currUrl ==`list_of_companies`){
+    // if(this.currUrl==`list_of_companies` || this.currUrl ==`list_of_companies`){
+    if(this.currUrl==`list-of-companies` || this.currUrl ==`list-of-companies`){
+
       this.currentText = 'List of Companies';
     }
-    if(this.currUrl==`list_of_sites`){
+    // if(this.currUrl==`list_of_sites`){
+    if(this.currUrl==`list-of-sites`){
+
       this.currentText = 'List of Sites';
     }
-    if(this.currUrl==`company_user_management`){
+    // if(this.currUrl==`company_user_management`){
+    if(this.currUrl==`list-of-company-user`){
       this.currentText = 'User Management';
     }
-    if(this.currUrl==`my_booking`){
+    // if(this.currUrl==`my_booking`){
+    if(this.currUrl==`list-of-company-booking`){
       this.currentText = 'Bookings';
     }
-    if(this.currUrl==`quotes`){
+    // if(this.currUrl==`quotes`){
+    if(this.currUrl==`list-of-company-quote`){
       this.currentText = 'Quotes';
     }
-    if(this.currUrl==`billing`){
+    // if(this.currUrl==`billing`){
+    if(this.currUrl==`list-of-company-billing`){
       this.currentText = 'Billing';
     }
     if(this.currUrl==`list_of_fleet_owner`){
