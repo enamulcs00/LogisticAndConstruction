@@ -1,9 +1,39 @@
 stages:
         - sonarqube_test
-
+        - build
+        - deploy
 
 sonarqube_test:
         stage: sonarqube_test
         script:
         - chmod +x sonarqube.sh
         - ./sonarqube.sh
+
+
+build:
+        stage: build
+        script:
+        - echo "Creating build"
+        - npm cache clean --force
+        - rm -rf node_modules
+        - rm -rf package-lock.json
+        - npm install
+        - CI=false npm run build
+        - echo "Build completed"
+
+        artifacts:
+            expire_in: 1 hour
+            paths:
+                - dist
+                
+deploy:
+        stage: deploy
+        script:
+            - echo "Deploying on Staging Server"
+            - rsync -rav --delete /home/administrator/builds/sAKW_Exz/0/root/logistic-and-construction-market-place-20123754-angular-admin/dist/* ubuntu@35.176.66.190:/var/www/html/pipeline-project/logistic-and-construction-market-place-20123754-angular-admin/
+            - echo "Deployed Successfully"
+        environment:
+            name: staging
+            url: logistic-construction-admin.mobiloitte.com
+        only:
+            - UAT
