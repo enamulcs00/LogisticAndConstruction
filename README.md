@@ -104,7 +104,7 @@ Project Structure
 -pages/materials
 
 *** thermal plant ***
--pages/thermal-plant
+-pages/thermal-plants
 
 *** crushers and mining info ***
 -pages/crusher-and-mining-info
@@ -113,9 +113,9 @@ Project Structure
 -pages/signup-data
 
 *** other ***
--pages/other/contact-us
--pages/other/terms-and-conditions
--pages/other/privacy-policy
+-pages/others/contact-us
+-pages/others/terms-and-conditions
+-pages/others/privacy-policy
 
 *** reset pasword ***
 -pages/reset-password

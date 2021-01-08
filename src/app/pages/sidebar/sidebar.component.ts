@@ -96,12 +96,10 @@ export class SidebarComponent implements OnInit {
   showText(){
     // if(this.currUrl==`list_of_companies` || this.currUrl ==`list_of_companies`){
     if(this.currUrl==`list-of-companies` || this.currUrl ==`list-of-companies`){
-
       this.currentText = 'List of Companies';
     }
     // if(this.currUrl==`list_of_sites`){
     if(this.currUrl==`list-of-sites`){
-
       this.currentText = 'List of Sites';
     }
     // if(this.currUrl==`company_user_management`){
@@ -120,10 +118,13 @@ export class SidebarComponent implements OnInit {
     if(this.currUrl==`list-of-company-billing`){
       this.currentText = 'Billing';
     }
-    if(this.currUrl==`list_of_fleet_owner`){
+
+    // if(this.currUrl==`list_of_fleet_owner`){
+    if(this.currUrl==`list-of-fleet-owner`){
       this.currentText = 'List Of Fleet Owners';
     }
-    if(this.currUrl==`list_of_truck`){
+    // if(this.currUrl==`list_of_truck`){
+    if(this.currUrl==`list-of-truck`){
       this.currentText = 'List Of Trucks';
     }
     if(this.currUrl==`list_of_bid_by_fleet`){
@@ -132,19 +133,25 @@ export class SidebarComponent implements OnInit {
     if(this.currUrl==`list_of_booking_details`){
       this.currentText = 'Bookings';
     }
-    if(this.currUrl==`list_of_driver`){
+    // if(this.currUrl==`list_of_driver`){
+    if(this.currUrl==`list-of-driver`){
       this.currentText = 'Drivers List';
     }
-    if(this.currUrl==`list_of_supplier`){
+
+    // if(this.currUrl==`list_of_supplier`){
+    if(this.currUrl==`list-of-supplier`){
       this.currentText = 'List Of Suppliers';
     }
-    if(this.currUrl==`my_booking_supplier`){
+    // if(this.currUrl==`my_booking_supplier`){
+    if(this.currUrl==`list-of-supplier-booking`){
       this.currentText = 'Client Bookings';
     }
-    if(this.currUrl==`quotes_supplier`){
+    // if(this.currUrl==`quotes_supplier`){
+    if(this.currUrl==`list-of-supplier-quote`){
       this.currentText = 'Company Quotes';
     }
-    if(this.currUrl==`billing_supplier`){
+    // if(this.currUrl==`billing_supplier`){
+    if(this.currUrl==`list-of-supplier-billing`){
       this.currentText = 'Billing';
     }
     if(this.currUrl==`list_of_bid_to_fleet_owner`){
@@ -156,29 +163,40 @@ export class SidebarComponent implements OnInit {
     if(this.currUrl==`billing_fleet`){
       this.currentText = 'Billing';
     }
-    if(this.currUrl==`add_truck_type`){
+
+    // if(this.currUrl==`add_truck_type`){
+    if(this.currUrl==`truck-type`){
       this.currentText = 'Truck Types';
     }
-    if(this.currUrl==`add_material`){
+    // if(this.currUrl==`add_material`){
+    if(this.currUrl==`materials`){
       this.currentText = 'Materials';
     }
-    if(this.currUrl==`add_thermal_plants`){
+    // if(this.currUrl==`add_thermal_plants`){
+    if(this.currUrl==`thermal-plants`){
       this.currentText = 'Thermal Plants';
     }
-    if(this.currUrl==`add_crushers_and_mining_info`){
+    // if(this.currUrl==`add_crushers_and_mining_info`){
+    if(this.currUrl==`crushers-and-mining`){
       this.currentText = 'Crushers And Mining Info';
     }
     if(this.currUrl==`signup_data`){
       this.currentText = 'List Of Companies';
     }
-    if(this.currUrl==`add_contact_us`){
+    // if(this.currUrl==`add_contact_us`){
+    if(this.currUrl==`contact-us`){
       this.currentText = 'Contact No And E-Mail ID';
     }
-    if(this.currUrl==`terms_and_conditions`){
+    // if(this.currUrl==`terms_and_conditions`){
+    if(this.currUrl==`terms-and-conditions`){
       this.currentText = 'Terms And Conditions';
     }
-    if(this.currUrl==`PrivacyPolicy`){
+    // if(this.currUrl==`PrivacyPolicy`){
+    if(this.currUrl==`privacy-policy`){
       this.currentText = 'Privacy Policy';
+    }
+    if(this.currUrl==`change-password`){
+      this.currentText = 'Change Password';
     }
   }
 
