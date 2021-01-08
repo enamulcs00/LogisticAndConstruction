@@ -69,7 +69,8 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/dashboard']);
     // this.service.showSpinner()
     // this.service.post('auth', {
-    //   email: this.loginForm.value.email,
+    //   // email: this.loginForm.value.email,
+    //   phoneNo: this.loginForm.value.phoneNo,
     //   password: this.loginForm.value.password,
     //   userAgent: navigator.userAgent,
     //   location: this.location,
@@ -78,8 +79,8 @@ export class LoginComponent implements OnInit {
     //   (res: any) => {
     //     this.service.hideSpinner()
     //     console.log("res:::::", res)
-    //     if (res['responseCode'] == '200') {
-    //       localStorage.setItem('Auth', res['result']['token']);
+    //     if (res['status'] == '200') {
+    //       localStorage.setItem('Auth', res['data']['token']);
     //       console.log(res)
     //       this.service.toasterSucc(res['message'])
     //       //  this.myAccountApi()
@@ -100,7 +101,7 @@ export class LoginComponent implements OnInit {
     //   (err: any) => {
 
     //     this.service.hideSpinner();
-    //     if (err['responseCode'] == '401') {
+    //     if (err['status'] == '401') {
     //       this.service.toasterErr(err['error']['message']);
     //       localStorage.removeItem('data');
     //       console.log(err)

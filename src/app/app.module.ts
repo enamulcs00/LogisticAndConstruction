@@ -111,6 +111,41 @@ import { ListOfCompanyQuoteComponent } from './pages/company-management/quotes/l
 import { ViewCompanyQuoteComponent } from './pages/company-management/quotes/view-company-quote/view-company-quote.component';
 import { ListOfCompanyBillingComponent } from './pages/company-management/billing/list-of-company-billing/list-of-company-billing.component';
 import { ViewCompanyBillingComponent } from './pages/company-management/billing/view-company-billing/view-company-billing.component';
+import { ListOfFleetOwnerComponent } from './pages/fleet-management/fleet-owner/list-of-fleet-owner/list-of-fleet-owner.component';
+import { AddFleetOwnerComponent } from './pages/fleet-management/fleet-owner/add-fleet-owner/add-fleet-owner.component';
+import { EditFleetOwnerComponent } from './pages/fleet-management/fleet-owner/edit-fleet-owner/edit-fleet-owner.component';
+import { DeleteFleetOwnerComponent } from './pages/fleet-management/fleet-owner/delete-fleet-owner/delete-fleet-owner.component';
+import { ViewFleetOwnerComponent } from './pages/fleet-management/fleet-owner/view-fleet-owner/view-fleet-owner.component';
+import { RoutesComponent } from './pages/fleet-management/routes/routes.component';
+import { ListOfTruckComponent } from './pages/fleet-management/trucks/list-of-truck/list-of-truck.component';
+import { AddTruckComponent } from './pages/fleet-management/trucks/add-truck/add-truck.component';
+import { EditTruckComponent } from './pages/fleet-management/trucks/edit-truck/edit-truck.component';
+import { ViewTruckComponent } from './pages/fleet-management/trucks/view-truck/view-truck.component';
+import { DeleteTruckComponent } from './pages/fleet-management/trucks/delete-truck/delete-truck.component';
+import { ListOfDriverComponent } from './pages/fleet-management/driver/list-of-driver/list-of-driver.component';
+import { AddDriverComponent } from './pages/fleet-management/driver/add-driver/add-driver.component';
+import { EditDriverComponent } from './pages/fleet-management/driver/edit-driver/edit-driver.component';
+import { ViewDriverComponent } from './pages/fleet-management/driver/view-driver/view-driver.component';
+import { DeleteDriverComponent } from './pages/fleet-management/driver/delete-driver/delete-driver.component';
+import { ListOfSupplierComponent } from './pages/supplier-management/supplier/list-of-supplier/list-of-supplier.component';
+import { AddSupplierComponent } from './pages/supplier-management/supplier/add-supplier/add-supplier.component';
+import { EditSupplierComponent } from './pages/supplier-management/supplier/edit-supplier/edit-supplier.component';
+import { ViewSupplierComponent } from './pages/supplier-management/supplier/view-supplier/view-supplier.component';
+import { DeleteSupplierComponent } from './pages/supplier-management/supplier/delete-supplier/delete-supplier.component';
+import { ListOfSupplierBookingComponent } from './pages/supplier-management/bookings/list-of-supplier-booking/list-of-supplier-booking.component';
+import { ViewSupplierBookingComponent } from './pages/supplier-management/bookings/view-supplier-booking/view-supplier-booking.component';
+import { ListOfSupplierQuoteComponent } from './pages/supplier-management/quotes/list-of-supplier-quote/list-of-supplier-quote.component';
+import { ViewSupplierQuoteComponent } from './pages/supplier-management/quotes/view-supplier-quote/view-supplier-quote.component';
+import { ListOfSupplierBillingComponent } from './pages/supplier-management/billing/list-of-supplier-billing/list-of-supplier-billing.component';
+import { ViewSupplierBillingComponent } from './pages/supplier-management/billing/view-supplier-billing/view-supplier-billing.component';
+import { TruckTypeComponent } from './pages/truck-type/truck-type.component';
+import { MaterialsComponent } from './pages/materials/materials.component';
+import { ThermalPlantsComponent } from './pages/thermal-plants/thermal-plants.component';
+import { CrushersAndMiningInfoComponent } from './pages/crushers-and-mining-info/crushers-and-mining-info.component';
+import { ContactUsComponent } from './pages/others/contact-us/contact-us.component';
+import { TermsAndConditionsComponent } from './pages/others/terms-and-conditions/terms-and-conditions.component';
+import { PrivacyPolicyComponent } from './pages/others/privacy-policy/privacy-policy.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 // import { ListOfCompaniesComponent } from './list-of-companies/list-of-companies.component';
 // import { ListOfSitesComponent } from './list-of-sites/list-of-sites.component';
@@ -256,6 +291,76 @@ import { ViewCompanyBillingComponent } from './pages/company-management/billing/
     ListOfCompanyBillingComponent,
 
     ViewCompanyBillingComponent,
+
+    ListOfFleetOwnerComponent,
+
+    AddFleetOwnerComponent,
+
+    EditFleetOwnerComponent,
+
+    DeleteFleetOwnerComponent,
+
+    ViewFleetOwnerComponent,
+
+    RoutesComponent,
+
+    ListOfTruckComponent,
+
+    AddTruckComponent,
+
+    EditTruckComponent,
+
+    ViewTruckComponent,
+
+    DeleteTruckComponent,
+
+    ListOfDriverComponent,
+
+    AddDriverComponent,
+
+    EditDriverComponent,
+
+    ViewDriverComponent,
+
+    DeleteDriverComponent,
+
+    ListOfSupplierComponent,
+
+    AddSupplierComponent,
+
+    EditSupplierComponent,
+
+    ViewSupplierComponent,
+
+    DeleteSupplierComponent,
+
+    ListOfSupplierBookingComponent,
+
+    ViewSupplierBookingComponent,
+
+    ListOfSupplierQuoteComponent,
+
+    ViewSupplierQuoteComponent,
+
+    ListOfSupplierBillingComponent,
+
+    ViewSupplierBillingComponent,
+
+    TruckTypeComponent,
+
+    MaterialsComponent,
+
+    ThermalPlantsComponent,
+
+    CrushersAndMiningInfoComponent,
+
+    ContactUsComponent,
+
+    TermsAndConditionsComponent,
+
+    PrivacyPolicyComponent,
+
+    ChangePasswordComponent,
     
     // ListOfCompaniesComponent,
     // ListOfSitesComponent,
