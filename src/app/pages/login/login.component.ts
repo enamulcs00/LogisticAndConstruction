@@ -84,22 +84,19 @@ export class LoginComponent implements OnInit {
     //       console.log(res)
     //       this.service.toasterSucc(res['message'])
     //       //  this.myAccountApi()
-
+    //       this.router.navigate(['/dashboard']);
     //       if (this.loginForm.value.rememberMe == true) {
     //         let remData = {
     //           "email": this.loginForm.value.email,
     //           // "password":window.btoa(this.loginForm.value.password)
     //         }
     //         localStorage.setItem('rememberMe', JSON.stringify(remData))
-
     //       }
-
     //       this.service.changeLoginSub('login');
     //       this.router.navigate(['billing']);
     //     }
     //   },
     //   (err: any) => {
-
     //     this.service.hideSpinner();
     //     if (err['status'] == '401') {
     //       this.service.toasterErr(err['error']['message']);

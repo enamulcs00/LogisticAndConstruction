@@ -72,7 +72,8 @@ export class ListOfFleetOwnerComponent implements OnInit {
   //-----------------------------list api integration --------------------------------//
   getlist(){
     this.service.showSpinner()
-    var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
+    // var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
+    var url="account/filter-user-details?roleStatus=FLEET&page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {

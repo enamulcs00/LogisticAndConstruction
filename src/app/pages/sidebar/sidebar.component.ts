@@ -99,7 +99,7 @@ export class SidebarComponent implements OnInit {
       this.currentText = 'Dashboard'
     }
     // if(this.currUrl==`list_of_companies` || this.currUrl ==`list_of_companies`){
-    if (this.currUrl == `list-of-companies` || this.currUrl == `list-of-companies`) {
+    if (this.currUrl == `list-of-companies`) {
       this.currentText = 'List of Companies';
     }
     if (this.currUrl == `add-company`) {
@@ -123,13 +123,22 @@ export class SidebarComponent implements OnInit {
     if (this.currUrl == `list-of-company-booking`) {
       this.currentText = 'Bookings';
     }
+    if (this.currUrl == `view-company-booking`) {
+      this.currentText = 'View Booking';
+    }
     // if(this.currUrl==`quotes`){
     if (this.currUrl == `list-of-company-quote`) {
       this.currentText = 'Quotes';
     }
+    if (this.currUrl == `view-company-quote`) {
+      this.currentText = 'View Quote';
+    }
     // if(this.currUrl==`billing`){
     if (this.currUrl == `list-of-company-billing`) {
       this.currentText = 'Billing';
+    }
+    if (this.currUrl == `view-company-billing`) {
+      this.currentText = 'View Billing';
     }
 
     // if(this.currUrl==`list_of_fleet_owner`){

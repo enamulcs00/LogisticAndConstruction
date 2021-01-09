@@ -291,5 +291,8 @@ export class ListOfCompanyQuoteComponent implements OnInit {
     
   }
 
+  viewQuote(){
+    this.router.navigate(['/view-company-quote'])
+  }
 
 }

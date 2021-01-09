@@ -19,7 +19,9 @@ export class MainService {
   code: string;
   httpOptions: { headers: HttpHeaders; };
   // public baseUrl = "http://182.72.203.245:1816/"
-  public baseUrl = "http://182.72.203.244:4032/" // stagging Url
+  // public baseUrl = "http://182.72.203.244:4032/" // stagging Url
+  public baseUrl = "https://logistic-constructionbackend.mobiloitte.com/" // stagging domain Url
+
   // public baseUrl = "http://182.72.203.244:5065/"
   // public baseUrl = "http://182.72.203.244:3023/"
   // public baseUrl = "https://fullstackblockchain-java.mobiloitte.com/"

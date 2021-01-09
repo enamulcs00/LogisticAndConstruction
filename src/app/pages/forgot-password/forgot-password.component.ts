@@ -43,12 +43,15 @@ export class ForgotPasswordComponent implements OnInit {
   // ----------- form submit ----------- //
   forgotPassword() {
     // http://182.72.203.244:4034/admin/forget-password?mobileNo=A8871860523
-    var url = "admin/forget-password"
+    // var url = "admin/forget-password"
     if(this.forgotPasswordForm.value.phoneNo){
-      var url = `admin/forget-password?mobileNo=${this.forgotPasswordForm.value.phoneNo}`
+      // var url = `admin/forget-password?mobileNo=${this.forgotPasswordForm.value.phoneNo}`
+      var url = `account/admin/forget-password?mobileNo=${this.forgotPasswordForm.value.phoneNo}`
+
 
     }else{
-      var url = `admin/forget-password?mobileNo=${this.forgotPasswordForm.value.email}`
+      // var url = `admin/forget-password?email=${this.forgotPasswordForm.value.email}`
+      var url = `account/admin/forget-password?email=${this.forgotPasswordForm.value.email}`
 
     }
     // let data = {
