@@ -136,5 +136,23 @@ export class MainService {
       event.preventDefault()
     }
   }
+  AlphabetOnly(event){
 
+    let pattAlpha = /^([a-zA-Z ])*$/;
+
+    let resultAlpha = pattAlpha.test(event.key);
+
+    return resultAlpha;
+
+     }
+
+numberOnly(event) {
+
+let Numpattern = /^([0-9])*$/;
+
+let resultNum =    Numpattern.test(event.key);
+
+return  resultNum;
+
+}
 }
