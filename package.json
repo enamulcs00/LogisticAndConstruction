@@ -24,6 +24,7 @@
     "export-to-csv": "^0.2.1",
     "file-saver": "^2.0.2",
     "install": "^0.13.0",
+    "ng-otp-input": "^1.7.1",
     "ngx-ckeditor": "^8.0.0",
     "ngx-csv": "^0.3.2",
     "ngx-pagination": "^5.0.0",

@@ -1345,7 +1345,7 @@ li {
     min-width: 100px;
     border-radius: 3px;
     font-size: 17px;
-    padding: 12px;
+    /* padding: 12px; */
 }
 
 .btn.btn-large:hover,
@@ -2014,7 +2014,7 @@ body.beforelogin {
 
 .login-box-body {
     width: 100%;
-    max-width: 380px;
+    /* max-width: 380px; */
     margin: 0 auto;
 }
 
