@@ -291,5 +291,8 @@ export class ListOfCompanyBillingComponent implements OnInit {
     
   }
 
+  viewBooking(){
+    this.router.navigate(['/view-company-billing'])
+  }
 
 }

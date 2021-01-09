@@ -25,15 +25,15 @@ td.action_td_btn3 {
     margin-left: 2px;
 }
 
-.search-btn {
+.mt-5 {
+    margin-top: 4rem !important;
+}
+
+.btn-close {
     background-color: #808080;
     color: white;
-    width: 14%;
+    width: 100px;
     border-radius: 7px;
     border: none;
     margin-left: 2px;
-}
-
-.mt-5 {
-    margin-top: 4rem !important;
 }

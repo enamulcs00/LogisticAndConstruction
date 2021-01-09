@@ -290,6 +290,10 @@ export class ListOfCompanyBookingComponent implements OnInit {
     
   }
 
+  viewBooking(){
+    this.router.navigate(['/view-company-booking'])
+  }
+
 
 }
 

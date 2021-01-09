@@ -1,118 +1,122 @@
 <section>
-    <div class="container1440 mt-5" >
-    <main class="middle-content">
-        <div class="content-section">
-            <div class="outer-box">
-                <div class="global-table no-radius p0">
-                    <div class="tab-content1">
-                        <div class="tab-pane1">
-                            <div class="row">
-                                <div class="col-lg-2 mt-4">
-                                     <label class="ml-3">Invoice No</label><br>
-                                     <input class="selectBox" type="text" placeholder="Invoice No"> 
+    <div class="container1440 mt-5">
+        <main class="middle-content">
+            <div class="content-section">
+                <div class="outer-box">
+                    <div class="global-table no-radius p0">
+                        <div class="tab-content1">
+                            <div class="tab-pane1">
+                                <div class="row">
+                                    <div class="col-lg-2 mt-4">
+                                        <label class="ml-3">Invoice No</label><br>
+                                        <input class="selectBox" type="text" placeholder="Invoice No">
+                                    </div>
+                                    <div class="col-lg-2 mt-4">
+                                        <label class="ml-5">Supplier</label><br>
+                                        <select class="selectBox">
+                                            <option>Supplier</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2 mt-4">
+                                        <label class="ml-5">Month</label><br>
+                                        <select class="selectBox">
+                                            <option>Month</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2 mt-4">
+                                        <label class="ml-5">From Date</label><br>
+                                        <input type="date" class="selectBox">
+                                    </div>
+                                    <div class="col-lg-2 mt-4">
+                                        <label class="ml-5">To Date</label><br>
+                                        <input type="date" class="selectBox">
+                                    </div>
                                 </div>
-                                <div class="col-lg-2 mt-4">
-                                    <label class="ml-5">Supplier</label><br>
-                                     <select class="selectBox">
-                                         <option>Supplier</option>
-                                     </select>
+                                <div class="row  d-flex justify-content-end w_100 mt-3">
+                                    <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green'
+                                        (click)="ExportToCsv()"></i>
+                                    <button type="button" class="search-btn">Search</button>
+                                    <button type="button" class="search-btn">Reset</button>
                                 </div>
-                                <div class="col-lg-2 mt-4">
-                                    <label class="ml-5">Month</label><br>
-                                     <select class="selectBox">
-                                         <option>Month</option>
-                                     </select>
-                                </div>
-                                <div class="col-lg-2 mt-4">
-                                    <label class="ml-5">From Date</label><br>
-                                     <input type="date" class="selectBox">
-                                </div>
-                                <div class="col-lg-2 mt-4">
-                                    <label class="ml-5">To Date</label><br>
-                                    <input type="date" class="selectBox">
-                                </div>
-                            </div>
-                            <div class="row  d-flex justify-content-end w_100 mt-3">
-                                    <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green' (click)="ExportToCsv()"></i>
-                                    <button type="button" style="background: black;
-                                    color: white;
-                                    width: 14%;">Search</button><button type="button" style="background: black;
-                                    color: white;
-                                    width: 14%;">Reset</button>  
-                            </div>
 
 
-                            <div class="table-responsive">
-                                <table class="table table-bordered" aria-describedby="user list" id = "pdfcontent">
-                                    <thead>
-                                        <tr class="no_wrap_th">
-                                            <th scope="col">Invoice No</th>
-                                            <th scope="col">Invoice Date</th>
-                                            <th scope="col">Booking ID</th>
-                                            <th scope="col">Supplier</th>
-                                            <th scope="col">Material</th>
-                                            <th scope="col">Weight</th>
-                                            <th scope="col">Delivery Date</th>
-                                            <th scope="col">Location</th>
-                                            <th scope="col">User Name</th>
-                                            <th scope="col">Amount</th>
-                                            <th scope="col">PO Number</th>
-                                            <th scope="col">Vehicle Number</th>
-                                            <th scope="col">Vehicle Type</th>
-                                            <th scope="col">Driver Name</th>
-                                            <th scope="col">Driver Mobile</th>
-                                            <th scope="col">Route ID</th>
-                                            <th scope="col" class="action_td_btn3">Action</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let item of listing| paginate: { 
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" aria-describedby="user list" id="pdfcontent">
+                                        <thead>
+                                            <tr class="no_wrap_th">
+                                                <th scope="col">Invoice No</th>
+                                                <th scope="col">Invoice Date</th>
+                                                <th scope="col">Booking ID</th>
+                                                <th scope="col">Supplier</th>
+                                                <th scope="col">Material</th>
+                                                <th scope="col">Weight</th>
+                                                <th scope="col">Delivery Date</th>
+                                                <th scope="col">Location</th>
+                                                <th scope="col">User Name</th>
+                                                <th scope="col">Amount</th>
+                                                <th scope="col">PO Number</th>
+                                                <th scope="col">Vehicle Number</th>
+                                                <th scope="col">Vehicle Type</th>
+                                                <th scope="col">Driver Name</th>
+                                                <th scope="col">Driver Mobile</th>
+                                                <th scope="col">Route ID</th>
+                                                <th scope="col" class="action_td_btn3">Action</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of listing| paginate: { 
                                     itemsPerPage: itemsPerPage,
                                     currentPage: pageNumber,
                                     totalItems: totalRecords };let i = index ">
-                                            <td>{{itemsPerPage*(this.pageNumber-1)+i+1}}</td>
-                                            <td>{{item?.firstName}}{{item?.lastName}}</td>
-                                            <td>{{item?.email}}</td>
-                                            <td>{{item?.userId}}</td>
-                                            <td>{{item?.phoneNo}}</td>
-                                            <td>{{item?.userStatus}}</td>
-                                            <td>{{item?.createTime | date:'medium'}}</td>
+                                                <td>{{itemsPerPage*(this.pageNumber-1)+i+1}}</td>
+                                                <td>{{item?.firstName}}{{item?.lastName}}</td>
+                                                <td>{{item?.email}}</td>
+                                                <td>{{item?.userId}}</td>
+                                                <td>{{item?.phoneNo}}</td>
+                                                <td>{{item?.userStatus}}</td>
+                                                <td>{{item?.createTime | date:'medium'}}</td>
 
-                                            <td class="action_td_btn3" style="cursor: pointer">
-                                                <a ><i class="fa fa-eye" (click)="userDetails(item?.userId,item?.email)"></i></a>
-                                                <a><i class="fa fa-trash" (click)="openModal('DELETE',item?.userId)"></i></a>
-                                                <a *ngIf="item?.userStatus == 'ACTIVE'" (click)="openModal('BLOCK',item?.userId)"><i class="fa fa-ban" style="color: green;"></i></a>
-                                                <a *ngIf="item?.userStatus == 'BLOCK'" (click)="openModal('ACTIVE',item?.userId)"><i class="fa fa-ban"></i></a>
+                                                <td class="action_td_btn3" style="cursor: pointer">
+                                                    <a><i class="fa fa-eye"
+                                                            (click)="userDetails(item?.userId,item?.email)"></i></a>
+                                                    <a><i class="fa fa-trash"
+                                                            (click)="openModal('DELETE',item?.userId)"></i></a>
+                                                    <a *ngIf="item?.userStatus == 'ACTIVE'"
+                                                        (click)="openModal('BLOCK',item?.userId)"><i class="fa fa-ban"
+                                                            style="color: green;"></i></a>
+                                                    <a *ngIf="item?.userStatus == 'BLOCK'"
+                                                        (click)="openModal('ACTIVE',item?.userId)"><i
+                                                            class="fa fa-ban"></i></a>
 
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    <tbody *ngIf="listing?.length==0">
-                                        <tr>
-                                            <td colspan="13" vertical-align="middle">
-                                                <div class="no-record">
-                                                    <div class="no-recordin">
-                                                        <H5 style="margin-left: 44%;">No record found</H5>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody *ngIf="listing?.length==0">
+                                            <tr>
+                                                <td colspan="13" vertical-align="middle">
+                                                    <div class="no-record">
+                                                        <div class="no-recordin">
+                                                            <H5 style="margin-left: 44%;">No record found</H5>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
-                                *ngIf="listing?.length">
-                                <pagination-controls (pageChange)="pagination($event)"></pagination-controls>
-                            </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
+                                    *ngIf="listing?.length">
+                                    <pagination-controls (pageChange)="pagination($event)"></pagination-controls>
+                                </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>    
-    </main>
-    
+        </main>
+
     </div>
 
 </section>
@@ -230,10 +234,11 @@
                             <div class="w-100">
                                 <p style="font-size: 18px;">Are you sure you want to active this user?</p>
                                 <div>
-                                    <button type="submit" class="btn btn-success mr-2" (click)="blockUser()">Yes</button>
+                                    <button type="submit" class="btn btn-success mr-2"
+                                        (click)="blockUser()">Yes</button>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>

@@ -60,7 +60,7 @@
                                     </div>
                             </div>
                 </div>  -->
-                <div class="menu-box" [ngClass]="{'active':currUrl == 'dashboard'}">
+                <div class="menu-box" style="width:100%;border-bottom: 1px solid grey;" [ngClass]="{'active':currUrl == 'dashboard'}">
                     <div class="card-header clearfix" id="headingOne">
                         <a class="side_menu" [routerLink]="['/dashboard']" routerLinkActive="active">
                             <!-- <span class="side_menu_icon">
@@ -448,8 +448,10 @@
                                 <a class="btn btn-blue btn-noYes" (click)="onLogout()"
                                     style="background: black !important;">YES</a> &nbsp; &nbsp; &nbsp;
                                 &nbsp;
-                                <button type="button" class="btn  btn-noYes" data-dismiss="modal"
-                                    style="background: black !important;">CANCEL</button>
+                                <!-- <button type="button" class="btn  btn-noYes" data-dismiss="modal"
+                                    style="background: black !important;">CANCEL</button> -->
+                                    <a class="btn btn-blue btn-noYes" data-dismiss="modal"
+                                    style="background: black !important;">CANCEL</a> 
                             </div>
                         </div>
                     </div>
