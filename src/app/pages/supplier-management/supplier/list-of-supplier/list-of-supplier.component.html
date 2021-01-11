@@ -73,11 +73,13 @@
                                         <td>9:30</td>
                                         <td>ACTIVE</td>
                                         <td class="action_td_btn3" style="cursor: pointer">
-                                            <a ><i class="fa fa-eye" (click)="userDetails()"></i></a>
-                                            <!-- <a><i class="fa fa-trash" (click)="openModal()"></i></a> -->
-                                            <!-- <a  (click)="openModal()"><i class="fa fa-ban" style="color: green;"></i></a> -->
-                                            <!-- <a *ngIf="item?.userStatus == 'BLOCK'" (click)="openModal('ACTIVE',item?.userId)"><i class="fa fa-ban"></i></a> -->
-
+                                          <a><i class="fa fa-plus-circle" aria-hidden="true"
+                                            (click)="addSupplier()"></i></a>
+                                    <a><i class="fa fa-eye" (click)="viewSupplier()"></i></a>
+                                    <i class="fa fa-pencil" aria-hidden="true" (click)="EditSupplier()"></i>
+                                    <a><i class="fa fa-trash" (click)="deleteSupplier()"></i></a>
+                                    <a><i class="fa fa-ban" style="color: green;"></i></a>
+                                    <a><i class="fa fa-ban" (click)="resetPassword()"></i></a>
                                         </td>
                                       </tr>
                                         <!-- <tr *ngFor="let item of listing| paginate: {

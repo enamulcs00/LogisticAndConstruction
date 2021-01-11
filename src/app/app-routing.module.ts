@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -68,10 +66,9 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  // { path: 'forgot_password', component: ForgotPasswordComponent},
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
-  
+
   // dashboard
   { path: 'dashboard', component: DashboardComponent },
 
@@ -166,7 +163,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+imports: [RouterModule.forRoot(routes)],
+exports: [RouterModule]
 })
 export class AppRoutingModule { }

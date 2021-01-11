@@ -8,31 +8,32 @@
                             <div class="tab-pane1">
                                 <div class="row">
                                     <div class="col-lg-2 mt-4">
-                                        <label class="ml-3">Company Name</label><br>
+                                        <label>Company Name</label><br>
                                         <select class="selectBox">
                                             <option>Select Company Name</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 mt-4">
-                                        <label class="ml-5">Location</label><br>
+                                        <label>Location</label><br>
                                         <select class="selectBox">
                                             <option>Location</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 mt-4">
-                                        <label class="ml-5">State</label><br>
+                                        <label>State</label><br>
                                         <select class="selectBox">
                                             <option>State</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 mt-4">
-                                        <label class="ml-5">City</label><br>
+                                        <label>City</label><br>
                                         <select class="selectBox">
-                                            <option>City<i class="caret pull-right"></i></option>
+                                            <!-- <option>City<i class="caret pull-right"></i></option> -->
+                                            <option>City</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 mt-4">
-                                        <label class="ml-5">Mobile</label><br>
+                                        <label>Mobile</label><br>
                                         <select class="selectBox">
                                             <option>Mobile</option>
                                         </select>
@@ -43,6 +44,7 @@
                                         (click)="ExportToCsv()"></i>
                                     <button type="button" class="search-btn">Search</button>
                                     <button type="button" class="search-btn">Reset</button>
+                                    <button type="button" class="btn-add" (click)="addCompany()">Add</button>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table table-bordered" aria-describedby="user list" id="pdfcontent">
@@ -57,7 +59,6 @@
                                                 <th scope="col">GSTIN</th>
                                                 <th scope="col">Date Of Creation</th>
                                                 <th scope="col" class="action_td_btn3">Action</th>
-
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -93,8 +94,7 @@
                                                 <td>MAH/3872397/PO</td>
                                                 <td>12/01/2021</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-plus-circle" aria-hidden="true"
-                                                            (click)="addCompany()"></i></a>
+                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true"(click)="addCompany()"></i></a> -->
                                                     <a><i class="fa fa-eye" (click)="viewCompany()"></i></a>
                                                     <a><i class="fa fa-trash" (click)="deleteCompany()"></i></a>
                                                     <a><i class="fa fa-ban" style="color: green;"></i></a>
@@ -111,8 +111,7 @@
                                                 <td>MAH/3872397/PO</td>
                                                 <td>12/01/2021</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-plus-circle" aria-hidden="true"
-                                                            (click)="addCompany()"></i></a>
+                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true" (click)="addCompany()"></i></a> -->
                                                     <a><i class="fa fa-eye" (click)="viewCompany()"></i></a>
                                                     <a><i class="fa fa-trash" (click)="deleteCompany()"></i></a>
                                                     <a><i class="fa fa-ban" style="color: green;"></i></a>
@@ -129,8 +128,7 @@
                                                 <td>MAH/3872397/PO</td>
                                                 <td>12/01/2021</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-plus-circle" aria-hidden="true"
-                                                            (click)="addCompany()"></i></a>
+                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true" (click)="addCompany()"></i></a> -->
                                                     <a><i class="fa fa-eye" (click)="viewCompany()"></i></a>
                                                     <a><i class="fa fa-trash" (click)="deleteCompany()"></i></a>
                                                     <a><i class="fa fa-ban" style="color: green;"></i></a>
@@ -147,8 +145,7 @@
                                                 <td>MAH/3872397/PO</td>
                                                 <td>12/01/2021</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-plus-circle" aria-hidden="true"
-                                                            (click)="addCompany()"></i></a>
+                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true" (click)="addCompany()"></i></a> -->
                                                     <a><i class="fa fa-eye" (click)="viewCompany()"></i></a>
                                                     <a><i class="fa fa-trash" (click)="deleteCompany()"></i></a>
                                                     <a><i class="fa fa-ban" style="color: green;"></i></a>
@@ -165,8 +162,7 @@
                                                 <td>MAH/3872397/PO</td>
                                                 <td>12/01/2021</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-plus-circle" aria-hidden="true"
-                                                            (click)="addCompany()"></i></a>
+                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true" (click)="addCompany()"></i></a> -->
                                                     <a><i class="fa fa-eye" (click)="viewCompany()"></i></a>
                                                     <a><i class="fa fa-trash" (click)="deleteCompany()"></i></a>
                                                     <a><i class="fa fa-ban" style="color: green;"></i></a>
