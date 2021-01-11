@@ -50,9 +50,9 @@ export class AddSitesComponent implements OnInit {
     }
     console.log(apiReqData)
     this.router.navigate(['/list-of-sites'])
-    this.service.postApi('', apiReqData).subscribe((res: any) => {
-      console.log(res);
-    })
+    // this.service.postApi('', apiReqData).subscribe((res: any) => {
+    //   console.log(res);
+    // })
   }
 
 }

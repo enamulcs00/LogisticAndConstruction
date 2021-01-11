@@ -48,9 +48,18 @@ export class ListOfSupplierComponent implements OnInit {
     this.fromDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() : '0'+ (date.getMonth() + 1) )+ '-' + date.getFullYear()
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
     this.dateValidation()
-    // this.getlist();
+    this.getlist();
   }
 
+  addSupplier(){
+    this.router.navigate(['/add-supplier'])
+  }
+  EditSupplier(){
+    this.router.navigate(['/edit-supplier'])
+  }
+  viewSupplier(){}
+  deleteSupplier(){}
+  resetPassword(){}
   onFromChangeDate(){
     this.minToDate = this.fromDate;
   }
@@ -69,17 +78,20 @@ export class ListOfSupplierComponent implements OnInit {
   }
 
   //-----------------------------list api integration --------------------------------//
+
   getlist(){
+    let channel = "account/admin/filter-user-details?roleStatus=SUPPLIER"
     this.service.showSpinner()
     var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
-    this.service.get(url).subscribe((res:any)=>{
+    this.service.get(channel).subscribe((res:any)=>{
+
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
       }
-      console.log('kfg',this.listing);
+      console.log('This is list of supplier',this.listing);
       this.totalRecords = res.data.totalCount
-      console.log('kn', this.totalRecords);
+      console.log('Total Supplier', this.totalRecords);
 
     })
   }
@@ -114,6 +126,7 @@ export class ListOfSupplierComponent implements OnInit {
       this.totalRecords = res.data.totalCount
     })
   }
+
 
   // ------------------------------reset filter------------------------------//
   resetForm(){
@@ -199,9 +212,9 @@ export class ListOfSupplierComponent implements OnInit {
   }
 
   //------------------- user details navigation------------------------------//
-  userDetails(){
+  userDetails(id){
     //this.router.navigate(['/view-supplier'])
-    this.router.navigate(['/add-supplier'])
+    this.router.navigate(['/view-supplier'])
     // this.router.navigate(['/edit-supplier'])
     // this.router.navigate(['/delete-supplier'])
 

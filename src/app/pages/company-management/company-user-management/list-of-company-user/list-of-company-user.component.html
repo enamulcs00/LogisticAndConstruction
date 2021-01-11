@@ -8,31 +8,31 @@
                             <div class="tab-pane1">
                                 <div class="row">
                                     <div class="col-lg-2 mt-4">
-                                        <label class="ml-3">Company Name</label><br>
+                                        <label>Company Name</label><br>
                                         <select class="selectBox">
                                             <option>Select Company Name</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 mt-4">
-                                        <label class="ml-5">Site</label><br>
+                                        <label>Site</label><br>
                                         <select class="selectBox">
                                             <option>Site</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 mt-4">
-                                        <label class="ml-5">First Name</label><br>
+                                        <label>First Name</label><br>
                                         <select class="selectBox">
                                             <option>First Name</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 mt-4">
-                                        <label class="ml-5">Last Name</label><br>
+                                        <label>Last Name</label><br>
                                         <select class="selectBox">
                                             <option>Last Name</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 mt-4">
-                                        <label class="ml-5">Mobile</label><br>
+                                        <label>Mobile</label><br>
                                         <select class="selectBox">
                                             <option>Mobile</option>
                                         </select>
@@ -43,8 +43,8 @@
                                         (click)="ExportToCsv()"></i>
                                     <button type="button" class="search-btn">Search</button>
                                     <button type="button" class="search-btn">Reset</button>
+                                    <button type="button" class="btn-add" (click)="addCompanyUser()">Add</button>
                                 </div>
-
 
                                 <div class="table-responsive">
                                     <table class="table table-bordered" aria-describedby="user list" id="pdfcontent">
@@ -52,13 +52,11 @@
                                             <tr class="no_wrap_th">
                                                 <th scope="col">Company Name</th>
                                                 <th scope="col">Mobile No</th>
-                                                <!-- <th scope="col">Mobile</th> -->
                                                 <th scope="col">First Name</th>
                                                 <th scope="col">Last Name</th>
                                                 <th scope="col">Site</th>
                                                 <th scope="col">Roll Type</th>
                                                 <th scope="col" class="action_td_btn3">Action</th>
-
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -90,12 +88,12 @@
                                                 <td>Mumbai</td>
                                                 <td>Site Manager</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-plus-circle" aria-hidden="true"
-                                                            (click)="addCompanyUser()"></i></a>
+                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true"
+                                                            (click)="addCompanyUser()"></i></a> -->
                                                     <a><i class="fa fa-eye" (click)="viewCompanyUser()"></i></a>
                                                     <a><i class="fa fa-trash" (click)="deleteCompanyUser()"></i></a>
                                                     <a><i class="fa fa-ban" style="color: green;"></i></a>
-                                                    <a><i class="fa fa-ban" (click)="resetPassword()"></i></a>
+                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -106,12 +104,12 @@
                                                 <td>Mumbai</td>
                                                 <td>Site Manager</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-plus-circle" aria-hidden="true"
-                                                            (click)="addCompanyUser()"></i></a>
+                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true"
+                                                            (click)="addCompanyUser()"></i></a> -->
                                                     <a><i class="fa fa-eye" (click)="viewCompanyUser()"></i></a>
                                                     <a><i class="fa fa-trash" (click)="deleteCompanyUser()"></i></a>
                                                     <a><i class="fa fa-ban" style="color: green;"></i></a>
-                                                    <a><i class="fa fa-ban" (click)="resetPassword()"></i></a>
+                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -122,12 +120,12 @@
                                                 <td>Mumbai</td>
                                                 <td>Site Manager</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-plus-circle" aria-hidden="true"
-                                                            (click)="addCompanyUser()"></i></a>
+                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true"
+                                                            (click)="addCompanyUser()"></i></a> -->
                                                     <a><i class="fa fa-eye" (click)="viewCompanyUser()"></i></a>
                                                     <a><i class="fa fa-trash" (click)="deleteCompanyUser()"></i></a>
                                                     <a><i class="fa fa-ban" style="color: green;"></i></a>
-                                                    <a><i class="fa fa-ban" (click)="resetPassword()"></i></a>
+                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -138,12 +136,12 @@
                                                 <td>Mumbai</td>
                                                 <td>Site Manager</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-plus-circle" aria-hidden="true"
-                                                            (click)="addCompanyUser()"></i></a>
+                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true"
+                                                            (click)="addCompanyUser()"></i></a> -->
                                                     <a><i class="fa fa-eye" (click)="viewCompanyUser()"></i></a>
                                                     <a><i class="fa fa-trash" (click)="deleteCompanyUser()"></i></a>
                                                     <a><i class="fa fa-ban" style="color: green;"></i></a>
-                                                    <a><i class="fa fa-ban" (click)="resetPassword()"></i></a>
+                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -154,12 +152,12 @@
                                                 <td>Mumbai</td>
                                                 <td>Site Manager</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-plus-circle" aria-hidden="true"
-                                                            (click)="addCompanyUser()"></i></a>
+                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true"
+                                                            (click)="addCompanyUser()"></i></a> -->
                                                     <a><i class="fa fa-eye" (click)="viewCompanyUser()"></i></a>
                                                     <a><i class="fa fa-trash" (click)="deleteCompanyUser()"></i></a>
                                                     <a><i class="fa fa-ban" style="color: green;"></i></a>
-                                                    <a><i class="fa fa-ban" (click)="resetPassword()"></i></a>
+                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -180,16 +178,13 @@
                                 *ngIf="listing?.length">
                                 <pagination-controls (pageChange)="pagination($event)"></pagination-controls>
                             </div> -->
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
-
     </div>
-
 </section>
 
 <app-footer></app-footer>

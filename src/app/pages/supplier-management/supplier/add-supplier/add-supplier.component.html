@@ -1,6 +1,6 @@
 <section>
     <div class="container1440 mt-5">
-        <main class="middle-content" style="overflow-y: scroll; height: -webkit-fill-available;">
+        <main class="middle-content">
             <div class="content-section">
 
                 <!-- <div class="page_title_block pL0 pR0">
@@ -9,72 +9,179 @@
                 <div class="order-view mt30 mrgn-0-auto">
 
                     <div>
-                        <form>
+                        <form [formGroup]="AddSupplerForm" #f="ngForm" >
                             <div class="form-group row">
                                 <label for="Fname" class="col-sm-2 col-form-label">First Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="Fname" class="form-control" placeholder="First name">
-                                </div>
+                                    <input type="text" id="Fname" class="form-control" placeholder="First name" (keypress)="service.AlphabetOnly($event)" formControlName="firstName">
+                                    <div class="text-danger">
+                                      <span
+                                          *ngIf="AddSupplerForm.get('firstName').hasError('required') && (AddSupplerForm.get('firstName').dirty || AddSupplerForm.get('firstName').touched)">
+                                          *Please enter FirstName.
+                                      </span>
+                                      <span
+                                          *ngIf="AddSupplerForm.get('firstName').hasError('pattern') && (AddSupplerForm.get('firstName').dirty || f.submitted)">
+                                          *Name accept only alphabets.
+                                      </span>
+                                      <span
+                                          *ngIf="AddSupplerForm.get('firstName').hasError('minlength') && !(AddSupplerForm.get('firstName').hasError('pattern')) && (AddSupplerForm.get('firstName').dirty || f.submitted)">
+                                          *Minimum length must be 2.
+                                      </span>
+                                      <span
+                                          *ngIf="AddSupplerForm.get('firstName').hasError('maxlength') && !(AddSupplerForm.get('firstName').hasError('pattern')) && (AddSupplerForm.get('firstName').dirty || f.submitted)">
+                                          *Maximum length should not more than 20.
+                                      </span>
+                                  </div>
+                                  </div>
                                 <label for="Lname" class="col-sm-2 col-form-label">Last Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="Lname" class="form-control" placeholder="Last name">
-                                </div>
+                                    <input type="text" id="Lname" class="form-control" placeholder="Last name" formControlName="lastName" (keypress)="service.AlphabetOnly($event)">
+                                    <div class="text-danger">
+                                      <span
+                                          *ngIf="AddSupplerForm.get('lastName').hasError('required') && (AddSupplerForm.get('lastName').dirty || AddSupplerForm.get('lastName').touched)">
+                                          *Please enter LastName.
+                                      </span>
+
+                                  </div>
+                                  </div>
                             </div>
                             <div class="form-group row">
                                 <label for="Mobile" class="col-sm-2 col-form-label">Mobile No</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="Mobile" class="form-control"
-                                        placeholder="Enter Mobile Number">
+                                    <input type="tel" id="Mobile" class="form-control" formControlName="mobileNumber" (keypress)="service.numberOnly($event)"
+                                        placeholder="Enter Mobile Number" maxlength="10" minlength="10">
+                                        <div class="text-danger">
+                                          <span
+                                              *ngIf="AddSupplerForm.get('mobileNumber').hasError('required') && (AddSupplerForm.get('mobileNumber').dirty || AddSupplerForm.get('mobileNumber').touched)">
+                                              *Please enter mobile number.
+                                          </span>
+                                          <span
+                                              *ngIf="AddSupplerForm.get('mobileNumber').hasError('pattern') && (AddSupplerForm.get('mobileNumber').dirty || f.submitted)">
+                                              *Please enter valid mobile number.
+                                          </span>
+
+                                      </div>
                                 </div>
                                 <label for="email" class="col-sm-2 col-form-label">Email ID</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="email" class="form-control" placeholder="Enter mail Id">
-                                </div>
+                                    <input type="email" id="email" class="form-control" placeholder="Enter mail Id" formControlName="emailId">
+                                    <div class="text-danger">
+                                      <span
+                                          *ngIf="AddSupplerForm.get('emailId').hasError('required') && (AddSupplerForm.get('emailId').dirty || AddSupplerForm.get('emailId').touched)">
+                                          *Please enter mail Id.
+                                      </span>
+                                      <span
+                                          *ngIf="AddSupplerForm.get('emailId').hasError('pattern') && (AddSupplerForm.get('emailId').dirty || f.submitted)">
+                                          *Please enter valid mail Id.
+                                      </span>
+
+                                  </div>
+                                  </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="CompanyName" class="col-sm-2 col-form-label">Company Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="CompanyName" class="form-control" placeholder="Company name">
-                                </div>
+                                    <input type="text" id="CompanyName" class="form-control" placeholder="Company name" formControlName="companyName">
+                                    <div class="text-danger">
+                                      <span
+                                          *ngIf="AddSupplerForm.get('companyName').hasError('required') && (AddSupplerForm.get('companyName').dirty || AddSupplerForm.get('companyName').touched)">
+                                          *Please enter company name.
+                                      </span>
+
+                                  </div>
+                                  </div>
                                 <label for="comanyAddress" class="col-sm-2 col-form-label">Company Address</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="comanyAddress" class="form-control"
+                                    <input type="text" id="comanyAddress" class="form-control" formControlName="companyAddress"
                                         placeholder="Company Address">
-                                </div>
+                                        <div class="text-danger">
+                                          <span
+                                              *ngIf="AddSupplerForm.get('companyAddress').hasError('required') && (AddSupplerForm.get('companyAddress').dirty || AddSupplerForm.get('companyAddress').touched)">
+                                              *Please enter company address.
+                                          </span>
+
+                                      </div>
+                                      </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="city" class="col-sm-2 col-form-label">City</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="city" class="form-control" placeholder="Enter city name">
-                                </div>
+                                    <input type="text" id="city" class="form-control" placeholder="Enter city name" (keypress)="service.AlphabetOnly($event)" formControlName="cityName">
+                                    <div class="text-danger">
+                                      <span
+                                          *ngIf="AddSupplerForm.get('cityName').hasError('required') && (AddSupplerForm.get('cityName').dirty || AddSupplerForm.get('cityName').touched)">
+                                          *Please enter city name.
+                                      </span>
+
+                                  </div>
+                                  </div>
                                 <label for="state" class="col-sm-2 col-form-label">State</label>
                                 <div class="col-sm-4">
-                                    <select id="city" class="form-control">
-                                        <option value="State">State</option>
+                                    <select id="city" class="form-control" formControlName="stateName">
+                                        <option selected>State</option>
+                                        <option value="Delhi">Delhi</option>
+                                        <option value="Mumbai">Mumbai</option>
+                                        <option value="Bihar">Bihar</option>
+                                        <option value="Gujrat">Gujrat</option>
+                                        <option value="Asam">Asam</option>
                                     </select>
+                                    <div class="text-danger">
+                                      <span
+                                          *ngIf="AddSupplerForm.get('stateName').hasError('required') && (AddSupplerForm.get('stateName').dirty || AddSupplerForm.get('stateName').touched)">
+                                          *Please Choose state.
+                                      </span>
+                                  </div>
 
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="aadhar" class="col-sm-2 col-form-label">Aadhar No</label>
-                                <div class="col-sm-4 input-group">
-                                    <input type="text" id="aadhar" class="form-control" placeholder="Enter aadhar no"
+                                <div class="col-sm-4">
+                                  <div class="input-group">
+                                    <input type="text" id="aadhar" class="form-control" minlength="14" maxlength="14" placeholder="Enter aadhar no" formControlName="AadharNumber"
                                         style="border: 1px solid;">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
                                             style="background-color: green;">Validate</button>
                                     </div>
+                                  </div>
+                                    <div class="text-danger">
+
+                                      <span
+                                          *ngIf="AddSupplerForm.get('AadharNumber').hasError('required') && (AddSupplerForm.get('AadharNumber').dirty || AddSupplerForm.get('AadharNumber').touched)">
+                                          *Please Enter 12 Aadhar number.
+                                      </span>
+                                      <span
+                                          *ngIf="AddSupplerForm.get('AadharNumber').hasError('pattern') && (AddSupplerForm.get('AadharNumber').dirty || f.submitted)">
+                                          *Please enter valid Aadhar number and give a space after each four digit.
+                                      </span>
+
+                                  </div>
                                 </div>
                                 <label for="pan" class="col-sm-2 col-form-label">Pan Card</label>
-                                <div class="col-sm-4 input-group">
-                                    <input type="text" id="pan" class="form-control" placeholder="Enter Pan no"
+                                <div class="col-sm-4">
+                                  <div class="input-group">
+                                    <input type="text" id="pan" class="form-control"maxlength="10" minlength="10" placeholder="Enter Pan no"formControlName="panNumber"
                                         style="border: 1px solid;">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
                                             style="background-color: green;">Validate</button>
                                     </div>
+                                  </div>
+                                    <div class="text-danger">
+
+                                      <span
+                                          *ngIf="AddSupplerForm.get('panNumber').hasError('required') && (AddSupplerForm.get('panNumber').dirty || AddSupplerForm.get('panNumber').touched)">
+                                          *Please Enter 10 digit pan card number.
+                                      </span>
+                                      <span
+                                          *ngIf="AddSupplerForm.get('panNumber').hasError('pattern') && (AddSupplerForm.get('panNumber').dirty || f.submitted)">
+                                          *Please enter valid Pan number.
+                                      </span>
+
+                                  </div>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -82,26 +189,40 @@
                                 <div class="col-sm-4">
                                     <label for="AadharCard" class="btn btn-success btn-block btn-outlined">Upload Aadhar
                                         Card</label>
-                                    <input type="file" id="AadharCard" accept="image/*" style="display: none"
+                                    <input type="file" id="AadharCard" (change)="uploadAadhaar($event)" accept="image/*" style="display: none"
                                         class="form-control">
                                 </div>
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-4">
                                     <label for="PanCard" class="btn btn-success btn-block btn-outlined">Upload Pan
                                         Card</label>
-                                    <input type="file" id="PanCard" accept="image/*" style="display: none"
+                                    <input type="file" id="PanCard" (change)="uplaodPan($event)" accept="image/*" style="display: none"
                                         class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="gst" class="col-sm-2 col-form-label">GISTN No</label>
-                                <div class="col-sm-4 input-group">
-                                    <input type="text" id="gst" class="form-control" placeholder="Enter GISTN no"
+                                <div class="col-sm-4">
+                                  <div class="input-group">
+                                    <input type="text" id="gst" class="form-control" maxlength="15" minlength="15" placeholder="Enter GISTN no"formControlName="gstNumber"
                                         style="border: 1px solid;">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
                                             style="background-color: green;">Validate</button>
                                     </div>
+                                  </div>
+                                    <div class="text-danger">
+
+                                      <span
+                                          *ngIf="AddSupplerForm.get('gstNumber').hasError('required') && (AddSupplerForm.get('gstNumber').dirty || AddSupplerForm.get('gstNumber').touched)">
+                                          *Please Enter 15 digit gst number.
+                                      </span>
+                                      <span
+                                          *ngIf="AddSupplerForm.get('gstNumber').hasError('pattern') && (AddSupplerForm.get('gstNumber').dirty || f.submitted)">
+                                          *Please enter valid GST number.
+                                      </span>
+
+                                  </div>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -109,7 +230,7 @@
                                 <div class="col-sm-4">
                                     <label for="gstfile" class="btn btn-success btn-block btn-outlined">GISTN
                                         Copy</label>
-                                    <input type="file" id="gstfile" accept="image/*" style="display: none"
+                                    <input type="file" id="gstfile" (change)="uplaodGst($event)" accept="image/*" style="display: none"
                                         class="form-control">
                                 </div>
                             </div>
@@ -118,7 +239,7 @@
                     <br>
                     <div class="head_flt_select">
                         <div class="head_flt_select input-label" style="margin-left: 1%">
-                            <button routerLink='/transaction-management' type="submit" class="btn btn-theme"
+                            <button (click)="AddSupplier()" type="submit" class="btn btn-theme"
                                 style="width: 15%;margin-left: 40%;margin-bottom: 3%;">Add Supler</button>
                         </div>
                     </div>
