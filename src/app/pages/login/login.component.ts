@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
 import { MainService } from 'src/app/provider/main.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,13 +15,7 @@ export class LoginComponent implements OnInit {
   ipAddress: any;
   location: any;
 
-  constructor(
-    private router: Router,
-
-    private fb: FormBuilder,
-    private http: HttpClient,
-    public service: MainService
-  ) { }
+  constructor(private router: Router, private fb: FormBuilder, private http: HttpClient, public service: MainService) { }
 
   ngOnInit() {
     this.formValidation()
@@ -36,6 +31,7 @@ export class LoginComponent implements OnInit {
       'rememberMe': new FormControl('', [Validators.required]),
     })
   }
+
   //---------------------IP api integration --------------------//
   getIp() {
     this.service.getThirdPartyApi('https://jsonip.com/').subscribe((res) => {
@@ -47,7 +43,8 @@ export class LoginComponent implements OnInit {
       }
     }, err => { })
   }
-  //----------------------------Location api integration---------------------//
+
+  //---------------------------- Location api integration---------------------//
   getLocation() {
     this.service.getThirdPartyApi(`https://try.readme.io/http://www.geoplugin.net/json.gp?ip=${this.ipAddress}`).subscribe(res => {
       console.log(res)
@@ -57,16 +54,12 @@ export class LoginComponent implements OnInit {
       }
     }, err => { })
   }
-  //--------------------------navigate forget Password -----------------//
-  forgotPassword() {
-    this.router.navigateByUrl('forgot-password')
-  }
 
-
+  // ---------------------- login ------------------------- //
   login() {
     // localStorage.setItem('Auth','token');
     // localStorage.setItem('data','eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwaC1yYWtlc2hrdW1hckBtb2JpbG9pdHRlLmNvbSIsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwicm9sZSI6IkFETUlOIiwiYXV0aGVudGljYXRlZCI6dHJ1ZSwidXNlcklkIjoyLCJ1c2VybmFtZSI6InBoLXJha2VzaGt1bWFyQG1vYmlsb2l0dGUuY29tIiwiaWF0IjoxNjA1NTA4MTcwLCJleHAiOjE2MDU1OTQ1NzB9.0KrFklXTfXLFVmqCJvlJju2ymWGiVefgltkPQXGWkR3vJe1wg35pCTBSiRylxmsQZ6C6jcuWvb5NSKej7aRhDg');
-    //this.router.navigate(['/dashboard']);
+    // this.router.navigate(['/dashboard']);
     this.service.showSpinner()
     this.service.post('auth', {
       // email: this.loginForm.value.email,
@@ -93,7 +86,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('rememberMe', JSON.stringify(remData))
           }
           this.service.changeLoginSub('login');
-          this.router.navigate(['billing']);
+          // this.router.navigate(['billing']);
         }
       },
       (err: any) => {
@@ -110,7 +103,6 @@ export class LoginComponent implements OnInit {
     this.Obj = {
       //  'email' : this.loginForm.value.email,
       'email': this.loginForm.value.phoneNo,
-
     }
     localStorage.setItem('data', JSON.stringify(this.Obj));
   }
@@ -128,5 +120,9 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  //--------------------------navigate forget Password -----------------//
+  forgotPassword() {
+    this.router.navigateByUrl('forgot-password')
+  }
 
 }
