@@ -104,7 +104,7 @@ const routes: Routes = [
   { path: 'list-of-fleet-owner', component: ListOfFleetOwnerComponent },
   { path: 'add-fleet-owner', component: AddFleetOwnerComponent },
   { path: 'edit-fleet-owner', component: EditFleetOwnerComponent },
-  { path: 'view-fleet-owner', component: ViewFleetOwnerComponent },
+  { path: 'view-fleet-owner/:id', component: ViewFleetOwnerComponent },
   { path: 'delete-fleet-owner', component: DeleteFleetOwnerComponent },
   // fleet management-> truck
   { path: 'list-of-truck', component: ListOfTruckComponent },

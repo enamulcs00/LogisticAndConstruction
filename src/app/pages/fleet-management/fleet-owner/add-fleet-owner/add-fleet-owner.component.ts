@@ -43,8 +43,9 @@ export class AddFleetOwnerComponent implements OnInit {
     let apiReqData = {
       firstName: this.addForm.value.firstName,
       lastName: this.addForm.value.lastName,
-      countryCode: '+91',
-      phoneNo: this.addForm.value.phoneNo,
+      // countryCode: '+91',
+      phoneNo: '+91' + this.addForm.value.phoneNo,
+      pnWithoutCountryCode: this.addForm.value.phoneNo,
       email: this.addForm.value.email,
       companyName: this.addForm.value.companyName,
       baseLocationAddress: this.addForm.value.baseLocationAddress,
@@ -59,9 +60,9 @@ export class AddFleetOwnerComponent implements OnInit {
       "roleStatus": "FLEET",
     }
     console.log(apiReqData)
-    this.router.navigate(['/list-of-fleet-owner'])
     this.service.post('account/admin/add-CompanyBy-admin', apiReqData).subscribe((res: any) => {
       console.log(res);
+      this.router.navigate(['/list-of-fleet-owner'])
     })
   }
 

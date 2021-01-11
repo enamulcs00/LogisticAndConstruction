@@ -124,6 +124,10 @@ export class ListOfFleetOwnerComponent implements OnInit {
     this.getlist();
   }
 
+  viewFleetOwner(userId) {
+    this.router.navigate(['/view-fleet-owner', userId])
+  }
+
   //========modal=======//
   delete(id: number) {
     this.userid = id;
@@ -131,7 +135,8 @@ export class ListOfFleetOwnerComponent implements OnInit {
   }
   //------------------------------delete api integration ----------------------------------//
   deleteUser() {
-    var url = 'account/admin/user-management/delete-user-detail?userIdToDelete=' + (this.userid) + '&ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location'));
+    // var url = 'account/admin/user-management/delete-user-detail?userIdToDelete=' + (this.userid) + '&ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location'));
+    var url = 'account/admin/delete-client-details?userIdToDeleteClient=11'
     this.service.get(url).subscribe((res: any) => {
       this.deleted = res
       if (this.deleted.ststus = 200) {
@@ -160,8 +165,11 @@ export class ListOfFleetOwnerComponent implements OnInit {
   }
   blockUser() {
     this.service.showSpinner();
-    var url = 'account/admin/user-management/user-status?ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location')) + '&userIdForStatusUpdate=' + (this.userid) + '&userStatus=' + (this.action);
-    this.service.post(url, '').subscribe((res: any) => {
+    // account/admin/enable-desable-status-by-admin?userId=11111111&userStatus=ACTIVE
+    // var url = 'account/admin/user-management/user-status?ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location')) + '&userIdForStatusUpdate=' + (this.userid) + '&userStatus=' + (this.action);
+    var url = `account/admin/enable-desable-status-by-admin?&userId=${this.userid}&userStatus=${this.action}`;
+
+    this.service.get(url).subscribe((res: any) => {
       if (res.status == 200) {
         this.service.hideSpinner()
         if (this.action == 'BLOCK') {
@@ -202,14 +210,13 @@ export class ListOfFleetOwnerComponent implements OnInit {
   }
 
   //------------------- user details navigation------------------------------//
-  userDetails(id, email) {
-    this.router.navigate(['/user-details', id, email])
+  // userDetails(id, email) {
+  //   this.router.navigate(['/user-details', id, email])
+  // }
 
-  }
-
-  walletdetail(id) {
-    this.router.navigate(['walletdetails/' + id])
-  }
+  // walletdetail(id) {
+  //   this.router.navigate(['walletdetails/' + id])
+  // }
 
   //--------------------------------pageSize ---------------------------------//
   showList(val) {
@@ -293,8 +300,12 @@ export class ListOfFleetOwnerComponent implements OnInit {
   }
 
 
-  addFleetOwner(){
+  addFleetOwner() {
     this.router.navigate(['add-fleet-owner'])
+  }
+  resetPassword(){
+    console.log("reset password calickw")
+    this.router.navigate(['/reset-password'])
   }
 }
 

@@ -49,7 +49,7 @@ export class ListOfDriverComponent implements OnInit {
     this.fromDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() : '0'+ (date.getMonth() + 1) )+ '-' + date.getFullYear()
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
     this.dateValidation()
-    // this.getlist();
+    this.getlist();
   }
 
   onFromChangeDate(){
@@ -72,7 +72,9 @@ export class ListOfDriverComponent implements OnInit {
   //-----------------------------list api integration --------------------------------//
   getlist(){
     this.service.showSpinner()
-    var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
+    // var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
+    var url = "account/admin/filter-user-details?roleStatus=DRIVER&page=" + (this.pageNumber - 1) + `&pageSize=${this.pageSize}`
+
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
@@ -200,14 +202,14 @@ export class ListOfDriverComponent implements OnInit {
   }
 
   //------------------- user details navigation------------------------------//
-  userDetails(id,email){
-    this.router.navigate(['/user-details',id,email] )
+  // userDetails(id,email){
+  //   this.router.navigate(['/user-details',id,email] )
 
-  }
+  // }
 
-  walletdetail(id) {
-    this.router.navigate(['walletdetails/' + id])
-  }
+  // walletdetail(id) {
+  //   this.router.navigate(['walletdetails/' + id])
+  // }
 
 //--------------------------------pageSize ---------------------------------//
   showList(val) {
@@ -291,5 +293,15 @@ export class ListOfDriverComponent implements OnInit {
     
   }
 
+  addDriver() {
+    this.router.navigate(['add-driver'])
+  }
+  resetPassword(){
+    console.log("reset password calickw")
+    this.router.navigate(['/reset-password'])
+  }
 
+  viewDriver(userId){
+    this.router.navigate(['/view-driver'])
+  }
 }

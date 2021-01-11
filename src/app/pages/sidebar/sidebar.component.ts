@@ -311,7 +311,7 @@ export class SidebarComponent implements OnInit {
     localStorage.removeItem('permission');
     localStorage.removeItem('usertype');
     $('#signout_modal').modal('hide');
-    window.location.reload();
+    // window.location.reload();
     this.routes.navigate(['/login']);
   }
 

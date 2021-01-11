@@ -78,7 +78,7 @@
                                                 <td>{{item?.createTime | date:'medium'}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
                                                     <a><i class="fa fa-eye"
-                                                            (click)="userDetails(item?.userId,item?.email)"></i></a>
+                                                            (click)="viewFleetOwner(item?.userId)"></i></a>
                                                     <a><i class="fa fa-trash"
                                                             (click)="openModal('DELETE',item?.userId)"></i></a>
                                                     <a *ngIf="item?.userStatus == 'ACTIVE'"
@@ -87,7 +87,7 @@
                                                     <a *ngIf="item?.userStatus == 'BLOCK'"
                                                         (click)="openModal('ACTIVE',item?.userId)"><i
                                                             class="fa fa-ban"></i></a>
-                                                    <a ><i class="fa fa-ban"></i></a>
+                                                    <a (click)="resetPassword()"><i class="fa fa-unlock-alt"></i></a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -234,8 +234,8 @@
                                 <p style="font-size: 18px;">Are you sure you want to active this user?</p>
                                 <div>
                                     <button type="submit" class="btn btn-success mr-2"
-                                        (click)="blockUser()">Yes</button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                    style="width: 25%;background-color: black;"  (click)="blockUser()">Yes</button>
+                                    <button type="button" class="btn btn-danger" style="width: 25%;" data-dismiss="modal">No</button>
                                 </div>
                             </div>
                         </div>
