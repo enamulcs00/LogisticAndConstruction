@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MainService } from 'src/app/provider/main.service';
 
 @Component({
   selector: 'app-view-company-quote',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewCompanyQuoteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, public service: MainService) { }
 
   ngOnInit(): void {
   }
-
+  close(){
+    this.router.navigate(['/list-of-company-quote'])
+  }
 }

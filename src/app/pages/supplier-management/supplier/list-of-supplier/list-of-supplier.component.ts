@@ -48,7 +48,7 @@ export class ListOfSupplierComponent implements OnInit {
     this.fromDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() : '0'+ (date.getMonth() + 1) )+ '-' + date.getFullYear()
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
     this.dateValidation()
-    // this.getlist();
+    this.getlist();
   }
 
   addSupplier(){
@@ -78,10 +78,13 @@ export class ListOfSupplierComponent implements OnInit {
   }
 
   //-----------------------------list api integration --------------------------------//
+
   getlist(){
+    let channel = "admin/filter-user-details?roleStatus=SUPPLIER"
     this.service.showSpinner()
     var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
-    this.service.get(url).subscribe((res:any)=>{
+    this.service.get(channel).subscribe((res:any)=>{
+      console.log('This is list of ssupplier',res)
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MainService } from 'src/app/provider/main.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-company-billing',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewCompanyBillingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, public service: MainService) { }
 
   ngOnInit(): void {
   }
-
+  close(){
+    this.router.navigate(['/list-of-company-billing'])
+  }
 }

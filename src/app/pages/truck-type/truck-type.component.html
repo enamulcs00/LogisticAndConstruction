@@ -1,85 +1,114 @@
 <section>
-    <div class="container1440 mt-5" >
-    <main class="middle-content">
-        <div class="content-section">
-            <div class="outer-box">
-                <div class="global-table no-radius p0">
-                    <div class="tab-content1">
-                        <div class="tab-pane1">
-                            
-                            <div class="row  d-flex justify-content-end w_100 mt-3">
+    <div class="container1440 mt-5">
+        <main class="middle-content">
+            <div class="content-section">
+                <div class="outer-box">
+                    <div class="global-table no-radius p0">
+                        <div class="tab-content1">
+                            <div class="tab-pane1">
+
+                                <div class="row  d-flex justify-content-end w_100 mt-3">
                                     <div class="col-lg-3 mt-5">
-                                      <input style="margin-left: -6%;" class="selectBox" type="text" placeholder="Truck Type">
+                                        <input style="margin-left: -6%;" class="selectBox" type="text"
+                                            placeholder="Truck Type">
                                     </div>
                                     <div class="col-lg-6 mt-5">
-                                        <input style="width: 100%;" class="selectBox" type="text" placeholder="Description">
+                                        <input style="width: 100%;" class="selectBox" type="text"
+                                            placeholder="Description">
                                     </div>
                                     <div class="col-lg-3 mt-5">
-                                        <button type="button" style="margin-left: 40%;background: black;
-                                        color: white;
-                                        width: 66%;
-    height: 101%;">Save</button>    
+                                        <button type="button" class="search-btn"
+                                            style="margin-left: 40%;color: white;width: 66%;height: 101%;">Save</button>
                                     </div>
-                                    
-                            </div>
+
+                                </div>
 
 
-                            <div class="table-responsive mt-5">
-                                <table class="table table-bordered" aria-describedby="user list" id = "pdfcontent">
-                                    <thead>
-                                        <tr class="no_wrap_th">
-                                            <th scope="col">S. No</th>
-                                            <th scope="col">Truck Type</th>
-                                            <th scope="col">Description</th>       
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let item of listing| paginate: { 
-                                    itemsPerPage: itemsPerPage,
-                                    currentPage: pageNumber,
-                                    totalItems: totalRecords };let i = index ">
-                                            <td>{{itemsPerPage*(this.pageNumber-1)+i+1}}</td>
-                                            <td>{{item?.firstName}}{{item?.lastName}}</td>
-                                            <td>{{item?.email}}</td>
-                                            <td>{{item?.userId}}</td>
-                                            <td>{{item?.phoneNo}}</td>
-                                            <td>{{item?.userStatus}}</td>
-                                            <td>{{item?.createTime | date:'medium'}}</td>
+                                <div class="table-responsive mt-5">
+                                    <table class="table table-bordered" aria-describedby="user list" id="pdfcontent">
+                                        <thead>
+                                            <tr class="no_wrap_th">
+                                                <th scope="col">S. No</th>
+                                                <th scope="col">Truck Type</th>
+                                                <th scope="col">Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- <tr
+                                                *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber,totalItems: totalRecords };let i = index ">
+                                                <td>{{itemsPerPage*(this.pageNumber-1)+i+1}}</td>
+                                                <td>{{item?.firstName}}{{item?.lastName}}</td>
+                                                <td>{{item?.email}}</td>
+                                                <td>{{item?.userId}}</td>
+                                                <td>{{item?.phoneNo}}</td>
+                                                <td>{{item?.userStatus}}</td>
+                                                <td>{{item?.createTime | date:'medium'}}</td>
 
-                                            <td class="action_td_btn3" style="cursor: pointer">
-                                                <a ><i class="fa fa-eye" (click)="userDetails(item?.userId,item?.email)"></i></a>
-                                                <a><i class="fa fa-trash" (click)="openModal('DELETE',item?.userId)"></i></a>
-                                                <a *ngIf="item?.userStatus == 'ACTIVE'" (click)="openModal('BLOCK',item?.userId)"><i class="fa fa-ban" style="color: green;"></i></a>
-                                                <a *ngIf="item?.userStatus == 'BLOCK'" (click)="openModal('ACTIVE',item?.userId)"><i class="fa fa-ban"></i></a>
+                                                <td class="action_td_btn3" style="cursor: pointer">
+                                                    <a><i class="fa fa-eye"
+                                                            (click)="userDetails(item?.userId,item?.email)"></i></a>
+                                                    <a><i class="fa fa-trash"
+                                                            (click)="openModal('DELETE',item?.userId)"></i></a>
+                                                    <a *ngIf="item?.userStatus == 'ACTIVE'"
+                                                        (click)="openModal('BLOCK',item?.userId)"><i class="fa fa-ban"
+                                                            style="color: green;"></i></a>
+                                                    <a *ngIf="item?.userStatus == 'BLOCK'"
+                                                        (click)="openModal('ACTIVE',item?.userId)"><i
+                                                            class="fa fa-ban"></i></a>
 
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    <tbody *ngIf="listing?.length==0">
-                                        <tr>
-                                            <td colspan="13" vertical-align="middle">
-                                                <div class="no-record">
-                                                    <div class="no-recordin">
-                                                        <H5 style="margin-left: 44%;">No record found</H5>
+                                                </td>
+                                            </tr> -->
+                                            <tr>
+                                                <td>111111</td>
+                                                <td>10 wheel 25 tn</td>
+                                                <td>abc</td>
+                                            </tr>
+                                            <tr>
+                                                <td>111111</td>
+                                                <td>10 wheel 25 tn</td>
+                                                <td>abc</td>
+                                            </tr>
+                                            <tr>
+                                                <td>111111</td>
+                                                <td>10 wheel 25 tn</td>
+                                                <td>abc</td>
+                                            </tr>
+                                            <tr>
+                                                <td>111111</td>
+                                                <td>10 wheel 25 tn</td>
+                                                <td>abc</td>
+                                            </tr>
+                                            <tr>
+                                                <td>111111</td>
+                                                <td>10 wheel 25 tn</td>
+                                                <td>abc</td>
+                                            </tr>
+                                        </tbody>
+                                        <!-- <tbody *ngIf="listing?.length==0">
+                                            <tr>
+                                                <td colspan="13" vertical-align="middle">
+                                                    <div class="no-record">
+                                                        <div class="no-recordin">
+                                                            <H5 style="margin-left: 44%;">No record found</H5>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
-                                *ngIf="listing?.length">
-                                <pagination-controls (pageChange)="pagination($event)"></pagination-controls>
-                            </div>
+                                                </td>
+                                            </tr>
+                                        </tbody> -->
+                                    </table>
+                                </div>
+                                <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
+                                    *ngIf="listing?.length">
+                                    <pagination-controls (pageChange)="pagination($event)"></pagination-controls>
+                                </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>    
-    </main>
-    
+        </main>
+
     </div>
 
 </section>
@@ -197,10 +226,11 @@
                             <div class="w-100">
                                 <p style="font-size: 18px;">Are you sure you want to active this user?</p>
                                 <div>
-                                    <button type="submit" class="btn btn-success mr-2" (click)="blockUser()">Yes</button>
+                                    <button type="submit" class="btn btn-success mr-2"
+                                        (click)="blockUser()">Yes</button>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -209,4 +239,3 @@
         </form>
     </div>
 </div>
-

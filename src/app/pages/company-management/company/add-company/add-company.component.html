@@ -9,49 +9,49 @@
                 <div class="order-view mt30 mrgn-0-auto">
 
                     <div>
-                        <form>
+                        <form [formGroup]="addForm">
                             <div class="form-group row">
                                 <label for="Fname" class="col-sm-2 col-form-label">First Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="Fname" class="form-control" placeholder="First name">
+                                    <input type="text" id="Fname" class="form-control" placeholder="First name" formControlName="firstName">
                                 </div>
                                 <label for="Lname" class="col-sm-2 col-form-label">Last Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="Lname" class="form-control" placeholder="Last name">
+                                    <input type="text" id="Lname" class="form-control" placeholder="Last name" formControlName="lastName">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="Mobile" class="col-sm-2 col-form-label">Mobile No</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="Mobile" class="form-control"
-                                        placeholder="Enter Mobile Number">
+                                        placeholder="Enter Mobile Number" formControlName="mobileNo">
                                 </div>
                                 <label for="email" class="col-sm-2 col-form-label">Email ID</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="email" class="form-control" placeholder="Enter mail Id">
+                                    <input type="text" id="email" class="form-control" placeholder="Enter mail Id" formControlName="emainId">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="CompanyName" class="col-sm-2 col-form-label">Company Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="CompanyName" class="form-control" placeholder="Company name">
+                                    <input type="text" id="CompanyName" class="form-control" placeholder="Company name" formControlName="companyName">
                                 </div>
                                 <label for="comanyAddress" class="col-sm-2 col-form-label">Company Address</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="comanyAddress" class="form-control"
-                                        placeholder="Company Address">
+                                        placeholder="Company Address" formControlName="companyAddress">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="city" class="col-sm-2 col-form-label">City</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="city" class="form-control" placeholder="Enter city name">
+                                    <input type="text" id="city" class="form-control" placeholder="Enter city name" formControlName="city">
                                 </div>
                                 <label for="state" class="col-sm-2 col-form-label">State</label>
                                 <div class="col-sm-4">
-                                    <select id="city" class="form-control">
+                                    <select id="city" class="form-control" formControlName="state">
                                         <option value="State">State</option>
                                     </select>
 
@@ -61,7 +61,7 @@
                                 <label for="aadhar" class="col-sm-2 col-form-label">Aadhar No</label>
                                 <div class="col-sm-4 input-group">
                                     <input type="text" id="aadhar" class="form-control" placeholder="Enter aadhar no"
-                                        style="border: 1px solid;">
+                                        style="border: 1px solid;" formControlName="aadhaarNo">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
                                             style="background-color: green;">Validate</button>
@@ -70,7 +70,7 @@
                                 <label for="pan" class="col-sm-2 col-form-label">Pan Card</label>
                                 <div class="col-sm-4 input-group">
                                     <input type="text" id="pan" class="form-control" placeholder="Enter Pan no"
-                                        style="border: 1px solid;">
+                                        style="border: 1px solid;" formControlName="panCard">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
                                             style="background-color: green;">Validate</button>
@@ -84,14 +84,14 @@
                                     <label for="AadharCard" class="btn btn-success btn-block btn-outlined">Upload Aadhar
                                         Card</label>
                                     <input type="file" id="AadharCard" accept="image/*" style="display: none"
-                                        class="form-control">
+                                        class="form-control" (change)="uploadAadhaar()">
                                 </div>
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-4">
                                     <label for="PanCard" class="btn btn-success btn-block btn-outlined">Upload Pan
                                         Card</label>
                                     <input type="file" id="PanCard" accept="image/*" style="display: none"
-                                        class="form-control">
+                                        class="form-control" (change)="uplaodPan()">
                                 </div>
                             </div>
 
@@ -99,7 +99,7 @@
                                 <label for="gst" class="col-sm-2 col-form-label">GISTN No</label>
                                 <div class="col-sm-4 input-group">
                                     <input type="text" id="gst" class="form-control" placeholder="Enter GISTN no"
-                                        style="border: 1px solid;">
+                                        style="border: 1px solid;" formControlName="gstNo">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
                                             style="background-color: green;">Validate</button>
@@ -120,8 +120,8 @@
                     <br>
                     <div class="head_flt_select">
                         <div class="head_flt_select input-label" style="margin-left: 1%">
-                            <button routerLink='/list-of-companies' type="submit" class="btn btn-theme"
-                                style="width: 15%;margin-left: 40%;margin-bottom: 3%;">Save</button>
+                            <button  type="submit" class="btn btn-theme"
+                                style="width: 15%;margin-left: 40%;margin-bottom: 3%;" (click)="submitForm()">Save</button>
                         </div>
                     </div>
 

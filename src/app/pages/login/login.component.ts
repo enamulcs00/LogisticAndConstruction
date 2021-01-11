@@ -66,50 +66,47 @@ export class LoginComponent implements OnInit {
   login() {
     // localStorage.setItem('Auth','token');
     // localStorage.setItem('data','eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwaC1yYWtlc2hrdW1hckBtb2JpbG9pdHRlLmNvbSIsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwicm9sZSI6IkFETUlOIiwiYXV0aGVudGljYXRlZCI6dHJ1ZSwidXNlcklkIjoyLCJ1c2VybmFtZSI6InBoLXJha2VzaGt1bWFyQG1vYmlsb2l0dGUuY29tIiwiaWF0IjoxNjA1NTA4MTcwLCJleHAiOjE2MDU1OTQ1NzB9.0KrFklXTfXLFVmqCJvlJju2ymWGiVefgltkPQXGWkR3vJe1wg35pCTBSiRylxmsQZ6C6jcuWvb5NSKej7aRhDg');
-    this.router.navigate(['/dashboard']);
-    // this.service.showSpinner()
-    // this.service.post('auth', {
-    //   // email: this.loginForm.value.email,
-    //   phoneNo: this.loginForm.value.phoneNo,
-    //   password: this.loginForm.value.password,
-    //   userAgent: navigator.userAgent,
-    //   location: this.location,
-    //   ipAddress: this.ipAddress
-    // }).subscribe(
-    //   (res: any) => {
-    //     this.service.hideSpinner()
-    //     console.log("res:::::", res)
-    //     if (res['status'] == '200') {
-    //       localStorage.setItem('Auth', res['data']['token']);
-    //       console.log(res)
-    //       this.service.toasterSucc(res['message'])
-    //       //  this.myAccountApi()
-
-    //       if (this.loginForm.value.rememberMe == true) {
-    //         let remData = {
-    //           "email": this.loginForm.value.email,
-    //           // "password":window.btoa(this.loginForm.value.password)
-    //         }
-    //         localStorage.setItem('rememberMe', JSON.stringify(remData))
-
-    //       }
-
-    //       this.service.changeLoginSub('login');
-    //       this.router.navigate(['billing']);
-    //     }
-    //   },
-    //   (err: any) => {
-
-    //     this.service.hideSpinner();
-    //     if (err['status'] == '401') {
-    //       this.service.toasterErr(err['error']['message']);
-    //       localStorage.removeItem('data');
-    //       console.log(err)
-    //     } else {
-    //       this.service.toasterErr('Something Went Wrong');
-    //     }
-    //   }
-    // )
+    //this.router.navigate(['/dashboard']);
+    this.service.showSpinner()
+    this.service.post('auth', {
+      // email: this.loginForm.value.email,
+      phoneNo: this.loginForm.value.phoneNo,
+      password: this.loginForm.value.password,
+      userAgent: navigator.userAgent,
+      location: this.location,
+      ipAddress: this.ipAddress
+    }).subscribe(
+      (res: any) => {
+        this.service.hideSpinner()
+        console.log("res:::::", res)
+        if (res['status'] == '200') {
+          localStorage.setItem('Auth', res['data']['token']);
+          console.log(res)
+          this.service.toasterSucc(res['message'])
+          //  this.myAccountApi()
+          this.router.navigate(['/dashboard']);
+          if (this.loginForm.value.rememberMe == true) {
+            let remData = {
+              "email": this.loginForm.value.email,
+              // "password":window.btoa(this.loginForm.value.password)
+            }
+            localStorage.setItem('rememberMe', JSON.stringify(remData))
+          }
+          this.service.changeLoginSub('login');
+          this.router.navigate(['billing']);
+        }
+      },
+      (err: any) => {
+        this.service.hideSpinner();
+        if (err['status'] == '401') {
+          this.service.toasterErr(err['error']['message']);
+          localStorage.removeItem('data');
+          console.log(err)
+        } else {
+          this.service.toasterErr('Something Went Wrong');
+        }
+      }
+    )
     this.Obj = {
       //  'email' : this.loginForm.value.email,
       'email': this.loginForm.value.phoneNo,

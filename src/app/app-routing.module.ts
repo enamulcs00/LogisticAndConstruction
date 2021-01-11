@@ -66,102 +66,102 @@ import { PrivacyPolicyComponent } from './pages/others/privacy-policy/privacy-po
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 const routes: Routes = [
-{ path: '', redirectTo: 'login', pathMatch: 'full' },
-{ path: 'login', component: LoginComponent },
-// { path: 'forgot_password', component: ForgotPasswordComponent},
-{ path: 'forgot-password', component: ForgotPasswordComponent },
-{ path: 'reset-password', component: ResetPasswordComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  // { path: 'forgot_password', component: ForgotPasswordComponent},
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
 
-// dashboard
-{ path: 'dashboard', component: DashboardComponent },
+  // dashboard
+  { path: 'dashboard', component: DashboardComponent },
 
-// company management
-{ path: 'list-of-companies', component: ListOfCompanyComponent },
-{ path: 'add-company', component: AddCompanyComponent },
-{ path: 'edit-company', component: EditCompanyComponent },
-{ path: 'view-company', component: ViewCompanyComponent },
-{ path: 'delete-company', component: DeleteCompanyComponent },
-// company management-> site
-{ path: 'list-of-sites', component: ListOfSitesComponent },
-{ path: 'add-site', component: AddSitesComponent },
-{ path: 'edit-site', component: EditSitesComponent },
-{ path: 'view-site', component: ViewSitesComponent },
-{ path: 'delete-site', component: DeleteSitesComponent },
-// // company management-> company-user-management
-{ path: 'list-of-company-user', component: ListOfCompanyUserComponent },
-{ path: 'add-company-user', component: AddCompanyUserComponent },
-{ path: 'edit-company-user', component: EditCompanyUserComponent },
-{ path: 'view-company-user', component: ViewCompanyUserComponent },
-{ path: 'delete-company-user', component: DeleteCompanyUserComponent },
-// company management-> booking
-{ path: 'list-of-company-booking', component: ListOfCompanyBookingComponent },
-{ path: 'view-company-booking', component: ViewCompanyBookingComponent },
-// company management-> quotes
-{ path: 'list-of-company-quote', component: ListOfCompanyQuoteComponent },
-{ path: 'view-company-quote', component: ViewCompanyQuoteComponent },
-// company management-> billing
-{ path: 'list-of-company-billing', component: ListOfCompanyBillingComponent },
-{ path: 'view-company-billing', component: ViewCompanyBillingComponent },
+  // company management
+  { path: 'list-of-companies', component: ListOfCompanyComponent },
+  { path: 'add-company', component: AddCompanyComponent },
+  { path: 'edit-company', component: EditCompanyComponent },
+  { path: 'view-company', component: ViewCompanyComponent },
+  { path: 'delete-company', component: DeleteCompanyComponent },
+  // company management-> site
+  { path: 'list-of-sites', component: ListOfSitesComponent },
+  { path: 'add-site', component: AddSitesComponent },
+  { path: 'edit-site', component: EditSitesComponent },
+  { path: 'view-site', component: ViewSitesComponent },
+  { path: 'delete-site', component: DeleteSitesComponent },
+  // // company management-> company-user-management
+  { path: 'list-of-company-user', component: ListOfCompanyUserComponent },
+  { path: 'add-company-user', component: AddCompanyUserComponent },
+  { path: 'edit-company-user', component: EditCompanyUserComponent },
+  { path: 'view-company-user', component: ViewCompanyUserComponent },
+  { path: 'delete-company-user', component: DeleteCompanyUserComponent },
+  // company management-> booking
+  { path: 'list-of-company-booking', component: ListOfCompanyBookingComponent },
+  { path: 'view-company-booking', component: ViewCompanyBookingComponent },
+  // company management-> quotes
+  { path: 'list-of-company-quote', component: ListOfCompanyQuoteComponent },
+  { path: 'view-company-quote', component: ViewCompanyQuoteComponent },
+  // company management-> billing
+  { path: 'list-of-company-billing', component: ListOfCompanyBillingComponent },
+  { path: 'view-company-billing', component: ViewCompanyBillingComponent },
 
-// fleet management
-{ path: 'list-of-fleet-owner', component: ListOfFleetOwnerComponent },
-{ path: 'add-fleet-owner', component: AddFleetOwnerComponent },
-{ path: 'edit-fleet-owner', component: EditFleetOwnerComponent },
-{ path: 'view-fleet-owner', component: ViewFleetOwnerComponent },
-{ path: 'delete-fleet-owner', component: DeleteFleetOwnerComponent },
-// fleet management-> truck
-{ path: 'list-of-truck', component: ListOfTruckComponent },
-{ path: 'add-truck', component: AddTruckComponent },
-{ path: 'edit-truck', component: EditTruckComponent },
-{ path: 'view-truck', component: ViewTruckComponent },
-{ path: 'delete-truck', component: DeleteTruckComponent },
-// fleet management-> driver
-{ path: 'list-of-driver', component: ListOfDriverComponent },
-{ path: 'add-driver', component: AddDriverComponent },
-{ path: 'edit-driver', component: EditDriverComponent },
-{ path: 'view-driver', component: ViewDriverComponent },
-{ path: 'delete-driver', component: DeleteDriverComponent },
-// fleet management-> routes
-{ path: 'routes', component: RoutesComponent },
+  // fleet management
+  { path: 'list-of-fleet-owner', component: ListOfFleetOwnerComponent },
+  { path: 'add-fleet-owner', component: AddFleetOwnerComponent },
+  { path: 'edit-fleet-owner', component: EditFleetOwnerComponent },
+  { path: 'view-fleet-owner', component: ViewFleetOwnerComponent },
+  { path: 'delete-fleet-owner', component: DeleteFleetOwnerComponent },
+  // fleet management-> truck
+  { path: 'list-of-truck', component: ListOfTruckComponent },
+  { path: 'add-truck', component: AddTruckComponent },
+  { path: 'edit-truck', component: EditTruckComponent },
+  { path: 'view-truck', component: ViewTruckComponent },
+  { path: 'delete-truck', component: DeleteTruckComponent },
+  // fleet management-> driver
+  { path: 'list-of-driver', component: ListOfDriverComponent },
+  { path: 'add-driver', component: AddDriverComponent },
+  { path: 'edit-driver', component: EditDriverComponent },
+  { path: 'view-driver', component: ViewDriverComponent },
+  { path: 'delete-driver', component: DeleteDriverComponent },
+  // fleet management-> routes
+  { path: 'routes', component: RoutesComponent },
 
-// supplier management
-{ path: 'list-of-supplier', component: ListOfSupplierComponent },
-{ path: 'add-supplier', component: AddSupplierComponent },
-{ path: 'edit-supplier', component: EditSupplierComponent },
-{ path: 'view-supplier', component: ViewSupplierComponent },
-{ path: 'delete-supplier', component: DeleteSupplierComponent },
-// supplier management-> booking
-{ path: 'list-of-supplier-booking', component: ListOfSupplierBookingComponent },
-{ path: 'view-supplier-booking', component: ViewSupplierBookingComponent },
-// supplier management-> quotes
-{ path: 'list-of-supplier-quote', component: ListOfSupplierQuoteComponent },
-{ path: 'view-supplier-quote', component: ViewSupplierQuoteComponent },
-// supplier management-> billing
-{ path: 'list-of-supplier-billing', component: ListOfSupplierBillingComponent },
-{ path: 'view-supplier-billing', component: ViewSupplierBillingComponent },
+  // supplier management
+  { path: 'list-of-supplier', component: ListOfSupplierComponent },
+  { path: 'add-supplier', component: AddSupplierComponent },
+  { path: 'edit-supplier', component: EditSupplierComponent },
+  { path: 'view-supplier', component: ViewSupplierComponent },
+  { path: 'delete-supplier', component: DeleteSupplierComponent },
+  // supplier management-> booking
+  { path: 'list-of-supplier-booking', component: ListOfSupplierBookingComponent },
+  { path: 'view-supplier-booking', component: ViewSupplierBookingComponent },
+  // supplier management-> quotes
+  { path: 'list-of-supplier-quote', component: ListOfSupplierQuoteComponent },
+  { path: 'view-supplier-quote', component: ViewSupplierQuoteComponent },
+  // supplier management-> billing
+  { path: 'list-of-supplier-billing', component: ListOfSupplierBillingComponent },
+  { path: 'view-supplier-billing', component: ViewSupplierBillingComponent },
 
-// truck
-{ path: 'truck-type', component: TruckTypeComponent },
+  // truck
+  { path: 'truck-type', component: TruckTypeComponent },
 
-// materials
-{ path: 'materials', component: MaterialsComponent },
+  // materials
+  { path: 'materials', component: MaterialsComponent },
 
-// thermal plants
-{ path: 'thermal-plants', component: ThermalPlantsComponent },
+  // thermal plants
+  { path: 'thermal-plants', component: ThermalPlantsComponent },
 
-// crusher and mining
-{ path: 'crushers-and-mining', component: CrushersAndMiningInfoComponent },
+  // crusher and mining
+  { path: 'crushers-and-mining', component: CrushersAndMiningInfoComponent },
 
-// others
-{ path: 'contact-us', component: ContactUsComponent },
-{ path: 'terms-and-conditions', component: TermsAndConditionsComponent },
-{ path: 'privacy-policy', component: PrivacyPolicyComponent },
+  // others
+  { path: 'contact-us', component: ContactUsComponent },
+  { path: 'terms-and-conditions', component: TermsAndConditionsComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
 
-// change password
-{ path: 'change-password', component: ChangePasswordComponent },
+  // change password
+  { path: 'change-password', component: ChangePasswordComponent },
 
-{ path: 'footer', component: FooterComponent },
-{ path: '**', component: PageNotFoundComponent }
+  { path: 'footer', component: FooterComponent },
+  { path: '**', component: PageNotFoundComponent }
 
 ];
 

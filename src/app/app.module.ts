@@ -7,7 +7,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxPaginationModule } from 'ngx-pagination'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { AngularMyDatePickerModule } from 'angular-mydatepicker';
 // import { AngularEditorModule } from '@kolkov/angular-editor'
 import { NgOtpInputModule } from 'ng-otp-input';
@@ -146,6 +146,7 @@ import { ContactUsComponent } from './pages/others/contact-us/contact-us.compone
 import { TermsAndConditionsComponent } from './pages/others/terms-and-conditions/terms-and-conditions.component';
 import { PrivacyPolicyComponent } from './pages/others/privacy-policy/privacy-policy.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { ErrorInterceptor } from './provider/interceptor/error-interceptor';
 
 // import { ListOfCompaniesComponent } from './list-of-companies/list-of-companies.component';
 // import { ListOfSitesComponent } from './list-of-sites/list-of-sites.component';
@@ -360,58 +361,58 @@ TermsAndConditionsComponent,
 
 PrivacyPolicyComponent,
 
-ChangePasswordComponent,
+    ChangePasswordComponent,
 
-// ListOfCompaniesComponent,
-// ListOfSitesComponent,
-// CompanyUserManagementComponent,
-// MyBookingComponent,
-// QuotesComponent,
-// BillingComponent,
-// ListOfFleetOwnerComponent,
-// ListOfTruckComponent,
-// ListOfBidByFleetComponent,
-// ListOfBookingDetailsComponent,
-// BillingLatestComponent,
-// ListOfDriverComponent,
-// ListOfSupplierComponent,
-// MyBookingSupplierComponent,
-// QuotesSupplierComponent,
-// BillingSupplierComponent,
-// ListOfBidToFleetOwnerComponent,
-// ListOfBookingDetailsFleetComponent,
-// BillingFleetComponent,
-// AddContactUsComponent,
-// AddTruckTypeComponent,
-// AddMaterialComponent,
-// AddThermalPlantsComponent,
-// UserRollManagementComponent,
-// NotificationListMgtComponent,
-// OthersComponent,
-// AddCrushersComponent,
-// SignupDataComponent,
+    // ListOfCompaniesComponent,
+    // ListOfSitesComponent,
+    // CompanyUserManagementComponent,
+    // MyBookingComponent,
+    // QuotesComponent,
+    // BillingComponent,
+    // ListOfFleetOwnerComponent,
+    // ListOfTruckComponent,
+    // ListOfBidByFleetComponent,
+    // ListOfBookingDetailsComponent,
+    // BillingLatestComponent,
+    // ListOfDriverComponent,
+    // ListOfSupplierComponent,
+    // MyBookingSupplierComponent,
+    // QuotesSupplierComponent,
+    // BillingSupplierComponent,
+    // ListOfBidToFleetOwnerComponent,
+    // ListOfBookingDetailsFleetComponent,
+    // BillingFleetComponent,
+    // AddContactUsComponent,
+    // AddTruckTypeComponent,
+    // AddMaterialComponent,
+    // AddThermalPlantsComponent,
+    // UserRollManagementComponent,
+    // NotificationListMgtComponent,
+    // OthersComponent,
+    // AddCrushersComponent,
+    // SignupDataComponent,
 
-],
-imports: [
-BrowserModule,
-AppRoutingModule,
-FormsModule,
-ReactiveFormsModule,
-HttpClientModule,
-BrowserAnimationsModule,
-ToastrModule.forRoot({
-positionClass: 'toast-top-right',
-maxOpened:1,
-preventDuplicates: true
-}),
-NgxSpinnerModule,
-NgxPaginationModule,
-// AngularMyDatePickerModule,
-// AngularEditorModule,
-// CKEditorModule
-NgOtpInputModule
-],
-providers: [],
-bootstrap: [AppComponent]
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      maxOpened:1,
+      preventDuplicates: true
+    }),
+    NgxSpinnerModule,
+    NgxPaginationModule,
+    // AngularMyDatePickerModule,
+    // AngularEditorModule,
+    // CKEditorModule
+    NgOtpInputModule
+  ],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
