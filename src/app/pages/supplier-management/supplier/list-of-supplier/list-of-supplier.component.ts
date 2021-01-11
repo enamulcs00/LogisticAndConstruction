@@ -88,12 +88,18 @@ export class ListOfSupplierComponent implements OnInit {
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
+        this.totalRecords = res.data.totalCount
+        this.service.toasterInfo(res.message)
       }
-      console.log('This is list of supplier',this.listing);
-      this.totalRecords = res.data.totalCount
-      console.log('Total Supplier', this.totalRecords);
-
-    })
+      else {
+        this.service.hideSpinner()
+        this.service.toasterErr(res.message)
+      }
+    },error=>{
+      this.service.hideSpinner()
+      this.service.toasterErr(error.message)
+    }
+    )
   }
   // ------------------------pagination -------------------------//
   pagination(page){

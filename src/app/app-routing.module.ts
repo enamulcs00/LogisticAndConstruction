@@ -128,8 +128,8 @@ const routes: Routes = [
   { path: 'list-of-supplier', component: ListOfSupplierComponent },
   { path: 'add-supplier', component: AddSupplierComponent },
   { path: 'edit-supplier', component: EditSupplierComponent },
-  { path: 'view-supplier', component: ViewSupplierComponent },
-  { path: 'delete-supplier', component: DeleteSupplierComponent },
+  { path: 'view-supplier/:id', component: ViewSupplierComponent },
+  { path: 'delete-supplier/:id', component: DeleteSupplierComponent },
   // supplier management-> booking
   { path: 'list-of-supplier-booking', component: ListOfSupplierBookingComponent },
   { path: 'view-supplier-booking', component: ViewSupplierBookingComponent },
