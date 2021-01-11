@@ -8,32 +8,32 @@
                         <div class="tab-pane1">
                             <div class="row">
                                 <div class="col-lg-2 mt-4">
-                                     <label class="ml-3">Supplier Name</label><br>
+                                     <label>Supplier Name</label><br>
                                      <select class="selectBox">
                                          <option>Select Supplier Name</option>
                                      </select>
                                 </div>
 
                                 <div class="col-lg-2 mt-4">
-                                    <label class="ml-5">Location</label><br>
+                                    <label>Location</label><br>
                                      <select class="selectBox">
                                          <option>Location</option>
                                      </select>
                                 </div>
                                 <div class="col-lg-2 mt-4">
-                                    <label class="ml-5">State</label><br>
+                                    <label>State</label><br>
                                      <select class="selectBox">
                                          <option>State</option>
                                      </select>
                                 </div>
                                 <div class="col-lg-2 mt-4">
-                                    <label class="ml-5">City</label><br>
+                                    <label>City</label><br>
                                      <select class="selectBox">
                                          <option>City</option>
                                      </select>
                                 </div>
                                 <div class="col-lg-2 mt-4">
-                                    <label class="ml-5">Mobile</label><br>
+                                    <label>Mobile</label><br>
                                      <select class="selectBox">
                                          <option>Mobile</option>
                                      </select>
@@ -41,15 +41,15 @@
                             </div>
                             <div class="row  d-flex justify-content-end w_100 mt-3">
                                     <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green' (click)="ExportToCsv()"></i>
-                                    <button type="button" class="search-btn">Search</button>
                                     <button type="button" class="search-btn">Reset</button>
+                                    <button type="button" class="search-btn">Search</button>
+                                    <button type="button" class="btn-add" [routerLink]="['/add-supplier']">Add</button>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-bordered" aria-describedby="user list" id = "pdfcontent">
                                     <thead>
                                         <tr class="no_wrap_th">
                                             <th scope="col">Supplier Name</th>
-                                            <th scope="col">First Name</th>
                                             <th scope="col">Location</th>
                                             <th scope="col">Mobile No</th>
                                             <th scope="col">E-Mail</th>
@@ -61,8 +61,8 @@
 
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                      <tr>
+                                    <tbody class="text-center">
+                                      <!-- <tr>
                                         <td>General Store</td>
                                         <td>Enamul</td>
                                         <td>enamulcs008@gmail.com</td>
@@ -81,29 +81,33 @@
                                     <a><i class="fa fa-ban" style="color: green;"></i></a>
                                     <a><i class="fa fa-ban" (click)="resetPassword()"></i></a>
                                         </td>
-                                      </tr>
-                                        <!-- <tr *ngFor="let item of listing| paginate: {
+                                      </tr> -->
+                                        <tr *ngFor="let item of listing| paginate: {
                                     itemsPerPage: itemsPerPage,
                                     currentPage: pageNumber,
                                     totalItems: totalRecords };let i = index ">
-                                            <td>{{itemsPerPage*(this.pageNumber-1)+i+1}}</td>
-                                            <td>{{item?.firstName}}{{item?.lastName}}</td>
-                                            <td>{{item?.email}}</td>
-                                            <td>{{item?.userId}}</td>
+                                            <!-- <td>{{itemsPerPage*(this.pageNumber-1)+i+1}}</td> -->
+                                            <td>{{item?.firstName}} {{item?.lastName}}</td>
+                                            <td>{{item?.baseLocationAddress}}</td>
                                             <td>{{item?.phoneNo}}</td>
-                                            <td>{{item?.userStatus}}</td>
-                                            <td>{{item?.createTime | date:'medium'}}</td>
+                                            <td>{{item?.email}}</td>
+                                            <td>{{item?.city}}</td>
+                                            <td>{{item?.state}}</td>
+                                            <td>{{item?.gstInNo}}</td>
+                                            <td>{{item?.createTime | date}}</td>
 
                                             <td class="action_td_btn3" style="cursor: pointer">
-                                                <a ><i class="fa fa-eye" (click)="userDetails(item?.userId,item?.email)"></i></a>
-                                                <a><i class="fa fa-trash" (click)="openModal('DELETE',item?.userId)"></i></a>
-                                                <a *ngIf="item?.userStatus == 'ACTIVE'" (click)="openModal('BLOCK',item?.userId)"><i class="fa fa-ban" style="color: green;"></i></a>
-                                                <a *ngIf="item?.userStatus == 'BLOCK'" (click)="openModal('ACTIVE',item?.userId)"><i class="fa fa-ban"></i></a>
+                                              <!-- <a><i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit"></i></a> -->
+                                                <a ><i class="fa fa-eye" (click)="userDetails(item?.userId)" title="View"></i></a>
+                                                <a><i class="fa fa-trash" (click)="openModal('DELETE',item?.userId)" title="delete"></i></a>
 
+                                                <a *ngIf="item?.userStatus == 'ACTIVE'" (click)="openModal('BLOCK',item?.userId)"><i class="fa fa-ban" title="deactivate" style="color: green;"></i></a>
+                                                <a *ngIf="item?.userStatus == 'BLOCK'" (click)="openModal('ACTIVE',item?.userId)"><i class="fa fa-ban" title="activate"></i></a>
+                                                  <a><i class="fa fa-unlock-alt" aria-hidden="true" title="Reset Password"></i></a>
                                             </td>
-                                        </tr> -->
+                                        </tr>
                                     </tbody>
-                                    <!-- <tbody *ngIf="listing?.length==0">
+                                    <tbody *ngIf="listing?.length==0">
                                         <tr>
                                             <td colspan="13" vertical-align="middle">
                                                 <div class="no-record">
@@ -113,7 +117,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                    </tbody> -->
+                                    </tbody>
                                 </table>
                             </div>
                             <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"

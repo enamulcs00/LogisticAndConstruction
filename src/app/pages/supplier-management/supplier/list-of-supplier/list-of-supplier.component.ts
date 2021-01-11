@@ -80,18 +80,18 @@ export class ListOfSupplierComponent implements OnInit {
   //-----------------------------list api integration --------------------------------//
 
   getlist(){
-    let channel = "admin/filter-user-details?roleStatus=SUPPLIER"
+    let channel = "account/admin/filter-user-details?roleStatus=SUPPLIER"
     this.service.showSpinner()
     var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
     this.service.get(channel).subscribe((res:any)=>{
-      console.log('This is list of ssupplier',res)
+
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
       }
-      console.log('kfg',this.listing);
+      console.log('This is list of supplier',this.listing);
       this.totalRecords = res.data.totalCount
-      console.log('kn', this.totalRecords);
+      console.log('Total Supplier', this.totalRecords);
 
     })
   }
@@ -212,9 +212,9 @@ export class ListOfSupplierComponent implements OnInit {
   }
 
   //------------------- user details navigation------------------------------//
-  userDetails(){
+  userDetails(id){
     //this.router.navigate(['/view-supplier'])
-    this.router.navigate(['/add-supplier'])
+    this.router.navigate(['/view-supplier'])
     // this.router.navigate(['/edit-supplier'])
     // this.router.navigate(['/delete-supplier'])
 

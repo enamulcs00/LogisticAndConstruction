@@ -46,3 +46,8 @@ td.action_td_btn3 {
     border: none;
     margin-left: 2px;
 }
+
+
+tr:nth-child(even) { 
+    background-color: #dfdfdf; 
+} 

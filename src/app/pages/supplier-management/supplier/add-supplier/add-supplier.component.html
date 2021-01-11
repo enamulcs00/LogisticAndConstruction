@@ -1,6 +1,6 @@
 <section>
     <div class="container1440 mt-5">
-        <main class="middle-content" style="overflow-y: scroll; height: -webkit-fill-available;">
+        <main class="middle-content">
             <div class="content-section">
 
                 <!-- <div class="page_title_block pL0 pR0">
@@ -120,7 +120,12 @@
                                 <label for="state" class="col-sm-2 col-form-label">State</label>
                                 <div class="col-sm-4">
                                     <select id="city" class="form-control" formControlName="stateName">
-                                        <option value="State">State</option>
+                                        <option selected>State</option>
+                                        <option value="Delhi">Delhi</option>
+                                        <option value="Mumbai">Mumbai</option>
+                                        <option value="Bihar">Bihar</option>
+                                        <option value="Gujrat">Gujrat</option>
+                                        <option value="Asam">Asam</option>
                                     </select>
                                     <div class="text-danger">
                                       <span
@@ -184,14 +189,14 @@
                                 <div class="col-sm-4">
                                     <label for="AadharCard" class="btn btn-success btn-block btn-outlined">Upload Aadhar
                                         Card</label>
-                                    <input type="file" id="AadharCard" accept="image/*" style="display: none"
+                                    <input type="file" id="AadharCard" (change)="uploadAadhaar($event)" accept="image/*" style="display: none"
                                         class="form-control">
                                 </div>
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-4">
                                     <label for="PanCard" class="btn btn-success btn-block btn-outlined">Upload Pan
                                         Card</label>
-                                    <input type="file" id="PanCard" accept="image/*" style="display: none"
+                                    <input type="file" id="PanCard" (change)="uplaodPan($event)" accept="image/*" style="display: none"
                                         class="form-control">
                                 </div>
                             </div>
@@ -225,7 +230,7 @@
                                 <div class="col-sm-4">
                                     <label for="gstfile" class="btn btn-success btn-block btn-outlined">GISTN
                                         Copy</label>
-                                    <input type="file" id="gstfile" accept="image/*" style="display: none"
+                                    <input type="file" id="gstfile" (change)="uplaodGst($event)" accept="image/*" style="display: none"
                                         class="form-control">
                                 </div>
                             </div>
@@ -234,7 +239,7 @@
                     <br>
                     <div class="head_flt_select">
                         <div class="head_flt_select input-label" style="margin-left: 1%">
-                            <button routerLink='/transaction-management' type="submit" class="btn btn-theme"
+                            <button (click)="AddSupplier()" type="submit" class="btn btn-theme"
                                 style="width: 15%;margin-left: 40%;margin-bottom: 3%;">Add Supler</button>
                         </div>
                     </div>
