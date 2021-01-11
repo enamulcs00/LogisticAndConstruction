@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
-
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
 
@@ -43,51 +42,62 @@ export class MainService {
     this.loginSub.next(msg);
   }
 
-  // Api Functionlity 
-  // Api Structuring Functionality
+  // ------------ post api -------------- //
   post(url, data) {
     if (localStorage.getItem('Auth')) {
       this.code = localStorage.getItem('Auth')
     }
     if (localStorage.getItem('data') || localStorage.getItem('Auth')) {
       this.httpOptions = {
-        headers: new HttpHeaders({ 'token': `${this.code}` })
+        // headers: new HttpHeaders({ 'token': `${this.code}` })
+        headers: new HttpHeaders({ 'Authorization': `Bearer ${this.code}` })
       };
     }
     return this.http.post(this.baseUrl + url, data, this.httpOptions);
   }
 
+  // ----------- get api ---------------- //
   get(url) {
     if (localStorage.getItem('Auth')) {
       this.code = localStorage.getItem('Auth')
     }
     if (localStorage.getItem('data') || localStorage.getItem('Auth')) {
       this.httpOptions = {
-        headers: new HttpHeaders({ 'token': `${this.code}` })
+        // headers: new HttpHeaders({ 'token': `${this.code}` })
+        headers: new HttpHeaders({ 'Authorization': `Bearer ${this.code}` })
       }
     }
     return this.http.get(this.baseUrl + url, this.httpOptions);
   }
 
+  // ------------ get third party api ---------- //
   getThirdPartyApi(url) {
     return this.http.get(url, { observe: 'response' })
   }
 
   // Form Data Api Structure
-  postApi(endPoint, data): Observable<any> {
-    if (localStorage.getItem('Auth')) {
-      this.code = localStorage.getItem('Auth')
-    }
-    if (localStorage.getItem('data') || localStorage.getItem('Auth')) {
+  // postApi(endPoint, data): Observable<any> {
+  //   if (localStorage.getItem('Auth')) {
+  //     this.code = localStorage.getItem('Auth')
+  //   }
+  //   if (localStorage.getItem('data') || localStorage.getItem('Auth')) {
 
-      this.httpOptions = {
-        headers: new HttpHeaders({ 'token': `${this.code}` })
-      }
-    }
-    return this.http.post(this.baseUrl + endPoint, data, this.httpOptions);
+  //     this.httpOptions = {
+  //       headers: new HttpHeaders({ 'token': `${this.code}` })
+  //     }
+  //   }
+  //   return this.http.post(this.baseUrl + endPoint, data, this.httpOptions);
+  // }
+
+  // ------------- logout ------------- //
+  onLogout() {
+    localStorage.clear();
+    // window.location.reload();
+    this.routes.navigate(['/login']);
+    // $('#signout_modal').modal('hide');
   }
 
-  // Spinner 
+  // ------------ Spinner ------------- //
   showSpinner() {
     this.spinner.show();
   }
@@ -96,7 +106,7 @@ export class MainService {
     this.spinner.hide();
   }
 
-  // Toaster Functionality
+  // ---------- toaster ----------------- //
   toasterSucc(msg) {
     this.toastr.success(msg)
   }
@@ -107,16 +117,14 @@ export class MainService {
     this.toastr.info(msg)
   }
 
-  //Export
+  // ------------ export excel file ------------- //
   public exportAsExcelFile(json: any[], excelFileName: string): void {
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
-
     const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
     const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
     //const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'buffer' });
     this.saveAsExcelFile(excelBuffer, excelFileName);
   }
-
   private saveAsExcelFile(buffer: any, fileName: string): void {
     const data: Blob = new Blob([buffer], {
       type: EXCEL_TYPE
@@ -124,15 +132,7 @@ export class MainService {
     FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
   }
 
-  // Logout
-  onLogout() {
-    localStorage.clear();
-    // window.location.reload();
-    this.routes.navigate(['/login']);
-    // $('#signout_modal').modal('hide');
-  }
-
-  // prevent space
+  // ---------------- validation ------------------ //
   preventSpace(event) {
     if (event.charCode == 32 && !event.target.value) {
       event.preventDefault()

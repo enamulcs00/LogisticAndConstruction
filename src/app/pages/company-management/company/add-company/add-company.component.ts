@@ -51,9 +51,9 @@ export class AddCompanyComponent implements OnInit {
     }
     console.log(apiReqData)
     this.router.navigate(['/list-of-companies'])
-    this.service.postApi('', apiReqData).subscribe((res: any) => {
-      console.log(res);
-    })
+    // this.service.postApi('', apiReqData).subscribe((res: any) => {
+    //   console.log(res);
+    // })
   }
 
   uploadAadhaar() {
