@@ -99,7 +99,7 @@
                                             <td class="action_td_btn3" style="cursor: pointer">
                                               <!-- <a><i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit"></i></a> -->
                                                 <a ><i class="fa fa-eye" [routerLink]="['/view-supplier',item?.userId]" title="View"></i></a>
-                                                <a><i class="fa fa-trash" (click)="openModal('DELETE',item?.userId)" title="delete"></i></a>
+                                                <a><i class="fa fa-trash" [routerLink]="['/delete-supplier',item?.userId]" title="delete"></i></a>
 
                                                 <a *ngIf="item?.userStatus == 'ACTIVE'" (click)="openModal('BLOCK',item?.userId)"><i class="fa fa-ban" title="deactivate" style="color: green;"></i></a>
                                                 <a *ngIf="item?.userStatus == 'BLOCK'" (click)="openModal('ACTIVE',item?.userId)"><i class="fa fa-ban" title="activate"></i></a>
