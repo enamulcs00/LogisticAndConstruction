@@ -73,11 +73,11 @@ export class TruckTypeComponent implements OnInit {
   getlist() {
     this.service.showSpinner()
     // var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
-    var url = "account/admin/get-truckTypeDetails"
+    var url = "account/admin/get-truckTypeDetails?page=" + (this.pageNumber - 1) + `&pageSize=${this.pageSize}`
     this.service.get(url).subscribe((res: any) => {
       this.service.hideSpinner()
       if (res['status'] == 200) {
-        this.listing = res['data']['list'];
+        this.listing = res['data'];
       }
       console.log('kfg', this.listing);
       this.totalRecords = res.data.totalCount
@@ -294,8 +294,8 @@ export class TruckTypeComponent implements OnInit {
 
   addTruckFormValidation() {
     this.addTruckForm = new FormGroup({
-      'typeOfTruck': new FormControl(''),
-      'description': new FormControl('')
+      'typeOfTruck': new FormControl('', Validators.required),
+      'description': new FormControl('', Validators.required)
     })
   }
   addTruckType() {

@@ -49,7 +49,7 @@ export class ListOfTruckComponent implements OnInit {
     this.fromDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() : '0'+ (date.getMonth() + 1) )+ '-' + date.getFullYear()
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
     this.dateValidation()
-    // this.getlist();
+    this.getlist();
   }
 
   onFromChangeDate(){
@@ -72,7 +72,8 @@ export class ListOfTruckComponent implements OnInit {
   //-----------------------------list api integration --------------------------------//
   getlist(){
     this.service.showSpinner()
-    var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
+    // var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
+    var url="account/admin/filter-tuck-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
@@ -291,6 +292,12 @@ export class ListOfTruckComponent implements OnInit {
     
   }
 
+  addTruck() {
+    this.router.navigate(['add-truck'])
+  }
 
+  viewTruck(truckId) {
+    this.router.navigate(['view-truck'])
+  }
 }
 
