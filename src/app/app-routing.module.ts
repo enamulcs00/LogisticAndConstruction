@@ -132,7 +132,7 @@ const routes: Routes = [
   { path: 'delete-supplier/:id', component: DeleteSupplierComponent },
   // supplier management-> booking
   { path: 'list-of-supplier-booking', component: ListOfSupplierBookingComponent },
-  { path: 'view-supplier-booking', component: ViewSupplierBookingComponent },
+  { path: 'view-supplier-booking/:id', component: ViewSupplierBookingComponent },
   // supplier management-> quotes
   { path: 'list-of-supplier-quote', component: ListOfSupplierQuoteComponent },
   { path: 'view-supplier-quote', component: ViewSupplierQuoteComponent },

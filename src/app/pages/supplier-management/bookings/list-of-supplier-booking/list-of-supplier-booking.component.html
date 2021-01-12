@@ -9,7 +9,7 @@
                             <div class="row">
                                 <div class="col-lg-2 mt-4">
                                      <label class="ml-3">Company Name</label><br>
-                                     <input class="selectBox" type="text" placeholder="Enter Company Name"> 
+                                     <input class="selectBox" type="text" placeholder="Enter Company Name">
                                 </div>
                                 <div class="col-lg-2 mt-4">
                                     <label class="ml-5">Supplier</label><br>
@@ -59,27 +59,30 @@
                                             <th scope="col">Driver Mobile</th>
                                             <th scope="col">Route ID</th>
                                             <th scope="col" class="action_td_btn3">Action</th>
-                                            
+
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let item of listing| paginate: { 
+                                        <tr *ngFor="let item of listing| paginate: {
                                     itemsPerPage: itemsPerPage,
                                     currentPage: pageNumber,
                                     totalItems: totalRecords };let i = index ">
-                                            <td>{{itemsPerPage*(this.pageNumber-1)+i+1}}</td>
-                                            <td>{{item?.firstName}}{{item?.lastName}}</td>
-                                            <td>{{item?.email}}</td>
-                                            <td>{{item?.userId}}</td>
-                                            <td>{{item?.phoneNo}}</td>
-                                            <td>{{item?.userStatus}}</td>
-                                            <td>{{item?.createTime | date:'medium'}}</td>
-
+                                            <td>{{item?.bookingId || 'NA'}}</td>
+                                            <td>{{item?.companyName || 'NA'}}</td>
+                                            <td>{{item?.SupplierName || 'NA'}}</td>
+                                            <td>{{item?.material || 'NA'}}</td>
+                                            <td>{{item?.weight || 'NA'}}</td>
+                                            <td>{{item?.deliveryDate | date}}</td>
+                                            <td>{{item?.location || 'NA'}}</td>
+                                            <td>{{item?.bidAmount || 'NA'}}</td>
+                                            <td>{{item?.poNumber || 'NA'}}</td>
+                                            <td>{{item?.truckNumber || 'NA'}}</td>
+                                            <td>{{item?.truckType || 'NA'}}</td>
+                                            <td>{{item?.driverName || 'NA'}}</td>
+                                            <td>{{item?.driverMobileNo || 'NA'}}</td>
+                                            <td>{{item?.quotesId || 'NA'}}</td>
                                             <td class="action_td_btn3" style="cursor: pointer">
-                                                <a ><i class="fa fa-eye" (click)="userDetails(item?.userId,item?.email)"></i></a>
-                                                <a><i class="fa fa-trash" (click)="openModal('DELETE',item?.userId)"></i></a>
-                                                <a *ngIf="item?.userStatus == 'ACTIVE'" (click)="openModal('BLOCK',item?.userId)"><i class="fa fa-ban" style="color: green;"></i></a>
-                                                <a *ngIf="item?.userStatus == 'BLOCK'" (click)="openModal('ACTIVE',item?.userId)"><i class="fa fa-ban"></i></a>
+                                                <a ><i class="fa fa-eye"[routerLink]="['/view-supplier-booking',item?.bookingId]"></i></a>
 
                                             </td>
                                         </tr>
@@ -106,9 +109,9 @@
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
     </main>
-    
+
     </div>
 
 </section>
@@ -141,7 +144,7 @@
                 </tr>
             </tbody>
         </table>
-    </div>       
+    </div>
 </div> -->
 
 
