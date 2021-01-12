@@ -39,8 +39,6 @@ export class DeleteSupplierComponent implements OnInit {
       this.service.showSpinner()
 
       this.service.get(channel).subscribe((res:any)=>{
-
-
         if (res['status'] == 200) {
           this.service.hideSpinner()
           this.listing = res.data;

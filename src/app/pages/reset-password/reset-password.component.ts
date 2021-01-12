@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 // import { Component, OnInit } from '@angular/core';
 // import { MainService } from 'src/app/provider/main.service';
 // import { Router } from '@angular/router';
@@ -19,6 +20,7 @@ declare var kendo: any;
 })
 export class ResetPasswordComponent implements OnInit {
   userForm: FormGroup;
+  resetPasswordForm: FormGroup
   listing: any = [];
   id: number;
   deleted: any;
@@ -36,18 +38,19 @@ export class ResetPasswordComponent implements OnInit {
   action: any;
   userstatus: any;
   constructor(
-    private router: Router, public service: MainService
-  ) {
-
+    private router: Router, public service: MainService, private actRoute:ActivatedRoute) {
+this.actRoute.params.subscribe((res:any)=>{
+  this.userid = res.id
+})
   }
 
   ngOnInit() {
-    this.userForm = new FormGroup({
-      'startdate': new FormControl('', Validators.required),
-      'enddate': new FormControl('', Validators.required),
-      'searchText': new FormControl(''),
+    this.resetPasswordForm = new FormGroup({
+      'UserType': new FormControl('', Validators.required),
+      'phoneNo': new FormControl('', Validators.required),
+      'emailId': new FormControl('',Validators.required),
     })
-    
+
     let date = new Date()
     this.fromDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() : '0'+ (date.getMonth() + 1) )+ '-' + date.getFullYear()
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
@@ -71,7 +74,34 @@ export class ResetPasswordComponent implements OnInit {
     this.maxToDate = currentYear + '-' + currentMonth + '-' + currentDay;
 
   }
-
+ResetPassword(){
+  let obj = {
+    clientId: this.userid,
+    email: this.resetPasswordForm.value.emailId,
+    mobileNo: this.resetPasswordForm.value.phoneNo,
+    role: this.resetPasswordForm.value.UserType
+  }
+  let url = `account/admin/forget-password-other-role?clientId=${this.userid}&email=${this.resetPasswordForm.value.emailId}&mobileNo=${this.resetPasswordForm.value.phoneNo}&role=SUPPLIER`
+  this.service.showSpinner()
+  this.service.post(url,obj).subscribe((res:any)=>{
+    console.log('This is reset Response',res);
+    if(res.status==200){
+      this.service.hideSpinner()
+      this.service.toasterSucc(res.message)
+      this.router.navigate(['/list-of-supplier'])
+    }
+    else{
+      this.service.hideSpinner()
+      this.service.toasterSucc(res.message)
+      this.router.navigate(['/list-of-supplier'])
+    }
+  },err=>{
+    this.service.hideSpinner()
+    this.service.toasterSucc('Some thing went wrong')
+    this.router.navigate(['/list-of-supplier'])
+  }
+  )
+}
   //-----------------------------list api integration --------------------------------//
   getlist(){
     this.service.showSpinner()
@@ -84,7 +114,7 @@ export class ResetPasswordComponent implements OnInit {
       console.log('kfg',this.listing);
       this.totalRecords = res.data.totalCount
       console.log('kn', this.totalRecords);
-      
+
     })
   }
   // ------------------------pagination -------------------------//
@@ -122,7 +152,7 @@ export class ResetPasswordComponent implements OnInit {
   // ------------------------------reset filter------------------------------//
   resetForm(){
     this.userForm.reset()
-    this.getlist();    
+    this.getlist();
   }
 
   //========modal=======//
@@ -254,15 +284,15 @@ export class ResetPasswordComponent implements OnInit {
         "UserID": element.userId ? element.userId : 'N/A',
         "PhoneNumber": String(element.phoneNo) ? String(element.phoneNo) : 'N/A',
         "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-        "Registration Date": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A', 
+        "Registration Date": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A',
       }
       listingArr.push(obj)
     });
-    const options = { 
+    const options = {
       fieldSeparator: ',',
       quoteStrings: '"',
       decimalSeparator: '.',
-      showLabels: true, 
+      showLabels: true,
       showTitle: true,
       title: 'Candidate Details CSV',
       useTextFile: false,
@@ -270,11 +300,11 @@ export class ResetPasswordComponent implements OnInit {
       useKeysAsHeaders: true,
     };
     // const csvExporter = new ExportToCsv(options);
-    //  csvExporter.generateCsv(listingArr); 
+    //  csvExporter.generateCsv(listingArr);
   }
 
   //--------------------------------export pdf ----------------------------------------
-  
+
   exportPDF(){
     this.service.showSpinner();
     setTimeout( r => {
@@ -286,12 +316,12 @@ export class ResetPasswordComponent implements OnInit {
           paperSize: "A2",
           margin: { top: "0.8cm", bottom: "1cm" },
           scale: 0.8,
-          height: 400,          
+          height: 400,
         })
       .then(function (group) {
         kendo.drawing.pdf.saveAs(group, "Exported.pdf")
       });
-    
+
   }
 
 
@@ -304,14 +334,14 @@ export class ResetPasswordComponent implements OnInit {
 
 //   ngOnInit() {
 //     this.token = window.location.href.split('=')[1];
-    
+
 //     this.resetPasswordForm = new FormGroup({
 //       password: new FormControl('',Validators.required),
-//       confirmPassword : new FormControl('',Validators.required)      
+//       confirmPassword : new FormControl('',Validators.required)
 //     })
 //   }
 
-  
+
 //   // Reset Password Functionality
 //   resetPasswordFunc(){
 //     var apireq = {
@@ -330,7 +360,7 @@ export class ResetPasswordComponent implements OnInit {
 //         this.service.onLogout()
 //       }
 //     },  (err : any)=>{
-    
+
 //       this.service.hideSpinner();
 //       if(err['status']=='401'){
 //         this.service.toasterErr(err['error']['message']);
@@ -339,7 +369,7 @@ export class ResetPasswordComponent implements OnInit {
 //    }
 //     })
 
-    
+
 //   }
 // }
-  
+

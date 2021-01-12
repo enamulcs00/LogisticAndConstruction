@@ -70,7 +70,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   // { path: 'forgot_password', component: ForgotPasswordComponent},
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'reset-password/:id', component: ResetPasswordComponent },
 
   // dashboard
   { path: 'dashboard', component: DashboardComponent },

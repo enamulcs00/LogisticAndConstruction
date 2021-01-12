@@ -101,9 +101,9 @@
                                                 <a ><i class="fa fa-eye" [routerLink]="['/view-supplier',item?.userId]" title="View"></i></a>
                                                 <a><i class="fa fa-trash" [routerLink]="['/delete-supplier',item?.userId]" title="delete"></i></a>
 
-                                                <a *ngIf="item?.userStatus == 'ACTIVE'" (click)="openModal('BLOCK',item?.userId)"><i class="fa fa-ban" title="deactivate" style="color: green;"></i></a>
-                                                <a *ngIf="item?.userStatus == 'BLOCK'" (click)="openModal('ACTIVE',item?.userId)"><i class="fa fa-ban" title="activate"></i></a>
-                                                  <a><i class="fa fa-refresh" aria-hidden="true" title="Reset Password"></i></a>
+                                                <a *ngIf="item?.userStatus == 'ACTIVE'" (click)="openblockModal('BLOCK',item?.userId)"><i class="fa fa-ban" title="deactivate" style="color: green;"></i></a>
+                                                <a *ngIf="item?.userStatus == 'BLOCK'" (click)="openblockModal('ACTIVE',item?.userId)"><i class="fa fa-ban" title="activate" style="color: red;"></i></a>
+                                                  <a><i class="fa fa-refresh" aria-hidden="true" title="Reset Password" [routerLink]="['/reset-password',item?.userId]"></i></a>
                                             </td>
                                         </tr>
                                     </tbody>
