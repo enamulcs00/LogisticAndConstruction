@@ -14,21 +14,49 @@
                                 <label for="Fname" class="col-sm-2 col-form-label">First Name</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="Fname" class="form-control" placeholder="First name" formControlName="firstName">
+                                    <span class="error" *ngIf="addForm.get('firstName').hasError('required') && (addForm.get('firstName').dirty || addForm.get('firstName').touched )" class="error">
+                                       <p>*Please enter first name.</p>
+                                    </span>
+                                   <span class="error" *ngIf="addForm.get('firstName').hasError('pattern') && addForm.get('firstName').dirty" class="error">
+                                       <p> *Please enter valid first name.</p>                                      
+                                    </span>
                                 </div>
                                 <label for="Lname" class="col-sm-2 col-form-label">Last Name</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="Lname" class="form-control" placeholder="Last name" formControlName="lastName">
+                                    <span class="error" *ngIf="addForm.get('lastName').hasError('required') && (addForm.get('lastName').dirty || addForm.get('lastName').touched )" class="error">
+                                        <p>*Please enter last name.</p>
+                                     </span>
+                                    <span class="error" *ngIf="addForm.get('lastName').hasError('pattern') && addForm.get('lastName').dirty" class="error">
+                                        <p> *Please enter valid Last name.</p>                                      
+                                     </span>
                                 </div>
                             </div>
+
                             <div class="form-group row">
                                 <label for="Mobile" class="col-sm-2 col-form-label">Mobile No</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="Mobile" class="form-control"
-                                        placeholder="Enter Mobile Number" formControlName="mobileNo">
+                                        placeholder="Enter mobile number" formControlName="phoneNo">
+                                        <span class="error" *ngIf="addForm.get('phoneNo').hasError('required') && (addForm.get('phoneNo').dirty || addForm.get('phoneNo').touched )" class="error">
+                                             <p> *Please enter mobile number.</p>
+                                        </span>
+                                         <span class="error" *ngIf="addForm.get('phoneNo').hasError('pattern') && addForm.get('phoneNo').dirty" class="error">
+                                            <p> *Please enter valid mobile number.</p>
+                                         </span>
                                 </div>
+
                                 <label for="email" class="col-sm-2 col-form-label">Email ID</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="email" class="form-control" placeholder="Enter mail Id" formControlName="emainId">
+                                    <input type="text" id="email" class="form-control" placeholder="Enter mail Id" formControlName="email">
+                                    <span class="error">
+                                        <p *ngIf="addForm.get('email').hasError('required') && (addForm.get('email').dirty || addForm.get('email').touched )"
+                                            class="error" padding>*Please enter email id.</p>
+                                    </span>
+                                  <span class="error">
+                                      <p *ngIf="addForm.get('email').hasError('pattern') && addForm.get('email').dirty"
+                                          class="error" padding>*Please enter valid email.</p>
+                                  </span>
                                 </div>
                             </div>
 
@@ -36,19 +64,23 @@
                                 <label for="CompanyName" class="col-sm-2 col-form-label">Company Name</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="CompanyName" class="form-control" placeholder="Company name" formControlName="companyName">
+                                    <span class="error">
+                                        <p *ngIf="addForm.get('companyName').hasError('required') && (addForm.get('companyName').dirty || addForm.get('companyName').touched )"
+                                            class="error" padding>*Please enter company name.</p>
+                                    </span>
                                 </div>
                                 <label for="comanyAddress" class="col-sm-2 col-form-label">Company Address</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="comanyAddress" class="form-control"
-                                        placeholder="Company Address" formControlName="companyAddress">
+                                        placeholder="Company address" formControlName="companyAddress">
+                                        <span class="error">
+                                            <p *ngIf="addForm.get('companyAddress').hasError('required') && (addForm.get('companyAddress').dirty || addForm.get('companyAddress').touched )"
+                                                class="error" padding>*Please enter company address.</p>
+                                        </span>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="city" class="col-sm-2 col-form-label">City</label>
-                                <div class="col-sm-4">
-                                    <input type="text" id="city" class="form-control" placeholder="Enter city name" formControlName="city">
-                                </div>
                                 <label for="state" class="col-sm-2 col-form-label">State</label>
                                 <div class="col-sm-4">
                                     <select id="city" class="form-control" formControlName="state">
@@ -56,6 +88,12 @@
                                     </select>
 
                                 </div>
+                                <label for="city" class="col-sm-2 col-form-label">City</label>
+                                <div class="col-sm-4">
+                                    <select id="city" class="form-control" formControlName="city">
+                                        <option value="city">City</option>
+                                    </select>
+                                </div>                   
                             </div>
                             <div class="form-group row">
                                 <label for="aadhar" class="col-sm-2 col-form-label">Aadhar No</label>
