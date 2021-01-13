@@ -30,6 +30,15 @@ export class LoginComponent implements OnInit {
       'password': new FormControl('', [Validators.required]),
       'rememberMe': new FormControl('', [Validators.required]),
     })
+    if (localStorage.getItem('rememberMe')) {
+      let adminData = JSON.parse(localStorage.getItem('rememberMe'))
+      // console.log(adminData)
+      this.loginForm.patchValue({
+        'phoneNo': adminData.phoneNo,
+        'password': window.atob(adminData.password),
+        'rememberMe': adminData.rememberMe
+      })
+    }
   }
 
   //---------------------IP api integration --------------------//
@@ -80,10 +89,13 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/dashboard']);
           if (this.loginForm.value.rememberMe == true) {
             let remData = {
-              "email": this.loginForm.value.email,
-              // "password":window.btoa(this.loginForm.value.password)
+              "phoneNo": this.loginForm.value.phoneNo,
+              "password": window.btoa(this.loginForm.value.password),
+              "rememberMe": this.loginForm.value.rememberMe,
             }
             localStorage.setItem('rememberMe', JSON.stringify(remData))
+          } else {
+            localStorage.removeItem('rememberMe')
           }
           this.service.changeLoginSub('login');
           // this.router.navigate(['billing']);
@@ -102,7 +114,7 @@ export class LoginComponent implements OnInit {
     )
     this.Obj = {
       //  'email' : this.loginForm.value.email,
-      'email': this.loginForm.value.phoneNo,
+      'email': this.loginForm.value.phoneNo
     }
     localStorage.setItem('data', JSON.stringify(this.Obj));
   }

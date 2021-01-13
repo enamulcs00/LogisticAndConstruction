@@ -25,8 +25,8 @@ export class ResetPasswordComponent implements OnInit {
   id: number;
   deleted: any;
   totalRecords: any
-  pageNumber:number=1
-  itemsPerPage:number=20
+  pageNumber: number = 1
+  itemsPerPage: number = 20
   userid: number;
   userStatus: any;
   fromDate: any;
@@ -34,7 +34,7 @@ export class ResetPasswordComponent implements OnInit {
   maxToDate: string;
   minToDate: any;
   toDate: any;
-  pageSize: any=10;
+  pageSize: any = 10;
   action: any;
   userstatus: any;
   constructor(
@@ -52,23 +52,23 @@ this.actRoute.params.subscribe((res:any)=>{
     })
 
     let date = new Date()
-    this.fromDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() : '0'+ (date.getMonth() + 1) )+ '-' + date.getFullYear()
-    this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
+    this.fromDate = (date.getDate() > 10 ? date.getDate() : '0' + date.getDate()) + '-' + (date.getMonth() > 10 ? date.getMonth() : '0' + (date.getMonth() + 1)) + '-' + date.getFullYear()
+    this.toDate = (date.getDate() > 10 ? date.getDate() : '0' + date.getDate()) + '-' + (date.getMonth() > 10 ? date.getMonth() + 1 : '0' + (date.getMonth() + 1)) + '-' + date.getFullYear()
     this.dateValidation()
     // this.getlist();
   }
 
-  onFromChangeDate(){
+  onFromChangeDate() {
     this.minToDate = this.fromDate;
   }
-  onToChangeDate(){
+  onToChangeDate() {
     this.maxFromDate = this.toDate;
   }
-//----------------------date validation ----------------------//
-  dateValidation(){
+  //----------------------date validation ----------------------//
+  dateValidation() {
     let date = new Date();
-    let currentDay = date.getDate() >= 10 ? date.getDate(): '0'+ date.getDate();
-    let currentMonth = (date.getMonth() + 1) >= 10 ? (date.getMonth() + 1): '0'+date.getMonth();
+    let currentDay = date.getDate() >= 10 ? date.getDate() : '0' + date.getDate();
+    let currentMonth = (date.getMonth() + 1) >= 10 ? (date.getMonth() + 1) : '0' + date.getMonth();
     let currentYear = date.getFullYear();
     this.maxFromDate = currentYear + '-' + currentMonth + '-' + currentDay;
     this.maxToDate = currentYear + '-' + currentMonth + '-' + currentDay;
@@ -103,25 +103,25 @@ ResetPassword(){
   )
 }
   //-----------------------------list api integration --------------------------------//
-  getlist(){
+  getlist() {
     this.service.showSpinner()
-    var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
-    this.service.get(url).subscribe((res:any)=>{
+    var url = "account/admin/user-management/filter-user-details?page=" + (this.pageNumber - 1) + `&pageSize=${this.pageSize}`
+    this.service.get(url).subscribe((res: any) => {
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
       }
-      console.log('kfg',this.listing);
+      console.log('kfg', this.listing);
       this.totalRecords = res.data.totalCount
       console.log('kn', this.totalRecords);
 
     })
   }
   // ------------------------pagination -------------------------//
-  pagination(page){
-    this.totalRecords=[]
+  pagination(page) {
+    this.totalRecords = []
     console.log('jh', page);
-    this.pageNumber=page;
+    this.pageNumber = page;
     console.log('jh', this.pageNumber);
 
     this.getlist()
@@ -131,26 +131,26 @@ ResetPassword(){
     let startdate = Date.parse(this.userForm.value.startdate)
     let enddate = Date.parse(this.userForm.value.enddate)
     var search = this.userForm.value.searchText;
-    if( this.userForm.value.searchText && this.userForm.value.startdate && this.userForm.controls.enddate.value){
-      var url="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate+'&search='+search+'&page=0'
+    if (this.userForm.value.searchText && this.userForm.value.startdate && this.userForm.controls.enddate.value) {
+      var url = "account/admin/user-management/filter-user-details?fromDate=" + startdate + '&toDate=' + enddate + '&search=' + search + '&page=0'
     }
-    else if(this.userForm.value.startdate && this.userForm.controls.enddate.value){
-      var url1="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate
+    else if (this.userForm.value.startdate && this.userForm.controls.enddate.value) {
+      var url1 = "account/admin/user-management/filter-user-details?fromDate=" + startdate + '&toDate=' + enddate
     }
 
-    else if(this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.searchText ){
-      var url2="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate+'&search='+search
+    else if (this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.searchText) {
+      var url2 = "account/admin/user-management/filter-user-details?fromDate=" + startdate + '&toDate=' + enddate + '&search=' + search
 
     }
-    this.service.get( url || url1 || url2).subscribe((res: any) => {
+    this.service.get(url || url1 || url2).subscribe((res: any) => {
       this.listing = res.data.list;
-      console.log('kfg',this.listing);
+      console.log('kfg', this.listing);
       this.totalRecords = res.data.totalCount
     })
   }
 
   // ------------------------------reset filter------------------------------//
-  resetForm(){
+  resetForm() {
     this.userForm.reset()
     this.getlist();
   }
@@ -170,32 +170,32 @@ ResetPassword(){
         this.service.toasterSucc(this.deleted.message);
         this.getlist();
       }
-     }, err => {   
-       this.service.hideSpinner();  
-        if (err['status'] == '401') {  
-            this.service.onLogout();   
-           this.service.toasterErr('Unauthorized Access'); 
-         } 
-      else {    
-          this.service.toasterErr('Something Went Wrong');  
-        } 
-     })
+    }, err => {
+      this.service.hideSpinner();
+      if (err['status'] == '401') {
+        this.service.onLogout();
+        this.service.toasterErr('Unauthorized Access');
+      }
+      else {
+        this.service.toasterErr('Something Went Wrong');
+      }
+    })
 
   }
 
   //-------------------------block api integration------------------------//
-  block(status , id){   
-     this.userid=id 
-       this.userstatus=status 
+  block(status, id) {
+    this.userid = id
+    this.userstatus = status
     $('#block').modal('show')
-  } 
-   blockUser(){
-     this.service.showSpinner();
-    var url = 'account/admin/user-management/user-status?ipAddress='+(localStorage.getItem('ipAddress'))+'&location='+(localStorage.getItem('location'))+ '&userIdForStatusUpdate='+(this.userid) + '&userStatus=' + (this.action);
-       this.service.post(url,'').subscribe((res:any)=>{    
-        if(res.status == 200){ 
+  }
+  blockUser() {
+    this.service.showSpinner();
+    var url = 'account/admin/user-management/user-status?ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location')) + '&userIdForStatusUpdate=' + (this.userid) + '&userStatus=' + (this.action);
+    this.service.post(url, '').subscribe((res: any) => {
+      if (res.status == 200) {
         this.service.hideSpinner()
-           if (this.action == 'BLOCK') {
+        if (this.action == 'BLOCK') {
           $('#block').modal('hide');
           this.service.toasterSucc('User Blocked Successfully');
         }
@@ -203,22 +203,22 @@ ResetPassword(){
           $('#active').modal('hide');
           this.service.toasterSucc('User Activated Successfully');
         }
-        this.getlist()        
-          } 
-     }, err => {   
-         this.service.hideSpinner();  
-        if (err['status'] == '401') {  
-            this.service.onLogout();   
-           this.service.toasterErr('Unauthorized Access'); 
-         } 
-      else {    
-          this.service.toasterErr('Something Went Wrong');  
-        } 
-     })
-  } 
+        this.getlist()
+      }
+    }, err => {
+      this.service.hideSpinner();
+      if (err['status'] == '401') {
+        this.service.onLogout();
+        this.service.toasterErr('Unauthorized Access');
+      }
+      else {
+        this.service.toasterErr('Something Went Wrong');
+      }
+    })
+  }
 
-   //---------------------------------- Delete / Block Function--------------//
-   openModal(action, userId) {
+  //---------------------------------- Delete / Block Function--------------//
+  openModal(action, userId) {
     this.userid = userId;
     this.action = action;
     if (action == 'DELETE') {
@@ -233,8 +233,8 @@ ResetPassword(){
   }
 
   //------------------- user details navigation------------------------------//
-  userDetails(id,email){
-    this.router.navigate(['/user-details',id,email] )
+  userDetails(id, email) {
+    this.router.navigate(['/user-details', id, email])
 
   }
 
@@ -242,7 +242,7 @@ ResetPassword(){
     this.router.navigate(['walletdetails/' + id])
   }
 
-//--------------------------------pageSize ---------------------------------//
+  //--------------------------------pageSize ---------------------------------//
   showList(val) {
     this.pageSize = val
     this.resetForm()
@@ -253,8 +253,8 @@ ResetPassword(){
   exportAsXLSX() {
     let dataArr = [];
     this.listing.forEach((element, ind) => {
-      let obj ={}
-      obj={
+      let obj = {}
+      obj = {
         "S no": ind + 1,
         "User ID": element.userId ? element.userId : '',
         "User Name": element.firstName + '' + element.lastName ? element.lastName : '',
@@ -269,18 +269,18 @@ ResetPassword(){
     this.service.exportAsExcelFile(dataArr, 'Admin User List');
   }
   // ----------------------------------------export CSV
-  ExportToCsv(){
+  ExportToCsv() {
     this.service.showSpinner()
-    setTimeout( r => {
+    setTimeout(r => {
       this.service.hideSpinner()
-    },3000)
-    let listingArr=[]
-    this.listing.forEach((element,ind )=> {
-      let obj ={}
-      obj ={
+    }, 3000)
+    let listingArr = []
+    this.listing.forEach((element, ind) => {
+      let obj = {}
+      obj = {
         "S no": ind + 1,
         "UserName": element.firstName + '' + element.lastName ? element.lastName : '',
-        "EmailID":  element.email ? element.email : 'N/A',
+        "EmailID": element.email ? element.email : 'N/A',
         "UserID": element.userId ? element.userId : 'N/A',
         "PhoneNumber": String(element.phoneNo) ? String(element.phoneNo) : 'N/A',
         "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
@@ -307,9 +307,9 @@ ResetPassword(){
 
   exportPDF(){
     this.service.showSpinner();
-    setTimeout( r => {
+    setTimeout(r => {
       this.service.hideSpinner()
-    },3000);
+    }, 3000);
     kendo.drawing
       .drawDOM("#pdfcontent",
         {

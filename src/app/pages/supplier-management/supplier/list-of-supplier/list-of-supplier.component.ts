@@ -227,7 +227,7 @@ export class ListOfSupplierComponent implements OnInit {
   //------------------- user details navigation------------------------------//
   userDetails(id){
     //this.router.navigate(['/view-supplier'])
-    this.router.navigate(['/add-supplier'])
+    this.router.navigate(['/view-supplier'])
     // this.router.navigate(['/edit-supplier'])
     // this.router.navigate(['/delete-supplier'])
 

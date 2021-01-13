@@ -6,24 +6,25 @@
                     <div class="global-table no-radius p0">
                         <div class="tab-content1">
                             <div class="tab-pane1">
+                                <form [formGroup]="addTruckForm">
+                                    <div class="row  d-flex justify-content-end w_100 mt-3">
+                                        <div class="col-lg-3 mt-5">
+                                            <input style="margin-left: -6%;" class="selectBox" type="text"
+                                                placeholder="Truck Type" formControlName="typeOfTruck">
+                                        </div>
+                                        <div class="col-lg-6 mt-5">
+                                            <input style="width: 100%;" class="selectBox" type="text"
+                                                placeholder="Description" formControlName="description">
+                                        </div>
+                                        <div class="col-lg-3 mt-5">
+                                            <button type="button" class="search-btn"
+                                                style="margin-left: 40%;color: white;width: 66%;height: 101%;" [disabled]="addTruckForm.invalid"
+                                                (click)="addTruckType()">Save</button>
+                                        </div>
 
-                                <div class="row  d-flex justify-content-end w_100 mt-3">
-                                    <div class="col-lg-3 mt-5">
-                                        <input style="margin-left: -6%;" class="selectBox" type="text"
-                                            placeholder="Truck Type">
                                     </div>
-                                    <div class="col-lg-6 mt-5">
-                                        <input style="width: 100%;" class="selectBox" type="text"
-                                            placeholder="Description">
-                                    </div>
-                                    <div class="col-lg-3 mt-5">
-                                        <button type="button" class="search-btn"
-                                            style="margin-left: 40%;color: white;width: 66%;height: 101%;">Save</button>
-                                    </div>
 
-                                </div>
-
-
+                                </form>
                                 <div class="table-responsive mt-5">
                                     <table class="table table-bordered" aria-describedby="user list" id="pdfcontent">
                                         <thead>
@@ -58,7 +59,13 @@
 
                                                 </td>
                                             </tr> -->
-                                            <tr>
+                                            <tr
+                                                *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber,totalItems: totalRecords };let i = index ">
+                                                <td>{{itemsPerPage*(this.pageNumber-1)+i+1}}</td>
+                                                <td>{{item.typeOfTruck}}</td>
+                                                <td>{{item.description}}</td>
+                                            </tr>
+                                            <!-- <tr>
                                                 <td>111111</td>
                                                 <td>10 wheel 25 tn</td>
                                                 <td>abc</td>
@@ -82,9 +89,9 @@
                                                 <td>111111</td>
                                                 <td>10 wheel 25 tn</td>
                                                 <td>abc</td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
-                                        <!-- <tbody *ngIf="listing?.length==0">
+                                        <tbody *ngIf="listing?.length==0">
                                             <tr>
                                                 <td colspan="13" vertical-align="middle">
                                                     <div class="no-record">
@@ -94,7 +101,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                        </tbody> -->
+                                        </tbody>
                                     </table>
                                 </div>
                                 <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"

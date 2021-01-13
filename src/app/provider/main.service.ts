@@ -17,22 +17,10 @@ export class MainService {
   loginObs = this.loginSub.asObservable();
   code: string;
   httpOptions: { headers: HttpHeaders; };
-  // public baseUrl = "http://182.72.203.245:1816/"
   // public baseUrl = "http://182.72.203.244:4032/" // stagging Url
   public baseUrl = "https://logistic-constructionbackend.mobiloitte.com/" // stagging domain Url
 
-  // public baseUrl = "http://182.72.203.244:5065/"
-  // public baseUrl = "http://182.72.203.244:3023/"
-  // public baseUrl = "https://fullstackblockchain-java.mobiloitte.com/"
-  // public baseUrl = "http://172.16.0.217:5065/"
-  // public baseUrl = "http://172.16.0.217:5065/"
-  // public baseUrl = "http://182.72.203.244:4042/"//prabhakar
-  //  public baseUrl = "https://java-stellarblockchain.mobiloitte.com/"
-  // websiteURL = 'http://172.16.0.217:5065/'
-
-  public websiteURL = "https://stellaradminpanel.mobiloitte.com/"
-  // public websiteURL = "ec2-35-176-66-190.eu-west-2.compute.amazonaws.com:1649/"
-  // public websiteURL = "https://fullstackblockchain-adminpanel.mobiloitte.com/"
+  // public websiteURL = "https://stellaradminpanel.mobiloitte.com/"
   // public websiteURL = ''
 
   constructor(public http: HttpClient, private toastr: ToastrService, private spinner: NgxSpinnerService, public routes: Router) { }
@@ -49,7 +37,6 @@ export class MainService {
     }
     if (localStorage.getItem('data') || localStorage.getItem('Auth')) {
       this.httpOptions = {
-        // headers: new HttpHeaders({ 'token': `${this.code}` })
         headers: new HttpHeaders({ 'Authorization': `Bearer ${this.code}` })
       };
     }
@@ -63,7 +50,6 @@ export class MainService {
     }
     if (localStorage.getItem('data') || localStorage.getItem('Auth')) {
       this.httpOptions = {
-        // headers: new HttpHeaders({ 'token': `${this.code}` })
         headers: new HttpHeaders({ 'Authorization': `Bearer ${this.code}` })
       }
     }
@@ -81,7 +67,6 @@ export class MainService {
   //     this.code = localStorage.getItem('Auth')
   //   }
   //   if (localStorage.getItem('data') || localStorage.getItem('Auth')) {
-
   //     this.httpOptions = {
   //       headers: new HttpHeaders({ 'token': `${this.code}` })
   //     }
@@ -138,23 +123,17 @@ export class MainService {
       event.preventDefault()
     }
   }
-  AlphabetOnly(event){
 
+  AlphabetOnly(event) {
     let pattAlpha = /^([a-zA-Z ])*$/;
-
     let resultAlpha = pattAlpha.test(event.key);
-
     return resultAlpha;
+  }
 
-     }
+  numberOnly(event) {
+    let Numpattern = /^([0-9])*$/;
+    let resultNum = Numpattern.test(event.key);
+    return resultNum;
+  }
 
-numberOnly(event) {
-
-let Numpattern = /^([0-9])*$/;
-
-let resultNum =    Numpattern.test(event.key);
-
-return  resultNum;
-
-}
 }

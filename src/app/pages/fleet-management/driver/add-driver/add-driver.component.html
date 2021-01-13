@@ -1,1 +1,145 @@
-<p>add-driver works!</p>
+<section>
+    <div class="container1440 mt-5">
+        <main class="middle-content" style="overflow-y: scroll; height: -webkit-fill-available;">
+            <div class="content-section">
+
+                <!-- <div class="page_title_block pL0 pR0">
+                    <h1 class="page_title" style="color:#26272d">VIEW USER TRADING DETAIL</h1>
+                </div> -->
+                <div class="order-view mt30 mrgn-0-auto">
+
+                    <div>
+                        <form [formGroup]="addForm">
+                            <div class="form-group row">
+                                <label for="Fname" class="col-sm-2 col-form-label">Fleet Owner Name</label>
+                                <div class="col-sm-4">
+                                    <!-- <input type="text" id="Fname" class="form-control" placeholder="First name"
+                                        formControlName="firstName"> -->
+                                        <select name="" id="" class="form-control"  formControlName="companyName">
+                                            <option value="">Fleet Owner Name</option>
+                                            <option *ngFor="let item of listing" [value]="item.userId">{{item.companyName}}</option>
+                                        </select>
+                                </div>
+                                <label for="Lname" class="col-sm-2 col-form-label">Driver First Name</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" placeholder="Driver First name"
+                                        formControlName="firstName">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Mobile" class="col-sm-2 col-form-label">Driver Last Name</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control"
+                                        placeholder="Driver Last Name" formControlName="lastName">
+                                </div>
+                                <label for="email" class="col-sm-2 col-form-label">Driver Mobile No.</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" placeholder="Driver Mobile No."
+                                        formControlName="phoneNo">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="CompanyName" class="col-sm-2 col-form-label">Driver Licence No.</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" placeholder="Driver Licence No."
+                                        formControlName="drivingLicenceNo">
+                                </div>
+                                <label for="comanyAddress" class="col-sm-2 col-form-label">Driver Aadhaar No.</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control"
+                                        placeholder="Driver Aadhaar No." formControlName="aadharCardNo">
+                                </div>
+                            </div>
+
+                            <!-- <div class="form-group row">
+                                <label for="city" class="col-sm-2 col-form-label">City</label>
+                                <div class="col-sm-4">
+                                    <input type="text" id="city" class="form-control" placeholder="Enter city name" formControlName="city">
+                                </div>
+                                <label for="state" class="col-sm-2 col-form-label">State</label>
+                                <div class="col-sm-4">
+                                    <select id="city" class="form-control" formControlName="state">
+                                        <option value="State">State</option>
+                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+
+                                    </select>
+
+                                </div>
+                            </div> -->
+                            <!-- <div class="form-group row">
+                                <label for="aadhar" class="col-sm-2 col-form-label">Aadhar No</label>
+                                <div class="col-sm-4 input-group">
+                                    <input type="text" id="aadhar" class="form-control" placeholder="Enter aadhar no"
+                                        style="border: 1px solid;" formControlName="aadharCardNo">
+                                    <div class="input-group-append">
+                                        <button class="btn" type="button"
+                                            style="background-color: green;">Validate</button>
+                                    </div>
+                                </div>
+                                <label for="pan" class="col-sm-2 col-form-label">Pan Card</label>
+                                <div class="col-sm-4 input-group">
+                                    <input type="text" id="pan" class="form-control" placeholder="Enter Pan no"
+                                        style="border: 1px solid;" formControlName="panCardNo">
+                                    <div class="input-group-append">
+                                        <button class="btn" type="button"
+                                            style="background-color: green;">Validate</button>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <!-- <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"></label>
+                                <div class="col-sm-4">
+                                    <label for="AadharCard" class="btn btn-success btn-block btn-outlined">Upload Aadhar
+                                        Card</label>
+
+                                    <input type="file" id="AadharCard" accept="image/*" style="display: none"
+                                        class="form-control" (change)="uploadAadhaar($event)">
+                                </div>
+                                <label class="col-sm-2 col-form-label"></label>
+                                <div class="col-sm-4">
+                                    <label for="PanCard" class="btn btn-success btn-block btn-outlined">Upload Pan
+                                        Card</label>
+                                    <input type="file" id="PanCard" accept="image/*" style="display: none"
+                                        class="form-control" (change)="uplaodPan($event)">
+                                </div>
+                            </div> -->
+
+                            <!-- <div class="form-group row">
+                                <label for="gst" class="col-sm-2 col-form-label">GISTN No</label>
+                                <div class="col-sm-4 input-group">
+                                    <input type="text" id="gst" class="form-control" placeholder="Enter GISTN no"
+                                        style="border: 1px solid;" formControlName="gstinNo">
+                                    <div class="input-group-append">
+                                        <button class="btn" type="button"
+                                            style="background-color: green;">Validate</button>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"></label>
+                                <div class="col-sm-4">
+                                    <label for="gstfile" class="btn btn-success btn-block btn-outlined">GISTN
+                                        Copy</label>
+                                    <input type="file" id="gstfile" accept="image/*" style="display: none"
+                                        class="form-control" (change)="uplaodGst($event)">
+                                </div>
+                            </div> -->
+                        </form>
+                    </div>
+                    <br>
+                    <div class="head_flt_select">
+                        <div class="head_flt_select input-label" style="margin-left: 1%">
+                            <button type="submit" class="btn btn-theme"
+                                style="width: 15%;margin-left: 40%;margin-bottom: 3%;" [disabled]="addForm.invalid"
+                                (click)="submitForm()">Save</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+</section>
+<app-footer></app-footer>

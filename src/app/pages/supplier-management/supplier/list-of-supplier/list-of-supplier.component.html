@@ -8,32 +8,32 @@
                         <div class="tab-pane1">
                             <div class="row">
                                 <div class="col-lg-2 mt-4">
-                                     <label class="ml-3">Supplier Name</label><br>
+                                     <label>Supplier Name</label><br>
                                      <select class="selectBox">
                                          <option>Select Supplier Name</option>
                                      </select>
                                 </div>
 
                                 <div class="col-lg-2 mt-4">
-                                    <label class="ml-5">Location</label><br>
+                                    <label>Location</label><br>
                                      <select class="selectBox">
                                          <option>Location</option>
                                      </select>
                                 </div>
                                 <div class="col-lg-2 mt-4">
-                                    <label class="ml-5">State</label><br>
+                                    <label>State</label><br>
                                      <select class="selectBox">
                                          <option>State</option>
                                      </select>
                                 </div>
                                 <div class="col-lg-2 mt-4">
-                                    <label class="ml-5">City</label><br>
+                                    <label>City</label><br>
                                      <select class="selectBox">
                                          <option>City</option>
                                      </select>
                                 </div>
                                 <div class="col-lg-2 mt-4">
-                                    <label class="ml-5">Mobile</label><br>
+                                    <label>Mobile</label><br>
                                      <select class="selectBox">
                                          <option>Mobile</option>
                                      </select>
@@ -43,7 +43,7 @@
                                     <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green' (click)="ExportToCsv()"></i>
                                     <button type="button" class="search-btn">Reset</button>
                                     <button type="button" class="search-btn">Search</button>
-                                    <button type="button" class="search-btn" [routerLink]="['/add-supplier']">Add</button>
+                                    <button type="button" class="btn-add" [routerLink]="['/add-supplier']">Add</button>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-bordered" aria-describedby="user list" id = "pdfcontent">

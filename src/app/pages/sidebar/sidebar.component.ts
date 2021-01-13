@@ -39,6 +39,7 @@ export class SidebarComponent implements OnInit {
   previlage: any;
   profile: any;
   currentText: any;
+  profileData: any;
   constructor(private routes: Router, public service: MainService) {
     routes.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
@@ -144,6 +145,9 @@ export class SidebarComponent implements OnInit {
     // if(this.currUrl==`list_of_fleet_owner`){
     if (this.currUrl == `list-of-fleet-owner`) {
       this.currentText = 'List Of Fleet Owners';
+    }
+    if (this.currUrl == `add-fleet-owner`) {
+      this.currentText = 'Add New Fleet Owner';
     }
     // if(this.currUrl==`list_of_truck`){
     if (this.currUrl == `list-of-truck`) {
@@ -308,7 +312,7 @@ export class SidebarComponent implements OnInit {
     localStorage.removeItem('permission');
     localStorage.removeItem('usertype');
     $('#signout_modal').modal('hide');
-    window.location.reload();
+    // window.location.reload();
     this.routes.navigate(['/login']);
   }
 

@@ -1,9 +1,15 @@
-.footer{
+.footer {
     position: fixed;
     left: 0;
-   bottom: 0;
-   width: 100%;
-   background-color: black;
-   color: white;
-   text-align: center;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.footer p {
+    padding-left: 269px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
