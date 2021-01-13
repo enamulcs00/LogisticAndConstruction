@@ -131,7 +131,8 @@ export class ListOfDriverComponent implements OnInit {
   }
   //------------------------------delete api integration ----------------------------------//
   deleteUser() {
-    var url = 'account/admin/user-management/delete-user-detail?userIdToDelete=' + (this.userid) + '&ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location'));
+    // var url = 'account/admin/user-management/delete-user-detail?userIdToDelete=' + (this.userid) + '&ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location'));
+    var url = 'account/admin/delete-client-details?userIdToDeleteClient=15'
     this.service.get(url).subscribe((res: any) => {
       this.deleted = res
       if (this.deleted.ststus = 200) {
@@ -160,8 +161,10 @@ export class ListOfDriverComponent implements OnInit {
   } 
    blockUser(){
      this.service.showSpinner();
-    var url = 'account/admin/user-management/user-status?ipAddress='+(localStorage.getItem('ipAddress'))+'&location='+(localStorage.getItem('location'))+ '&userIdForStatusUpdate='+(this.userid) + '&userStatus=' + (this.action);
-       this.service.post(url,'').subscribe((res:any)=>{    
+    // var url = 'account/admin/user-management/user-status?ipAddress='+(localStorage.getItem('ipAddress'))+'&location='+(localStorage.getItem('location'))+ '&userIdForStatusUpdate='+(this.userid) + '&userStatus=' + (this.action);
+    var url = `account/admin/enable-desable-status-by-admin?&userId=${this.userid}&userStatus=${this.action}`;
+    //    this.service.post(url,'').subscribe((res:any)=>{    
+         this.service.get(url).subscribe((res:any)=>{    
         if(res.status == 200){ 
         this.service.hideSpinner()
            if (this.action == 'BLOCK') {
@@ -302,6 +305,6 @@ export class ListOfDriverComponent implements OnInit {
   }
 
   viewDriver(userId){
-    this.router.navigate(['/view-driver'])
+    this.router.navigate(['/view-driver', userId])
   }
 }

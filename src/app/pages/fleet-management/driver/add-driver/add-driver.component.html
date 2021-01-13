@@ -17,7 +17,7 @@
                                         formControlName="firstName"> -->
                                         <select name="" id="" class="form-control"  formControlName="companyName">
                                             <option value="">Fleet Owner Name</option>
-                                            <option *ngFor="let item of listing" [value]="item.companyName">{{item.companyName}}</option>
+                                            <option *ngFor="let item of listing" [value]="item.userId">{{item.companyName}}</option>
                                         </select>
                                 </div>
                                 <label for="Lname" class="col-sm-2 col-form-label">Driver First Name</label>
@@ -132,7 +132,7 @@
                     <div class="head_flt_select">
                         <div class="head_flt_select input-label" style="margin-left: 1%">
                             <button type="submit" class="btn btn-theme"
-                                style="width: 15%;margin-left: 40%;margin-bottom: 3%;"
+                                style="width: 15%;margin-left: 40%;margin-bottom: 3%;" [disabled]="addForm.invalid"
                                 (click)="submitForm()">Save</button>
                         </div>
                     </div>

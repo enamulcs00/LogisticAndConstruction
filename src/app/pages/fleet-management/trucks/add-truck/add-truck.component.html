@@ -13,12 +13,12 @@
                             <div class="form-group row">
                                 <label for="Fname" class="col-sm-2 col-form-label">Fleet Owner ID</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="Fname" class="form-control" placeholder="Fleet Owner ID"
-                                        formControlName="fleetOnwerNo">
-                                        <!-- <select name="" id="" class="form-control"  formControlName="fleetOnwerNo">
+                                    <!-- <input type="text" id="Fname" class="form-control" placeholder="Fleet Owner ID"
+                                        formControlName="fleetOnwerNo"> -->
+                                        <select name="" id="" class="form-control"  formControlName="fleetOnwerNo">
                                             <option value="">Fleet Owner ID</option>
-                                            <option *ngFor="let item of listing" [value]="item.companyName">{{item.companyName}}</option>
-                                        </select> -->
+                                            <option *ngFor="let item of listing" [value]="item.userId">{{item.userId}}</option>
+                                        </select>
                                 </div>
                                 <label for="Lname" class="col-sm-2 col-form-label">Truck Typer</label>
                                 <div class="col-sm-4">

@@ -116,7 +116,7 @@ const routes: Routes = [
   { path: 'list-of-driver', component: ListOfDriverComponent },
   { path: 'add-driver', component: AddDriverComponent },
   { path: 'edit-driver', component: EditDriverComponent },
-  { path: 'view-driver', component: ViewDriverComponent },
+  { path: 'view-driver/:id', component: ViewDriverComponent },
   { path: 'delete-driver', component: DeleteDriverComponent },
   // fleet management-> routes
   { path: 'routes', component: RoutesComponent },
