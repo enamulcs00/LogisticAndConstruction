@@ -80,7 +80,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'reset-password/:id', component: ResetPasswordComponent },
 
   // dashboard
   { path: 'dashboard', component: DashboardComponent },
@@ -135,26 +135,26 @@ const routes: Routes = [
   { path: 'routes', component: RoutesComponent },
   // fleet management-> bid
   { path: 'list-of-bid-by-fleet-owner', component: ListOfBidByFleetOwnerComponent },
-  { path: 'view-bid-by-fleet-owner', component: ViewBidByFleetOwnerComponent },
+  { path: 'view-bid-by-fleet-owner/:id', component: ViewBidByFleetOwnerComponent },
   // fleet management-> billing
   { path: 'list-of-fleet-owner-billing', component: ListOfFleetOwnerBillingComponent },
-  { path: 'view-fleet-owner-billing', component: ViewFleetOwnerBillingComponent },
+  { path: 'view-fleet-owner-billing/:id', component: ViewFleetOwnerBillingComponent },
   // fleet management-> booking
   { path: 'list-of-fleet-owner-booking', component: ListOfFleetOwnerBookingComponent },
-  { path: 'view-fleet-owner-booking', component: ViewFleetOwnerBookingComponent },
+  { path: 'view-fleet-owner-booking/:id', component: ViewFleetOwnerBookingComponent },
 
   // supplier management
   { path: 'list-of-supplier', component: ListOfSupplierComponent },
   { path: 'add-supplier', component: AddSupplierComponent },
   { path: 'edit-supplier', component: EditSupplierComponent },
-  { path: 'view-supplier', component: ViewSupplierComponent },
-  { path: 'delete-supplier', component: DeleteSupplierComponent },
+  { path: 'view-supplier/:id', component: ViewSupplierComponent },
+  { path: 'delete-supplier/:id', component: DeleteSupplierComponent },
   // supplier management-> booking
   { path: 'list-of-supplier-booking', component: ListOfSupplierBookingComponent },
-  { path: 'view-supplier-booking', component: ViewSupplierBookingComponent },
+  { path: 'view-supplier-booking/:id', component: ViewSupplierBookingComponent },
   // supplier management-> quotes
   { path: 'list-of-supplier-quote', component: ListOfSupplierQuoteComponent },
-  { path: 'view-supplier-quote', component: ViewSupplierQuoteComponent },
+  { path: 'view-supplier-quote/:id', component: ViewSupplierQuoteComponent },
   // supplier management-> billing
   { path: 'list-of-supplier-billing', component: ListOfSupplierBillingComponent },
   { path: 'view-supplier-billing', component: ViewSupplierBillingComponent },

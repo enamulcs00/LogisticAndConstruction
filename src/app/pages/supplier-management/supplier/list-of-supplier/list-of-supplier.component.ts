@@ -88,12 +88,18 @@ export class ListOfSupplierComponent implements OnInit {
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
+        this.totalRecords = res.data.totalCount
+        this.service.toasterInfo(res.message)
       }
-      console.log('This is list of supplier',this.listing);
-      this.totalRecords = res.data.totalCount
-      console.log('Total Supplier', this.totalRecords);
-
-    })
+      else {
+        this.service.hideSpinner()
+        this.service.toasterErr(res.message)
+      }
+    },error=>{
+      this.service.hideSpinner()
+      this.service.toasterErr(error.message)
+    }
+    )
   }
   // ------------------------pagination -------------------------//
   pagination(page){
@@ -163,18 +169,25 @@ export class ListOfSupplierComponent implements OnInit {
   }
 
   //-------------------------block api integration------------------------//
-  block(status , id){   
+  openblockModal(status , id){   
      this.userid=id 
        this.userstatus=status 
-    $('#block').modal('show')
+    if(status == 'BLOCK'){
+      $('#block').modal('show')
+    }
+    else{
+      $('#active').modal('show')
+    }
+
   } 
    blockUser(){
      this.service.showSpinner();
-    var url = 'account/admin/user-management/user-status?ipAddress='+(localStorage.getItem('ipAddress'))+'&location='+(localStorage.getItem('location'))+ '&userIdForStatusUpdate='+(this.userid) + '&userStatus=' + (this.action);
-       this.service.post(url,'').subscribe((res:any)=>{    
+    let url = `account/admin/enable-desable-status-by-admin?userId=${this.userid}&userStatus=${this.userstatus}`;
+       this.service.get(url).subscribe((res:any)=>{  
+        
         if(res.status == 200){ 
         this.service.hideSpinner()
-           if (this.action == 'BLOCK') {
+           if (this.userstatus == 'BLOCK') {
           $('#block').modal('hide');
           this.service.toasterSucc('User Blocked Successfully');
         }
