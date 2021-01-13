@@ -1,1 +1,230 @@
-<p>edit-company works!</p>
+<section>
+    <div class="container1440 mt-5">
+        <main class="middle-content" style="overflow-y: scroll; height: -webkit-fill-available;">
+            <div class="content-section">
+
+               
+                <div class="order-view mt30 mrgn-0-auto">
+
+                    <div>
+                        <form [formGroup]="editCompanyForm">
+                            <div class="form-group row">
+                                <label for="Fname" class="col-sm-2 col-form-label">First Name</label>
+                                <div class="col-sm-4">
+                                    <input type="text" id="Fname" class="form-control" placeholder="First name"
+                                        formControlName="firstName" >
+                                    <span class="error"
+                                        *ngIf="editCompanyForm.get('firstName').hasError('required') && (editCompanyForm.get('firstName').dirty || editCompanyForm.get('firstName').touched )"
+                                        class="error">
+                                        <p>*Please enter first name.</p>
+                                    </span>
+                                    <span class="error"
+                                        *ngIf="editCompanyForm.get('firstName').hasError('pattern') && editCompanyForm.get('firstName').dirty"
+                                        class="error">
+                                        <p> *Please enter valid first name.</p>
+                                    </span>
+                                </div>
+                                <label for="Lname" class="col-sm-2 col-form-label">Last Name</label>
+                                <div class="col-sm-4">
+                                    <input type="text" id="Lname" class="form-control" placeholder="Last name"
+                                        formControlName="lastName" >
+                                    <span class="error"
+                                        *ngIf="editCompanyForm.get('lastName').hasError('required') && (editCompanyForm.get('lastName').dirty || editCompanyForm.get('lastName').touched )"
+                                        class="error">
+                                        <p>*Please enter last name.</p>
+                                    </span>
+                                    <span class="error"
+                                        *ngIf="editCompanyForm.get('lastName').hasError('pattern') && editCompanyForm.get('lastName').dirty"
+                                        class="error">
+                                        <p> *Please enter valid Last name.</p>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="Mobile" class="col-sm-2 col-form-label">Mobile No</label>
+                                <div class="col-sm-4">
+                                    <input type="text" id="Mobile" class="form-control"
+                                        placeholder="Enter mobile number" formControlName="phoneNo" >
+                                    <span class="error"
+                                        *ngIf="editCompanyForm.get('phoneNo').hasError('required') && (editCompanyForm.get('phoneNo').dirty || editCompanyForm.get('phoneNo').touched )"
+                                        class="error">
+                                        <p> *Please enter mobile number.</p>
+                                    </span>
+                                    <span class="error"
+                                        *ngIf="editCompanyForm.get('phoneNo').hasError('pattern') && editCompanyForm.get('phoneNo').dirty"
+                                        class="error">
+                                        <p> *Please enter valid mobile number.</p>
+                                    </span>
+                                </div>
+
+                                <label for="email" class="col-sm-2 col-form-label">Email ID</label>
+                                <div class="col-sm-4">
+                                    <input type="text" id="email" class="form-control" placeholder="Enter mail Id"
+                                        formControlName="email" >
+                                    <span class="error">
+                                        <p *ngIf="editCompanyForm.get('email').hasError('required') && (editCompanyForm.get('email').dirty || editCompanyForm.get('email').touched )"
+                                            class="error" padding>*Please enter email id.</p>
+                                    </span>
+                                    <span class="error">
+                                        <p *ngIf="editCompanyForm.get('email').hasError('pattern') && editCompanyForm.get('email').dirty"
+                                            class="error" padding>*Please enter valid email.</p>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="CompanyName" class="col-sm-2 col-form-label">Company Name</label>
+                                <div class="col-sm-4">
+                                    <input type="text" id="CompanyName" class="form-control" placeholder="Company name"
+                                        formControlName="companyName" >
+                                    <span class="error">
+                                        <p *ngIf="editCompanyForm.get('companyName').hasError('required') && (editCompanyForm.get('companyName').dirty || editCompanyForm.get('companyName').touched )"
+                                            class="error" padding>*Please enter company name.</p>
+                                    </span>
+                                </div>
+                                <label for="comanyAddress" class="col-sm-2 col-form-label">Company Address</label>
+                                <div class="col-sm-4">
+                                    <input type="text" id="comanyAddress" class="form-control"
+                                        placeholder="Company address" formControlName="companyAddress" >
+                                    <span class="error">
+                                        <p *ngIf="editCompanyForm.get('companyAddress').hasError('required') && (editCompanyForm.get('companyAddress').dirty || editCompanyForm.get('companyAddress').touched )"
+                                            class="error" padding>*Please enter company address.</p>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="state" class="col-sm-2 col-form-label">State</label>
+                                <div class="col-sm-4">
+                                    <!-- <select id="city" class="form-control" formControlName="state"
+                                        (change)="searchCity($event)">
+                                        <option value="State">State</option>
+                                        <option *ngFor="let state of stateArr">{{state.name}}</option>
+                                    </select> -->
+                                    <input type="text" id="state" class="form-control"
+                                    placeholder="State" formControlName="state" >
+
+                                </div>
+                                <label for="city" class="col-sm-2 col-form-label">City</label>
+                                <div class="col-sm-4">
+                                    <!-- <select id="city" class="form-control" formControlName="city">
+                                        <option value="city">City</option>
+                                        <option *ngFor="let city of cityArr">{{city.name}}</option>
+                                    </select> -->
+                                    <input type="text" id="city" class="form-control"
+                                    placeholder="City" formControlName="city" >
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="aadhar" class="col-sm-2 col-form-label">Aadhar No</label>
+                                <div class="col-sm-4 input-group">
+                                    <input type="text" id="aadhar" class="form-control" placeholder="Enter aadhar number"
+                                        style="border: 1px solid;" formControlName="aadhaarNo"  maxlength="12" >
+                                    <div class="input-group-append">
+                                        <button class="btn" type="button"
+                                            style="background-color: green;">Validate</button>
+                                    </div>
+                                    <span class="error">
+                                        <p *ngIf="editCompanyForm.get('aadhaarNo').hasError('required') && (editCompanyForm.get('aadhaarNo').dirty || editCompanyForm.get('aadhaarNo').touched )"
+                                            class="error" padding>*Please enter Aadhar number.</p>
+                                    </span>
+                                    <span class="error" *ngIf="editCompanyForm.get('aadhaarNo').hasError('pattern')" class="error">
+                                        <p> *Please enter valid aadhar number.</p>                                      
+                                     </span>
+                                     <span class="error" *ngIf="editCompanyForm.get('aadhaarNo').hasError('minlength')" class="error">
+                                        <p> *Please enter valid 12 digits aadhar number.</p>                                      
+                                     </span>
+                                </div>
+
+                                <label for="pan" class="col-sm-2 col-form-label">Pan Card</label>
+                                <div class="col-sm-4 input-group">
+                                    <input type="text" id="pan" class="form-control" placeholder="Enter PAN number"
+                                        style="border: 1px solid;" formControlName="panCard" maxlength="10" >
+                                    <div class="input-group-append">
+                                        <button class="btn" type="button"
+                                            style="background-color: green;">Validate</button>
+                                    </div>
+                                    <span class="error">
+                                        <p *ngIf="editCompanyForm.get('panCard').hasError('required') && (editCompanyForm.get('panCard').dirty || editCompanyForm.get('panCard').touched )"
+                                            class="error" padding>*Please enter PAN number.</p>
+                                    </span>
+                                     <span class="error" *ngIf="editCompanyForm.get('panCard').hasError('minlength')" class="error">
+                                        <p> *Please enter valid 10 digits PAN number.</p>                                      
+                                     </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"></label>
+                                <div class="col-sm-4">
+                                    <label for="AadharCard" class="btn btn-success btn-block btn-outlined">Upload Aadhar
+                                        Card</label>
+                                    <input type="file" id="AadharCard" accept=".png, .jpg, .jpeg" style="display: none"
+                                        class="form-control"  formControlName="attachmentName1" (change)="uploadAadhar($event)">
+                                        <img [src]="aadharimageUrl" alt="">  
+                                </div>
+                               
+                                 
+                                
+                                <label class="col-sm-2 col-form-label"></label>
+                                <div class="col-sm-4">
+                                    <label for="panCard" class="btn btn-success btn-block btn-outlined">Upload Pan
+                                        Card</label>
+                                        <input type="file" id="panCard" accept=".png, .jpg, .jpeg" style="display: none"
+                                        class="form-control"   formControlName="attachmentName2" (change)="uploadPan($event)">
+                                        <img [src]="panimageUrl" alt=""> 
+                                       
+                                </div>
+                                
+                                
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="gst" class="col-sm-2 col-form-label">GISTN No</label>
+                                <div class="col-sm-4 input-group">
+                                    <input type="text" id="gst" class="form-control" placeholder="Enter GISTN no"
+                                        style="border: 1px solid;" formControlName="gstNo" maxlength="16" >
+                                    <div class="input-group-append">
+                                        <button class="btn" type="button"
+                                            style="background-color: green;">Validate</button>
+                                    </div>
+                                    <span class="error">
+                                        <p *ngIf="editCompanyForm.get('gstNo').hasError('required') && (editCompanyForm.get('gstNo').dirty || editCompanyForm.get('gstNo').touched )"
+                                            class="error" padding>*Please enter GSTIN number.</p>
+                                    </span>
+                                     <!-- <span class="error" *ngIf="editCompanyForm.get('gstNo').hasError('minlength')" class="error">
+                                        <p> *Please enter valid 10 digits PAN number.</p>                                      
+                                     </span> -->
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label"></label>
+                                <div class="col-sm-4">
+                                    <label for="gstfile" class="btn btn-success btn-block btn-outlined">GISTN
+                                        Copy</label>
+                                        <input type="file" id="gstfile" accept=".png, .jpg, .jpeg" style="display: none"
+                                        class="form-control" (change)="uploadGst($event)">
+                                        <img [src]="gstimageUrl" alt=""> 
+                                </div>
+                                
+                               
+                            </div>
+                        </form>
+                    </div>
+                    <br>
+                    <div class="head_flt_select">
+                        <div class="head_flt_select input-label" style="margin-left: 1%">
+                            <button type="submit" class="btn btn-theme"
+                                style="width: 15%;margin-left: 40%;margin-bottom: 3%;"
+                                (click)="edit()">UPDATE</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+</section>
+<app-footer></app-footer>

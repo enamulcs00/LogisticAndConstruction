@@ -75,8 +75,8 @@ const routes: Routes = [
   // company management
   { path: 'list-of-companies', component: ListOfCompanyComponent },
   { path: 'add-company', component: AddCompanyComponent },
-  { path: 'edit-company', component: EditCompanyComponent },
-  { path: 'view-company', component: ViewCompanyComponent },
+  { path: 'edit-company/:id', component: EditCompanyComponent },
+  { path: 'view-company/:id', component: ViewCompanyComponent },
   { path: 'delete-company/:id', component: DeleteCompanyComponent },
   // company management-> site
   { path: 'list-of-sites', component: ListOfSitesComponent },

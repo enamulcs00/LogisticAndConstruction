@@ -108,6 +108,9 @@ export class SidebarComponent implements OnInit {
     if (this.currUrl == `view-company`) {
       this.currentText = 'View Company'
     }
+    if (this.currUrl == `edit-company`) {
+      this.currentText = 'Edit Company'
+    }
     if (this.currUrl == `delete-company`) {
       this.currentText = 'Delete Company'
     }

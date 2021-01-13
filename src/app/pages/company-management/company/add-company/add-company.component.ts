@@ -130,21 +130,9 @@ export class AddCompanyComponent implements OnInit {
   // submit add form 
   submitForm() {
     let apiReqData = {
-      // firstName: this.addCompanyForm.value.firstName,
-      // lastName: this.addCompanyForm.value.lastName,
-      // mobileNo: this.addCompanyForm.value.phoneNo,
-      // emainId: this.addCompanyForm.value.email,
-      // companyName: this.addCompanyForm.value.companyName,
-      // companyAddress: this.addCompanyForm.value.companyAddress,
-      // city: this.addCompanyForm.value.city,
-      // state: this.addCompanyForm.value.state,
-      // aadhaarNo: this.addCompanyForm.value.aadhaarNo,
-      // panCard: this.addCompanyForm.value.panCard,
-      // gstNo: this.addCompanyForm.value.gstNo,
-
       "aadharCardNo": this.addCompanyForm.value.aadhaarNo,
       "aadharCardUrl": this.aadharimageUrl,
-      "baseLocationAddress": "string",
+      "baseLocationAddress": this.addCompanyForm.value.companyAddress,
       "city": this.addCompanyForm.value.city,
       "companyName": this.addCompanyForm.value.companyName,
       "country": "INDIA",
@@ -171,8 +159,7 @@ export class AddCompanyComponent implements OnInit {
       "randomId": "string",
       "roleStatus": "COMPANY",
       "routes": "string",
-      "socialId": "string",
-      "socialType": "string",
+      
       "state": this.addCompanyForm.value.state,
       "supplyCityDto": [
         {
