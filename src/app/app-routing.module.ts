@@ -138,7 +138,7 @@ const routes: Routes = [
   { path: 'view-supplier-quote/:id', component: ViewSupplierQuoteComponent },
   // supplier management-> billing
   { path: 'list-of-supplier-billing', component: ListOfSupplierBillingComponent },
-  { path: 'view-supplier-billing', component: ViewSupplierBillingComponent },
+  { path: 'view-supplier-billing/:id', component: ViewSupplierBillingComponent },
 
   // truck
   { path: 'truck-type', component: TruckTypeComponent },
