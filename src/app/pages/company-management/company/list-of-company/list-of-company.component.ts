@@ -48,7 +48,7 @@ export class ListOfCompanyComponent implements OnInit {
     this.fromDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() : '0'+ (date.getMonth() + 1) )+ '-' + date.getFullYear()
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
     this.dateValidation()
-    // this.getlist();
+     this.getCompanyList();
   }
 
   onFromChangeDate(){
@@ -69,9 +69,9 @@ export class ListOfCompanyComponent implements OnInit {
   }
 
   //-----------------------------list api integration --------------------------------//
-  getlist(){
+  getCompanyList(){
     this.service.showSpinner()
-    var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
+    var url="account/admin/filter-user-details?roleStatus="+'COMPANY'
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
@@ -90,7 +90,7 @@ export class ListOfCompanyComponent implements OnInit {
     this.pageNumber=page;
     console.log('jh', this.pageNumber);
 
-    this.getlist()
+    this.getCompanyList()
   }
   //------------------------------filter by search api integration ---------------------------------//
   search() {
@@ -118,7 +118,7 @@ export class ListOfCompanyComponent implements OnInit {
   // ------------------------------reset filter------------------------------//
   resetForm(){
     this.userForm.reset()
-    this.getlist();    
+    this.getCompanyList();    
   }
 
   //========modal=======//
@@ -134,7 +134,7 @@ export class ListOfCompanyComponent implements OnInit {
       if (this.deleted.ststus = 200) {
         $('#deleteModal').modal('hide')
         this.service.toasterSucc(this.deleted.message);
-        this.getlist();
+        this.getCompanyList();
       }
      }, err => {   
        this.service.hideSpinner();  
@@ -169,7 +169,7 @@ export class ListOfCompanyComponent implements OnInit {
           $('#active').modal('hide');
           this.service.toasterSucc('User Activated Successfully');
         }
-        this.getlist()        
+        this.getCompanyList()        
           } 
      }, err => {   
          this.service.hideSpinner();  
@@ -296,8 +296,8 @@ export class ListOfCompanyComponent implements OnInit {
   viewCompany(){
     this.router.navigate(['/view-company'])
   }
-  deleteCompany(){
-    this.router.navigate(['/delete-company'])
+  deleteCompany(id){
+    this.router.navigate(['/delete-company',id])
   }
   resetPassword(){
     console.log("reset password calickw")

@@ -57,6 +57,7 @@
                                                 <th scope="col">City</th>
                                                 <th scope="col">State</th>
                                                 <th scope="col">GSTIN</th>
+                                                <th scope="col">Status</th>
                                                 <th scope="col">Date Of Creation</th>
                                                 <th scope="col" class="action_td_btn3">Action</th>
                                             </tr>
@@ -84,93 +85,26 @@
                                                             class="fa fa-ban"></i></a>
                                                 </td>
                                             </tr> -->
-                                            <tr>
-                                                <td>Larsen & Toubro Ltd</td>
-                                                <td>Maharastra</td>
-                                                <td>9878676512</td>
-                                                <td>ramesh.mittal@larsentoubro.com</td>
-                                                <td>Mumbai</td>
-                                                <td>ACTIVE</td>
-                                                <td>MAH/3872397/PO</td>
-                                                <td>12/01/2021</td>
+                                            <tr *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber,totalItems: totalRecords };let i = index ">
+                                                <td>{{item?.companyName}}</td>
+                                                <td>{{item?.siteLocation}}</td>
+                                                <td>{{item?.phoneNo}}</td>
+                                                <td>{{item?.email}}</td>
+                                                <td>{{item?.city}}</td>
+                                                <td>{{item?.state}}</td>
+                                                <td>{{item?.gstInNo}}</td>
+                                                <td>{{item?.userStatus}}</td>
+                                                <td>{{item?.createTime | date:'short'}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
                                                     <!-- <a><i class="fa fa-plus-circle" aria-hidden="true"(click)="addCompany()"></i></a> -->
                                                     <a><i class="fa fa-eye" (click)="viewCompany()"></i></a>
-                                                    <a><i class="fa fa-trash" (click)="deleteCompany()"></i></a>
-                                                    <a><i class="fa fa-ban" style="color: green;"></i></a>
-                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Larsen & Toubro Ltd</td>
-                                                <td>Maharastra</td>
-                                                <td>9878676512</td>
-                                                <td>ramesh.mittal@larsentoubro.com</td>
-                                                <td>Mumbai</td>
-                                                <td>ACTIVE</td>
-                                                <td>MAH/3872397/PO</td>
-                                                <td>12/01/2021</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true" (click)="addCompany()"></i></a> -->
-                                                    <a><i class="fa fa-eye" (click)="viewCompany()"></i></a>
-                                                    <a><i class="fa fa-trash" (click)="deleteCompany()"></i></a>
-                                                    <a><i class="fa fa-ban" style="color: green;"></i></a>
-                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Larsen & Toubro Ltd</td>
-                                                <td>Maharastra</td>
-                                                <td>9878676512</td>
-                                                <td>ramesh.mittal@larsentoubro.com</td>
-                                                <td>Mumbai</td>
-                                                <td>ACTIVE</td>
-                                                <td>MAH/3872397/PO</td>
-                                                <td>12/01/2021</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true" (click)="addCompany()"></i></a> -->
-                                                    <a><i class="fa fa-eye" (click)="viewCompany()"></i></a>
-                                                    <a><i class="fa fa-trash" (click)="deleteCompany()"></i></a>
-                                                    <a><i class="fa fa-ban" style="color: green;"></i></a>
-                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Larsen & Toubro Ltd</td>
-                                                <td>Maharastra</td>
-                                                <td>9878676512</td>
-                                                <td>ramesh.mittal@larsentoubro.com</td>
-                                                <td>Mumbai</td>
-                                                <td>ACTIVE</td>
-                                                <td>MAH/3872397/PO</td>
-                                                <td>12/01/2021</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true" (click)="addCompany()"></i></a> -->
-                                                    <a><i class="fa fa-eye" (click)="viewCompany()"></i></a>
-                                                    <a><i class="fa fa-trash" (click)="deleteCompany()"></i></a>
-                                                    <a><i class="fa fa-ban" style="color: green;"></i></a>
-                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Larsen & Toubro Ltd</td>
-                                                <td>Maharastra</td>
-                                                <td>9878676512</td>
-                                                <td>ramesh.mittal@larsentoubro.com</td>
-                                                <td>Mumbai</td>
-                                                <td>ACTIVE</td>
-                                                <td>MAH/3872397/PO</td>
-                                                <td>12/01/2021</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true" (click)="addCompany()"></i></a> -->
-                                                    <a><i class="fa fa-eye" (click)="viewCompany()"></i></a>
-                                                    <a><i class="fa fa-trash" (click)="deleteCompany()"></i></a>
+                                                    <a><i class="fa fa-trash" (click)="deleteCompany(item?.userId)"></i></a>
                                                     <a><i class="fa fa-ban" style="color: green;"></i></a>
                                                     <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
                                                 </td>
                                             </tr>
                                         </tbody>
-                                        <!-- <tbody *ngIf="listing?.length==0">
+                                        <tbody *ngIf="listing?.length==0">
                                             <tr>
                                                 <td colspan="13" vertical-align="middle">
                                                     <div class="no-record">
@@ -180,13 +114,13 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                        </tbody> -->
+                                        </tbody>
                                     </table>
                                 </div>
-                                <!-- <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
+                                <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
                                     *ngIf="listing?.length">
                                     <pagination-controls (pageChange)="pagination($event)"></pagination-controls>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>

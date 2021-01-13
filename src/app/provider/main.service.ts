@@ -61,18 +61,18 @@ export class MainService {
     return this.http.get(url, { observe: 'response' })
   }
 
-  // Form Data Api Structure
-  // postApi(endPoint, data): Observable<any> {
-  //   if (localStorage.getItem('Auth')) {
-  //     this.code = localStorage.getItem('Auth')
-  //   }
-  //   if (localStorage.getItem('data') || localStorage.getItem('Auth')) {
-  //     this.httpOptions = {
-  //       headers: new HttpHeaders({ 'token': `${this.code}` })
-  //     }
-  //   }
-  //   return this.http.post(this.baseUrl + endPoint, data, this.httpOptions);
-  // }
+  //Form Data Api Structure
+  postApi(endPoint, data): Observable<any> {
+    if (localStorage.getItem('Auth')) {
+      this.code = localStorage.getItem('Auth')
+    }
+    if (localStorage.getItem('data') || localStorage.getItem('Auth')) {
+      this.httpOptions = {
+        headers: new HttpHeaders({ 'Authorization': `Bearer ${this.code}` })
+      }
+    }
+    return this.http.post(this.baseUrl + endPoint, data, this.httpOptions);
+  }
 
   // ------------- logout ------------- //
   onLogout() {
