@@ -9,19 +9,19 @@
                 <div class="order-view mt30 mrgn-0-auto">
 
                     <div>
-                        <form [formGroup]="addForm">
+                        <form [formGroup]="addCompanyForm">
                             <div class="form-group row">
                                 <label for="Fname" class="col-sm-2 col-form-label">First Name</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="Fname" class="form-control" placeholder="First name"
                                         formControlName="firstName">
                                     <span class="error"
-                                        *ngIf="addForm.get('firstName').hasError('required') && (addForm.get('firstName').dirty || addForm.get('firstName').touched )"
+                                        *ngIf="addCompanyForm.get('firstName').hasError('required') && (addCompanyForm.get('firstName').dirty || addCompanyForm.get('firstName').touched )"
                                         class="error">
                                         <p>*Please enter first name.</p>
                                     </span>
                                     <span class="error"
-                                        *ngIf="addForm.get('firstName').hasError('pattern') && addForm.get('firstName').dirty"
+                                        *ngIf="addCompanyForm.get('firstName').hasError('pattern') && addCompanyForm.get('firstName').dirty"
                                         class="error">
                                         <p> *Please enter valid first name.</p>
                                     </span>
@@ -31,12 +31,12 @@
                                     <input type="text" id="Lname" class="form-control" placeholder="Last name"
                                         formControlName="lastName">
                                     <span class="error"
-                                        *ngIf="addForm.get('lastName').hasError('required') && (addForm.get('lastName').dirty || addForm.get('lastName').touched )"
+                                        *ngIf="addCompanyForm.get('lastName').hasError('required') && (addCompanyForm.get('lastName').dirty || addCompanyForm.get('lastName').touched )"
                                         class="error">
                                         <p>*Please enter last name.</p>
                                     </span>
                                     <span class="error"
-                                        *ngIf="addForm.get('lastName').hasError('pattern') && addForm.get('lastName').dirty"
+                                        *ngIf="addCompanyForm.get('lastName').hasError('pattern') && addCompanyForm.get('lastName').dirty"
                                         class="error">
                                         <p> *Please enter valid Last name.</p>
                                     </span>
@@ -49,12 +49,12 @@
                                     <input type="text" id="Mobile" class="form-control"
                                         placeholder="Enter mobile number" formControlName="phoneNo">
                                     <span class="error"
-                                        *ngIf="addForm.get('phoneNo').hasError('required') && (addForm.get('phoneNo').dirty || addForm.get('phoneNo').touched )"
+                                        *ngIf="addCompanyForm.get('phoneNo').hasError('required') && (addCompanyForm.get('phoneNo').dirty || addCompanyForm.get('phoneNo').touched )"
                                         class="error">
                                         <p> *Please enter mobile number.</p>
                                     </span>
                                     <span class="error"
-                                        *ngIf="addForm.get('phoneNo').hasError('pattern') && addForm.get('phoneNo').dirty"
+                                        *ngIf="addCompanyForm.get('phoneNo').hasError('pattern') && addCompanyForm.get('phoneNo').dirty"
                                         class="error">
                                         <p> *Please enter valid mobile number.</p>
                                     </span>
@@ -65,11 +65,11 @@
                                     <input type="text" id="email" class="form-control" placeholder="Enter mail Id"
                                         formControlName="email">
                                     <span class="error">
-                                        <p *ngIf="addForm.get('email').hasError('required') && (addForm.get('email').dirty || addForm.get('email').touched )"
+                                        <p *ngIf="addCompanyForm.get('email').hasError('required') && (addCompanyForm.get('email').dirty || addCompanyForm.get('email').touched )"
                                             class="error" padding>*Please enter email id.</p>
                                     </span>
                                     <span class="error">
-                                        <p *ngIf="addForm.get('email').hasError('pattern') && addForm.get('email').dirty"
+                                        <p *ngIf="addCompanyForm.get('email').hasError('pattern') && addCompanyForm.get('email').dirty"
                                             class="error" padding>*Please enter valid email.</p>
                                     </span>
                                 </div>
@@ -81,7 +81,7 @@
                                     <input type="text" id="CompanyName" class="form-control" placeholder="Company name"
                                         formControlName="companyName">
                                     <span class="error">
-                                        <p *ngIf="addForm.get('companyName').hasError('required') && (addForm.get('companyName').dirty || addForm.get('companyName').touched )"
+                                        <p *ngIf="addCompanyForm.get('companyName').hasError('required') && (addCompanyForm.get('companyName').dirty || addCompanyForm.get('companyName').touched )"
                                             class="error" padding>*Please enter company name.</p>
                                     </span>
                                 </div>
@@ -90,7 +90,7 @@
                                     <input type="text" id="comanyAddress" class="form-control"
                                         placeholder="Company address" formControlName="companyAddress">
                                     <span class="error">
-                                        <p *ngIf="addForm.get('companyAddress').hasError('required') && (addForm.get('companyAddress').dirty || addForm.get('companyAddress').touched )"
+                                        <p *ngIf="addCompanyForm.get('companyAddress').hasError('required') && (addCompanyForm.get('companyAddress').dirty || addCompanyForm.get('companyAddress').touched )"
                                             class="error" padding>*Please enter company address.</p>
                                     </span>
                                 </div>
@@ -125,13 +125,13 @@
                                             style="background-color: green;">Validate</button>
                                     </div>
                                     <span class="error">
-                                        <p *ngIf="addForm.get('aadhaarNo').hasError('required') && (addForm.get('aadhaarNo').dirty || addForm.get('aadhaarNo').touched )"
+                                        <p *ngIf="addCompanyForm.get('aadhaarNo').hasError('required') && (addCompanyForm.get('aadhaarNo').dirty || addCompanyForm.get('aadhaarNo').touched )"
                                             class="error" padding>*Please enter Aadhar number.</p>
                                     </span>
-                                    <span class="error" *ngIf="addForm.get('aadhaarNo').hasError('pattern')" class="error">
+                                    <span class="error" *ngIf="addCompanyForm.get('aadhaarNo').hasError('pattern')" class="error">
                                         <p> *Please enter valid aadhar number.</p>                                      
                                      </span>
-                                     <span class="error" *ngIf="addForm.get('aadhaarNo').hasError('minlength')" class="error">
+                                     <span class="error" *ngIf="addCompanyForm.get('aadhaarNo').hasError('minlength')" class="error">
                                         <p> *Please enter valid 12 digits aadhar number.</p>                                      
                                      </span>
                                 </div>
@@ -145,10 +145,10 @@
                                             style="background-color: green;">Validate</button>
                                     </div>
                                     <span class="error">
-                                        <p *ngIf="addForm.get('panCard').hasError('required') && (addForm.get('panCard').dirty || addForm.get('panCard').touched )"
+                                        <p *ngIf="addCompanyForm.get('panCard').hasError('required') && (addCompanyForm.get('panCard').dirty || addCompanyForm.get('panCard').touched )"
                                             class="error" padding>*Please enter PAN number.</p>
                                     </span>
-                                     <span class="error" *ngIf="addForm.get('panCard').hasError('minlength')" class="error">
+                                     <span class="error" *ngIf="addCompanyForm.get('panCard').hasError('minlength')" class="error">
                                         <p> *Please enter valid 10 digits PAN number.</p>                                      
                                      </span>
                                 </div>
@@ -160,17 +160,18 @@
                                     <label for="AadharCard" class="btn btn-success btn-block btn-outlined">Upload Aadhar
                                         Card</label>
                                     <input type="file" id="AadharCard" accept=".png, .jpg, .jpeg" style="display: none"
-                                        class="form-control" (change)="uploadAadhar($event)">
+                                        class="form-control"  formControlName="attachmentName1" (change)="uploadAadhar($event)">
                                         <img [src]="aadharimageUrl" alt="">  
                                 </div>
                                 
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-4">
-                                    <label for="PanCard" class="btn btn-success btn-block btn-outlined">Upload Pan
+                                    <label for="panCard" class="btn btn-success btn-block btn-outlined">Upload Pan
                                         Card</label>
-                                        <input type="file" id="AadharCard" accept=".png, .jpg, .jpeg" style="display: none"
-                                        class="form-control" (change)="uploadpan($event)">
+                                        <input type="file" id="panCard" accept=".png, .jpg, .jpeg" style="display: none"
+                                        class="form-control"   formControlName="attachmentName2" (change)="uploadPan($event)">
                                         <img [src]="panimageUrl" alt=""> 
+                                       
                                 </div>
                             </div>
 
@@ -184,10 +185,10 @@
                                             style="background-color: green;">Validate</button>
                                     </div>
                                     <span class="error">
-                                        <p *ngIf="addForm.get('gstNo').hasError('required') && (addForm.get('gstNo').dirty || addForm.get('gstNo').touched )"
+                                        <p *ngIf="addCompanyForm.get('gstNo').hasError('required') && (addCompanyForm.get('gstNo').dirty || addCompanyForm.get('gstNo').touched )"
                                             class="error" padding>*Please enter GSTIN number.</p>
                                     </span>
-                                     <!-- <span class="error" *ngIf="addForm.get('gstNo').hasError('minlength')" class="error">
+                                     <!-- <span class="error" *ngIf="addCompanyForm.get('gstNo').hasError('minlength')" class="error">
                                         <p> *Please enter valid 10 digits PAN number.</p>                                      
                                      </span> -->
                                 </div>
@@ -197,7 +198,7 @@
                                 <div class="col-sm-4">
                                     <label for="gstfile" class="btn btn-success btn-block btn-outlined">GISTN
                                         Copy</label>
-                                        <input type="file" id="AadharCard" accept=".png, .jpg, .jpeg" style="display: none"
+                                        <input type="file" id="gstfile" accept=".png, .jpg, .jpeg" style="display: none"
                                         class="form-control" (change)="uploadGst($event)">
                                         <img [src]="gstimageUrl" alt=""> 
                                 </div>

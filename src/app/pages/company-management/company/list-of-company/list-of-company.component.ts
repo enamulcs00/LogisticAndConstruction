@@ -296,8 +296,8 @@ export class ListOfCompanyComponent implements OnInit {
   viewCompany(){
     this.router.navigate(['/view-company'])
   }
-  deleteCompany(){
-    this.router.navigate(['/delete-company'])
+  deleteCompany(id){
+    this.router.navigate(['/delete-company',id])
   }
   resetPassword(){
     console.log("reset password calickw")

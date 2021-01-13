@@ -9,7 +9,7 @@ import { MainService } from 'src/app/provider/main.service';
   styleUrls: ['./add-company.component.css']
 })
 export class AddCompanyComponent implements OnInit {
-  addForm: FormGroup;
+  addCompanyForm: FormGroup;
   stateArr: any = [];
   selectedState: any;
   cityArr: any;
@@ -20,13 +20,13 @@ export class AddCompanyComponent implements OnInit {
   constructor(private router: Router, public service: MainService) { }
 
   ngOnInit(): void {
-    this.addFormValidation()
+    this.addCompanyFormValidation()
     this.getStateList()
   }
 
   // add form validation
-  addFormValidation() {
-    this.addForm = new FormGroup({
+  addCompanyFormValidation() {
+    this.addCompanyForm = new FormGroup({
       'firstName': new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]*$/i)]),
       'lastName': new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]*$/i)]),
       'phoneNo': new FormControl('', [Validators.required, Validators.pattern(/^[1-9][0-9]{9,13}$/)]),
@@ -37,7 +37,9 @@ export class AddCompanyComponent implements OnInit {
       'state': new FormControl(''),
       'aadhaarNo': new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/i),Validators.minLength(12)]),
       'panCard': new FormControl('', [Validators.required,Validators.minLength(10)]),
-      'gstNo': new FormControl('', [Validators.required])
+      'gstNo': new FormControl('', [Validators.required]),
+      'attachmentName1': new FormControl('', [Validators.required]),
+      'attachmentName2': new FormControl('', [Validators.required]),
     })
   }
 
@@ -67,7 +69,7 @@ export class AddCompanyComponent implements OnInit {
     })
   }
 
-  // upload Aadhar functionality and api
+  // // upload Aadhar functionality and api
   uploadAadhar($event): void {
     var img = $event.target.files[0];
     this.uploadAadharFunc(img);
@@ -128,28 +130,70 @@ export class AddCompanyComponent implements OnInit {
   // submit add form 
   submitForm() {
     let apiReqData = {
-      firstName: this.addForm.value.firstName,
-      lastName: this.addForm.value.lastName,
-      mobileNo: this.addForm.value.mobileNo,
-      emainId: this.addForm.value.emainId,
-      companyName: this.addForm.value.companyName,
-      companyAddress: this.addForm.value.companyAddress,
-      city: this.addForm.value.city,
-      state: this.addForm.value.state,
-      aadhaarNo: this.addForm.value.aadhaarNo,
-      panCard: this.addForm.value.panCard,
-      gstNo: this.addForm.value.gstNo
+      // firstName: this.addCompanyForm.value.firstName,
+      // lastName: this.addCompanyForm.value.lastName,
+      // mobileNo: this.addCompanyForm.value.phoneNo,
+      // emainId: this.addCompanyForm.value.email,
+      // companyName: this.addCompanyForm.value.companyName,
+      // companyAddress: this.addCompanyForm.value.companyAddress,
+      // city: this.addCompanyForm.value.city,
+      // state: this.addCompanyForm.value.state,
+      // aadhaarNo: this.addCompanyForm.value.aadhaarNo,
+      // panCard: this.addCompanyForm.value.panCard,
+      // gstNo: this.addCompanyForm.value.gstNo,
+
+      "aadharCardNo": this.addCompanyForm.value.aadhaarNo,
+      "aadharCardUrl": this.aadharimageUrl,
+      "baseLocationAddress": "string",
+      "city": this.addCompanyForm.value.city,
+      "companyName": this.addCompanyForm.value.companyName,
+      "country": "INDIA",
+      "countryCode": "+91",
+      "deviceToken": "string",
+      "deviceType": "string",
+      "drivingLicenceNo": "string",
+      "email": this.addCompanyForm.value.email,
+      "firstName": this.addCompanyForm.value.firstName,
+      "gstinNo": this.addCompanyForm.value.gstNo,
+      "gstinUrl": this.gstimageUrl,
+      "imageUrl": "string",
+      "lastName": this.addCompanyForm.value.lastName,
+      "materialListDto": [
+        {
+          "material": "string"
+        }
+      ],
+      "panCardNo": this.addCompanyForm.value.panCard,
+      "panCardUrl": this.panimageUrl,
+      "password": "string",
+      "phoneNo": '+91' + this.addCompanyForm.value.phoneNo,
+      "pnWithoutCountryCode": this.addCompanyForm.value.phoneNo,
+      "randomId": "string",
+      "roleStatus": "COMPANY",
+      "routes": "string",
+      "socialId": "string",
+      "socialType": "string",
+      "state": this.addCompanyForm.value.state,
+      "supplyCityDto": [
+        {
+          "supplyCity": "string"
+        }
+      ],
+      "webUrl": "string"
     }
-    console.log(apiReqData)
-    this.router.navigate(['/list-of-companies'])
-    // this.service.postApi('', apiReqData).subscribe((res: any) => {
-    //   console.log(res);
-    // })
+    console.log("data", apiReqData)
+    this.service.showSpinner()
+    var url = "account/admin/add-CompanyBy-admin"
+    this.service.post(url,apiReqData).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.service.toasterSucc('Company added successfully.')
+        //this.stateArr = res['data'];
+      }
+    })
   }
 
   
 
-  uplaodPan() {
-
-  }
+ 
 }
