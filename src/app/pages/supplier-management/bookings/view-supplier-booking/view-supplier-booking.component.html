@@ -12,94 +12,94 @@
   <div class="form-group row">
     <label for="Sname" class="col-sm-2 col-form-label">Site Name</label>
     <div class="col-sm-4">
-      <label id="Sname">First Name</label>
+      <label id="Sname">{{bookingItems?.location|| 'NA'}}</label>
     </div>
     <label for="material" class="col-sm-2 col-form-label">Material</label>
     <div class="col-sm-4">
-      <label id="material">First Name</label>
+      <label id="material">{{bookingItems?.material|| 'NA'}}</label>
     </div>
   </div>
   <div class="form-group row">
     <label for="Mobile" class="col-sm-2 col-form-label">Weight</label>
     <div class="col-sm-4">
-      <label id="Mobile">First Name</label>
+      <label id="Mobile">{{bookingItems?.weight|| 'NA'}}</label>
     </div>
     <label for="email" class="col-sm-2 col-form-label">Booking Date</label>
     <div class="col-sm-4">
-      <label id="email">First Name</label>
+      <label id="email">{{bookingItems?.createTime | date}}</label>
     </div>
   </div>
 
   <div class="form-group row">
     <label for="amount" class="col-sm-2 col-form-label">Amount</label>
     <div class="col-sm-4">
-      <label id="amount">First Name</label>
+      <label id="amount">{{bookingItems?.bidAmount || 'NA'}}</label>
     </div>
     <label for="comanyAddress" class="col-sm-2 col-form-label">Invoice date</label>
     <div class="col-sm-4">
-      <label id="companyAddress">First Name</label>
+      <label id="companyAddress">{{bookingItems?.invoiceDateForSupplier |date }}</label>
     </div>
   </div>
 
   <div class="form-group row">
     <label for="city" class="col-sm-2 col-form-label">PO Number</label>
     <div class="col-sm-4">
-      <label id="city">First Name</label>
+      <label id="city">{{bookingItems?.poNumber || 'NA'}}</label>
     </div>
     <label for="state" class="col-sm-2 col-form-label">Invoice Number</label>
     <div class="col-sm-4">
-      <label id="state">First Name</label>
+      <label id="state">{{bookingItems?.invoiceNoForSupplier || 'NA'}}</label>
 
     </div>
   </div>
   <div class="form-group row">
     <label for="vehicle" class="col-sm-2 col-form-label">Vehicle Number</label>
     <div class="col-sm-4">
-      <label id="vehicle">First Name</label>
+      <label id="vehicle">{{bookingItems?.truckNumber || 'NA'}}</label>
     </div>
     <label for="pan" class="col-sm-2 col-form-label">Vehicle Type</label>
     <div class="col-sm-4">
-      <label id="pan">First Name</label>
+      <label id="pan">{{bookingItems?.truckType || 'NA'}}</label>
     </div>
   </div>
   <div class="form-group row">
     <label for="Dname" class="col-sm-2 col-form-label">Driver Name</label>
     <div class="col-sm-4">
-      <label id="Dname">First Name</label>
+      <label id="Dname">{{bookingItems?.driverName || 'NA'}}</label>
     </div>
     <label for="mob" class="col-sm-2 col-form-label">Driver Mobile No</label>
     <div class="col-sm-4">
-      <label id="mob">First Name</label>
+      <label id="mob">{{bookingItems?.driverMobileNo || 'NA'}}</label>
     </div>
   </div>
   <div class="form-group row">
     <label for="load" class="col-sm-2 col-form-label">Loaded Weight</label>
     <div class="col-sm-4">
-      <label id="load">First Name</label>
+      <label id="load">{{bookingItems?.loadedWeight || 'NA'}}</label>
     </div>
     <label for="unlod" class="col-sm-2 col-form-label">Unloaded Weight</label>
     <div class="col-sm-4">
-      <label id="unlod">First Name</label>
+      <label id="unlod">{{bookingItems?.UnloadedWeight || 'NA'}}</label>
     </div>
   </div>
   <div class="form-group row">
     <label for="Rname" class="col-sm-2 col-form-label">Receiver Name</label>
     <div class="col-sm-4">
-      <label id="Rname">First Name</label>
+      <label id="Rname">{{bookingItems?.receiverName || 'NA'}}</label>
     </div>
     <label for="comnts" class="col-sm-2 col-form-label">Comments</label>
     <div class="col-sm-4">
-      <label id="comnts">First Name</label>
+      <label id="comnts">{{bookingItems?.comments || 'NA'}}</label>
     </div>
   </div>
   <div class="form-group row">
     <label for="pick" class="col-sm-2 col-form-label">PickUp Site</label>
     <div class="col-sm-4">
-      <label id="pick">First Name</label>
+      <label id="pick">{{bookingItems?.pickUpSite || 'NA'}}</label>
     </div>
     <label for="drop" class="col-sm-2 col-form-label">Drop Site</label>
     <div class="col-sm-4">
-      <label id="drop">First Name</label>
+      <label id="drop">{{bookingItems?.dropSite || 'NA'}}</label>
     </div>
   </div>
 </form>
@@ -107,7 +107,7 @@
       <br>
       <div class="head_flt_select">
           <div class="head_flt_select input-label" style="margin-left: 1%">
-              <button  routerLink='/transaction-management' type="submit" class="btn  btn-theme" style="width: 15%;margin-left: 40%;margin-bottom: 3%;">EDIT</button>
+              <button  routerLink='/list-of-supplier-booking' type="submit" class="btn  btn-theme" style="width: 15%;margin-left: 40%;margin-bottom: 3%;">BACK</button>
           </div>
   </div>
 

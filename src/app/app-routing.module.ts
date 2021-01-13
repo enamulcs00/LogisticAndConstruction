@@ -135,7 +135,7 @@ const routes: Routes = [
   { path: 'view-supplier-booking/:id', component: ViewSupplierBookingComponent },
   // supplier management-> quotes
   { path: 'list-of-supplier-quote', component: ListOfSupplierQuoteComponent },
-  { path: 'view-supplier-quote', component: ViewSupplierQuoteComponent },
+  { path: 'view-supplier-quote/:id', component: ViewSupplierQuoteComponent },
   // supplier management-> billing
   { path: 'list-of-supplier-billing', component: ListOfSupplierBillingComponent },
   { path: 'view-supplier-billing', component: ViewSupplierBillingComponent },
