@@ -39,6 +39,7 @@ export class SidebarComponent implements OnInit {
   previlage: any;
   profile: any;
   currentText: any;
+  profileData: any;
   constructor(private routes: Router, public service: MainService) {
     routes.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
@@ -140,7 +141,7 @@ export class SidebarComponent implements OnInit {
     if (this.currUrl == `view-company-billing`) {
       this.currentText = 'View Billing';
     }
-   
+
     // if(this.currUrl==`list_of_fleet_owner`){
     if (this.currUrl == `list-of-fleet-owner`) {
       this.currentText = 'List Of Fleet Owners';

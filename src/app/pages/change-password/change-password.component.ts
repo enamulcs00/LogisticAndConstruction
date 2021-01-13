@@ -23,7 +23,20 @@ export class ChangePasswordComponent implements OnInit {
       oldPassword: new FormControl('', Validators.compose([Validators.required])),
       newPassword: new FormControl('', Validators.compose([Validators.required, Validators.pattern(/^(?=^.{8,16}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[#?!@$%^&*-])(?!.*\s).*$/)])),
       confirmPassword: new FormControl('', Validators.compose([Validators.required])),
-    })
+    }, this.passwordMatchValidator)
+  }
+  // password match and mismatch 
+  passwordMatchValidator(g: FormGroup) {
+    let pass = g.get('newPassword').value;
+    let confPass = g.get('confirmPassword').value;
+    if (confPass == '') {
+      g.get('confirmPassword').setErrors({ required: true });
+    } else if (pass != confPass) {
+      g.get('confirmPassword').setErrors({ mismatch: true });
+    } else {
+      g.get('confirmPassword').setErrors(null)
+      return null
+    }
   }
 
   // ----------- change password --------------- //

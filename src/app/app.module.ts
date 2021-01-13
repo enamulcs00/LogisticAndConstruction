@@ -79,6 +79,19 @@ import { TermsAndConditionsComponent } from './pages/others/terms-and-conditions
 import { PrivacyPolicyComponent } from './pages/others/privacy-policy/privacy-policy.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { ErrorInterceptor } from './provider/interceptor/error-interceptor';
+import { ListOfBidByFleetOwnerComponent } from './pages/fleet-management/bid/list-of-bid-by-fleet-owner/list-of-bid-by-fleet-owner.component';
+import { ViewBidByFleetOwnerComponent } from './pages/fleet-management/bid/view-bid-by-fleet-owner/view-bid-by-fleet-owner.component';
+import { ListOfFleetOwnerBookingComponent } from './pages/fleet-management/booking/list-of-fleet-owner-booking/list-of-fleet-owner-booking.component';
+import { ViewFleetOwnerBookingComponent } from './pages/fleet-management/booking/view-fleet-owner-booking/view-fleet-owner-booking.component';
+import { ListOfFleetOwnerBillingComponent } from './pages/fleet-management/billing/list-of-fleet-owner-billing/list-of-fleet-owner-billing.component';
+import { ViewFleetOwnerBillingComponent } from './pages/fleet-management/billing/view-fleet-owner-billing/view-fleet-owner-billing.component';
+import { ListOfBidByFleetOwnerSupplierComponent } from './pages/supplier-management/fleet-owner-bid/list-of-bid-by-fleet-owner-supplier/list-of-bid-by-fleet-owner-supplier.component';
+import { ViewBidByFleetOwnerSupplierComponent } from './pages/supplier-management/fleet-owner-bid/view-bid-by-fleet-owner-supplier/view-bid-by-fleet-owner-supplier.component';
+import { ListOfFleetOwnerBookingSupplierComponent } from './pages/supplier-management/fleet-owner-booking/list-of-fleet-owner-booking-supplier/list-of-fleet-owner-booking-supplier.component';
+import { ViewFleetOwnerBookingSupplierComponent } from './pages/supplier-management/fleet-owner-booking/view-fleet-owner-booking-supplier/view-fleet-owner-booking-supplier.component';
+import { ListOfFleetOwnerBillingSupplierComponent } from './pages/supplier-management/fleet-owner-billing/list-of-fleet-owner-billing-supplier/list-of-fleet-owner-billing-supplier.component';
+import { ViewFleetOwnerBillingSupplierComponent } from './pages/supplier-management/fleet-owner-billing/view-fleet-owner-billing-supplier/view-fleet-owner-billing-supplier.component';
+import { SignupDataComponent } from './pages/signup-data/signup-data.component';
 
 @NgModule({
   declarations: [
@@ -146,6 +159,19 @@ import { ErrorInterceptor } from './provider/interceptor/error-interceptor';
     TermsAndConditionsComponent,
     PrivacyPolicyComponent,
     ChangePasswordComponent,
+    ListOfBidByFleetOwnerComponent,
+    ViewBidByFleetOwnerComponent,
+    ListOfFleetOwnerBookingComponent,
+    ViewFleetOwnerBookingComponent,
+    ListOfFleetOwnerBillingComponent,
+    ViewFleetOwnerBillingComponent,
+    ListOfBidByFleetOwnerSupplierComponent,
+    ViewBidByFleetOwnerSupplierComponent,
+    ListOfFleetOwnerBookingSupplierComponent,
+    ViewFleetOwnerBookingSupplierComponent,
+    ListOfFleetOwnerBillingSupplierComponent,
+    ViewFleetOwnerBillingSupplierComponent,
+    SignupDataComponent,
   ],
   imports: [
     BrowserModule,

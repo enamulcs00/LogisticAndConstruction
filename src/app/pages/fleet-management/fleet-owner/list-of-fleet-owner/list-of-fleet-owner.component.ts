@@ -128,41 +128,45 @@ export class ListOfFleetOwnerComponent implements OnInit {
     this.router.navigate(['/view-fleet-owner', userId])
   }
 
-  //========modal=======//
-  delete(id: number) {
-    this.userid = id;
-    $('#deleteModal').modal('show')
+  deleteFleetOwner(userId) {
+    this.router.navigate(['/delete-fleet-owner', userId])
   }
-  //------------------------------delete api integration ----------------------------------//
-  deleteUser() {
-    // var url = 'account/admin/user-management/delete-user-detail?userIdToDelete=' + (this.userid) + '&ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location'));
-    var url = 'account/admin/delete-client-details?userIdToDeleteClient=11'
-    this.service.get(url).subscribe((res: any) => {
-      this.deleted = res
-      if (this.deleted.ststus = 200) {
-        $('#deleteModal').modal('hide')
-        this.service.toasterSucc(this.deleted.message);
-        this.getlist();
-      }
-    }, err => {
-      this.service.hideSpinner();
-      if (err['status'] == '401') {
-        this.service.onLogout();
-        this.service.toasterErr('Unauthorized Access');
-      }
-      else {
-        this.service.toasterErr('Something Went Wrong');
-      }
-    })
 
-  }
+
+  // //========modal=======//
+  // delete(id: number) {
+  //   this.userid = id;
+  //   $('#deleteModal').modal('show')
+  // }
+  // //------------------------------delete api integration ----------------------------------//
+  // deleteUser() {
+  //   // var url = 'account/admin/user-management/delete-user-detail?userIdToDelete=' + (this.userid) + '&ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location'));
+  //   var url = 'account/admin/delete-client-details?userIdToDeleteClient=11'
+  //   this.service.get(url).subscribe((res: any) => {
+  //     this.deleted = res
+  //     if (this.deleted.ststus = 200) {
+  //       $('#deleteModal').modal('hide')
+  //       this.service.toasterSucc(this.deleted.message);
+  //       this.getlist();
+  //     }
+  //   }, err => {
+  //     this.service.hideSpinner();
+  //     if (err['status'] == '401') {
+  //       this.service.onLogout();
+  //       this.service.toasterErr('Unauthorized Access');
+  //     }
+  //     else {
+  //       this.service.toasterErr('Something Went Wrong');
+  //     }
+  //   })
+  // }
 
   //-------------------------block api integration------------------------//
-  block(status, id) {
-    this.userid = id
-    this.userstatus = status
-    $('#block').modal('show')
-  }
+  // block(status, id) {
+  //   this.userid = id
+  //   this.userstatus = status
+  //   $('#block').modal('show')
+  // }
   blockUser() {
     this.service.showSpinner();
     // account/admin/enable-desable-status-by-admin?userId=11111111&userStatus=ACTIVE
@@ -219,31 +223,31 @@ export class ListOfFleetOwnerComponent implements OnInit {
   // }
 
   //--------------------------------pageSize ---------------------------------//
-  showList(val) {
-    this.pageSize = val
-    this.resetForm()
-  }
+  // showList(val) {
+  //   this.pageSize = val
+  //   this.resetForm()
+  // }
 
 
   //----------------------------------export User---------------------------------//
-  exportAsXLSX() {
-    let dataArr = [];
-    this.listing.forEach((element, ind) => {
-      let obj = {}
-      obj = {
-        "S no": ind + 1,
-        "User ID": element.userId ? element.userId : '',
-        "User Name": element.firstName + '' + element.lastName ? element.lastName : '',
-        "Email": element.email ? element.email : 'N/A',
-        "Phone": element.phoneNo ? element.phoneNo : 'N/A',
-        "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-        "Date": element.createTime ? element.createTime.slice(0, 10) : 'N/A',
-      }
-      dataArr.push(obj)
-    })
+  // exportAsXLSX() {
+  //   let dataArr = [];
+  //   this.listing.forEach((element, ind) => {
+  //     let obj = {}
+  //     obj = {
+  //       "S no": ind + 1,
+  //       "User ID": element.userId ? element.userId : '',
+  //       "User Name": element.firstName + '' + element.lastName ? element.lastName : '',
+  //       "Email": element.email ? element.email : 'N/A',
+  //       "Phone": element.phoneNo ? element.phoneNo : 'N/A',
+  //       "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
+  //       "Date": element.createTime ? element.createTime.slice(0, 10) : 'N/A',
+  //     }
+  //     dataArr.push(obj)
+  //   })
 
-    this.service.exportAsExcelFile(dataArr, 'Admin User List');
-  }
+  //   this.service.exportAsExcelFile(dataArr, 'Admin User List');
+  // }
   // ----------------------------------------export CSV
   ExportToCsv() {
     this.service.showSpinner()
@@ -281,23 +285,23 @@ export class ListOfFleetOwnerComponent implements OnInit {
 
   //--------------------------------export pdf ----------------------------------------
 
-  exportPDF() {
-    this.service.showSpinner();
-    setTimeout(r => {
-      this.service.hideSpinner()
-    }, 3000);
-    kendo.drawing
-      .drawDOM("#pdfcontent",
-        {
-          paperSize: "A2",
-          margin: { top: "0.8cm", bottom: "1cm" },
-          scale: 0.8,
-          height: 400,
-        })
-      .then(function (group) {
-        kendo.drawing.pdf.saveAs(group, "Exported.pdf")
-      });
-  }
+  // exportPDF() {
+  //   this.service.showSpinner();
+  //   setTimeout(r => {
+  //     this.service.hideSpinner()
+  //   }, 3000);
+  //   kendo.drawing
+  //     .drawDOM("#pdfcontent",
+  //       {
+  //         paperSize: "A2",
+  //         margin: { top: "0.8cm", bottom: "1cm" },
+  //         scale: 0.8,
+  //         height: 400,
+  //       })
+  //     .then(function (group) {
+  //       kendo.drawing.pdf.saveAs(group, "Exported.pdf")
+  //     });
+  // }
 
 
   addFleetOwner() {

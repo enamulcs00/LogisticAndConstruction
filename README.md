@@ -54,7 +54,7 @@ Project Structure
 -pages/fleet-management/trucks/delete-truck
 
 ^^^^^doubt^^^^^-> same in supplier management
--pages/fleet-management/bid/list-of-bid-by-fleet
+-pages/fleet-management/bid/list-of-bid-by-fleet-owner
 -pages/fleet-management/bid/view-bid-by-fleet-owner
 
 -pages/fleet-management/booking/list-of-fleet-owner-booking
@@ -87,14 +87,14 @@ Project Structure
 -pages/supplier-management/billing/view-supplier-billing
 
 ^^^^^doubt^^^^^-> same in fleet management
--pages/supplier-management/bid/list-of-bid-to-fleet-owner
--pages/supplier-management/bid/view-bid-to-fleet-owner
+-pages/supplier-management/fleet-owner-bid/list-of-bid-by-fleet-owner-supplier
+-pages/supplier-management/fleet-owner-bid/view-bid-by-fleet-owner-supplier
 
--pages/supplier-management/booking/list-of-fleet-owner-booking
--pages/supplier-management/booking/view-fleet-owner-booking
+-pages/supplier-management/fleet-owner-booking/list-of-fleet-owner-booking-supplier
+-pages/supplier-management/fleet-owner-booking/view-fleet-owner-booking-supplier
 
--pages/supplier-management/billing/list-of-fleet-owner-billing
--pages/supplier-management/billing/view-fleet-owner-billing
+-pages/supplier-management/fleet-owner-billing/list-of-fleet-owner-billing-supplier
+-pages/supplier-management/fleet-owner-billing/view-fleet-owner-billing-supplier
 ^^^^^end doubt^^^^^
 
 *** truct type ***^

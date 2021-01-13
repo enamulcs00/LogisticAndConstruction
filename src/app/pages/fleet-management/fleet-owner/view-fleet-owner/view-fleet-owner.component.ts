@@ -9,8 +9,9 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./view-fleet-owner.component.css']
 })
 export class ViewFleetOwnerComponent implements OnInit {
-  addForm: any;
+  editForm: any;
   id: any;
+  editData: any
 
   constructor(public route: Router, public service: MainService, public active: ActivatedRoute) {
     this.active.params.subscribe((params) => {
@@ -25,7 +26,7 @@ export class ViewFleetOwnerComponent implements OnInit {
 
   // add form validation
   addFormValidation() {
-    this.addForm = new FormGroup({
+    this.editForm = new FormGroup({
       'firstName': new FormControl(''),
       'lastName': new FormControl(''),
       'phoneNo': new FormControl(''),
@@ -40,17 +41,32 @@ export class ViewFleetOwnerComponent implements OnInit {
     })
   }
 
+  // -------------- view fleet owner ------------------- //
   viewFleetOwner() {
     this.service.showSpinner();
     // var url = "notification/get-announcement-data?announcementsId=" + this.id;
     var url = "account/admin/get-client-details?userIdToGetDetails=" + this.id
     this.service.get(url).subscribe((res: any) => {
       console.log('dff', res);
+      this.service.hideSpinner();
       if (res.status == 200) {
-        this.service.hideSpinner();
         // this.editData=res.data[0],
         // this.editImage=res.data[0].imageUrl
+        this.editData = res.data
+        this.editForm.patchValue({
+          'firstName': res.data.userDetail.firstName ? res.data.userDetail.firstName : '',
+          'lastName': res.data.userDetail.lastName ? res.data.userDetail.lastName : '',
+          'phoneNo': res.data.userDetail.phoneNo ? res.data.userDetail.phoneNo : '',
+          'email': res.data.email ? res.data.email : '',
+          'companyName': res.data.userDetail.companyName ? res.data.userDetail.companyName : '',
+          'baseLocationAddress': res.data.userDetail.baseLocationAddress ? res.data.userDetail.baseLocationAddress : '',
+          'city': res.data.userDetail.city ? res.data.userDetail.city : '',
+          'state': res.data.userDetail.state ? res.data.userDetail.state : '',
+          'aadharCardNo': res.data.userDetail.aadharCardNo ? res.data.userDetail.aadharCardNo : '',
+          'panCardNo': res.data.userDetail.panCardNo ? res.data.userDetail.panCardNo : '',
+          'gstinNo': res.data.userDetail.gstinNo ? res.data.userDetail.gstinNo : '',
 
+        })
       }
 
     }, err => {
