@@ -118,6 +118,9 @@ export class SidebarComponent implements OnInit {
     if (this.currUrl == `list-of-sites`) {
       this.currentText = 'List of Sites';
     }
+    if (this.currUrl == `add-site`) {
+      this.currentText = 'Add Site';
+    }
     // if(this.currUrl==`company_user_management`){
     if (this.currUrl == `list-of-company-user`) {
       this.currentText = 'User Management';

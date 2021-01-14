@@ -13,7 +13,7 @@
                                 <div class="col-sm-4">
                                     <input type="text" id="Fname" class="form-control" placeholder="First name"
                                         formControlName="firstName" disabled>
-                                    <span class="error"
+                                    <!-- <span class="error"
                                         *ngIf="viewCompanyForm.get('firstName').hasError('required') && (viewCompanyForm.get('firstName').dirty || viewCompanyForm.get('firstName').touched )"
                                         class="error">
                                         <p>*Please enter first name.</p>
@@ -22,13 +22,13 @@
                                         *ngIf="viewCompanyForm.get('firstName').hasError('pattern') && viewCompanyForm.get('firstName').dirty"
                                         class="error">
                                         <p> *Please enter valid first name.</p>
-                                    </span>
+                                    </span> -->
                                 </div>
                                 <label for="Lname" class="col-sm-2 col-form-label">Last Name</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="Lname" class="form-control" placeholder="Last name"
                                         formControlName="lastName" disabled>
-                                    <span class="error"
+                                    <!-- <span class="error"
                                         *ngIf="viewCompanyForm.get('lastName').hasError('required') && (viewCompanyForm.get('lastName').dirty || viewCompanyForm.get('lastName').touched )"
                                         class="error">
                                         <p>*Please enter last name.</p>
@@ -37,7 +37,7 @@
                                         *ngIf="viewCompanyForm.get('lastName').hasError('pattern') && viewCompanyForm.get('lastName').dirty"
                                         class="error">
                                         <p> *Please enter valid Last name.</p>
-                                    </span>
+                                    </span> -->
                                 </div>
                             </div>
 
@@ -46,7 +46,7 @@
                                 <div class="col-sm-4">
                                     <input type="text" id="Mobile" class="form-control"
                                         placeholder="Enter mobile number" formControlName="phoneNo" disabled>
-                                    <span class="error"
+                                    <!-- <span class="error"
                                         *ngIf="viewCompanyForm.get('phoneNo').hasError('required') && (viewCompanyForm.get('phoneNo').dirty || viewCompanyForm.get('phoneNo').touched )"
                                         class="error">
                                         <p> *Please enter mobile number.</p>
@@ -55,21 +55,21 @@
                                         *ngIf="viewCompanyForm.get('phoneNo').hasError('pattern') && viewCompanyForm.get('phoneNo').dirty"
                                         class="error">
                                         <p> *Please enter valid mobile number.</p>
-                                    </span>
+                                    </span> -->
                                 </div>
 
                                 <label for="email" class="col-sm-2 col-form-label">Email ID</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="email" class="form-control" placeholder="Enter mail Id"
                                         formControlName="email" disabled>
-                                    <span class="error">
+                                    <!-- <span class="error">
                                         <p *ngIf="viewCompanyForm.get('email').hasError('required') && (viewCompanyForm.get('email').dirty || viewCompanyForm.get('email').touched )"
                                             class="error" padding>*Please enter email id.</p>
                                     </span>
                                     <span class="error">
                                         <p *ngIf="viewCompanyForm.get('email').hasError('pattern') && viewCompanyForm.get('email').dirty"
                                             class="error" padding>*Please enter valid email.</p>
-                                    </span>
+                                    </span> -->
                                 </div>
                             </div>
 
@@ -78,19 +78,19 @@
                                 <div class="col-sm-4">
                                     <input type="text" id="CompanyName" class="form-control" placeholder="Company name"
                                         formControlName="companyName" disabled>
-                                    <span class="error">
+                                    <!-- <span class="error">
                                         <p *ngIf="viewCompanyForm.get('companyName').hasError('required') && (viewCompanyForm.get('companyName').dirty || viewCompanyForm.get('companyName').touched )"
                                             class="error" padding>*Please enter company name.</p>
-                                    </span>
+                                    </span> -->
                                 </div>
                                 <label for="comanyAddress" class="col-sm-2 col-form-label">Company Address</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="comanyAddress" class="form-control"
                                         placeholder="Company address" formControlName="companyAddress" disabled>
-                                    <span class="error">
+                                    <!-- <span class="error">
                                         <p *ngIf="viewCompanyForm.get('companyAddress').hasError('required') && (viewCompanyForm.get('companyAddress').dirty || viewCompanyForm.get('companyAddress').touched )"
                                             class="error" padding>*Please enter company address.</p>
-                                    </span>
+                                    </span> -->
                                 </div>
                             </div>
 
@@ -126,7 +126,7 @@
                                         <button class="btn" type="button"
                                             style="background-color: green;">Validate</button>
                                     </div> -->
-                                    <span class="error">
+                                    <!-- <span class="error">
                                         <p *ngIf="viewCompanyForm.get('aadhaarNo').hasError('required') && (viewCompanyForm.get('aadhaarNo').dirty || viewCompanyForm.get('aadhaarNo').touched )"
                                             class="error" padding>*Please enter Aadhar number.</p>
                                     </span>
@@ -135,7 +135,7 @@
                                      </span>
                                      <span class="error" *ngIf="viewCompanyForm.get('aadhaarNo').hasError('minlength')" class="error">
                                         <p> *Please enter valid 12 digits aadhar number.</p>                                      
-                                     </span>
+                                     </span> -->
                                 </div>
 
                                 <label for="pan" class="col-sm-2 col-form-label">Pan Card</label>
@@ -146,13 +146,13 @@
                                         <button class="btn" type="button"
                                             style="background-color: green;">Validate</button>
                                     </div> -->
-                                    <span class="error">
+                                    <!-- <span class="error">
                                         <p *ngIf="viewCompanyForm.get('panCard').hasError('required') && (viewCompanyForm.get('panCard').dirty || viewCompanyForm.get('panCard').touched )"
                                             class="error" padding>*Please enter PAN number.</p>
                                     </span>
                                      <span class="error" *ngIf="viewCompanyForm.get('panCard').hasError('minlength')" class="error">
                                         <p> *Please enter valid 10 digits PAN number.</p>                                      
-                                     </span>
+                                     </span> -->
                                 </div>
                             </div>
 
@@ -194,10 +194,10 @@
                                         <button class="btn" type="button"
                                             style="background-color: green;">Validate</button>
                                     </div> -->
-                                    <span class="error">
+                                    <!-- <span class="error">
                                         <p *ngIf="viewCompanyForm.get('gstNo').hasError('required') && (viewCompanyForm.get('gstNo').dirty || viewCompanyForm.get('gstNo').touched )"
                                             class="error" padding>*Please enter GSTIN number.</p>
-                                    </span>
+                                    </span> -->
                                      <!-- <span class="error" *ngIf="viewCompanyForm.get('gstNo').hasError('minlength')" class="error">
                                         <p> *Please enter valid 10 digits PAN number.</p>                                      
                                      </span> -->

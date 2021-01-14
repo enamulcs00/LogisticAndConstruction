@@ -49,7 +49,8 @@ export class ListOfSitesComponent implements OnInit {
     this.fromDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() : '0'+ (date.getMonth() + 1) )+ '-' + date.getFullYear()
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
     this.dateValidation()
-    // this.getlist();
+     this.getSiteList();
+     this.getList()
   }
 
   onFromChangeDate(){
@@ -70,17 +71,32 @@ export class ListOfSitesComponent implements OnInit {
   }
 
   //-----------------------------list api integration --------------------------------//
-  getlist(){
+  getSiteList(){
     this.service.showSpinner()
-    var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
+    var url="account/admin/filter-SiteBy-admin"
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
-        this.listing = res['data']['list'];
+        //this.listing = res['data']['list'];
       }
-      console.log('kfg',this.listing);
-      this.totalRecords = res.data.totalCount
-      console.log('kn', this.totalRecords);
+      // console.log('kfg',this.listing);
+      // this.totalRecords = res.data.totalCount
+      // console.log('kn', this.totalRecords);
+      
+    })
+  }
+
+  getList(){
+    this.service.showSpinner()
+    var url="account/admin/filter-client-request-details"
+    this.service.get(url).subscribe((res:any)=>{
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        //this.listing = res['data']['list'];
+      }
+      // console.log('kfg',this.listing);
+      // this.totalRecords = res.data.totalCount
+      // console.log('kn', this.totalRecords);
       
     })
   }
@@ -91,7 +107,7 @@ export class ListOfSitesComponent implements OnInit {
     this.pageNumber=page;
     console.log('jh', this.pageNumber);
 
-    this.getlist()
+    this.getSiteList()
   }
   //------------------------------filter by search api integration ---------------------------------//
   search() {
@@ -119,7 +135,7 @@ export class ListOfSitesComponent implements OnInit {
   // ------------------------------reset filter------------------------------//
   resetForm(){
     this.userForm.reset()
-    this.getlist();    
+    this.getSiteList();    
   }
 
   //========modal=======//
@@ -135,7 +151,7 @@ export class ListOfSitesComponent implements OnInit {
       if (this.deleted.ststus = 200) {
         $('#deleteModal').modal('hide')
         this.service.toasterSucc(this.deleted.message);
-        this.getlist();
+        this.getSiteList();
       }
      }, err => {   
        this.service.hideSpinner();  
@@ -170,7 +186,7 @@ export class ListOfSitesComponent implements OnInit {
           $('#active').modal('hide');
           this.service.toasterSucc('User Activated Successfully');
         }
-        this.getlist()        
+        this.getSiteList()        
           } 
      }, err => {   
          this.service.hideSpinner();  
