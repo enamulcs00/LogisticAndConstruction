@@ -119,10 +119,10 @@
                                 <label for="aadhar" class="col-sm-2 col-form-label">Aadhar No</label>
                                 <div class="col-sm-4 input-group">
                                     <input type="text" id="aadhar" class="form-control" placeholder="Enter aadhar number"
-                                        style="border: 1px solid;" formControlName="aadhaarNo"  maxlength="12">
+                                         formControlName="aadhaarNo"  maxlength="12">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
-                                            style="background-color: green;">Validate</button>
+                                            style="background-color: green; height: 100%;     z-index: 0;">Validate</button>
                                     </div>
                                     <span class="error">
                                         <p *ngIf="addCompanyForm.get('aadhaarNo').hasError('required') && (addCompanyForm.get('aadhaarNo').dirty || addCompanyForm.get('aadhaarNo').touched )"
@@ -139,10 +139,10 @@
                                 <label for="pan" class="col-sm-2 col-form-label">Pan Card</label>
                                 <div class="col-sm-4 input-group">
                                     <input type="text" id="pan" class="form-control" placeholder="Enter PAN number"
-                                        style="border: 1px solid;" formControlName="panCard" maxlength="10">
+                                         formControlName="panCard" maxlength="10">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
-                                            style="background-color: green;">Validate</button>
+                                            style="background-color: green; height: 100%;     z-index: 0;">Validate</button>
                                     </div>
                                     <span class="error">
                                         <p *ngIf="addCompanyForm.get('panCard').hasError('required') && (addCompanyForm.get('panCard').dirty || addCompanyForm.get('panCard').touched )"
@@ -179,10 +179,10 @@
                                 <label for="gst" class="col-sm-2 col-form-label">GISTN No</label>
                                 <div class="col-sm-4 input-group">
                                     <input type="text" id="gst" class="form-control" placeholder="Enter GISTN no"
-                                        style="border: 1px solid;" formControlName="gstNo" maxlength="16">
+                                         formControlName="gstNo" maxlength="16">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
-                                            style="background-color: green;">Validate</button>
+                                            style="background-color: green; height: 100%;     z-index: 0;">Validate</button>
                                     </div>
                                     <span class="error">
                                         <p *ngIf="addCompanyForm.get('gstNo').hasError('required') && (addCompanyForm.get('gstNo').dirty || addCompanyForm.get('gstNo').touched )"
