@@ -7,23 +7,25 @@
                         <div class="tab-content1">
                             <div class="tab-pane1">
 
-                                <div class="row  d-flex justify-content-end w_100 mt-3">
-                                    <div class="col-lg-3 mt-5">
-                                        <input style="margin-left: -6%;" class="selectBox" type="text"
-                                            placeholder="Material Name">
-                                    </div>
-                                    <div class="col-lg-6 mt-5">
-                                        <input style="width: 100%;" class="selectBox" type="text"
-                                            placeholder="Description">
-                                    </div>
-                                    <div class="col-lg-3 mt-5">
-                                        <button type="button" class="search-btn"
-                                            style="margin-left: 40;color: white;width: 66%;height: 101%;">Save</button>
+                                <form [formGroup]="addMaterialForm">
+                                    <div class="row  d-flex justify-content-end w_100 mt-3">
+                                        <div class="col-lg-3 mt-5">
+                                            <input style="margin-left: -6%;" class="selectBox" type="text"
+                                                placeholder="Material Name" formControlName="materialType">
+                                        </div>
+                                        <div class="col-lg-6 mt-5">
+                                            <input style="width: 100%;" class="selectBox" type="text"
+                                                placeholder="Description" formControlName="description">
+                                        </div>
+                                        <div class="col-lg-3 mt-5">
+                                            <button type="button" class="search-btn"
+                                                style="margin-left: 40;color: white;width: 66%;height: 101%; cursor: pointer;"
+                                                [disabled]="addMaterialForm.invalid"
+                                                (click)="addMaterial()">Save</button>
+                                        </div>
                                     </div>
 
-                                </div>
-
-
+                                </form>
                                 <div class="table-responsive mt-5">
                                     <table class="table table-bordered" aria-describedby="user list" id="pdfcontent">
                                         <thead>
@@ -34,19 +36,17 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let item of listing| paginate: { 
-                                    itemsPerPage: itemsPerPage,
-                                    currentPage: pageNumber,
-                                    totalItems: totalRecords };let i = index ">
+                                            <tr
+                                                *ngFor="let item of listing | paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber,totalItems: totalRecords };let i = index ">
                                                 <td>{{itemsPerPage*(this.pageNumber-1)+i+1}}</td>
-                                                <td>{{item?.firstName}}{{item?.lastName}}</td>
-                                                <td>{{item?.email}}</td>
-                                                <td>{{item?.userId}}</td>
+                                                <td>{{item?.materialType}}</td>
+                                                <td>{{item?.description}}</td>
+                                                <!-- <td>{{item?.userId}}</td>
                                                 <td>{{item?.phoneNo}}</td>
                                                 <td>{{item?.userStatus}}</td>
-                                                <td>{{item?.createTime | date:'medium'}}</td>
+                                                <td>{{item?.createTime | date:'medium'}}</td> -->
 
-                                                <td class="action_td_btn3" style="cursor: pointer">
+                                                <!-- <td class="action_td_btn3" style="cursor: pointer">
                                                     <a><i class="fa fa-eye"
                                                             (click)="userDetails(item?.userId,item?.email)"></i></a>
                                                     <a><i class="fa fa-trash"
@@ -58,7 +58,7 @@
                                                         (click)="openModal('ACTIVE',item?.userId)"><i
                                                             class="fa fa-ban"></i></a>
 
-                                                </td>
+                                                </td> -->
                                             </tr>
                                         </tbody>
                                         <tbody *ngIf="listing?.length==0">

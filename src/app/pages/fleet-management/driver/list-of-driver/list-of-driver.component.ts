@@ -32,11 +32,7 @@ export class ListOfDriverComponent implements OnInit {
   pageSize: any=10;
   action: any;
   userstatus: any;
-  constructor(
-    private router: Router, public service: MainService
-  ) {
-
-  }
+  constructor(private router: Router, public service: MainService) {}
 
   ngOnInit() {
     this.userForm = new FormGroup({

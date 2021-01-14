@@ -85,6 +85,7 @@ export class EditDriverComponent implements OnInit {
   editDriver() {
     console.log("edit driver..")
     // this.route.navigate(['/edit-driver', this.id])
+    let url = 'https://logistic-constructionbackend.mobiloitte.com/account/admin/edit-DriverByAdmin'
   }
 
   cancel() {
