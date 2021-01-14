@@ -111,19 +111,29 @@ export class AddSitesComponent implements OnInit {
   addSite(){
    let data= {
       "city": this.addSiteForm.value.city,
-      "companyName": this.addSiteForm.value.companyName,
-      "createTime": "2021-01-14T05:31:45.210Z",
+      "companyName": '',
+     // "createTime": "2021-01-14T05:31:45.210Z",
       "fkcompanyId": this.addSiteForm.value.companyName,
       "gstinNo": this.addSiteForm.value.gstNo,
-      "isDeleted": true,
-      "isEnable": true,
+     // "isDeleted": true,
+     // "isEnable": true,
       "locationAddress": this.addSiteForm.value.companyAddress,
       "siteAddress": this.addSiteForm.value.siteAddress,
-      "siteId": 0,
+      //"siteId": 0,
       "state": this.addSiteForm.value.city,
-      "updateTime": "2021-01-14T05:31:45.210Z"
+      "gstinUrl":this.gstimageUrl,
+      //"updateTime": "2021-01-14T05:31:45.210Z"
     }
     console.log("add site data::", data)
+    this.service.showSpinner()
+    var url = "account/admin/add-SiteBy-admin"
+    this.service.post(url,data).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.service.toasterSucc(res['message'])
+        this.router.navigateByUrl('/list-of-sites')
+      }
+    })
   }
 
   

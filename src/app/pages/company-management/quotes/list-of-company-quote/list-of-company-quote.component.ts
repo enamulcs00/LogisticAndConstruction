@@ -49,7 +49,7 @@ export class ListOfCompanyQuoteComponent implements OnInit {
     this.fromDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() : '0'+ (date.getMonth() + 1) )+ '-' + date.getFullYear()
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
     this.dateValidation()
-    // this.getlist();
+     this.getQuoteList();
   }
 
   onFromChangeDate(){
@@ -70,17 +70,15 @@ export class ListOfCompanyQuoteComponent implements OnInit {
   }
 
   //-----------------------------list api integration --------------------------------//
-  getlist(){
+  getQuoteList(){
     this.service.showSpinner()
-    var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
+    var url="account/admin/filter-client-request-details"
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
       }
-      console.log('kfg',this.listing);
-      this.totalRecords = res.data.totalCount
-      console.log('kn', this.totalRecords);
+      
       
     })
   }
@@ -91,7 +89,7 @@ export class ListOfCompanyQuoteComponent implements OnInit {
     this.pageNumber=page;
     console.log('jh', this.pageNumber);
 
-    this.getlist()
+    this.getQuoteList()
   }
   //------------------------------filter by search api integration ---------------------------------//
   search() {
@@ -119,7 +117,7 @@ export class ListOfCompanyQuoteComponent implements OnInit {
   // ------------------------------reset filter------------------------------//
   resetForm(){
     this.userForm.reset()
-    this.getlist();    
+    this.getQuoteList();    
   }
 
   //========modal=======//
@@ -135,7 +133,7 @@ export class ListOfCompanyQuoteComponent implements OnInit {
       if (this.deleted.ststus = 200) {
         $('#deleteModal').modal('hide')
         this.service.toasterSucc(this.deleted.message);
-        this.getlist();
+        this.getQuoteList();
       }
      }, err => {   
        this.service.hideSpinner();  
@@ -170,7 +168,7 @@ export class ListOfCompanyQuoteComponent implements OnInit {
           $('#active').modal('hide');
           this.service.toasterSucc('User Activated Successfully');
         }
-        this.getlist()        
+        this.getQuoteList()        
           } 
      }, err => {   
          this.service.hideSpinner();  
@@ -200,8 +198,9 @@ export class ListOfCompanyQuoteComponent implements OnInit {
   }
 
   //------------------- user details navigation------------------------------//
-  userDetails(id,email){
-    this.router.navigate(['/user-details',id,email] )
+  userDetails(id,name){
+    console.log(id,name)
+    this.router.navigate(['/view-company-quote',id,name] )
 
   }
 
@@ -291,8 +290,5 @@ export class ListOfCompanyQuoteComponent implements OnInit {
     
   }
 
-  viewQuote(){
-    this.router.navigate(['/view-company-quote'])
-  }
-
+ 
 }

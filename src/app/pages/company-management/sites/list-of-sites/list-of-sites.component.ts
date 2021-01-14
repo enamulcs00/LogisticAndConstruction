@@ -32,6 +32,10 @@ export class ListOfSitesComponent implements OnInit {
   pageSize: any=10;
   action: any;
   userstatus: any;
+  companyNameArr: any=[];
+  stateArr: any = [];
+  selectedState: any;
+  cityArr: any;
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -50,7 +54,9 @@ export class ListOfSitesComponent implements OnInit {
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
     this.dateValidation()
      this.getSiteList();
-     this.getList()
+     this.getCompanyList();
+     this.getStateList()
+  
   }
 
   onFromChangeDate(){
@@ -77,7 +83,7 @@ export class ListOfSitesComponent implements OnInit {
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
-        //this.listing = res['data']['list'];
+        this.listing = res['data']['list'];
       }
       // console.log('kfg',this.listing);
       // this.totalRecords = res.data.totalCount
@@ -86,20 +92,52 @@ export class ListOfSitesComponent implements OnInit {
     })
   }
 
-  getList(){
+  getCompanyList(){
     this.service.showSpinner()
-    var url="account/admin/filter-client-request-details"
+    var url="account/admin/filter-user-details?roleStatus="+'COMPANY'
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
-        //this.listing = res['data']['list'];
+        this.listing = res['data']['list'];
+        this.listing.forEach(element => {
+          this.companyNameArr.push({
+            'companyName': element.companyName,
+            'companyId': element.userId
+          })
+        });
+        console.log('Company array', this.companyNameArr)
       }
-      // console.log('kfg',this.listing);
-      // this.totalRecords = res.data.totalCount
-      // console.log('kn', this.totalRecords);
-      
+     
     })
   }
+  
+  //get State list
+  getStateList() {
+    this.service.showSpinner()
+    var url = "account/get-state-country-wise?countryName=" + 'INDIA'
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.stateArr = res['data'];
+      }
+    })
+  }
+
+  //get city list
+  searchCity(event) {
+    console.log("event", event)
+    this.service.showSpinner()
+    this.selectedState = event.target.value
+    var url = "account/get-cities-state-wise?stateName=" + this.selectedState
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.cityArr = res['data'];
+      }
+    })
+  }
+
+
   // ------------------------pagination -------------------------//
   pagination(page){
     this.totalRecords=[]
