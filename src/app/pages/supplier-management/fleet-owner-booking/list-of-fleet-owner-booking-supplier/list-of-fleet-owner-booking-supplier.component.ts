@@ -44,12 +44,12 @@ export class ListOfFleetOwnerBookingSupplierComponent implements OnInit {
       'enddate': new FormControl('', Validators.required),
       'searchText': new FormControl(''),
     })
-    
+
     let date = new Date()
     this.fromDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() : '0'+ (date.getMonth() + 1) )+ '-' + date.getFullYear()
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
     this.dateValidation()
-    // this.getlist();
+     this.getlist();
   }
 
   onFromChangeDate(){
@@ -71,18 +71,27 @@ export class ListOfFleetOwnerBookingSupplierComponent implements OnInit {
 
   //-----------------------------list api integration --------------------------------//
   getlist(){
+    let channel = `account/admin/filter-fleet-request-details?months=00&page=${this.pageNumber-1}&pageSize=${this.pageSize}`
     this.service.showSpinner()
     var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
-    this.service.get(url).subscribe((res:any)=>{
+    this.service.get(channel).subscribe((res:any)=>{
+      console.log('QuoteRes',res)
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
+        this.service.toasterSucc(res.message)
+      }
+      else{
+        this.service.toasterErr(res.message)
       }
       console.log('kfg',this.listing);
       this.totalRecords = res.data.totalCount
       console.log('kn', this.totalRecords);
-      
-    })
+
+    },err=>{
+      this.service.toasterErr('some thing went wrong')
+    }
+    )
   }
   // ------------------------pagination -------------------------//
   pagination(page){
@@ -119,7 +128,7 @@ export class ListOfFleetOwnerBookingSupplierComponent implements OnInit {
   // ------------------------------reset filter------------------------------//
   resetForm(){
     this.userForm.reset()
-    this.getlist();    
+    this.getlist();
   }
 
   //========modal=======//
@@ -251,15 +260,15 @@ export class ListOfFleetOwnerBookingSupplierComponent implements OnInit {
         "UserID": element.userId ? element.userId : 'N/A',
         "PhoneNumber": String(element.phoneNo) ? String(element.phoneNo) : 'N/A',
         "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-        "Registration Date": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A', 
+        "Registration Date": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A',
       }
       listingArr.push(obj)
     });
-    const options = { 
+    const options = {
       fieldSeparator: ',',
       quoteStrings: '"',
       decimalSeparator: '.',
-      showLabels: true, 
+      showLabels: true,
       showTitle: true,
       title: 'Candidate Details CSV',
       useTextFile: false,
@@ -267,11 +276,11 @@ export class ListOfFleetOwnerBookingSupplierComponent implements OnInit {
       useKeysAsHeaders: true,
     };
     // const csvExporter = new ExportToCsv(options);
-    //  csvExporter.generateCsv(listingArr); 
+    //  csvExporter.generateCsv(listingArr);
   }
 
   //--------------------------------export pdf ----------------------------------------
-  
+
   exportPDF(){
     this.service.showSpinner();
     setTimeout( r => {
@@ -283,12 +292,12 @@ export class ListOfFleetOwnerBookingSupplierComponent implements OnInit {
           paperSize: "A2",
           margin: { top: "0.8cm", bottom: "1cm" },
           scale: 0.8,
-          height: 400,          
+          height: 400,
         })
       .then(function (group) {
         kendo.drawing.pdf.saveAs(group, "Exported.pdf")
       });
-    
+
   }
 
   viewBooking(){
