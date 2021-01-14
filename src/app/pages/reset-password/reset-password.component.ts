@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 // import { Component, OnInit } from '@angular/core';
 // import { MainService } from 'src/app/provider/main.service';
 // import { Router } from '@angular/router';
@@ -19,6 +20,7 @@ declare var kendo: any;
 })
 export class ResetPasswordComponent implements OnInit {
   userForm: FormGroup;
+  resetPasswordForm: FormGroup
   listing: any = [];
   id: number;
   deleted: any;
@@ -36,16 +38,17 @@ export class ResetPasswordComponent implements OnInit {
   action: any;
   userstatus: any;
   constructor(
-    private router: Router, public service: MainService
-  ) {
-
+    private router: Router, public service: MainService, private actRoute:ActivatedRoute) {
+this.actRoute.params.subscribe((res:any)=>{
+  this.userid = res.id
+})
   }
 
   ngOnInit() {
-    this.userForm = new FormGroup({
-      'startdate': new FormControl('', Validators.required),
-      'enddate': new FormControl('', Validators.required),
-      'searchText': new FormControl(''),
+    this.resetPasswordForm = new FormGroup({
+      'UserType': new FormControl('', Validators.required),
+      'phoneNo': new FormControl('', Validators.required),
+      'emailId': new FormControl('',Validators.required),
     })
 
     let date = new Date()
@@ -71,7 +74,34 @@ export class ResetPasswordComponent implements OnInit {
     this.maxToDate = currentYear + '-' + currentMonth + '-' + currentDay;
 
   }
-
+ResetPassword(){
+  let obj = {
+    clientId: this.userid,
+    email: this.resetPasswordForm.value.emailId,
+    mobileNo: this.resetPasswordForm.value.phoneNo,
+    role: this.resetPasswordForm.value.UserType
+  }
+  let url = `account/admin/forget-password-other-role?clientId=${this.userid}&email=${this.resetPasswordForm.value.emailId}&mobileNo=${this.resetPasswordForm.value.phoneNo}&role=SUPPLIER`
+  this.service.showSpinner()
+  this.service.post(url,obj).subscribe((res:any)=>{
+    console.log('This is reset Response',res);
+    if(res.status==200){
+      this.service.hideSpinner()
+      this.service.toasterSucc(res.message)
+      this.router.navigate(['/list-of-supplier'])
+    }
+    else{
+      this.service.hideSpinner()
+      this.service.toasterSucc(res.message)
+      this.router.navigate(['/list-of-supplier'])
+    }
+  },err=>{
+    this.service.hideSpinner()
+    this.service.toasterSucc('Some thing went wrong')
+    this.router.navigate(['/list-of-supplier'])
+  }
+  )
+}
   //-----------------------------list api integration --------------------------------//
   getlist() {
     this.service.showSpinner()
@@ -270,12 +300,12 @@ export class ResetPasswordComponent implements OnInit {
       useKeysAsHeaders: true,
     };
     // const csvExporter = new ExportToCsv(options);
-    //  csvExporter.generateCsv(listingArr); 
+    //  csvExporter.generateCsv(listingArr);
   }
 
   //--------------------------------export pdf ----------------------------------------
 
-  exportPDF() {
+  exportPDF(){
     this.service.showSpinner();
     setTimeout(r => {
       this.service.hideSpinner()
@@ -295,31 +325,6 @@ export class ResetPasswordComponent implements OnInit {
   }
 
 
-  resetPassword() {
-    // this.service.showSpinner();
-    let apiReqData = {
-      email: 'ph-arvindsharma@mobiloitte.com',
-      // mobileNo: '+917797169949',
-      role: 'FLEET'
-    }
-    var url = `account/admin/forget-password-other-role?email=ph-arvindsharma@mobiloitte.com&mobileNo=+917797169949&role=FLEET`
-    this.service.post(url, '').subscribe((res: any) => {
-      if (res.status == 200) {
-
-      }
-    }, err => {
-      this.service.hideSpinner();
-      if (err['status'] == '401') {
-        this.service.onLogout();
-        this.service.toasterErr('Unauthorized Access');
-      }
-      else {
-        this.service.toasterErr('Something Went Wrong');
-      }
-    })
-  }
-
-
 }
 
 //   resetPasswordForm: FormGroup;
@@ -332,7 +337,7 @@ export class ResetPasswordComponent implements OnInit {
 
 //     this.resetPasswordForm = new FormGroup({
 //       password: new FormControl('',Validators.required),
-//       confirmPassword : new FormControl('',Validators.required)      
+//       confirmPassword : new FormControl('',Validators.required)
 //     })
 //   }
 

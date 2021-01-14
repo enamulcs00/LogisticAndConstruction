@@ -39,6 +39,7 @@ export class SidebarComponent implements OnInit {
   previlage: any;
   profile: any;
   currentText: any;
+  profileData: any;
   constructor(private routes: Router, public service: MainService) {
     routes.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
@@ -140,29 +141,84 @@ export class SidebarComponent implements OnInit {
     if (this.currUrl == `view-company-billing`) {
       this.currentText = 'View Billing';
     }
-   
-    // if(this.currUrl==`list_of_fleet_owner`){
+
+    // ----------------- fleet owner ------------------------------ //
     if (this.currUrl == `list-of-fleet-owner`) {
       this.currentText = 'List Of Fleet Owners';
     }
     if (this.currUrl == `add-fleet-owner`) {
       this.currentText = 'Add New Fleet Owner';
     }
-    // if(this.currUrl==`list_of_truck`){
+    if (this.currUrl == `routes`) {
+      this.currentText = 'Routes';
+    }
+    if (this.currUrl == `view-fleet-owner`) {
+      this.currentText = 'View Fleet Owner';
+    }
+    if (this.currUrl == `edit-fleet-owner`) {
+      this.currentText = 'Edit Fleet Owner';
+    }
+    if (this.currUrl == `delete-fleet-owner`) {
+      this.currentText = 'Delete Fleet Owner';
+    }
+// ------------------ truck ------------------ //
     if (this.currUrl == `list-of-truck`) {
       this.currentText = 'List Of Trucks';
     }
-    if (this.currUrl == `list_of_bid_by_fleet`) {
+    if (this.currUrl == `add-truck`) {
+      this.currentText = 'Add Truck';
+    }
+    if (this.currUrl == `view-truck`) {
+      this.currentText = 'View Truck';
+    }
+    if (this.currUrl == `edit-truck`) {
+      this.currentText = 'Edit Truck';
+    }
+    if (this.currUrl == `delete-truck`) {
+      this.currentText = 'Delete Truck';
+    }
+    // ------------------ bid by fleet owner ------------- //
+    // if (this.currUrl == `list_of_bid_by_fleet`) {
+    if (this.currUrl == `list-of-bid-by-fleet-owner`) {
       this.currentText = 'Bids';
     }
-    if (this.currUrl == `list_of_booking_details`) {
+    if (this.currUrl == `view-bid-by-fleet-owner`) {
+      this.currentText = 'View Bids';
+    }
+    // if (this.currUrl == `list_of_booking_details`) {
+    if (this.currUrl == `list-of-fleet-owner-booking`) {
       this.currentText = 'Bookings';
     }
+    if (this.currUrl == `view-fleet-owner-booking`) {
+      this.currentText = 'View Bookings';
+    }
+    if (this.currUrl == `list-of-fleet-owner-billing`) {
+      this.currentText = 'Billing';
+    }
+    if (this.currUrl == `view-fleet-owner-billing`) {
+      this.currentText = 'View Billing';
+    }
+    // ------------------ driver -------------- //
     // if(this.currUrl==`list_of_driver`){
     if (this.currUrl == `list-of-driver`) {
       this.currentText = 'Drivers List';
     }
+    if (this.currUrl == `add-driver`) {
+      this.currentText = 'Add Driver';
+    }
+    if (this.currUrl == `view-driver`) {
+      this.currentText = 'View Driver';
+    }
+    if (this.currUrl == `edit-driver`) {
+      this.currentText = 'Edit Driver';
+    }
+    if (this.currUrl == `delete-driver`) {
+      this.currentText = 'Delete Driver';
+    }
 
+
+
+    // ----------------- supplier ---------------- //
     // if(this.currUrl==`list_of_supplier`){
     if (this.currUrl == `list-of-supplier`) {
       this.currentText = 'List Of Suppliers';
@@ -179,15 +235,15 @@ export class SidebarComponent implements OnInit {
     if (this.currUrl == `list-of-supplier-billing`) {
       this.currentText = 'Billing';
     }
-    if (this.currUrl == `list_of_bid_to_fleet_owner`) {
+    if (this.currUrl == `list-of-bid-by-fleet-owner-supplier`) {
       this.currentText = 'Fleet Owner Bids';
     }
     if (this.currUrl == `list_of_booking_details_fleet`) {
       this.currentText = 'Fleet Owner Bookings';
     }
-    if (this.currUrl == `billing_fleet`) {
-      this.currentText = 'Billing';
-    }
+    // if (this.currUrl == `billing_fleet`) {
+    //   this.currentText = 'Billing';
+    // }
 
     // if(this.currUrl==`add_truck_type`){
     if (this.currUrl == `truck-type`) {
@@ -222,6 +278,9 @@ export class SidebarComponent implements OnInit {
     }
     if (this.currUrl == `change-password`) {
       this.currentText = 'Change Password';
+    }
+    if (this.currUrl == `reset-password`) {
+      this.currentText = 'Reset Password';
     }
   }
 

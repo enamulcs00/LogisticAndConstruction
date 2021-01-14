@@ -51,3 +51,22 @@ td.action_td_btn3 {
 tr:nth-child(even) { 
     background-color: #dfdfdf; 
 } 
+
+
+.btn-validate{
+    background-color: #008000;
+    color: white;
+    width: 100px;
+    border-radius: 7px;
+    border: none;
+    margin-left: 2px;
+}
+
+.btn-reject{
+    background-color: #800b00;
+    color: white;
+    width: 100px;
+    border-radius: 7px;
+    border: none;
+    margin-left: 2px;
+}

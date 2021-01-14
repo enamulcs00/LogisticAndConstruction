@@ -1,0 +1,134 @@
+<section>
+    <div class="container1440 mt-5">
+        <main class="middle-content" style="overflow-y: scroll; height: -webkit-fill-available;">
+            <div class="content-section">
+
+                <!-- <div class="page_title_block pL0 pR0">
+                    <h1 class="page_title" style="color:#26272d">VIEW USER TRADING DETAIL</h1>
+                </div> -->
+                <div class="order-view mt30 mrgn-0-auto">
+
+                    <div>
+                        <div class="form-group row">
+                            <label for="Fname" class="col-sm-2 col-form-label">Fleet Owner :</label>
+                            <div class="col-sm-4">
+                                <label for="Fname" class="col-form-label">{{bookingData?.companyName || 'N/A'}}</label>
+                            </div>
+                            <label for="Lname" class="col-sm-2 col-form-label">Supplier :</label>
+                            <div class="col-sm-4">
+                                <label for="Fname" class="col-form-label">{{bookingData?.supplierName || 'N/A'}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Fname" class="col-sm-2 col-form-label">Site Name :</label>
+                            <div class="col-sm-4">
+                                <label for="Fname" class="col-form-label">{{bookingData?.location || 'N/A'}}</label>
+                            </div>
+                            <label for="Lname" class="col-sm-2 col-form-label">Material :</label>
+                            <div class="col-sm-4">
+                                <label for="Fname" class="col-form-label">{{bookingData?.material || 'N/A'}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Mobile" class="col-sm-2 col-form-label">Weight :</label>
+                            <div class="col-sm-4">
+                                <label for="Fname" class="col-form-label">{{bookingData?.weight || 'N/A'}}</label>
+                            </div>
+                            <label for="email" class="col-sm-2 col-form-label">Booking Date :</label>
+                            <div class="col-sm-4">
+                                <label for="Fname" class="col-form-label">{{bookingData?.createTime || 'N/A'}}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Fname" class="col-sm-2 col-form-label">Vehicle Number :</label>
+                            <div class="col-sm-4">
+                                <label for="Fname" class="col-form-label">{{bookingData?.truckNumber || 'N/A'}}</label>
+                            </div>
+                            <label for="Lname" class="col-sm-2 col-form-label">Vehicle Type :</label>
+                            <div class="col-sm-4">
+                                <label for="Fname" class="col-form-label">{{bookingData?.truckType || 'N/A'}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Fname" class="col-sm-2 col-form-label">Driver Name :</label>
+                            <div class="col-sm-4">
+                                <label for="Fname" class="col-form-label">{{bookingData?.driverName || 'N/A'}}</label>
+                            </div>
+                            <label for="Lname" class="col-sm-2 col-form-label">Driver Mobile No :</label>
+                            <div class="col-sm-4">
+                                <label for="Fname" class="col-form-label">{{bookingData?.driverMobileNo || 'N/A'}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Fname" class="col-sm-2 col-form-label">Loaded Weight :</label>
+                            <div class="col-sm-4">
+                                <label for="Fname" class="col-form-label">{{bookingData?.weight || 'N/A'}}</label>
+                            </div>
+                            <label for="Lname" class="col-sm-2 col-form-label">Unloaded Weight :</label>
+                            <div class="col-sm-4">
+                                <label for="Fname" class="col-form-label">{{bookingData?.weight || 'N/A'}}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Fname" class="col-sm-2 col-form-label">Receiver Name :</label>
+                            <div class="col-sm-4">
+                                <label for="Fname" class="col-form-label">{{bookingData?.receiverName || 'N/A'}} </label>
+                            </div>
+                            <label for="Lname" class="col-sm-2 col-form-label">Comments :</label>
+                            <div class="col-sm-4">
+                                <label for="Fname" class=" col-form-label">{{bookingData?.comments || 'N/A'}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Mobile" class="col-sm-2 col-form-label">Pick up Site :</label>
+                            <div class="col-sm-4">
+                                <label for="Fname" class="col-form-label">{{bookingData?.location || 'N/A'}}</label>
+                            </div>
+                            <label for="email" class="col-sm-2 col-form-label">Drop Site :</label>
+                            <div class="col-sm-4">
+                                <label for="Fname" class="col-form-label"> {{bookingData?.location || 'N/A'}}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Fname" class="col-sm-2 col-form-label">Amount :</label>
+                            <div class="col-sm-4">
+                                <label for="Fname" class="col-form-label">{{bookingData?.bidAmount || 'N/A'}}</label>
+                            </div>
+                            <label for="Lname" class="col-sm-2 col-form-label">Invoice Date :</label>
+                            <div class="col-sm-4">
+                                <label for="Fname" class="col-form-label">{{bookingData?.inVoiceDateForCompany || 'N/A'}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Fname" class="col-sm-2 col-form-label">PO Number :</label>
+                            <div class="col-sm-4">
+                                <label for="Fname" class="col-form-label">{{bookingData?.poNumber || 'N/A'}}</label>
+                            </div>
+                            <label for="Lname" class="col-sm-2 col-form-label">Invoice Number :</label>
+                            <div class="col-sm-4">
+                                <label for="Fname" class="col-form-label">{{bookingData?.inVoiceNoForCompany || 'N/A'}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="head_flt_select">
+                        <div class="head_flt_select input-label" style="width: fit-content; margin: auto;">
+                            <button type="submit" class="btn-close" (click)="close()">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+</section>
+<app-footer></app-footer>
+
+<!-- keys missing
+    Fleet Owner ,Site Name, Booking Date,
+    Loaded Weight, Unloaded Weight,
+Pick up Site, Drop Site, Receiver Name, Comments
+-->

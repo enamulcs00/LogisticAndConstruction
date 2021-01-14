@@ -1,1 +1,60 @@
-<p>view-truck works!</p>
+<section>
+    <div class="container1440 mt-5">
+        <main class="middle-content" style="overflow-y: scroll; height: -webkit-fill-available;">
+            <div class="content-section">
+
+                <!-- <div class="page_title_block pL0 pR0">
+                    <h1 class="page_title" style="color:#26272d">VIEW USER TRADING DETAIL</h1>
+                </div> -->
+                <div class="order-view mt30 mrgn-0-auto">
+
+                    <div>
+                        <form [formGroup]="editForm">
+                            <div class="form-group row">
+                                <label for="Fname" class="col-sm-2 col-form-label">Fleet Owner ID</label>
+                                <div class="col-sm-4">
+                                    <!-- <input type="text" id="Fname" class="form-control" placeholder="Fleet Owner ID"
+                                        formControlName="fleetOnwerNo"> -->
+                                        <select name="" id="" class="form-control"  formControlName="fleetOnwerNo">
+                                            <option value="">Fleet Owner ID</option>
+                                            <option *ngFor="let item of listing" [value]="item.userId">{{item.userId}}</option>
+                                        </select>
+                                </div>
+                                <label for="Lname" class="col-sm-2 col-form-label">Truck Typer</label>
+                                <div class="col-sm-4">
+                                    <!-- <input type="text" class="form-control" placeholder="Driver First name"
+                                        formControlName="typeOfTruck"> -->
+                                        <select name="" id="" class="form-control"  formControlName="typeOfTruck">
+                                            <option value="">Truck Typer</option>
+                                            <option *ngFor="let item of listingTruckType" [value]="item.typeOfTruck">{{item.typeOfTruck}}</option>
+                                        </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Mobile" class="col-sm-2 col-form-label">Truck Number</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control"
+                                        placeholder="Truck Number" formControlName="registrationNo">
+                                </div>
+                                <label for="email" class="col-sm-2 col-form-label">Description</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" placeholder="Description"
+                                        formControlName="description">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <br>
+                    <div class="head_flt_select">
+                        <div class="head_flt_select input-label" style="margin-left: 1%">
+                            <button type="submit" class="btn btn-theme"
+                                style="width: 15%;margin-left: 40%;margin-bottom: 3%;" [disabled]="editForm.invalid" (click)="editTruck()">Edit</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+</section>
+<app-footer></app-footer>

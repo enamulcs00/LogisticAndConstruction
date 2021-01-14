@@ -77,17 +77,19 @@
                                                 <td>{{item?.gstInNo}}</td>
                                                 <td>{{item?.createTime | date:'medium'}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye"
-                                                            (click)="viewFleetOwner(item?.userId)"></i></a>
-                                                    <a><i class="fa fa-trash"
-                                                            (click)="openModal('DELETE',item?.userId)"></i></a>
+                                                    <a (click)="viewFleetOwner(item?.userId)"><i
+                                                            class="fa fa-eye"></i></a>
+                                                    <!-- <a><i class="fa fa-trash"
+                                                            (click)="openModal('DELETE',item?.userId)"></i></a> -->
+                                                    <a (click)="deleteFleetOwner(item?.userId)"><i
+                                                            class="fa fa-trash"></i></a>
                                                     <a *ngIf="item?.userStatus == 'ACTIVE'"
                                                         (click)="openModal('BLOCK',item?.userId)"><i class="fa fa-ban"
                                                             style="color: green;"></i></a>
                                                     <a *ngIf="item?.userStatus == 'BLOCK'"
                                                         (click)="openModal('ACTIVE',item?.userId)"><i
                                                             class="fa fa-ban"></i></a>
-                                                    <a (click)="resetPassword()"><i class="fa fa-unlock-alt"></i></a>
+                                                    <a (click)="resetPassword(item?.userId)"><i class="fa fa-unlock-alt"></i></a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -154,7 +156,7 @@
 
 
 <!-- delete_modal Start -->
-<div class="modal fade global-modal reset-modal" id="deleteModal">
+<!-- <div class="modal fade global-modal reset-modal" id="deleteModal">
     <div class="modal-dialog max-WT-500">
         <form class="change_password">
             <div class="modal-content">
@@ -181,7 +183,7 @@
             </div>
         </form>
     </div>
-</div>
+</div> -->
 <!-- delete_modal End -->
 
 <!-- block_modal Start -->
@@ -234,8 +236,9 @@
                                 <p style="font-size: 18px;">Are you sure you want to active this user?</p>
                                 <div>
                                     <button type="submit" class="btn btn-success mr-2"
-                                    style="width: 25%;background-color: black;"  (click)="blockUser()">Yes</button>
-                                    <button type="button" class="btn btn-danger" style="width: 25%;" data-dismiss="modal">No</button>
+                                        style="width: 25%;background-color: black;" (click)="blockUser()">Yes</button>
+                                    <button type="button" class="btn btn-danger" style="width: 25%;"
+                                        data-dismiss="modal">No</button>
                                 </div>
                             </div>
                         </div>

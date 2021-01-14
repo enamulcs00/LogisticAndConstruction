@@ -62,12 +62,25 @@ import { ContactUsComponent } from './pages/others/contact-us/contact-us.compone
 import { TermsAndConditionsComponent } from './pages/others/terms-and-conditions/terms-and-conditions.component';
 import { PrivacyPolicyComponent } from './pages/others/privacy-policy/privacy-policy.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { ListOfBidByFleetOwnerComponent } from './pages/fleet-management/bid/list-of-bid-by-fleet-owner/list-of-bid-by-fleet-owner.component';
+import { ViewBidByFleetOwnerComponent } from './pages/fleet-management/bid/view-bid-by-fleet-owner/view-bid-by-fleet-owner.component';
+import { ListOfFleetOwnerBillingComponent } from './pages/fleet-management/billing/list-of-fleet-owner-billing/list-of-fleet-owner-billing.component';
+import { ViewFleetOwnerBillingComponent } from './pages/fleet-management/billing/view-fleet-owner-billing/view-fleet-owner-billing.component';
+import { ViewFleetOwnerBookingComponent } from './pages/fleet-management/booking/view-fleet-owner-booking/view-fleet-owner-booking.component';
+import { ListOfBidByFleetOwnerSupplierComponent } from './pages/supplier-management/fleet-owner-bid/list-of-bid-by-fleet-owner-supplier/list-of-bid-by-fleet-owner-supplier.component';
+import { ViewBidByFleetOwnerSupplierComponent } from './pages/supplier-management/fleet-owner-bid/view-bid-by-fleet-owner-supplier/view-bid-by-fleet-owner-supplier.component';
+import { ListOfFleetOwnerBillingSupplierComponent } from './pages/supplier-management/fleet-owner-billing/list-of-fleet-owner-billing-supplier/list-of-fleet-owner-billing-supplier.component';
+import { ViewFleetOwnerBillingSupplierComponent } from './pages/supplier-management/fleet-owner-billing/view-fleet-owner-billing-supplier/view-fleet-owner-billing-supplier.component';
+import { ListOfFleetOwnerBookingSupplierComponent } from './pages/supplier-management/fleet-owner-booking/list-of-fleet-owner-booking-supplier/list-of-fleet-owner-booking-supplier.component';
+import { ViewFleetOwnerBookingSupplierComponent } from './pages/supplier-management/fleet-owner-booking/view-fleet-owner-booking-supplier/view-fleet-owner-booking-supplier.component';
+import { SignupDataComponent } from './pages/signup-data/signup-data.component';
+import { ListOfFleetOwnerBookingComponent } from './pages/fleet-management/booking/list-of-fleet-owner-booking/list-of-fleet-owner-booking.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'reset-password/:id', component: ResetPasswordComponent },
 
   // dashboard
   { path: 'dashboard', component: DashboardComponent },
@@ -76,8 +89,8 @@ const routes: Routes = [
   { path: 'list-of-companies', component: ListOfCompanyComponent },
   { path: 'add-company', component: AddCompanyComponent },
   { path: 'edit-company', component: EditCompanyComponent },
-  { path: 'view-company', component: ViewCompanyComponent },
-  { path: 'delete-company', component: DeleteCompanyComponent },
+  { path: 'view-company/:id', component: ViewCompanyComponent },
+  { path: 'delete-company/:id', component: DeleteCompanyComponent },
   // company management-> site
   { path: 'list-of-sites', component: ListOfSitesComponent },
   { path: 'add-site', component: AddSitesComponent },
@@ -88,54 +101,72 @@ const routes: Routes = [
   { path: 'list-of-company-user', component: ListOfCompanyUserComponent },
   { path: 'add-company-user', component: AddCompanyUserComponent },
   { path: 'edit-company-user', component: EditCompanyUserComponent },
-  { path: 'view-company-user', component: ViewCompanyUserComponent },
+  { path: 'view-company-user/:id', component: ViewCompanyUserComponent },
   { path: 'delete-company-user', component: DeleteCompanyUserComponent },
   // company management-> booking
   { path: 'list-of-company-booking', component: ListOfCompanyBookingComponent },
-  { path: 'view-company-booking', component: ViewCompanyBookingComponent },
+  { path: 'view-company-booking/:id', component: ViewCompanyBookingComponent },
   // company management-> quotes
   { path: 'list-of-company-quote', component: ListOfCompanyQuoteComponent },
-  { path: 'view-company-quote', component: ViewCompanyQuoteComponent },
+  { path: 'view-company-quote/:id', component: ViewCompanyQuoteComponent },
   // company management-> billing
   { path: 'list-of-company-billing', component: ListOfCompanyBillingComponent },
-  { path: 'view-company-billing', component: ViewCompanyBillingComponent },
+  { path: 'view-company-billing/:id', component: ViewCompanyBillingComponent },
 
   // fleet management
   { path: 'list-of-fleet-owner', component: ListOfFleetOwnerComponent },
   { path: 'add-fleet-owner', component: AddFleetOwnerComponent },
-  { path: 'edit-fleet-owner', component: EditFleetOwnerComponent },
+  { path: 'edit-fleet-owner/:id', component: EditFleetOwnerComponent },
   { path: 'view-fleet-owner/:id', component: ViewFleetOwnerComponent },
-  { path: 'delete-fleet-owner', component: DeleteFleetOwnerComponent },
+  { path: 'delete-fleet-owner/:id', component: DeleteFleetOwnerComponent },
   // fleet management-> truck
   { path: 'list-of-truck', component: ListOfTruckComponent },
   { path: 'add-truck', component: AddTruckComponent },
-  { path: 'edit-truck', component: EditTruckComponent },
-  { path: 'view-truck', component: ViewTruckComponent },
-  { path: 'delete-truck', component: DeleteTruckComponent },
+  { path: 'edit-truck/:id', component: EditTruckComponent },
+  { path: 'view-truck/:id', component: ViewTruckComponent },
+  { path: 'delete-truck/:id', component: DeleteTruckComponent },
   // fleet management-> driver
   { path: 'list-of-driver', component: ListOfDriverComponent },
   { path: 'add-driver', component: AddDriverComponent },
-  { path: 'edit-driver', component: EditDriverComponent },
-  { path: 'view-driver', component: ViewDriverComponent },
-  { path: 'delete-driver', component: DeleteDriverComponent },
+  { path: 'edit-driver/:id', component: EditDriverComponent },
+  { path: 'view-driver/:id', component: ViewDriverComponent },
+  { path: 'delete-driver/:id', component: DeleteDriverComponent },
   // fleet management-> routes
   { path: 'routes', component: RoutesComponent },
+  // fleet management-> bid
+  { path: 'list-of-bid-by-fleet-owner', component: ListOfBidByFleetOwnerComponent },
+  { path: 'view-bid-by-fleet-owner/:id', component: ViewBidByFleetOwnerComponent },
+  // fleet management-> billing
+  { path: 'list-of-fleet-owner-billing', component: ListOfFleetOwnerBillingComponent },
+  { path: 'view-fleet-owner-billing/:id', component: ViewFleetOwnerBillingComponent },
+  // fleet management-> booking
+  { path: 'list-of-fleet-owner-booking', component: ListOfFleetOwnerBookingComponent },
+  { path: 'view-fleet-owner-booking/:id', component: ViewFleetOwnerBookingComponent },
 
   // supplier management
   { path: 'list-of-supplier', component: ListOfSupplierComponent },
   { path: 'add-supplier', component: AddSupplierComponent },
-  { path: 'edit-supplier', component: EditSupplierComponent },
-  { path: 'view-supplier', component: ViewSupplierComponent },
-  { path: 'delete-supplier', component: DeleteSupplierComponent },
+  { path: 'edit-supplier/:id', component: EditSupplierComponent },
+  { path: 'view-supplier/:id', component: ViewSupplierComponent },
+  { path: 'delete-supplier/:id', component: DeleteSupplierComponent },
   // supplier management-> booking
   { path: 'list-of-supplier-booking', component: ListOfSupplierBookingComponent },
-  { path: 'view-supplier-booking', component: ViewSupplierBookingComponent },
+  { path: 'view-supplier-booking/:id', component: ViewSupplierBookingComponent },
   // supplier management-> quotes
   { path: 'list-of-supplier-quote', component: ListOfSupplierQuoteComponent },
-  { path: 'view-supplier-quote', component: ViewSupplierQuoteComponent },
+  { path: 'view-supplier-quote/:id', component: ViewSupplierQuoteComponent },
   // supplier management-> billing
   { path: 'list-of-supplier-billing', component: ListOfSupplierBillingComponent },
-  { path: 'view-supplier-billing', component: ViewSupplierBillingComponent },
+  { path: 'view-supplier-billing/:id', component: ViewSupplierBillingComponent },
+  // supplier management-> fleet owner bid
+  { path: 'list-of-bid-by-fleet-owner-supplier', component: ListOfBidByFleetOwnerSupplierComponent },
+  { path: 'view-bid-by-fleet-owner-supplier/:id', component: ViewBidByFleetOwnerSupplierComponent },
+  // supplier management-> fleet owner billing
+  { path: 'list-of-fleet-owner-billing-supplier', component: ListOfFleetOwnerBillingSupplierComponent },
+  { path: 'view-fleet-owner-billing-supplier/:id', component: ViewFleetOwnerBillingSupplierComponent },
+  // supplier management-> fleet owner booking
+  { path: 'list-of-fleet-owner-booking-supplier', component: ListOfFleetOwnerBookingSupplierComponent },
+  { path: 'view-fleet-owner-booking-supplier/:id', component: ViewFleetOwnerBookingSupplierComponent },
 
   // truck
   { path: 'truck-type', component: TruckTypeComponent },
@@ -149,6 +180,9 @@ const routes: Routes = [
   // crusher and mining
   { path: 'crushers-and-mining', component: CrushersAndMiningInfoComponent },
 
+  // signup data
+  { path: 'signup-data', component: SignupDataComponent },
+
   // others
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'terms-and-conditions', component: TermsAndConditionsComponent },
@@ -159,11 +193,10 @@ const routes: Routes = [
 
   { path: 'footer', component: FooterComponent },
   { path: '**', component: PageNotFoundComponent }
-
 ];
 
 @NgModule({
-imports: [RouterModule.forRoot(routes)],
-exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
