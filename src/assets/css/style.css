@@ -2591,7 +2591,7 @@ aside.sidebar {
     position: fixed;
     width: 310px;
     z-index: 10;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 93px);
     background: #223f66;
     overflow-y: auto;
     overflow-x: hidden;
@@ -2766,10 +2766,6 @@ label{
    /* font-size: 12px;*/
     letter-spacing: 1px;
     font-size: 16px;
-}
-.col-lg-2{
-    padding: 0;
-    margin-left: 3%;
 }
 
 .menu-box .card-body {
@@ -4812,7 +4808,7 @@ h5.table-heading {
 
 
 .mrgn-0-auto {
-    margin: 0 auto;
+    margin: 30px auto;
 }
 
 .pro-image img {
@@ -6748,8 +6744,8 @@ button.take-action {
 
 .ngx-pagination .current {
     padding: 0.1875rem 0.625rem;
-    background: #fdb92e !important;
-    color: #3b3c3c !important;
+    background: #000000 !important;
+    color: #ffffff !important;
     cursor: default;
 }
 .btn-success {
@@ -6846,6 +6842,7 @@ tr.no_wrap_th {
 main.middle-content .content-section {
     min-height: calc(100vh - 277px);
     overflow-y: auto !important;
+    margin-bottom: 50px;
 }
 body.body-class.toggle-wrapper main.middle-content {
     padding-left: 70px !important;
@@ -7038,3 +7035,16 @@ label.user-eml {
     overflow: hidden;
 }
 
+.dash-list-inner h2 {
+    font-size: 22px;
+    margin: 10px 0;
+}
+.dash-list-inner h4 {
+    font-size: 30px;
+}
+img.view-img {
+    width: 100%;
+    height: 200px;
+    margin-top: 20px;
+    object-fit: cover;
+}
