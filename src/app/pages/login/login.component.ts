@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       // console.log(adminData)
       this.loginForm.patchValue({
         'phoneNo': adminData.phoneNo,
-        'password': window.atob(adminData.password),
+     //   'password': window.atob(adminData.password),
         'rememberMe': adminData.rememberMe
       })
     }

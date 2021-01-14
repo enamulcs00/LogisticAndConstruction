@@ -44,6 +44,7 @@
                                         <thead>
                                             <tr class="no_wrap_th">
                                                 <th scope="col">Booking ID</th>
+                                                <th scope="col">Fleet Owner</th>
                                                 <th scope="col">Supplier</th>
                                                 <th scope="col">Material</th>
                                                 <th scope="col">Weight</th>
@@ -60,120 +61,127 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- <tr *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber, totalItems: totalRecords };let i = index ">
-                                                <td>{{itemsPerPage*(this.pageNumber-1)+i+1}}</td>
-                                                <td>{{item?.firstName}}{{item?.lastName}}</td>
-                                                <td>{{item?.email}}</td>
-                                                <td>{{item?.userId}}</td>
-                                                <td>{{item?.phoneNo}}</td>
-                                                <td>{{item?.userStatus}}</td>
-                                                <td>{{item?.createTime | date:'medium'}}</td>
+                                            <tr *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber, totalItems: totalRecords };let i = index ">
+                                              <td>{{item?.bookingId || 'NA'}}</td>
+                                              <td>{{item?.FleetOwner || 'NA'}}</td>
+                                              <td>{{item?.supplierName || 'NA'}}</td>
+                                              <td>{{item?.material || 'NA'}}</td>
+                                              <td>{{item?.weight || 'NA'}}</td>
+                                              <td>{{item?.deliveryDate | date}}</td>
+                                              <td>{{item?.location || 'NA'}}</td>
+                                              <td>{{item?.bidAmount || 'NA'}}</td>
+                                              <td>{{item?.poNumber || 'NA'}}</td>
+                                              <td>{{item?.truckNumber || 'NA'}}</td>
+                                              <td>{{item?.truckType || 'NA'}}</td>
+                                              <td>{{item?.driverName || 'NA'}}</td>
+                                              <td>{{item?.driverMobileNo || 'NA'}}</td>
+                                              <td>{{item?.routeId || 'NA'}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
                                                     <a><i class="fa fa-eye"
-                                                            (click)="userDetails(item?.userId,item?.email)"></i></a>
-                                                    <a><i class="fa fa-trash"
+                                                      [routerLink]="['/view-fleet-owner-booking-supplier',item?.bookingId]"></i></a>
+                                                    <!-- <a><i class="fa fa-trash"
                                                             (click)="openModal('DELETE',item?.userId)"></i></a>
                                                     <a *ngIf="item?.userStatus == 'ACTIVE'"
                                                         (click)="openModal('BLOCK',item?.userId)"><i class="fa fa-ban"
                                                             style="color: green;"></i></a>
                                                     <a *ngIf="item?.userStatus == 'BLOCK'"
                                                         (click)="openModal('ACTIVE',item?.userId)"><i
-                                                            class="fa fa-ban"></i></a>
+                                                            class="fa fa-ban"></i></a> -->
+                                                </td>
+                                            </tr>
+<!--
+                                            <tr>
+                                                <td>1111</td>
+                                                <td>Arihant</td>
+                                                <td>Iron Rods 20mm</td>
+                                                <td>23 tn</td>
+                                                <td>21 Dec 2020</td>
+                                                <td>L&T Manesar</td>
+                                                <td>Rs. 2,50,000</td>
+                                                <td>W2425252525</td>
+                                                <td>HR 23 H 4356</td>
+                                                <td>10 wheel 25 tn</td>
+                                                <td>Ram Kumar</td>
+                                                <td>9877272727</td>
+                                                <td>9568</td>
+                                                <td class="action_td_btn3" style="cursor: pointer">
+                                                    <a><i class="fa fa-eye" (click)="viewBooking()"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>1111</td>
+                                                <td>Arihant</td>
+                                                <td>Iron Rods 20mm</td>
+                                                <td>23 tn</td>
+                                                <td>21 Dec 2020</td>
+                                                <td>L&T Manesar</td>
+                                                <td>Rs. 2,50,000</td>
+                                                <td>W2425252525</td>
+                                                <td>HR 23 H 4356</td>
+                                                <td>10 wheel 25 tn</td>
+                                                <td>Ram Kumar</td>
+                                                <td>9877272727</td>
+                                                <td>9568</td>
+                                                <td class="action_td_btn3" style="cursor: pointer">
+                                                    <a><i class="fa fa-eye" (click)="viewBooking()"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>1111</td>
+                                                <td>Arihant</td>
+                                                <td>Iron Rods 20mm</td>
+                                                <td>23 tn</td>
+                                                <td>21 Dec 2020</td>
+                                                <td>L&T Manesar</td>
+                                                <td>Rs. 2,50,000</td>
+                                                <td>W2425252525</td>
+                                                <td>HR 23 H 4356</td>
+                                                <td>10 wheel 25 tn</td>
+                                                <td>Ram Kumar</td>
+                                                <td>9877272727</td>
+                                                <td>9568</td>
+                                                <td class="action_td_btn3" style="cursor: pointer">
+                                                    <a><i class="fa fa-eye" (click)="viewBooking()"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>1111</td>
+                                                <td>Arihant</td>
+                                                <td>Iron Rods 20mm</td>
+                                                <td>23 tn</td>
+                                                <td>21 Dec 2020</td>
+                                                <td>L&T Manesar</td>
+                                                <td>Rs. 2,50,000</td>
+                                                <td>W2425252525</td>
+                                                <td>HR 23 H 4356</td>
+                                                <td>10 wheel 25 tn</td>
+                                                <td>Ram Kumar</td>
+                                                <td>9877272727</td>
+                                                <td>9568</td>
+                                                <td class="action_td_btn3" style="cursor: pointer">
+                                                    <a><i class="fa fa-eye" (click)="viewBooking()"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>1111</td>
+                                                <td>Arihant</td>
+                                                <td>Iron Rods 20mm</td>
+                                                <td>23 tn</td>
+                                                <td>21 Dec 2020</td>
+                                                <td>L&T Manesar</td>
+                                                <td>Rs. 2,50,000</td>
+                                                <td>W2425252525</td>
+                                                <td>HR 23 H 4356</td>
+                                                <td>10 wheel 25 tn</td>
+                                                <td>Ram Kumar</td>
+                                                <td>9877272727</td>
+                                                <td>9568</td>
+                                                <td class="action_td_btn3" style="cursor: pointer">
+                                                    <a><i class="fa fa-eye" (click)="viewBooking()"></i></a>
                                                 </td>
                                             </tr> -->
-
-                                            <tr>
-                                                <td>1111</td>
-                                                <td>Arihant</td>
-                                                <td>Iron Rods 20mm</td>
-                                                <td>23 tn</td>
-                                                <td>21 Dec 2020</td>
-                                                <td>L&T Manesar</td>
-                                                <td>Rs. 2,50,000</td>
-                                                <td>W2425252525</td>
-                                                <td>HR 23 H 4356</td>
-                                                <td>10 wheel 25 tn</td>
-                                                <td>Ram Kumar</td>
-                                                <td>9877272727</td>
-                                                <td>9568</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye" (click)="viewBooking()"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1111</td>
-                                                <td>Arihant</td>
-                                                <td>Iron Rods 20mm</td>
-                                                <td>23 tn</td>
-                                                <td>21 Dec 2020</td>
-                                                <td>L&T Manesar</td>
-                                                <td>Rs. 2,50,000</td>
-                                                <td>W2425252525</td>
-                                                <td>HR 23 H 4356</td>
-                                                <td>10 wheel 25 tn</td>
-                                                <td>Ram Kumar</td>
-                                                <td>9877272727</td>
-                                                <td>9568</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye" (click)="viewBooking()"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1111</td>
-                                                <td>Arihant</td>
-                                                <td>Iron Rods 20mm</td>
-                                                <td>23 tn</td>
-                                                <td>21 Dec 2020</td>
-                                                <td>L&T Manesar</td>
-                                                <td>Rs. 2,50,000</td>
-                                                <td>W2425252525</td>
-                                                <td>HR 23 H 4356</td>
-                                                <td>10 wheel 25 tn</td>
-                                                <td>Ram Kumar</td>
-                                                <td>9877272727</td>
-                                                <td>9568</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye" (click)="viewBooking()"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1111</td>
-                                                <td>Arihant</td>
-                                                <td>Iron Rods 20mm</td>
-                                                <td>23 tn</td>
-                                                <td>21 Dec 2020</td>
-                                                <td>L&T Manesar</td>
-                                                <td>Rs. 2,50,000</td>
-                                                <td>W2425252525</td>
-                                                <td>HR 23 H 4356</td>
-                                                <td>10 wheel 25 tn</td>
-                                                <td>Ram Kumar</td>
-                                                <td>9877272727</td>
-                                                <td>9568</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye" (click)="viewBooking()"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1111</td>
-                                                <td>Arihant</td>
-                                                <td>Iron Rods 20mm</td>
-                                                <td>23 tn</td>
-                                                <td>21 Dec 2020</td>
-                                                <td>L&T Manesar</td>
-                                                <td>Rs. 2,50,000</td>
-                                                <td>W2425252525</td>
-                                                <td>HR 23 H 4356</td>
-                                                <td>10 wheel 25 tn</td>
-                                                <td>Ram Kumar</td>
-                                                <td>9877272727</td>
-                                                <td>9568</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye" (click)="viewBooking()"></i></a>
-                                                </td>
-                                            </tr>
                                         </tbody>
-                                        <!-- <tbody *ngIf="listing?.length==0">
+                                        <tbody *ngIf="listing?.length==0">
                                             <tr>
                                                 <td colspan="13" vertical-align="middle">
                                                     <div class="no-record">
@@ -183,13 +191,13 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                        </tbody> -->
+                                        </tbody>
                                     </table>
                                 </div>
-                                <!-- <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
+                                <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
                                     *ngIf="listing?.length">
                                     <pagination-controls (pageChange)="pagination($event)"></pagination-controls>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -229,5 +237,5 @@
                 </tr>
             </tbody>
         </table>
-    </div>       
+    </div>
 </div> -->

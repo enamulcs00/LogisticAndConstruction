@@ -8,8 +8,8 @@
                             <div class="tab-pane1">
                                 <div class="row">
                                     <div class="col-lg-2 mt-4">
-                                        <label>Booking ID</label><br>
-                                        <input class="selectBox" type="text" placeholder="Booking ID">
+                                        <label>Fleet Owner</label><br>
+                                        <input class="selectBox" type="text" placeholder="Fleet Owner">
                                     </div>
                                     <div class="col-lg-2 mt-4">
                                         <label>Supplier</label><br>
@@ -77,16 +77,15 @@
                                               <td>{{item?.driverMobileNo || 'NA'}}</td>
                                               <td>{{item?.routeId || 'NA'}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye"
-                                                            (click)="userDetails(item?.userId,item?.email)"></i></a>
-                                                    <a><i class="fa fa-trash"
+                                                    <a><i class="fa fa-eye" (click)="viewBid(item?.bookingId)"></i></a>
+                                                    <!-- <a><i class="fa fa-trash"
                                                             (click)="openModal('DELETE',item?.userId)"></i></a>
                                                     <a *ngIf="item?.userStatus == 'ACTIVE'"
                                                         (click)="openModal('BLOCK',item?.userId)"><i class="fa fa-ban"
                                                             style="color: green;"></i></a>
                                                     <a *ngIf="item?.userStatus == 'BLOCK'"
                                                         (click)="openModal('ACTIVE',item?.userId)"><i
-                                                            class="fa fa-ban"></i></a>
+                                                            class="fa fa-ban"></i></a> -->
                                                 </td>
                                             </tr>
 <!--
