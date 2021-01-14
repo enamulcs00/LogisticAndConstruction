@@ -13,6 +13,10 @@ export class DeleteFleetOwnerComponent implements OnInit {
   id: any;
   editData: any
 
+  aadharCardUrl: any;
+  panCardUrl: any;
+  gstinUrl: any;
+
   constructor(private router: Router, public service: MainService, public activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe((params) => {
       console.log(params)
@@ -39,6 +43,7 @@ export class DeleteFleetOwnerComponent implements OnInit {
       'panCardNo': new FormControl(''),
       'gstinNo': new FormControl('')
     })
+    this.editForm.disable();
   }
 
   // -------------- view fleet owner ------------------- //
@@ -53,6 +58,11 @@ export class DeleteFleetOwnerComponent implements OnInit {
         // this.editData=res.data[0],
         // this.editImage=res.data[0].imageUrl
         this.editData = res.data
+        this.editData = res.data
+        this.aadharCardUrl = res.data.userDetail.aadharCardUrl ? res.data.userDetail.aadharCardUrl : '';
+        this.panCardUrl = res.data.userDetail.panCardUrl ? res.data.userDetail.panCardUrl : ''
+        this.gstinUrl = res.data.userDetail.gstinUrl ? res.data.userDetail.gstinUrl : ''
+
         this.editForm.patchValue({
           'firstName': res.data.userDetail.firstName ? res.data.userDetail.firstName : '',
           'lastName': res.data.userDetail.lastName ? res.data.userDetail.lastName : '',
@@ -85,23 +95,23 @@ export class DeleteFleetOwnerComponent implements OnInit {
     // var url = 'account/admin/user-management/delete-user-detail?userIdToDelete=' + (this.userid) + '&ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location'));
     var url = `account/admin/delete-client-details?userIdToDeleteClient=${this.id}`
     console.log(url)
-    //   this.service.get(url).subscribe((res: any) => {
-    //     // this.deleted = res
-    //     if (res.ststus = 200) {
-    //       // $('#deleteModal').modal('hide')
-    //       this.service.toasterSucc(res.message);
-    //       // this.getlist();
-    //       this.router.navigate(['/list-of-fleet-owner'])
-    //     }
-    //   }, err => {
-    //     this.service.hideSpinner();
-    //     if (err['status'] == '401') {
-    //       this.service.onLogout();
-    //       this.service.toasterErr('Unauthorized Access');
-    //     }
-    //     else {
-    //       this.service.toasterErr('Something Went Wrong');
-    //     }
-    //   })
-    }
+    this.service.get(url).subscribe((res: any) => {
+      // this.deleted = res
+      if (res.ststus = 200) {
+        // $('#deleteModal').modal('hide')
+        this.service.toasterSucc(res.message);
+        // this.getlist();
+        this.router.navigate(['/list-of-fleet-owner'])
+      }
+    }, err => {
+      this.service.hideSpinner();
+      if (err['status'] == '401') {
+        this.service.onLogout();
+        this.service.toasterErr('Unauthorized Access');
+      }
+      else {
+        this.service.toasterErr('Something Went Wrong');
+      }
+    })
   }
+}

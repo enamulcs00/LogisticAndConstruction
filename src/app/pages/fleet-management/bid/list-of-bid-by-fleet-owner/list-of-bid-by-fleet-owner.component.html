@@ -61,21 +61,23 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber, totalItems: totalRecords };let i = index ">
-                                              <td>{{item?.bidId || 'NA'}}</td>
-                                              <td>{{item?.FleetOwner || 'NA'}}</td>
-                                              <td>{{item?.supplierName || 'NA'}}</td>
-                                              <td>{{item?.material || 'NA'}}</td>
-                                              <td>{{item?.weight || 'NA'}}</td>
-                                              <td>{{item?.deliveryDate | date}}</td>
-                                              <td>{{item?.location || 'NA'}}</td>
-                                              <td>{{item?.bidAmount || 'NA'}}</td>
-                                              <td>{{item?.poNumber || 'NA'}}</td>
-                                              <td>{{item?.truckNumber || 'NA'}}</td>
-                                              <td>{{item?.truckType || 'NA'}}</td>
-                                              <td>{{item?.driverName || 'NA'}}</td>
-                                              <td>{{item?.driverMobileNo || 'NA'}}</td>
-                                              <td>{{item?.routeId || 'NA'}}</td>
+                                            <tr
+                                                *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber, totalItems: totalRecords };let i = index ">
+                                                <!-- <td>{{itemsPerPage*(this.pageNumber-1)+i+1}}</td> -->
+                                                <td>{{item?.bookingId}}</td>
+                                                <td>{{item?.companyName}}</td>
+                                                <td>{{item?.supplierName}}</td>
+                                                <td>{{item?.material}}</td>
+                                                <td>{{item?.weight}}</td>
+                                                <td>{{item?.deliveryDate | date:'medium'}}</td>
+                                                <td>{{item?.location}}</td>
+                                                <td>{{item?.bidAmount}}</td>
+                                                <td>{{item?.poNumber}}</td>
+                                                <td>{{item?.truckNumber}}</td>
+                                                <td>{{item?.truckType}}</td>
+                                                <td>{{item?.driverName}}</td>
+                                                <td>{{item?.driverMobileNo}}</td>
+                                                <td>{{item?.route}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
                                                     <a><i class="fa fa-eye" (click)="viewBid(item?.bookingId)"></i></a>
                                                     <!-- <a><i class="fa fa-trash"
@@ -88,8 +90,8 @@
                                                             class="fa fa-ban"></i></a> -->
                                                 </td>
                                             </tr>
-<!--
-                                            <tr>
+
+                                            <!-- <tr>
                                                 <td>1111</td>
                                                 <td>Arihant</td>
                                                 <td>Iron Rods 20mm</td>

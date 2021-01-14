@@ -124,33 +124,33 @@ export class ListOfTruckComponent implements OnInit {
   }
 
   //========modal=======//
-  delete(id: number) {
-    this.userid = id;
-    $('#deleteModal').modal('show')
-  }
+  // delete(id: number) {
+  //   this.userid = id;
+  //   $('#deleteModal').modal('show')
+  // }
   //------------------------------delete api integration ----------------------------------//
-  deleteUser() {
-    // var url = 'account/admin/user-management/delete-user-detail?userIdToDelete=' + (this.userid) + '&ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location'));
-    var url = 'account/admin/delete-truckByAdmin?truckId=5'
-    this.service.post(url, '').subscribe((res: any) => {
-      this.deleted = res
-      if (this.deleted.ststus = 200) {
-        $('#deleteModal').modal('hide')
-        this.service.toasterSucc(this.deleted.message);
-        this.getlist();
-      }
-    }, err => {
-      this.service.hideSpinner();
-      if (err['status'] == '401') {
-        this.service.onLogout();
-        this.service.toasterErr('Unauthorized Access');
-      }
-      else {
-        this.service.toasterErr('Something Went Wrong');
-      }
-    })
+  // deleteUser() {
+  //   // var url = 'account/admin/user-management/delete-user-detail?userIdToDelete=' + (this.userid) + '&ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location'));
+  //   var url = 'account/admin/delete-truckByAdmin?truckId=5'
+  //   this.service.post(url, '').subscribe((res: any) => {
+  //     this.deleted = res
+  //     if (this.deleted.ststus = 200) {
+  //       $('#deleteModal').modal('hide')
+  //       this.service.toasterSucc(this.deleted.message);
+  //       this.getlist();
+  //     }
+  //   }, err => {
+  //     this.service.hideSpinner();
+  //     if (err['status'] == '401') {
+  //       this.service.onLogout();
+  //       this.service.toasterErr('Unauthorized Access');
+  //     }
+  //     else {
+  //       this.service.toasterErr('Something Went Wrong');
+  //     }
+  //   })
 
-  }
+  // }
 
   //-------------------------block api integration------------------------//
   block(status, id) {
@@ -298,7 +298,12 @@ export class ListOfTruckComponent implements OnInit {
   }
 
   viewTruck(truckId) {
-    this.router.navigate(['view-truck'])
+    this.router.navigate(['/view-truck', truckId])
   }
+
+  deleteTruck(truckId) {
+    this.router.navigate(['/delete-truck', truckId])
+  }
+
 }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MainService } from 'src/app/provider/main.service';
 
@@ -14,29 +14,59 @@ export class AddFleetOwnerComponent implements OnInit {
   panCardUrl: any;
   gstinUrl: any;
 
+  stateArr: any = [];
+  selectedState: any;
+  cityArr: any;
   constructor(private router: Router, public service: MainService) { }
 
   ngOnInit(): void {
     this.addFormValidation()
+    this.getStateList()
+
   }
 
   // add form validation
   addFormValidation() {
     this.addForm = new FormGroup({
-      'firstName': new FormControl(''),
-      'lastName': new FormControl(''),
-      'phoneNo': new FormControl(''),
-      'email': new FormControl(''),
-      'companyName': new FormControl(''),
-      'baseLocationAddress': new FormControl(''),
+      'firstName': new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]*$/i)]),
+      'lastName': new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]*$/i)]),
+      'phoneNo': new FormControl('', [Validators.required, Validators.pattern(/^[1-9][0-9]{9,13}$/)]),
+      'email': new FormControl('', [Validators.required, Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,9}|[0-9]{1,3})(\]?)$/i)]),
+      'companyName': new FormControl('', [Validators.required]),
+      'baseLocationAddress': new FormControl('', [Validators.required]),
       'city': new FormControl(''),
       'state': new FormControl(''),
-      'aadharCardNo': new FormControl(''),
-      'panCardNo': new FormControl(''),
-      'gstinNo': new FormControl('')
+      'aadharCardNo': new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/i),Validators.minLength(12)]),
+      'panCardNo': new FormControl('', [Validators.required,Validators.minLength(10)]),
+      'gstinNo': new FormControl('', [Validators.required]),
     })
   }
 
+  //get State list
+  getStateList() {
+    this.service.showSpinner()
+    var url = "account/get-state-country-wise?countryName=" + 'INDIA'
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.stateArr = res['data'];
+      }
+    })
+  }
+
+  //get city list
+  searchCity(event) {
+    console.log("event", event)
+    this.service.showSpinner()
+    this.selectedState = event.target.value
+    var url = "account/get-cities-state-wise?stateName=" + this.selectedState
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.cityArr = res['data'];
+      }
+    })
+  }
 
   // submit add form 
   submitForm() {
@@ -111,20 +141,6 @@ export class AddFleetOwnerComponent implements OnInit {
     }
   }
 
-  // handleInputChange(event) {
-  //   var self = this;
-  //   if (event.target.files && event.target.files[0]) {
-  //     var type = event.target.files[0].type;
-  //     if (type === 'image/png' || type === 'image/jpg' || type === 'image/jpeg') {
-  //       let fileData = event.target.files[0];
-  //       this.sendFormData(fileData)
-  //       var reader = new FileReader()
-  //     } else {
-  //       //this.service.showErrorMessage("Select only jpg,jpeg and png file.");
-  //     }
-  //   }
-
-  // }
 
   /** to call form data infoNotification */
   sendFormDataAadhaar(fileData) {
@@ -216,5 +232,9 @@ export class AddFleetOwnerComponent implements OnInit {
       this.service.hideSpinner();
       // this.service.toasterErr(res.message)
     });
+  }
+
+  addRoutes(){
+    this.router.navigate(['/routes'])
   }
 }

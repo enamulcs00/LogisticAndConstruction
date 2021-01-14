@@ -49,7 +49,7 @@ export class ListOfBidByFleetOwnerComponent implements OnInit {
     this.fromDate = (date.getDate() > 10 ? date.getDate() : '0' + date.getDate()) + '-' + (date.getMonth() > 10 ? date.getMonth() : '0' + (date.getMonth() + 1)) + '-' + date.getFullYear()
     this.toDate = (date.getDate() > 10 ? date.getDate() : '0' + date.getDate()) + '-' + (date.getMonth() > 10 ? date.getMonth() + 1 : '0' + (date.getMonth() + 1)) + '-' + date.getFullYear()
     this.dateValidation()
-     this.getlist();
+    this.getlist();
   }
 
   onFromChangeDate() {
@@ -72,10 +72,9 @@ export class ListOfBidByFleetOwnerComponent implements OnInit {
   //-----------------------------list api integration --------------------------------//
   getlist() {
     this.service.showSpinner()
-    let channel = `account/admin/filter-client-request-details`
-    var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
-    this.service.get(channel).subscribe((res:any)=>{
-      console.log('This is my bookng',res)
+    // var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
+    var url = "account/admin/filter-fleet-request-details?page=" + (this.pageNumber - 1) + `&pageSize=${this.pageSize}&months=00`
+    this.service.get(url).subscribe((res: any) => {
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
@@ -88,11 +87,7 @@ export class ListOfBidByFleetOwnerComponent implements OnInit {
       this.totalRecords = res.data.totalCount
       console.log('kn', this.totalRecords);
 
-    },(err)=>{
-
-      this.service.toasterErr('Something went wrong')
-    }
-    )
+    })
   }
   // ------------------------pagination -------------------------//
   pagination(page) {
