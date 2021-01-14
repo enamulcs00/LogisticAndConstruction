@@ -32,6 +32,11 @@ export class RoutesComponent implements OnInit {
   pageSize: any = 10;
   action: any;
   userstatus: any;
+
+  stateArr: any = [];
+  selectedState: any;
+  cityArr: any
+
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -50,6 +55,8 @@ export class RoutesComponent implements OnInit {
     this.toDate = (date.getDate() > 10 ? date.getDate() : '0' + date.getDate()) + '-' + (date.getMonth() > 10 ? date.getMonth() + 1 : '0' + (date.getMonth() + 1)) + '-' + date.getFullYear()
     this.dateValidation()
     // this.getlist();
+    this.addRoutesFormValidation()
+    this.getStateList()
   }
 
   onFromChangeDate() {
@@ -289,6 +296,69 @@ export class RoutesComponent implements OnInit {
         kendo.drawing.pdf.saveAs(group, "Exported.pdf")
       });
 
+  }
+
+  addRouteForm: FormGroup;
+  addRoutesFormValidation() {
+    this.addRouteForm = new FormGroup({
+      'state': new FormControl('', Validators.required),
+      'city': new FormControl('', Validators.required)
+    })
+  }
+  //get State list
+  getStateList() {
+    this.service.showSpinner()
+    var url = "account/get-state-country-wise?countryName=" + 'INDIA'
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.stateArr = res['data'];
+      }
+    })
+  }
+
+  //get city list
+  searchCity(event) {
+    console.log("event", event)
+    this.service.showSpinner()
+    this.selectedState = event.target.value
+    var url = "account/get-cities-state-wise?stateName=" + this.selectedState
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.cityArr = res['data'];
+      }
+    })
+  }
+
+  addRoutes() {
+    console.log("add route....")
+    let apiReqData = {
+      'state': this.addRouteForm.value.state,
+      'city': this.addRouteForm.value.city
+    }
+    let url = ''
+    this.service.post(url, apiReqData).subscribe((res: any) => {
+      console.log(res)
+      if (res.status == 200) {
+        this.addRouteForm.reset()
+        this.getAddedRoute();
+      }
+    })
+  }
+
+  getAddedRoute() {
+    let url = ''
+    this.service.get(url).subscribe((res: any) => {
+      console.log(res)
+    })
+  }
+
+  deleteAddedRoute(){
+    let url = ''
+    this.service.get(url).subscribe((res: any) => {
+      console.log(res)
+    })
   }
 
   backToAddFleetOwner() {
