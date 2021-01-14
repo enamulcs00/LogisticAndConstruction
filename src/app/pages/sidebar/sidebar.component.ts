@@ -180,7 +180,7 @@ export class SidebarComponent implements OnInit {
     if (this.currUrl == `list-of-supplier-billing`) {
       this.currentText = 'Billing';
     }
-    if (this.currUrl == `list_of_bid_to_fleet_owner`) {
+    if (this.currUrl == `list-of-bid-by-fleet-owner-supplier`) {
       this.currentText = 'Fleet Owner Bids';
     }
     if (this.currUrl == `list_of_booking_details_fleet`) {

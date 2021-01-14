@@ -79,12 +79,20 @@ export class ListOfSupplierBookingComponent implements OnInit {
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
+        this.service.toasterSucc(res.message)
+      }
+      else{
+        this.service.toasterErr(res.message)
       }
       console.log('kfg',this.listing);
       this.totalRecords = res.data.totalCount
       console.log('kn', this.totalRecords);
 
-    })
+    },(err)=>{
+
+      this.service.toasterErr('Something went wrong')
+    }
+    )
   }
   // ------------------------pagination -------------------------//
   pagination(page){
