@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainService } from 'src/app/provider/main.service';
-// import { ngxCsv } from 'ngx-csv/ngx-csv';
-// import { ExportToCsv } from 'export-to-csv';
+ import { ngxCsv } from 'ngx-csv/ngx-csv';
+ import { ExportToCsv } from 'export-to-csv';
 
 declare var $: any
 declare var kendo: any;
@@ -300,12 +300,13 @@ export class ListOfSitesComponent implements OnInit {
       let obj ={}
       obj ={
         "S no": ind + 1,
-        "UserName": element.firstName + '' + element.lastName ? element.lastName : '',
-        "EmailID":  element.email ? element.email : 'N/A',
-        "UserID": element.userId ? element.userId : 'N/A',
-        "PhoneNumber": String(element.phoneNo) ? String(element.phoneNo) : 'N/A',
-        "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-        "Registration Date": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A', 
+        "Company Name":  element.companyName,
+        "Address":  element.siteAddress,
+        "Location": element.locationAddress ,
+        "City": element.city ,
+        "State": element.state ,
+        "GSTIN ": element.gstinNo ,
+        "Date Of Creation": element.createTime,
       }
       listingArr.push(obj)
     });
@@ -315,13 +316,13 @@ export class ListOfSitesComponent implements OnInit {
       decimalSeparator: '.',
       showLabels: true, 
       showTitle: true,
-      title: 'Candidate Details CSV',
+      title: 'Site Details CSV',
       useTextFile: false,
       useBom: true,
       useKeysAsHeaders: true,
     };
-    // const csvExporter = new ExportToCsv(options);
-    //  csvExporter.generateCsv(listingArr); 
+     const csvExporter = new ExportToCsv(options);
+      csvExporter.generateCsv(listingArr); 
   }
 
   //--------------------------------export pdf ----------------------------------------
@@ -348,10 +349,14 @@ export class ListOfSitesComponent implements OnInit {
   addSite(){
     this.router.navigate(['/add-site'])
   }
-  viewSite(){
-    this.router.navigate(['/view-site'])
+  siteDetails(id){
+    console.log(id)
+    this.router.navigate(['/view-site' ,2])
   }
   deleteSite(){
     this.router.navigate(['/delete-site'])
+  }
+  reset(){
+    this.getSiteList();
   }
 }

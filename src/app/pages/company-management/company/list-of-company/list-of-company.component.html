@@ -9,8 +9,12 @@
                                 <div class="row">
                                     <div class="col-lg-2 mt-4">
                                         <label>Company Name</label><br>
-                                        <select class="selectBox">
+                                        <!-- <select class="selectBox">
                                             <option>Select Company Name</option>
+                                        </select> -->
+                                        <select id="CompanyName" class="selectBox" >
+                                            <option value="companyName">Company name</option>
+                                            <option *ngFor="let company of companyNameArr" >{{company.companyName}}</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 mt-4">
@@ -36,7 +40,7 @@
                                     </div>
                                     <div class="col-lg-2 mt-4">
                                         <label>Mobile</label><br>
-                                        <input type="text" id="Mobile" 
+                                        <input type="text" id="Mobile" class="selectBox"
                                         placeholder="Enter mobile number">
                                     </div>
                                 </div>
@@ -44,7 +48,7 @@
                                     <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green'
                                         (click)="ExportToCsv()"></i>
                                     <button type="button" class="search-btn">Search</button>
-                                    <button type="button" class="search-btn">Reset</button>
+                                    <button type="button" class="search-btn" (click)="reset()">Reset</button>
                                     <button type="button" class="btn-add" (click)="addCompany()">Add</button>
                                 </div>
                                 <div class="table-responsive">

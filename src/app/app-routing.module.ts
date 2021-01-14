@@ -82,7 +82,7 @@ const routes: Routes = [
   { path: 'list-of-sites', component: ListOfSitesComponent },
   { path: 'add-site', component: AddSitesComponent },
   { path: 'edit-site', component: EditSitesComponent },
-  { path: 'view-site', component: ViewSitesComponent },
+  { path: 'view-site/:id', component: ViewSitesComponent },
   { path: 'delete-site', component: DeleteSitesComponent },
   // // company management-> company-user-management
   { path: 'list-of-company-user', component: ListOfCompanyUserComponent },
@@ -92,7 +92,7 @@ const routes: Routes = [
   { path: 'delete-company-user', component: DeleteCompanyUserComponent },
   // company management-> booking
   { path: 'list-of-company-booking', component: ListOfCompanyBookingComponent },
-  { path: 'view-company-booking', component: ViewCompanyBookingComponent },
+  { path: 'view-company-booking/:id/:name', component: ViewCompanyBookingComponent },
   // company management-> quotes
   { path: 'list-of-company-quote', component: ListOfCompanyQuoteComponent },
   { path: 'view-company-quote/:id/:name', component: ViewCompanyQuoteComponent },

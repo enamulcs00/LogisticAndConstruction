@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainService } from 'src/app/provider/main.service';
-// import { ngxCsv } from 'ngx-csv/ngx-csv';
-// import { ExportToCsv } from 'export-to-csv';
+ import { ngxCsv } from 'ngx-csv/ngx-csv';
+ import { ExportToCsv } from 'export-to-csv';
 
 declare var $: any
 declare var kendo: any;
@@ -32,6 +32,7 @@ export class ListOfCompanyQuoteComponent implements OnInit {
   pageSize: any=10;
   action: any;
   userstatus: any;
+  supplierArr: any=[];
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -50,6 +51,7 @@ export class ListOfCompanyQuoteComponent implements OnInit {
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
     this.dateValidation()
      this.getQuoteList();
+     this.getSupplierList()
   }
 
   onFromChangeDate(){
@@ -82,6 +84,18 @@ export class ListOfCompanyQuoteComponent implements OnInit {
       
     })
   }
+
+  getSupplierList(){
+    this.service.showSpinner()
+    var url="account/get-supplier-name"
+    this.service.get(url).subscribe((res:any)=>{
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.supplierArr = res['data'];
+      }   
+    })
+  }
+
   // ------------------------pagination -------------------------//
   pagination(page){
     this.totalRecords=[]
@@ -245,12 +259,16 @@ export class ListOfCompanyQuoteComponent implements OnInit {
       let obj ={}
       obj ={
         "S no": ind + 1,
-        "UserName": element.firstName + '' + element.lastName ? element.lastName : '',
-        "EmailID":  element.email ? element.email : 'N/A',
-        "UserID": element.userId ? element.userId : 'N/A',
-        "PhoneNumber": String(element.phoneNo) ? String(element.phoneNo) : 'N/A',
-        "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-        "Registration Date": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A', 
+        "Quote Id": element.quotesId,
+        "Supplier":  element.supplierName,
+        "Material": element.material ,
+        "Weight": element.weight ,
+        "Delivery Date": element.deliveryDate ,
+        "Location": element.location ,
+        "Amount": element.bidAmount ,
+        "PO Number": element.poNumber ,
+        "Vehicle Number": element.truckNumber,
+        
       }
       listingArr.push(obj)
     });
@@ -260,13 +278,13 @@ export class ListOfCompanyQuoteComponent implements OnInit {
       decimalSeparator: '.',
       showLabels: true, 
       showTitle: true,
-      title: 'Candidate Details CSV',
+      title: 'Company Quote Details CSV',
       useTextFile: false,
       useBom: true,
       useKeysAsHeaders: true,
     };
-    // const csvExporter = new ExportToCsv(options);
-    //  csvExporter.generateCsv(listingArr); 
+     const csvExporter = new ExportToCsv(options);
+      csvExporter.generateCsv(listingArr); 
   }
 
   //--------------------------------export pdf ----------------------------------------
@@ -290,5 +308,8 @@ export class ListOfCompanyQuoteComponent implements OnInit {
     
   }
 
+  reset(){
+    this.getQuoteList();
+  }
  
 }

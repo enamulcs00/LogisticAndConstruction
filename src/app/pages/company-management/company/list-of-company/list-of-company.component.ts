@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainService } from 'src/app/provider/main.service';
-// import { ngxCsv } from 'ngx-csv/ngx-csv';
-// import { ExportToCsv } from 'export-to-csv';
+ import { ngxCsv } from 'ngx-csv/ngx-csv';
+ import { ExportToCsv } from 'export-to-csv';
 
 declare var $: any
 declare var kendo: any;
@@ -34,6 +34,7 @@ export class ListOfCompanyComponent implements OnInit {
   stateArr: any = [];
   selectedState: any;
   cityArr: any;
+  companyNameArr: any=[];
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -53,7 +54,8 @@ export class ListOfCompanyComponent implements OnInit {
     this.dateValidation()
      this.getCompanyList();
      this.getStateList()
-     this.getCompanyName()
+     this.getCompanyNameList()
+    
   }
 
   onFromChangeDate(){
@@ -113,13 +115,23 @@ export class ListOfCompanyComponent implements OnInit {
       }
     })
   }
-  getCompanyName(){
-    var url = "account/admin/get-company-by-company-name"
-    this.service.get(url).subscribe((res: any) => {
+
+  getCompanyNameList(){
+    this.service.showSpinner()
+    var url="account/admin/filter-user-details?roleStatus="+'COMPANY'
+    this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
-        //this.stateArr = res['data'];
+        this.listing = res['data']['list'];
+        this.listing.forEach(element => {
+          this.companyNameArr.push({
+            'companyName': element.companyName,
+            'companyId': element.userId
+          })
+        });
+        console.log('Company array', this.companyNameArr)
       }
+     
     })
   }
   // ------------------------pagination -------------------------//
@@ -260,12 +272,16 @@ export class ListOfCompanyComponent implements OnInit {
       let obj ={}
       obj ={
         "S no": ind + 1,
-        "UserName": element.firstName + '' + element.lastName ? element.lastName : '',
-        "EmailID":  element.email ? element.email : 'N/A',
-        "UserID": element.userId ? element.userId : 'N/A',
-        "PhoneNumber": String(element.phoneNo) ? String(element.phoneNo) : 'N/A',
-        "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-        "Registration Date": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A', 
+        "Company Name":  element.companyName,
+        "Location": element.baseLocationAddress ,
+        "Mobile": element.phoneNo ,
+        "Email": element.email ,
+        "City": element.city ,
+        "State": element.state ,
+        "GSTIN ": element.gstInNo ,
+        "Status": element.userStatus,
+        "Date Of Creation": element.createTime,
+        
       }
       listingArr.push(obj)
     });
@@ -275,13 +291,13 @@ export class ListOfCompanyComponent implements OnInit {
       decimalSeparator: '.',
       showLabels: true, 
       showTitle: true,
-      title: 'Candidate Details CSV',
+      title: 'Company Details CSV',
       useTextFile: false,
       useBom: true,
       useKeysAsHeaders: true,
     };
-    // const csvExporter = new ExportToCsv(options);
-    //  csvExporter.generateCsv(listingArr); 
+     const csvExporter = new ExportToCsv(options);
+     csvExporter.generateCsv(listingArr); 
   }
 
   //--------------------------------export pdf ----------------------------------------
@@ -317,5 +333,8 @@ export class ListOfCompanyComponent implements OnInit {
   resetPassword(){
     console.log("reset password calickw")
     this.router.navigate(['/reset-password'])
+  }
+  reset(){
+    this.getCompanyList();
   }
 }
