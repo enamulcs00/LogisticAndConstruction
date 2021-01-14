@@ -293,8 +293,8 @@ export class ListOfCompanyComponent implements OnInit {
   addCompany(){
     this.router.navigate(['/add-company'])
   }
-  viewCompany(){
-    this.router.navigate(['/view-company'])
+  viewCompany(id){
+    this.router.navigate(['/view-company', id])
   }
   deleteCompany(id){
     this.router.navigate(['/delete-company',id])

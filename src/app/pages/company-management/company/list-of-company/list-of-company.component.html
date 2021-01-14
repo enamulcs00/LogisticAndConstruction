@@ -97,7 +97,7 @@
                                                 <td>{{item?.createTime | date:'short'}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
                                                     <!-- <a><i class="fa fa-plus-circle" aria-hidden="true"(click)="addCompany()"></i></a> -->
-                                                    <a><i class="fa fa-eye" (click)="viewCompany()"></i></a>
+                                                    <a><i class="fa fa-eye" (click)="viewCompany(item?.userId)"></i></a>
                                                     <a><i class="fa fa-trash" (click)="deleteCompany(item?.userId)"></i></a>
                                                     <a><i class="fa fa-ban" style="color: green;"></i></a>
                                                     <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>

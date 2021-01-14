@@ -78,6 +78,10 @@ export class ListOfBidByFleetOwnerComponent implements OnInit {
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
+        this.service.toasterSucc(res.message)
+      }
+      else{
+        this.service.toasterErr(res.message)
       }
       console.log('kfg', this.listing);
       this.totalRecords = res.data.totalCount
@@ -268,7 +272,7 @@ export class ListOfBidByFleetOwnerComponent implements OnInit {
       useKeysAsHeaders: true,
     };
     // const csvExporter = new ExportToCsv(options);
-    //  csvExporter.generateCsv(listingArr); 
+    //  csvExporter.generateCsv(listingArr);
   }
 
   //--------------------------------export pdf ----------------------------------------

@@ -89,7 +89,7 @@ const routes: Routes = [
   { path: 'list-of-companies', component: ListOfCompanyComponent },
   { path: 'add-company', component: AddCompanyComponent },
   { path: 'edit-company', component: EditCompanyComponent },
-  { path: 'view-company', component: ViewCompanyComponent },
+  { path: 'view-company/:id', component: ViewCompanyComponent },
   { path: 'delete-company/:id', component: DeleteCompanyComponent },
   // company management-> site
   { path: 'list-of-sites', component: ListOfSitesComponent },
@@ -101,17 +101,17 @@ const routes: Routes = [
   { path: 'list-of-company-user', component: ListOfCompanyUserComponent },
   { path: 'add-company-user', component: AddCompanyUserComponent },
   { path: 'edit-company-user', component: EditCompanyUserComponent },
-  { path: 'view-company-user', component: ViewCompanyUserComponent },
+  { path: 'view-company-user/:id', component: ViewCompanyUserComponent },
   { path: 'delete-company-user', component: DeleteCompanyUserComponent },
   // company management-> booking
   { path: 'list-of-company-booking', component: ListOfCompanyBookingComponent },
-  { path: 'view-company-booking', component: ViewCompanyBookingComponent },
+  { path: 'view-company-booking/:id', component: ViewCompanyBookingComponent },
   // company management-> quotes
   { path: 'list-of-company-quote', component: ListOfCompanyQuoteComponent },
-  { path: 'view-company-quote', component: ViewCompanyQuoteComponent },
+  { path: 'view-company-quote/:id', component: ViewCompanyQuoteComponent },
   // company management-> billing
   { path: 'list-of-company-billing', component: ListOfCompanyBillingComponent },
-  { path: 'view-company-billing', component: ViewCompanyBillingComponent },
+  { path: 'view-company-billing/:id', component: ViewCompanyBillingComponent },
 
   // fleet management
   { path: 'list-of-fleet-owner', component: ListOfFleetOwnerComponent },
@@ -146,7 +146,7 @@ const routes: Routes = [
   // supplier management
   { path: 'list-of-supplier', component: ListOfSupplierComponent },
   { path: 'add-supplier', component: AddSupplierComponent },
-  { path: 'edit-supplier', component: EditSupplierComponent },
+  { path: 'edit-supplier/:id', component: EditSupplierComponent },
   { path: 'view-supplier/:id', component: ViewSupplierComponent },
   { path: 'delete-supplier/:id', component: DeleteSupplierComponent },
   // supplier management-> booking
@@ -160,13 +160,13 @@ const routes: Routes = [
   { path: 'view-supplier-billing/:id', component: ViewSupplierBillingComponent },
   // supplier management-> fleet owner bid
   { path: 'list-of-bid-by-fleet-owner-supplier', component: ListOfBidByFleetOwnerSupplierComponent },
-  { path: 'view-bid-by-fleet-owner-supplier', component: ViewBidByFleetOwnerSupplierComponent },
+  { path: 'view-bid-by-fleet-owner-supplier/:id', component: ViewBidByFleetOwnerSupplierComponent },
   // supplier management-> fleet owner billing
   { path: 'list-of-fleet-owner-billing-supplier', component: ListOfFleetOwnerBillingSupplierComponent },
-  { path: 'view-fleet-owner-billing-supplier', component: ViewFleetOwnerBillingSupplierComponent },
+  { path: 'view-fleet-owner-billing-supplier/:id', component: ViewFleetOwnerBillingSupplierComponent },
   // supplier management-> fleet owner booking
   { path: 'list-of-fleet-owner-booking-supplier', component: ListOfFleetOwnerBookingSupplierComponent },
-  { path: 'view-fleet-owner-booking-supplier', component: ViewFleetOwnerBookingSupplierComponent },
+  { path: 'view-fleet-owner-booking-supplier/:id', component: ViewFleetOwnerBookingSupplierComponent },
 
   // truck
   { path: 'truck-type', component: TruckTypeComponent },
