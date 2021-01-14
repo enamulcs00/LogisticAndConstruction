@@ -6,31 +6,37 @@
                     <div class="global-table no-radius p0">
                         <div class="tab-content1">
                             <div class="tab-pane1">
-
-                                <div class="row  d-flex justify-content-end w_100 mt-3">
-                                    <!-- <div class="col-lg-3 mt-5">
+                                <form [formGroup]="addRouteForm">
+                                    <div class="row  d-flex justify-content-end w_100 mt-3">
+                                        <!-- <div class="col-lg-3 mt-5">
                                         <input style="margin-left: -6%;" class="selectBox" type="text"
                                             placeholder="Thermal Plant Name">
                                     </div> -->
-                                    <div class="col-lg-3 mt-5">
-                                        <select class="selectBox">
-                                            <option class="fa fa-caret-down">State</option>
+                                        <div class="col-lg-3 mt-5">
+                                            <select id="city" class="form-control" formControlName="state"
+                                            (change)="searchCity($event)">
+                                            <option value="State">State</option>
+                                            <option *ngFor="let state of stateArr">{{state.name}}</option>
                                         </select>
+                                        </div>
+                                        <div class="col-lg-3 mt-5">
+                                            <select id="city" class="form-control" formControlName="city">
+                                                <option value="city">City</option>
+                                                <option *ngFor="let city of cityArr">{{city.name}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-3 mt-5">
+                                            <button type="button" class="search-btn"
+                                                style="margin-left: 40%;color: white;width: 66%;height: 101%;"
+                                                (click)="addRoutes()">Add</button>
+                                        </div>
+                                        <div class="col-lg-3 mt-5">
+                                            <button type="button" class="search-btn"
+                                                style="margin-left: 40%;color: white;width: 66%;height: 101%;"
+                                                (click)="backToAddFleetOwner()">Back</button>
+                                        </div>
                                     </div>
-                                    <div class="col-lg-3 mt-5" >
-                                        <select class="selectBox">
-                                            <option class="fa fa-caret-down">City</option>
-                                        </select> 
-                                    </div>
-                                    <div class="col-lg-3 mt-5">
-                                        <button type="button" class="search-btn"
-                                            style="margin-left: 40%;color: white;width: 66%;height: 101%;">Add</button>
-                                    </div>
-                                    <div class="col-lg-3 mt-5">
-                                        <button type="button" class="search-btn"
-                                            style="margin-left: 40%;color: white;width: 66%;height: 101%;" (click)="backToAddFleetOwner()">Back</button>
-                                    </div>
-                                </div>
+                                </form>
 
                                 <div class="table-responsive mt-5">
                                     <table class="table table-bordered" aria-describedby="user list" id="pdfcontent">
@@ -64,7 +70,6 @@
                                                     <a *ngIf="item?.userStatus == 'BLOCK'"
                                                         (click)="openModal('ACTIVE',item?.userId)"><i
                                                             class="fa fa-ban"></i></a>
-
                                                 </td>
                                             </tr> -->
 

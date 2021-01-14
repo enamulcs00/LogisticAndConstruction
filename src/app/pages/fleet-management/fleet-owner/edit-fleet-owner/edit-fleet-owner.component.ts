@@ -224,6 +224,6 @@ export class EditFleetOwnerComponent implements OnInit {
   }
 
   editFleetOwner(){
-    
+    let url= 'https://logistic-constructionbackend.mobiloitte.com/account/admin/update-profile-other-role?userIdForUpdateprofile=1'
   }
 }

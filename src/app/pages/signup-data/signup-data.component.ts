@@ -72,7 +72,7 @@ export class SignupDataComponent implements OnInit {
   getlist() {
     this.service.showSpinner()
     // var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
-    var url = "account/admin/filter-unverified-user?page=" + (this.pageNumber - 1) + `&pageSize=${this.pageSize}`
+    var url = "account/admin/filter-unverified-user?page=" + (this.pageNumber - 1) + `&pageSize=${this.pageSize}&status=UNVERIFIED`
     this.service.get(url).subscribe((res: any) => {
       this.service.hideSpinner()
       if (res['status'] == 200) {

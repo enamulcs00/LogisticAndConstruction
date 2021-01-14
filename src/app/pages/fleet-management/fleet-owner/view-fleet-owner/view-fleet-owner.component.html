@@ -63,23 +63,23 @@
                                 <label for="aadhar" class="col-sm-2 col-form-label">Aadhar No</label>
                                 <div class="col-sm-4 input-group">
                                     <input type="text" id="aadhar" class="form-control" placeholder="Enter aadhar no"
-                                        style="border: 1px solid;" formControlName="aadharCardNo">
+                                         formControlName="aadharCardNo">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
-                                            style="background-color: green;">Validate</button>
+                                            style="background-color: green;     height: 38px;     z-index: 0;">Validate</button>
                                     </div>
-                                    <img [src]="aadharCardUrl" alt="">  
+                                    <img [src]="aadharCardUrl" alt="" class="view-img">  
 
                                 </div>
                                 <label for="pan" class="col-sm-2 col-form-label">Pan Card</label>
                                 <div class="col-sm-4 input-group">
                                     <input type="text" id="pan" class="form-control" placeholder="Enter Pan no"
-                                        style="border: 1px solid;" formControlName="panCardNo">
+                                         formControlName="panCardNo">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
-                                            style="background-color: green;">Validate</button>
+                                            style="background-color: green;     height: 38px;     z-index: 0;">Validate</button>
                                     </div>
-                                    <img [src]="panCardUrl" alt=""> 
+                                    <img [src]="panCardUrl" alt="" class="view-img"> 
 
                                 </div>
                             </div>
@@ -105,12 +105,12 @@
                                 <label for="gst" class="col-sm-2 col-form-label">GISTN No</label>
                                 <div class="col-sm-4 input-group">
                                     <input type="text" id="gst" class="form-control" placeholder="Enter GISTN no"
-                                        style="border: 1px solid;" formControlName="gstinNo">
+                                         formControlName="gstinNo">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
-                                            style="background-color: green;">Validate</button>
+                                            style="background-color: green;     height: 38px;     z-index: 0;">Validate</button>
                                     </div>
-                                    <img [src]="gstinUrl" alt=""> 
+                                    <img [src]="gstinUrl" alt="" class="view-img"> 
 
                                 </div>
                             </div>
@@ -127,11 +127,11 @@
                     </div>
                     <br>
                     <div class="head_flt_select">
-                        <div class="head_flt_select input-label" style="margin-left: 1%">
-                            <button  type="submit" class="btn btn-theme"
-                                style="width: 15%;margin-left: 40%;margin-bottom: 3%;" [routerLink]="['/list-of-fleet-owner']">Back</button>
+                        <div class="head_flt_select input-label text-center">
+                            <button  type="submit" class="btn btn-theme mr-3"
+                                style="width: 15%;" [routerLink]="['/list-of-fleet-owner']">Back</button>
                                 <button  type="submit" class="btn btn-theme"
-                                style="width: 15%;margin-left: 40%;margin-bottom: 3%;" (click)="editFleetOwner()">edit</button>
+                                style="width: 15%;" (click)="editFleetOwner()">edit</button>
                         </div>
                     </div>
 

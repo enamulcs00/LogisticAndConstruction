@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RoutesRecognized } from '@angular/router';
 import { MainService } from 'src/app/provider/main.service';
+// import 'rxjs/add/operator/filter';
+// import 'rxjs/add/operator/pairwise';
+import { filter, pairwise } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-fleet-owner',
@@ -17,7 +20,15 @@ export class AddFleetOwnerComponent implements OnInit {
   stateArr: any = [];
   selectedState: any;
   cityArr: any;
-  constructor(private router: Router, public service: MainService) { }
+  constructor(private router: Router, public service: MainService) {
+
+    this.router.events
+      .pipe(filter((evt: any) => evt instanceof RoutesRecognized), pairwise())
+      .subscribe((events: RoutesRecognized[]) => {
+        console.log('previous url', events[0].urlAfterRedirects);
+        console.log('current url', events[1].urlAfterRedirects);
+      });
+  }
 
   ngOnInit(): void {
     this.addFormValidation()
@@ -36,8 +47,8 @@ export class AddFleetOwnerComponent implements OnInit {
       'baseLocationAddress': new FormControl('', [Validators.required]),
       'city': new FormControl(''),
       'state': new FormControl(''),
-      'aadharCardNo': new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/i),Validators.minLength(12)]),
-      'panCardNo': new FormControl('', [Validators.required,Validators.minLength(10)]),
+      'aadharCardNo': new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/i), Validators.minLength(12)]),
+      'panCardNo': new FormControl('', [Validators.required, Validators.minLength(10)]),
       'gstinNo': new FormControl('', [Validators.required]),
     })
   }
@@ -234,7 +245,7 @@ export class AddFleetOwnerComponent implements OnInit {
     });
   }
 
-  addRoutes(){
+  addRoutes() {
     this.router.navigate(['/routes'])
   }
 }
