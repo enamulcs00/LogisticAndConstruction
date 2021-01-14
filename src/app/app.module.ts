@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { AngularMyDatePickerModule } from 'angular-mydatepicker';
 // import { AngularEditorModule } from '@kolkov/angular-editor'
-// import { CKEditorModule } from 'ngx-ckeditor';
+import { CKEditorModule } from 'ngx-ckeditor';
 import { NgOtpInputModule } from 'ng-otp-input';
 
 // component
@@ -189,7 +189,7 @@ import { SignupDataComponent } from './pages/signup-data/signup-data.component';
     NgxPaginationModule,
     // AngularMyDatePickerModule,
     // AngularEditorModule,
-    // CKEditorModule
+    CKEditorModule,
     NgOtpInputModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],

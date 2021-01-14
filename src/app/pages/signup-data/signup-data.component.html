@@ -51,28 +51,47 @@
                                         <thead>
                                             <tr class="no_wrap_th">
                                                 <th scope="col">Company Name</th>
+                                                <th scope="col">User Type</th>
                                                 <th scope="col">Location</th>
                                                 <th scope="col">Mobile</th>
                                                 <th scope="col">E-Mail</th>
                                                 <th scope="col">City</th>
                                                 <th scope="col">State</th>
+
+                                                <th scope="col">Spl. Routes</th>
+                                                <th scope="col">Material Name</th>
+                                                <th scope="col">Pan no</th>
+                                                <th scope="col">Aadhaar No</th>
+
                                                 <th scope="col">GSTIN</th>
                                                 <th scope="col">Date Of Creation</th>
                                                 <th scope="col" class="action_td_btn3">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- <tr
+                                            <tr
                                                 *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber,totalItems: totalRecords };let i = index ">
-                                                <td>{{itemsPerPage*(this.pageNumber-1)+i+1}}</td>
-                                                <td>{{item?.firstName}}{{item?.lastName}}</td>
-                                                <td>{{item?.email}}</td>
-                                                <td>{{item?.userId}}</td>
-                                                <td>{{item?.phoneNo}}</td>
-                                                <td>{{item?.userStatus}}</td>
-                                                <td>{{item?.createTime | date:'medium'}}</td>
+                                                <!-- <td>{{itemsPerPage*(this.pageNumber-1)+i+1}}</td> -->
+
+                                                <td>{{item?.companyName || 'N/A'}}</td>
+                                                <td>{{item?.role || 'N/A'}}</td>
+                                                <td>{{item?.baseLocationAddress || 'N/A'}}</td>
+                                                <td>{{item?.phoneNo || 'N/A'}}</td>
+                                                <td>{{item?.email || 'N/A'}}</td>
+                                                <td>{{item?.city || 'N/A'}}</td>
+                                                <td>{{item?.state || 'N/A'}}</td>
+                                                <td>{{item?.routes || 'N/A'}}</td>
+                                                <td>{{item?.material || 'N/A'}}</td>
+                                                <td>{{item?.panCardNo || 'N/A'}}</td>
+                                                <td>{{item?.aadharCardNo || 'N/A'}}</td>
+                                                <td>{{item?.gstInNo || 'N/A'}}</td>
+                                                <td>{{item?.createTime | date:'medium' || 'N/A'}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye"
+                                                    <button class="btn-validate"
+                                                        (click)="acceptReject('ACTIVE', item.userId)">Accept</button>
+                                                    <button class="btn-reject"
+                                                        (click)="acceptReject('DELETED', item.userId)">Reject</button>
+                                                    <!-- <a><i class="fa fa-eye"
                                                             (click)="userDetails(item?.userId,item?.email)"></i></a>
                                                     <a><i class="fa fa-trash"
                                                             (click)="openModal('DELETE',item?.userId)"></i></a>
@@ -81,96 +100,12 @@
                                                             style="color: green;"></i></a>
                                                     <a *ngIf="item?.userStatus == 'BLOCK'"
                                                         (click)="openModal('ACTIVE',item?.userId)"><i
-                                                            class="fa fa-ban"></i></a>
-                                                </td>
-                                            </tr> -->
-                                            <tr>
-                                                <td>Larsen & Toubro Ltd</td>
-                                                <td>Maharastra</td>
-                                                <td>9878676512</td>
-                                                <td>ramesh.mittal@larsentoubro.com</td>
-                                                <td>Mumbai</td>
-                                                <td>ACTIVE</td>
-                                                <td>MAH/3872397/PO</td>
-                                                <td>12/01/2021</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true"(click)="addCompany()"></i></a> -->
-                                                    <a><i class="fa fa-eye" (click)="viewCompany()"></i></a>
-                                                    <a><i class="fa fa-trash" (click)="deleteCompany()"></i></a>
-                                                    <a><i class="fa fa-ban" style="color: green;"></i></a>
-                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
+                                                            class="fa fa-ban"></i></a> -->
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Larsen & Toubro Ltd</td>
-                                                <td>Maharastra</td>
-                                                <td>9878676512</td>
-                                                <td>ramesh.mittal@larsentoubro.com</td>
-                                                <td>Mumbai</td>
-                                                <td>ACTIVE</td>
-                                                <td>MAH/3872397/PO</td>
-                                                <td>12/01/2021</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true" (click)="addCompany()"></i></a> -->
-                                                    <a><i class="fa fa-eye" (click)="viewCompany()"></i></a>
-                                                    <a><i class="fa fa-trash" (click)="deleteCompany()"></i></a>
-                                                    <a><i class="fa fa-ban" style="color: green;"></i></a>
-                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Larsen & Toubro Ltd</td>
-                                                <td>Maharastra</td>
-                                                <td>9878676512</td>
-                                                <td>ramesh.mittal@larsentoubro.com</td>
-                                                <td>Mumbai</td>
-                                                <td>ACTIVE</td>
-                                                <td>MAH/3872397/PO</td>
-                                                <td>12/01/2021</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true" (click)="addCompany()"></i></a> -->
-                                                    <a><i class="fa fa-eye" (click)="viewCompany()"></i></a>
-                                                    <a><i class="fa fa-trash" (click)="deleteCompany()"></i></a>
-                                                    <a><i class="fa fa-ban" style="color: green;"></i></a>
-                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Larsen & Toubro Ltd</td>
-                                                <td>Maharastra</td>
-                                                <td>9878676512</td>
-                                                <td>ramesh.mittal@larsentoubro.com</td>
-                                                <td>Mumbai</td>
-                                                <td>ACTIVE</td>
-                                                <td>MAH/3872397/PO</td>
-                                                <td>12/01/2021</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true" (click)="addCompany()"></i></a> -->
-                                                    <a><i class="fa fa-eye" (click)="viewCompany()"></i></a>
-                                                    <a><i class="fa fa-trash" (click)="deleteCompany()"></i></a>
-                                                    <a><i class="fa fa-ban" style="color: green;"></i></a>
-                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Larsen & Toubro Ltd</td>
-                                                <td>Maharastra</td>
-                                                <td>9878676512</td>
-                                                <td>ramesh.mittal@larsentoubro.com</td>
-                                                <td>Mumbai</td>
-                                                <td>ACTIVE</td>
-                                                <td>MAH/3872397/PO</td>
-                                                <td>12/01/2021</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true" (click)="addCompany()"></i></a> -->
-                                                    <a><i class="fa fa-eye" (click)="viewCompany()"></i></a>
-                                                    <a><i class="fa fa-trash" (click)="deleteCompany()"></i></a>
-                                                    <a><i class="fa fa-ban" style="color: green;"></i></a>
-                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
-                                                </td>
-                                            </tr>
+
                                         </tbody>
-                                        <!-- <tbody *ngIf="listing?.length==0">
+                                        <tbody *ngIf="listing?.length==0">
                                             <tr>
                                                 <td colspan="13" vertical-align="middle">
                                                     <div class="no-record">
@@ -180,13 +115,13 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                        </tbody> -->
+                                        </tbody>
                                     </table>
                                 </div>
-                                <!-- <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
+                                <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
                                     *ngIf="listing?.length">
                                     <pagination-controls (pageChange)="pagination($event)"></pagination-controls>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -323,3 +258,7 @@
         </form>
     </div>
 </div>
+
+<!-- missing keys
+Spl. Routes
+-->

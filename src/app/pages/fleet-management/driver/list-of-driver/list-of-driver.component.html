@@ -71,10 +71,12 @@
                                                 <td>{{item?.aadharCardNo}}</td>
                                                 <td>{{item?.createTime | date:'medium'}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye"
-                                                            (click)="viewDriver(item?.userId)"></i></a>
-                                                    <a><i class="fa fa-trash"
-                                                            (click)="openModal('DELETE',item?.userId)"></i></a>
+                                                    <a (click)="viewDriver(item?.userId)"><i class="fa fa-eye"
+                                                            ></i></a>
+                                                            <a><i class="fa fa-trash"
+                                                                (click)="deleteDriver(item?.userId)"></i></a>
+                                                    <!-- <a><i class="fa fa-trash"
+                                                            (click)="openModal('DELETE',item?.userId)"></i></a> -->
                                                     <a *ngIf="item?.userStatus == 'ACTIVE'"
                                                         (click)="openModal('BLOCK',item?.userId)"><i class="fa fa-ban"
                                                             style="color: green;"></i></a>
@@ -225,8 +227,8 @@
                                 <p style="font-size: 18px;">Are you sure you want to active this user?</p>
                                 <div>
                                     <button type="submit" class="btn btn-success mr-2"
-                                        (click)="blockUser()">Yes</button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                        (click)="blockUser()" style="width: 25%;">Yes</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal" style="width: 25%;">No</button>
                                 </div>
                             </div>
                         </div>

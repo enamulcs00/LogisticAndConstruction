@@ -13,8 +13,12 @@ export class ViewFleetOwnerComponent implements OnInit {
   id: any;
   editData: any
 
-  constructor(public route: Router, public service: MainService, public active: ActivatedRoute) {
-    this.active.params.subscribe((params) => {
+  aadharCardUrl: any;
+  panCardUrl: any;
+  gstinUrl: any;
+
+  constructor(public router: Router, public service: MainService, public activatedRoute: ActivatedRoute) {
+    this.activatedRoute.params.subscribe((params) => {
       console.log(params)
       this.id = params.id
     })
@@ -39,6 +43,7 @@ export class ViewFleetOwnerComponent implements OnInit {
       'panCardNo': new FormControl(''),
       'gstinNo': new FormControl('')
     })
+    this.editForm.disable();
   }
 
   // -------------- view fleet owner ------------------- //
@@ -53,6 +58,10 @@ export class ViewFleetOwnerComponent implements OnInit {
         // this.editData=res.data[0],
         // this.editImage=res.data[0].imageUrl
         this.editData = res.data
+        this.aadharCardUrl = res.data.userDetail.aadharCardUrl ? res.data.userDetail.aadharCardUrl : '';
+        this.panCardUrl = res.data.userDetail.panCardUrl ? res.data.userDetail.panCardUrl : ''
+        this.gstinUrl = res.data.userDetail.gstinUrl ? res.data.userDetail.gstinUrl : ''
+
         this.editForm.patchValue({
           'firstName': res.data.userDetail.firstName ? res.data.userDetail.firstName : '',
           'lastName': res.data.userDetail.lastName ? res.data.userDetail.lastName : '',
@@ -78,5 +87,9 @@ export class ViewFleetOwnerComponent implements OnInit {
       }
       this.service.hideSpinner();
     })
+  }
+
+  editFleetOwner() {
+    this.router.navigate(['edit-fleet-owner', this.id])
   }
 }

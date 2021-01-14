@@ -116,21 +116,21 @@ const routes: Routes = [
   // fleet management
   { path: 'list-of-fleet-owner', component: ListOfFleetOwnerComponent },
   { path: 'add-fleet-owner', component: AddFleetOwnerComponent },
-  { path: 'edit-fleet-owner', component: EditFleetOwnerComponent },
+  { path: 'edit-fleet-owner/:id', component: EditFleetOwnerComponent },
   { path: 'view-fleet-owner/:id', component: ViewFleetOwnerComponent },
   { path: 'delete-fleet-owner/:id', component: DeleteFleetOwnerComponent },
   // fleet management-> truck
   { path: 'list-of-truck', component: ListOfTruckComponent },
   { path: 'add-truck', component: AddTruckComponent },
-  { path: 'edit-truck', component: EditTruckComponent },
-  { path: 'view-truck', component: ViewTruckComponent },
-  { path: 'delete-truck', component: DeleteTruckComponent },
+  { path: 'edit-truck/:id', component: EditTruckComponent },
+  { path: 'view-truck/:id', component: ViewTruckComponent },
+  { path: 'delete-truck/:id', component: DeleteTruckComponent },
   // fleet management-> driver
   { path: 'list-of-driver', component: ListOfDriverComponent },
   { path: 'add-driver', component: AddDriverComponent },
-  { path: 'edit-driver', component: EditDriverComponent },
+  { path: 'edit-driver/:id', component: EditDriverComponent },
   { path: 'view-driver/:id', component: ViewDriverComponent },
-  { path: 'delete-driver', component: DeleteDriverComponent },
+  { path: 'delete-driver/:id', component: DeleteDriverComponent },
   // fleet management-> routes
   { path: 'routes', component: RoutesComponent },
   // fleet management-> bid
@@ -157,7 +157,7 @@ const routes: Routes = [
   { path: 'view-supplier-quote/:id', component: ViewSupplierQuoteComponent },
   // supplier management-> billing
   { path: 'list-of-supplier-billing', component: ListOfSupplierBillingComponent },
-  { path: 'view-supplier-billing', component: ViewSupplierBillingComponent },
+  { path: 'view-supplier-billing/:id', component: ViewSupplierBillingComponent },
   // supplier management-> fleet owner bid
   { path: 'list-of-bid-by-fleet-owner-supplier', component: ListOfBidByFleetOwnerSupplierComponent },
   { path: 'view-bid-by-fleet-owner-supplier', component: ViewBidByFleetOwnerSupplierComponent },

@@ -68,6 +68,8 @@
                                         <button class="btn" type="button"
                                             style="background-color: green;">Validate</button>
                                     </div>
+                                    <img [src]="aadharCardUrl" alt="">  
+
                                 </div>
                                 <label for="pan" class="col-sm-2 col-form-label">Pan Card</label>
                                 <div class="col-sm-4 input-group">
@@ -77,27 +79,27 @@
                                         <button class="btn" type="button"
                                             style="background-color: green;">Validate</button>
                                     </div>
+                                    <img [src]="panCardUrl" alt=""> 
+
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-4">
                                     <label for="AadharCard" class="btn btn-success btn-block btn-outlined">Upload Aadhar
                                         Card</label>
-                                        <!-- <input type="file" (change)="handleInputChange($event)" class="hidden" accept=".png, .jpg, .jpeg" /> -->
-
-                                    <!-- <input type="file" id="AadharCard" accept="image/*" style="display: none"
-                                        class="form-control" (change)="uploadAadhaar($event)"> -->
+                                    <input type="file" id="AadharCard" accept="image/*" style="display: none"
+                                        class="form-control" (change)="uploadAadhaar($event)">
                                 </div>
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-4">
                                     <label for="PanCard" class="btn btn-success btn-block btn-outlined">Upload Pan
                                         Card</label>
-                                    <!-- <input type="file" id="PanCard" accept="image/*" style="display: none"
-                                        class="form-control" (change)="uplaodPan($event)"> -->
+                                    <input type="file" id="PanCard" accept="image/*" style="display: none"
+                                        class="form-control" (change)="uplaodPan($event)">
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="form-group row">
                                 <label for="gst" class="col-sm-2 col-form-label">GISTN No</label>
@@ -108,17 +110,19 @@
                                         <button class="btn" type="button"
                                             style="background-color: green;">Validate</button>
                                     </div>
+                                    <img [src]="gstinUrl" alt=""> 
+
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-4">
                                     <label for="gstfile" class="btn btn-success btn-block btn-outlined">GISTN
                                         Copy</label>
-                                    <!-- <input type="file" id="gstfile" accept="image/*" style="display: none"
-                                        class="form-control" (change)="uplaodGst($event)"> -->
+                                    <input type="file" id="gstfile" accept="image/*" style="display: none"
+                                        class="form-control" (change)="uplaodGst($event)">
                                 </div>
-                            </div>
+                            </div> -->
                         </form>
                     </div>
                     <br>
@@ -126,6 +130,8 @@
                         <div class="head_flt_select input-label" style="margin-left: 1%">
                             <button  type="submit" class="btn btn-theme"
                                 style="width: 15%;margin-left: 40%;margin-bottom: 3%;" [routerLink]="['/list-of-fleet-owner']">Back</button>
+                                <button  type="submit" class="btn btn-theme"
+                                style="width: 15%;margin-left: 40%;margin-bottom: 3%;" (click)="editFleetOwner()">edit</button>
                         </div>
                     </div>
 

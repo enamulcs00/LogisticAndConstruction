@@ -69,10 +69,11 @@
                                                 <td>{{item?.fleetOnwerNo}}</td>
                                                 <td>{{item?.createTime | date:'medium'}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye"
-                                                            (click)="viewTruck(item?.truckId)"></i></a>
-                                                    <a><i class="fa fa-trash"
-                                                            (click)="openModal('DELETE',item?.userId)"></i></a>
+                                                    <a (click)="viewTruck(item?.truckId)"><i class="fa fa-eye"></i></a>
+                                                    <!-- <a><i class="fa fa-trash"
+                                                            (click)="openModal('DELETE',item?.userId)"></i></a> -->
+                                                    <a (click)="deleteTruck(item?.truckId)"><i
+                                                            class="fa fa-trash"></i></a>
                                                     <!-- <a *ngIf="item?.userStatus == 'ACTIVE'"
                                                         (click)="openModal('BLOCK',item?.userId)"><i class="fa fa-ban"
                                                             style="color: green;"></i></a>
@@ -146,7 +147,7 @@
 
 
 <!-- delete_modal Start -->
-<div class="modal fade global-modal reset-modal" id="deleteModal">
+<!-- <div class="modal fade global-modal reset-modal" id="deleteModal">
     <div class="modal-dialog max-WT-500">
         <form class="change_password">
             <div class="modal-content">
@@ -173,7 +174,7 @@
             </div>
         </form>
     </div>
-</div>
+</div> -->
 <!-- delete_modal End -->
 
 <!-- block_modal Start -->

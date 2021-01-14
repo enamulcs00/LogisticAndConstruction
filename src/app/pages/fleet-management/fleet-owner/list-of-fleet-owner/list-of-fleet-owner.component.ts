@@ -307,9 +307,9 @@ export class ListOfFleetOwnerComponent implements OnInit {
   addFleetOwner() {
     this.router.navigate(['add-fleet-owner'])
   }
-  resetPassword(){
+  resetPassword(userId){
     console.log("reset password calickw")
-    this.router.navigate(['/reset-password'])
+    this.router.navigate(['/reset-password', userId])
   }
 }
 

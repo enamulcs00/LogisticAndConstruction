@@ -297,7 +297,7 @@ export class ListOfDriverComponent implements OnInit {
   }
 
   addDriver() {
-    this.router.navigate(['add-driver'])
+    this.router.navigate(['/add-driver'])
   }
   resetPassword(){
     console.log("reset password calickw")
@@ -306,5 +306,9 @@ export class ListOfDriverComponent implements OnInit {
 
   viewDriver(userId){
     this.router.navigate(['/view-driver', userId])
+  }
+  
+  deleteDriver(userId){
+    this.router.navigate(['/delete-driver', userId])
   }
 }

@@ -1,33 +1,14 @@
-<!-- <div class="container">
-    <img src="/assets/img/toolbar.png" style="margin-left: 30%;
-    margin-top: 9%;
-    width: 69%;"><br>
-    <textarea style="left: 36%;
-    width: 50%;
-    bottom: 13%;
-    position: absolute;
-    height: 37%;"></textarea><br><br>
-    
-        <button type="button" style="background-color: black;color: white;width:10%;position: relative;left:76%" class="mt-2">Edit</button>
-        <button type="button" style="background-color: black;color: white;width:10%;position: relative;left:78%" class="ml-2 mt-2">Save</button>
-    
-    
-</div>
-        
-   -->
-   <section>
+<section>
     <div class="container1440 mt-5">
         <main class="middle-content">
             <div class="content-section">
-                <div class="outer-box">
+                <!-- <div class="outer-box">
                     <div class="global-table no-radius p0">
                         <div class="tab-content1">
                             <div class="tab-pane1">
-
-                                <img src="/assets/img/toolbar.png" style="margin-left: 14%;
-    margin-top: 9%;
-    width: 69%;"><br>
-
+                                <img src="/assets/img/toolbar.png" style="margin-left: 14%;margin-top: 9%;width: 69%;">
+                                <br>
+                                <ck-editor name="editor1" [(ngModel)]="editorValue" skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
 
                                 <button type="button"
                                     style="background-color: black;color: white;width:10%;position: relative;left:59%"
@@ -35,18 +16,32 @@
                                 <button type="button"
                                     style="background-color: black;color: white;width:10%;position: relative;left:62%"
                                     class="ml-2 mt-2">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
 
-
-
+                <div class="order-view mt30 max-WT-700 mrgn-0-auto" style="padding-bottom: 1px;min-width:654px">
+                    <div class="main-block-innner mb40 mt40">
+                        <div class="add-store-block input-style" style="margin-top: -7%;">
+                            <div class="form-group row ">
+                                <div class="col-md-12">
+                                    <ck-editor name="editor1" aria-placeholder="Description" debounce="500"
+                                        [(ngModel)]="data.pageData" skin="moono-lisa" language="en" [fullPage]="true">
+                                    </ck-editor>
+                                </div>
+                            </div>
+                            <div class="text-center mt40">
+                                <a href="javascript:void(0)" class="btn btn-large  max-WT-200 font-100 btn-green mr-2"
+                                    (click)="saveTermsAndConditions()">Save</a>
+                                <!-- <a href="javascript:void(0)" class="btn btn-large  max-WT-200 font-100 btn-grey ml5" [routerLink]="['/static-content-management']">Cancel</a> -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
-
     </div>
-
 </section>
 
 <app-footer></app-footer>
