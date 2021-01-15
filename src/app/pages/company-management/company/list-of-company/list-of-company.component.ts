@@ -36,6 +36,8 @@ export class ListOfCompanyComponent implements OnInit {
   cityArr: any;
   companyNameArr: any=[];
   companylisting: any=[];
+  selectedCompany: any;
+  siteArr: any=[];
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -119,22 +121,29 @@ export class ListOfCompanyComponent implements OnInit {
 
   getCompanyNameList(){
     this.service.showSpinner()
-    var url="account/admin/filter-user-details?roleStatus="+'COMPANY'
+    var url="account/admin/get-company-by-company-name"
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
-        this.companylisting = res['data']['list'];
-        this.companylisting.forEach(element => {
-          this.companyNameArr.push({
-            'companyName': element.companyName,
-            'companyId': element.userId
-          })
-        });
-        console.log('Company array', this.companyNameArr)
-      }
-     
+         this.companyNameArr = res['data'];
+      }   
     })
   }
+
+  searchLocation(event) { 
+    this.siteArr=[]
+    this.service.showSpinner()
+    this.selectedCompany = event.target.value
+    console.log("event", this.selectedCompany)
+    var url = "account/admin/get-location?idOfCompany=" + this.selectedCompany
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.siteArr = res['data'];
+      }
+    })
+  }
+ 
   // ------------------------pagination -------------------------//
   pagination(page){
     this.totalRecords=[]

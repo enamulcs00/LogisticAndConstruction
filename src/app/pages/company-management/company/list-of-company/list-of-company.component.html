@@ -12,15 +12,16 @@
                                         <!-- <select class="selectBox">
                                             <option>Select Company Name</option>
                                         </select> -->
-                                        <select id="CompanyName" class="selectBox" >
-                                            <option value="companyName">Company name</option>
-                                            <option *ngFor="let company of companyNameArr" >{{company.companyName}}</option>
+                                        <select id="CompanyName" class="selectBox" (change)="searchLocation($event)">
+                                            <option value="">Company name</option>
+                                            <option *ngFor="let company of companyNameArr" value={{company.id}}>{{company.name}}</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 mt-4">
                                         <label>Location</label><br>
                                         <select class="selectBox">
-                                            <option>Location</option>
+                                            <option  value="">Location</option>
+                                            <option *ngFor="let site of siteArr" value={{site.id}}>{{site.address}}</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 mt-4">

@@ -9,38 +9,81 @@
                 <div class="order-view mt30 mrgn-0-auto">
 
                     <div>
-                        <form>
+                        <form [formGroup]="addCompanyUserForm">
                             <div class="form-group row">
                                 <label for="Fname" class="col-sm-2 col-form-label">First Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="Fname" class="form-control" placeholder="First name">
+                                    <input type="text" id="Fname" class="form-control" placeholder="First name"
+                                        formControlName="firstName">
+                                    <span class="error"
+                                        *ngIf="addCompanyUserForm.get('firstName').hasError('required') && (addCompanyUserForm.get('firstName').dirty || addCompanyUserForm.get('firstName').touched )"
+                                        class="error">
+                                        <p>*Please enter first name.</p>
+                                    </span>
+                                    <span class="error"
+                                        *ngIf="addCompanyUserForm.get('firstName').hasError('pattern') && addCompanyUserForm.get('firstName').dirty"
+                                        class="error">
+                                        <p> *Please enter valid first name.</p>
+                                    </span>
                                 </div>
                                 <label for="Lname" class="col-sm-2 col-form-label">Last Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="Lname" class="form-control" placeholder="Last name">
+                                    <input type="text" id="Lname" class="form-control" placeholder="Last name"
+                                        formControlName="lastName">
+                                    <span class="error"
+                                        *ngIf="addCompanyUserForm.get('lastName').hasError('required') && (addCompanyUserForm.get('lastName').dirty || addCompanyUserForm.get('lastName').touched )"
+                                        class="error">
+                                        <p>*Please enter last name.</p>
+                                    </span>
+                                    <span class="error"
+                                        *ngIf="addCompanyUserForm.get('lastName').hasError('pattern') && addCompanyUserForm.get('lastName').dirty"
+                                        class="error">
+                                        <p> *Please enter valid Last name.</p>
+                                    </span>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="Mobile" class="col-sm-2 col-form-label">Mobile No</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="Mobile" class="form-control"
-                                        placeholder="Enter Mobile Number">
+                                        placeholder="Enter mobile number" formControlName="phoneNo">
+                                    <span class="error"
+                                        *ngIf="addCompanyUserForm.get('phoneNo').hasError('required') && (addCompanyUserForm.get('phoneNo').dirty || addCompanyUserForm.get('phoneNo').touched )"
+                                        class="error">
+                                        <p> *Please enter mobile number.</p>
+                                    </span>
+                                    <span class="error"
+                                        *ngIf="addCompanyUserForm.get('phoneNo').hasError('pattern') && addCompanyUserForm.get('phoneNo').dirty"
+                                        class="error">
+                                        <p> *Please enter valid mobile number.</p>
+                                    </span>
                                 </div>
                                 <label for="email" class="col-sm-2 col-form-label">Email ID</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="email" class="form-control" placeholder="Enter mail Id">
+                                    <input type="text" id="email" class="form-control" placeholder="Enter mail Id"
+                                        formControlName="email">
+                                    <span class="error">
+                                        <p *ngIf="addCompanyUserForm.get('email').hasError('required') && (addCompanyUserForm.get('email').dirty || addCompanyUserForm.get('email').touched )"
+                                            class="error" padding>*Please enter email id.</p>
+                                    </span>
+                                    <span class="error">
+                                        <p *ngIf="addCompanyUserForm.get('email').hasError('pattern') && addCompanyUserForm.get('email').dirty"
+                                            class="error" padding>*Please enter valid email.</p>
+                                    </span>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="CompanyName" class="col-sm-2 col-form-label">Company Name</label>
-                                <div class="col-sm-4">
-                                    <input type="text" id="CompanyName" class="form-control" placeholder="Company name">
-                                </div>
+                                <select id="CompanyName" class="form-control" formControlName="companyName" (change)="searchLocation($event)">
+                                    <option value="">Company name</option>
+                                    <option *ngFor="let company of companyNameArr" value={{company.id}}>{{company.name}}</option>
+                                </select>
                                 <label for="state" class="col-sm-2 col-form-label">Site</label>
                                 <div class="col-sm-4">
-                                    <select id="city" class="form-control">
-                                        <option value="State">Mumbai</option>
+                                    <select id="city" class="form-control" formControlName="site">
+                                        <option value="">Site</option>
+                                    <option *ngFor="let site of siteArr" value={{site.id}}>{{site.address}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -49,8 +92,10 @@
 
                                 <label for="state" class="col-sm-2 col-form-label">User Type</label>
                                 <div class="col-sm-4">
-                                    <select id="city" class="form-control">
-                                        <option value="State">Site manager</option>
+                                    <select id="city" class="form-control" formControlName="userType">
+                                        <option value="">Select</option>
+                                        <option value="COMPANY_SITE_ENGG">Site Engineer</option>
+                                        <option value="COMPANY_MANAGER">Company Manager</option>
                                     </select>
                                 </div>
                             </div>
@@ -59,7 +104,7 @@
                     <br>
                     <div class="head_flt_select">
                         <div class="head_flt_select input-label" style="margin-left: 1%">
-                            <button routerLink='/list-of-company-user' type="submit" class="btn btn-theme"
+                            <button (click)="submitForm()" type="submit" class="btn btn-theme"
                                 style="width: 15%;margin-left: 40%;margin-bottom: 3%;">Save</button>
                         </div>
                     </div>

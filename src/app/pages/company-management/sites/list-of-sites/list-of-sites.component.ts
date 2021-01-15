@@ -37,6 +37,8 @@ export class ListOfSitesComponent implements OnInit {
   selectedState: any;
   cityArr: any;
   companyList: any=[];
+  selectedCompany: any;
+  siteArr: any=[];
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -55,7 +57,7 @@ export class ListOfSitesComponent implements OnInit {
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
     this.dateValidation()
      this.getSiteList();
-     this.getCompanyList();
+     this.getCompanyNameList();
      this.getStateList()
   
   }
@@ -93,22 +95,28 @@ export class ListOfSitesComponent implements OnInit {
     })
   }
 
-  getCompanyList(){
+  getCompanyNameList(){
     this.service.showSpinner()
-    var url="account/admin/filter-user-details?roleStatus="+'COMPANY'
+    var url="account/admin/get-company-by-company-name"
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
-        this.companyList = res['data']['list'];
-        this.companyList.forEach(element => {
-          this.companyNameArr.push({
-            'companyName': element.companyName,
-            'companyId': element.userId
-          })
-        });
-        console.log('Company array', this.companyNameArr)
+         this.companyNameArr = res['data'];
+      }   
+    })
+  }
+
+  searchLocation(event) { 
+    this.siteArr=[]
+    this.service.showSpinner()
+    this.selectedCompany = event.target.value
+    console.log("event", this.selectedCompany)
+    var url = "account/admin/get-location?idOfCompany=" + this.selectedCompany
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.siteArr = res['data'];
       }
-     
     })
   }
   
