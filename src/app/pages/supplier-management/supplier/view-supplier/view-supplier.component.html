@@ -56,13 +56,15 @@
       <label for="aadhar" class="col-sm-2 col-form-label">Aadhar No</label>
       <div class="col-sm-4">
         <input type="text" id="aadhar" class="form-control" formControlName="AadharNo" readonly>
+        <img [src]="aadharCardUrl" alt="" class="view-img">
       </div>
       <label for="pan" class="col-sm-2 col-form-label">Pan Card</label>
       <div class="col-sm-4">
         <input type="text" id="pan" class="form-control" formControlName="PanNumber" readonly>
+        <img [src]="panCardUrl" alt="" class="view-img">
       </div>
     </div>
-    <div class="form-group row">
+    <!-- <div class="form-group row">
       <label class="col-sm-2 col-form-label"></label>
       <div class="col-sm-4">
         <label for="AadharCard" class="btn btn-success btn-block btn-outlined">Upload Aadhar Card</label>
@@ -73,20 +75,21 @@
         <label for="PanCard" class="btn btn-success btn-block btn-outlined">Upload Pan Card</label>
         <input type="file" id="PanCard" accept="image/*" style="display: none" class="form-control">
       </div>
-    </div>
+    </div> -->
     <div class="form-group row">
       <label for="gst" class="col-sm-2 col-form-label">GISTN No</label>
       <div class="col-sm-4">
         <input type="text" id="gst" class="form-control" formControlName="gstNumber" readonly>
+        <img [src]="gstinUrl" alt="" class="view-img">
       </div>
     </div>
-    <div class="form-group row">
+    <!-- <div class="form-group row">
       <label class="col-sm-2 col-form-label"></label>
       <div class="col-sm-4">
         <label for="AadharCard" class="btn btn-success btn-block btn-outlined">GISTN Copy</label>
   <input type="file" id="AadharCard" accept="image/*" style="display: none" class="form-control">
             </div>
-    </div>
+    </div> -->
   </form>
         </div>
         <br>

@@ -13,6 +13,9 @@ id:any;
 ViewSupplierForm: FormGroup
 listing: any = [];
 totalRecords: any
+aadharCardUrl: any;
+  panCardUrl: any;
+  gstinUrl: any;
   constructor(private service:MainService,private activatedRoute:ActivatedRoute) {
     this.ViewSupplierForm = new FormGroup({
 firstName: new FormControl(''),
@@ -43,9 +46,14 @@ gstNumber: new FormControl('')
 console.log('View Response',res.data)
       this.service.hideSpinner()
       if (res['status'] == 200) {
+        this.service.toasterSucc(res.message)
         this.listing = res.data;
+        this.aadharCardUrl = res.data.userDetail.aadharCardUrl ? res.data.userDetail.aadharCardUrl : 'https://images.app.goo.gl/8DASmk93XpRTLdsG9';
+        this.panCardUrl = res.data.userDetail.panCardUrl ? res.data.userDetail.panCardUrl : 'https://images.app.goo.gl/aDwPDsFSsVwxKQiq5'
+        this.gstinUrl = res.data.userDetail.gstinUrl ? res.data.userDetail.gstinUrl : 'https://images.app.goo.gl/sCaxYXNT8VM47Ahq6'
+        console.log('This is image pack',this.listing.userDetail)
         this.totalRecords = res.data.totalCount
-        this.service.toasterInfo(res.message)
+
         this.ViewSupplierForm.patchValue({
           firstName: this.listing?.userDetail?.firstName,
           lastName: this.listing?.userDetail?.lastName,
@@ -61,12 +69,12 @@ console.log('View Response',res.data)
         })
       }
       else {
-        this.service.hideSpinner()
+
         this.service.toasterErr(res.message)
       }
-    },error=>{
-      this.service.hideSpinner()
-      this.service.toasterErr(error.message)
+    },(error:any)=>{
+console.log('Error',error)
+      this.service.toasterErr('Something went wrong')
     }
     )
   }
