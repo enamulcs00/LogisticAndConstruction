@@ -98,7 +98,7 @@ const routes: Routes = [
   { path: 'view-company-quote/:id/:name', component: ViewCompanyQuoteComponent },
   // company management-> billing
   { path: 'list-of-company-billing', component: ListOfCompanyBillingComponent },
-  { path: 'view-company-billing', component: ViewCompanyBillingComponent },
+  { path: 'view-company-billing/:id', component: ViewCompanyBillingComponent },
 
   // fleet management
   { path: 'list-of-fleet-owner', component: ListOfFleetOwnerComponent },

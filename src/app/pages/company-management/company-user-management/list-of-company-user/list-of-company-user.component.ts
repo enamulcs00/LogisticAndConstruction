@@ -31,6 +31,7 @@ export class ListOfCompanyUserComponent implements OnInit {
   pageSize: any=10;
   action: any;
   userstatus: any;
+  companyNameArr: any=[];
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -48,6 +49,7 @@ export class ListOfCompanyUserComponent implements OnInit {
     this.fromDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() : '0'+ (date.getMonth() + 1) )+ '-' + date.getFullYear()
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
     this.dateValidation()
+    this.getCompanyNameList()
     // this.getlist();
   }
 
@@ -81,6 +83,26 @@ export class ListOfCompanyUserComponent implements OnInit {
       this.totalRecords = res.data.totalCount
       console.log('kn', this.totalRecords);
       
+    })
+  }
+
+  //get company names list
+  getCompanyNameList(){
+    this.service.showSpinner()
+    var url="account/admin/filter-user-details?roleStatus="+'COMPANY'
+    this.service.get(url).subscribe((res:any)=>{
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.listing = res['data']['list'];
+        this.listing.forEach(element => {
+          this.companyNameArr.push({
+            'companyName': element.companyName,
+            'companyId': element.userId
+          })
+        });
+        console.log('Company array', this.companyNameArr)
+      }
+     
     })
   }
   // ------------------------pagination -------------------------//

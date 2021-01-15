@@ -20,10 +20,11 @@ export class ViewCompanyBookingComponent implements OnInit {
       this.supplierName= (params['name']);// (+) converts string 'id' to a number
       console.log(this.userId, this.supplierName)
        });
-       this.getQuoteList()
+       this.getBookingDetails()
   }
 
-  getQuoteList(){
+  //Get particular company booking details
+  getBookingDetails(){
     this.service.showSpinner()
     var url="account/admin/filter-client-request-details?quotesId=" +this.userId + '&supplierName=' +this.supplierName
     this.service.get(url).subscribe((res:any)=>{

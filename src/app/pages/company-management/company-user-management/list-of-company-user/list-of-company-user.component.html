@@ -9,8 +9,9 @@
                                 <div class="row">
                                     <div class="col-lg-2 mt-4">
                                         <label>Company Name</label><br>
-                                        <select class="selectBox">
-                                            <option>Select Company Name</option>
+                                        <select id="CompanyName" class="selectBox" >
+                                            <option value="companyName">Company name</option>
+                                            <option *ngFor="let company of companyNameArr" >{{company.companyName}}</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 mt-4">
@@ -21,21 +22,18 @@
                                     </div>
                                     <div class="col-lg-2 mt-4">
                                         <label>First Name</label><br>
-                                        <select class="selectBox">
-                                            <option>First Name</option>
-                                        </select>
+                                        <input type="text" id="Mobile" class="selectBox"
+                                        >
                                     </div>
                                     <div class="col-lg-2 mt-4">
                                         <label>Last Name</label><br>
-                                        <select class="selectBox">
-                                            <option>Last Name</option>
-                                        </select>
+                                        <input type="text" id="Mobile" class="selectBox"
+                                        >
                                     </div>
                                     <div class="col-lg-2 mt-4">
                                         <label>Mobile</label><br>
-                                        <select class="selectBox">
-                                            <option>Mobile</option>
-                                        </select>
+                                        <input type="text" id="Mobile" class="selectBox"
+                                        >
                                     </div>
                                 </div>
                                 <div class="row  d-flex justify-content-end w_100 mt-3">
