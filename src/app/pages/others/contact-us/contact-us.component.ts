@@ -18,6 +18,7 @@ export class ContactUsComponent implements OnInit {
   userForm: FormGroup;
   contactUsForm: FormGroup;
   listing: any = [];
+  ContactDetails;any = [];
   id: number;
   deleted: any;
   totalRecords: any
@@ -43,7 +44,7 @@ export class ContactUsComponent implements OnInit {
   ngOnInit() {
     this.getContactDetails()
     this.contactUsForm = this.fb.group({
-      'contactNo': ["",Validators.compose([Validators.required, Validators.minLength(10),Validators.maxLength(10),Validators.pattern("^[6-9][0-9]{9}$")])],
+      'contactNo': ["",Validators.compose([Validators.required, Validators.minLength(10),Validators.maxLength(10),Validators.pattern('(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})')])],
       'emailId': ["", Validators.compose([Validators.required, Validators.maxLength(60), Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/)])],
     })
 
@@ -88,28 +89,36 @@ setEditContactDetails(){
   this.service.post(url,obj).subscribe((res:any)=>{
     console.log('This is contact Us',res)
 this,this.service.hideSpinner()
+this.contactUsForm.reset()
 if(res.status == 200){
   this.service.toasterSucc(res.message)
+  this.getContactDetails()
 }
 else{
   this.service.toasterErr(res.message)
+  this.getContactDetails()
 }
   },err=>{
     this.service.toasterErr('Something went wrong')
+    this.getContactDetails()
   }
   )
 }
 EditContactUsDetails(){
-
+this.contactUsForm.patchValue({
+  emailId:this.listing.email,
+  contactNo: this.listing.contactNo
+})
 }
 getContactDetails(){
-  let url = `account/admin/get-contact-Details?contactId=0`
+  let url = `account/admin/get-contact-Details`
   this.service.showSpinner()
   this.service.get(url).subscribe((res:any)=>{
-    console.log('Conatc Get',res);
+    console.log('Conatc Get',res.data);
 
 this,this.service.hideSpinner()
 if(res.status == 200){
+  this.listing = res.data[0];
   this.service.toasterSucc(res.message)
 }
 else{
@@ -121,20 +130,20 @@ else{
 }
 
   //-----------------------------list api integration --------------------------------//
-  getlist(){
-    this.service.showSpinner()
-    var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
-    this.service.get(url).subscribe((res:any)=>{
-      this.service.hideSpinner()
-      if (res['status'] == 200) {
-        this.listing = res['data']['list'];
-      }
-      console.log('kfg',this.listing);
-      this.totalRecords = res.data.totalCount
-      console.log('kn', this.totalRecords);
+  // getlist(){
+  //   this.service.showSpinner()
+  //   var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
+  //   this.service.get(url).subscribe((res:any)=>{
+  //     this.service.hideSpinner()
+  //     if (res['status'] == 200) {
+  //       this.listing = res['data']['list'];
+  //     }
+  //     console.log('kfg',this.listing);
+  //     this.totalRecords = res.data.totalCount
+  //     console.log('kn', this.totalRecords);
 
-    })
-  }
+  //   })
+  // }
   // ------------------------pagination -------------------------//
   pagination(page){
     this.totalRecords=[]
@@ -142,7 +151,7 @@ else{
     this.pageNumber=page;
     console.log('jh', this.pageNumber);
 
-    this.getlist()
+    this.getContactDetails()
   }
   //------------------------------filter by search api integration ---------------------------------//
   search() {
@@ -170,7 +179,7 @@ else{
   // ------------------------------reset filter------------------------------//
   resetForm(){
     this.userForm.reset()
-    this.getlist();
+  //  this.getlist();
   }
 
   //========modal=======//
@@ -186,7 +195,7 @@ else{
       if (this.deleted.ststus = 200) {
         $('#deleteModal').modal('hide')
         this.service.toasterSucc(this.deleted.message);
-        this.getlist();
+    //    this.getlist();
       }
      }, err => {   
        this.service.hideSpinner();  
@@ -221,7 +230,7 @@ else{
           $('#active').modal('hide');
           this.service.toasterSucc('User Activated Successfully');
         }
-        this.getlist()        
+      //  this.getlist()        
           } 
      }, err => {   
          this.service.hideSpinner();  
