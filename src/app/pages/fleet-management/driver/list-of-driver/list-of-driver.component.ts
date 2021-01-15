@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainService } from 'src/app/provider/main.service';
 // import { ngxCsv } from 'ngx-csv/ngx-csv';
-// import { ExportToCsv } from 'export-to-csv';
+import { ExportToCsv } from 'export-to-csv';
 
 declare var $: any
 declare var kendo: any;
@@ -267,8 +267,8 @@ export class ListOfDriverComponent implements OnInit {
       useBom: true,
       useKeysAsHeaders: true,
     };
-    // const csvExporter = new ExportToCsv(options);
-    //  csvExporter.generateCsv(listingArr); 
+    const csvExporter = new ExportToCsv(options);
+     csvExporter.generateCsv(listingArr); 
   }
 
   //--------------------------------export pdf ----------------------------------------

@@ -9,7 +9,7 @@
                                 <div class="row">
                                     <div class="col-lg-2 mt-4">
                                         <label>Fleet Owner Company</label><br>
-                                        <select class="selectBox" [(ngModel)]="fleetOnwerCompanyName">
+                                        <select class="selectBox form-control" [(ngModel)]="fleetOnwerCompanyName">
                                             <option value="">Select Fleet Owner</option>
                                             <option *ngFor="let item of fleetOnwerCompanyNameArray"
                                                 [value]="item?.companyName">{{item?.companyName}}</option>
@@ -23,7 +23,7 @@
                                     </div>
                                     <div class="col-lg-2 mt-4">
                                         <label>Truck Type</label><br>
-                                        <select class="selectBox" [(ngModel)]="typeOfTruck">
+                                        <select class="selectBox form-control" [(ngModel)]="typeOfTruck">
                                             <option value="">Truck Type</option>
                                             <option *ngFor="let item of typeOfTruckArray" [value]="item?.typeOfTruck">
                                                 {{item?.typeOfTruck}}</option>

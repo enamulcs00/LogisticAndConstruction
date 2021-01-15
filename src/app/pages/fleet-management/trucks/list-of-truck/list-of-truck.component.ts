@@ -90,7 +90,7 @@ export class ListOfTruckComponent implements OnInit {
       }
     })
   }
-  
+
   //----------------------------- get truck type list --------------------------------//
   getTruckTypelist() {
     var url = 'account/admin/get-truckTypeDetails?page=0&pageSize=100'
@@ -106,7 +106,7 @@ export class ListOfTruckComponent implements OnInit {
     let dataArr = [];
     this.listing.forEach((element, ind) => {
       let obj = {
-        "Fleet Owner Company": element.fleetOnwerCompanyName ? element.fleetOnwerCompanyName : '',
+        "Fleet Owner Company": element.fleetOnwerCompanyName ? element.fleetOnwerCompanyName : 'N/A',
         "Truck Number": element.registrationNo ? element.registrationNo : 'N/A',
         "Truck Type": element.typeOfTruck ? element.typeOfTruck : 'N/A',
         "Mobile Fleet Owner": element.fleetOnwerNo ? element.fleetOnwerNo : 'N/A',
@@ -124,6 +124,7 @@ export class ListOfTruckComponent implements OnInit {
       useTextFile: false,
       useBom: true,
       useKeysAsHeaders: true,
+      headers: ["Fleet Owner Company", "Truck Number", "Truck Type", "Mobile Fleet Owner", "Date Of Creation"]
     };
     new ngxCsv(dataArr, 'List-of-truck', options);
   }

@@ -78,3 +78,6 @@ tr:nth-child(even) {
 input.form-control.input-field {
     border: 1px solid #aaaaaa;
 }
+select.selectBox.form-control {
+    border: 1px solid #aaaaaa;
+}
