@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MainService } from 'src/app/provider/main.service';
 // import { ngxCsv } from 'ngx-csv/ngx-csv';
 // import { ExportToCsv } from 'export-to-csv';
@@ -16,6 +16,7 @@ declare var kendo: any;
 export class ContactUsComponent implements OnInit {
 
   userForm: FormGroup;
+  contactUsForm: FormGroup;
   listing: any = [];
   id: number;
   deleted: any;
@@ -25,6 +26,7 @@ export class ContactUsComponent implements OnInit {
   userid: number;
   userStatus: any;
   fromDate: any;
+  date = new Date()
   maxFromDate: string;
   maxToDate: string;
   minToDate: any;
@@ -33,18 +35,18 @@ export class ContactUsComponent implements OnInit {
   action: any;
   userstatus: any;
   constructor(
-    private router: Router, public service: MainService
+    private router: Router, public service: MainService, private fb:FormBuilder
   ) {
 
   }
 
   ngOnInit() {
-    this.userForm = new FormGroup({
-      'startdate': new FormControl('', Validators.required),
-      'enddate': new FormControl('', Validators.required),
-      'searchText': new FormControl(''),
+    this.getContactDetails()
+    this.contactUsForm = this.fb.group({
+      'contactNo': ["",Validators.compose([Validators.required, Validators.minLength(10),Validators.maxLength(10),Validators.pattern("^[6-9][0-9]{9}$")])],
+      'emailId': ["", Validators.compose([Validators.required, Validators.maxLength(60), Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/)])],
     })
-    
+
     let date = new Date()
     this.fromDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() : '0'+ (date.getMonth() + 1) )+ '-' + date.getFullYear()
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
@@ -69,6 +71,55 @@ export class ContactUsComponent implements OnInit {
 
   }
 
+setEditContactDetails(){
+  let url = `account/admin/set-edit-contact-Details`
+  let obj =
+  {
+    "contactDetailId": 0,
+    "contactNo": this.contactUsForm.value.contactNo,
+     "createTime": this.date,
+     "deleted": true,
+    "email": this.contactUsForm.value.emailId,
+     "isDeleted": true,
+     "isEnable": true,
+     "updateTime": this.date
+  }
+  this.service.showSpinner()
+  this.service.post(url,obj).subscribe((res:any)=>{
+    console.log('This is contact Us',res)
+this,this.service.hideSpinner()
+if(res.status == 200){
+  this.service.toasterSucc(res.message)
+}
+else{
+  this.service.toasterErr(res.message)
+}
+  },err=>{
+    this.service.toasterErr('Something went wrong')
+  }
+  )
+}
+EditContactUsDetails(){
+
+}
+getContactDetails(){
+  let url = `account/admin/get-contact-Details?contactId=0`
+  this.service.showSpinner()
+  this.service.get(url).subscribe((res:any)=>{
+    console.log('Conatc Get',res);
+
+this,this.service.hideSpinner()
+if(res.status == 200){
+  this.service.toasterSucc(res.message)
+}
+else{
+  this.service.toasterErr(res.message)
+}
+  },err=>{
+    this.service.toasterErr('Something went wrong')
+  })
+}
+
   //-----------------------------list api integration --------------------------------//
   getlist(){
     this.service.showSpinner()
@@ -81,7 +132,7 @@ export class ContactUsComponent implements OnInit {
       console.log('kfg',this.listing);
       this.totalRecords = res.data.totalCount
       console.log('kn', this.totalRecords);
-      
+
     })
   }
   // ------------------------pagination -------------------------//
@@ -119,7 +170,7 @@ export class ContactUsComponent implements OnInit {
   // ------------------------------reset filter------------------------------//
   resetForm(){
     this.userForm.reset()
-    this.getlist();    
+    this.getlist();
   }
 
   //========modal=======//
@@ -251,15 +302,15 @@ export class ContactUsComponent implements OnInit {
         "UserID": element.userId ? element.userId : 'N/A',
         "PhoneNumber": String(element.phoneNo) ? String(element.phoneNo) : 'N/A',
         "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-        "Registration Date": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A', 
+        "Registration Date": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A',
       }
       listingArr.push(obj)
     });
-    const options = { 
+    const options = {
       fieldSeparator: ',',
       quoteStrings: '"',
       decimalSeparator: '.',
-      showLabels: true, 
+      showLabels: true,
       showTitle: true,
       title: 'Candidate Details CSV',
       useTextFile: false,
@@ -267,11 +318,11 @@ export class ContactUsComponent implements OnInit {
       useKeysAsHeaders: true,
     };
     // const csvExporter = new ExportToCsv(options);
-    //  csvExporter.generateCsv(listingArr); 
+    //  csvExporter.generateCsv(listingArr);
   }
 
   //--------------------------------export pdf ----------------------------------------
-  
+
   exportPDF(){
     this.service.showSpinner();
     setTimeout( r => {
@@ -283,13 +334,11 @@ export class ContactUsComponent implements OnInit {
           paperSize: "A2",
           margin: { top: "0.8cm", bottom: "1cm" },
           scale: 0.8,
-          height: 400,          
+          height: 400,
         })
       .then(function (group) {
         kendo.drawing.pdf.saveAs(group, "Exported.pdf")
       });
-    
+
   }
-
-
 }
