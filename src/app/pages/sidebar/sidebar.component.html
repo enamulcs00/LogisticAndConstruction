@@ -15,17 +15,22 @@
         </div> -->
             <div class="header-right-part">
                 <div class="row" style="position: absolute; width: 100%;">
-                    <div class="col-lg-4">
+                              
+                                <div class="col-lg-2">
+
+                                    <img src="assets/img/logo.png" alt="icon" />
+                                </div>
+                    <div class="col-lg-3">
                         <button class="btn btn-toggle" type="button" (click)="head()">
                             <i class="fas fa-bars" aria-hidden="true"></i>
                         </button>
                         <button class="btn btn-outline-secondary btn-mobsearch" type="button">
                             <i class="fas fa-search" aria-hidden="true"></i></button>
                     </div>
-                    <div class="col-lg-4" style="-webkit-transform: scale(1.7,1);">
+                    <div class="col-lg-5" style="-webkit-transform: scale(1.7,1);">
                         <h5 style="color: white;text-align: center;">{{ currentText }}</h5>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-2">
                         <!-- <img style="height: 35px;float: right;" src="/assets/img/profile-img.jpg" alt> -->
                         <div class="header-dropdown-styling">
                             <div class="dropdown">
@@ -74,29 +79,57 @@
                 <div class="menu-box" style="width:100%;border-bottom: 1px solid grey;" [ngClass]="{'active':currUrl == 'dashboard'}">
                     <div class="card-header clearfix" id="headingOne">
                         <a class="side_menu" [routerLink]="['/dashboard']" routerLinkActive="active">
-                            <!-- <span class="side_menu_icon">
-                                <img src="assets/img/dashboard-icon.png" alt="icon" />
-                            </span> -->
+                            <span class="side_menu_icon">
+                                <i class="fa fa-tachometer" aria-hidden="true"></i>
+                            </span>
                             <span class="side_page_name">Dashboard</span>
                         </a>
                     </div>
                 </div>
 
-                <div class="menu-box dropdown" [ngClass]="{'active':currUrl == 'list-of-companies' || currUrl.includes('add-company')}"
+                <div class="menu-box" style="width:100%;border-bottom: 1px solid grey;" [ngClass]="{'active':currUrl == 'dashboard'}">
+                    <div class="card-header clearfix" id="headingOne">
+                        <a class="btn side_menu"  routerLinkActive="active" onclick="showText();"  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <span class="side_menu_icon">
+                                <!-- <img src="assets/img/dashboard-icon.png" alt="icon" /> -->
+                                <i class="fa fa-building" aria-hidden="true"></i>
+                            </span>
+                            <span class="side_page_name">Company Management</span>
+                          </a>
+                          <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
+                             
+                                    <!-- <a [routerLink]="['/list_of_companies']">List of Companies</a>
+                                    <a [routerLink]="['/list_of_sites']">List of Sites</a>
+                                    <a [routerLink]="['/company_user_management']">Company User Management</a>
+                                    <a [routerLink]="['/my_booking']">My Booking</a>
+                                    <a [routerLink]="['/quotes']">Quotes</a>
+                                    <a [routerLink]="['/billing']">Billing</a> -->
+                                    <a [routerLink]="['/list-of-companies']">List of Companies</a>
+                                    <a [routerLink]="['/list-of-sites']">List of Sites</a>
+                                    <a [routerLink]="['/list-of-company-user']">Company User Management</a>
+                                    <a [routerLink]="['/list-of-company-booking']">My Booking</a>
+                                    <a [routerLink]="['/list-of-company-quote']">Quotes</a>
+                                    <a [routerLink]="['/list-of-company-billing']">Billing</a>
+                                
+                             </div>
+                          </div>
+                    </div>
+                </div>
+
+                <!-- <div class="menu-box dropdown" [ngClass]="{'active':currUrl == 'list-of-companies' || currUrl.includes('add-company')}"
                     style="width:100%;border-bottom: 1px solid grey;">
                     <div class="card-header clearfix  dropbtn" id="headingOne">
+                      
                         <a class="side_menu" routerLinkActive="active" onclick="showText();">
+                            <span class="side_menu_icon">
+                                <i class="fa fa-building" aria-hidden="true"></i>
+                            </span>
                             <span class="side_page_name">Company Management</span>
                         </a>
                     </div>
                     <div>
                         <div class="dropdown-content">
-                            <!-- <a [routerLink]="['/list_of_companies']">List of Companies</a>
-                            <a [routerLink]="['/list_of_sites']">List of Sites</a>
-                            <a [routerLink]="['/company_user_management']">Company User Management</a>
-                            <a [routerLink]="['/my_booking']">My Booking</a>
-                            <a [routerLink]="['/quotes']">Quotes</a>
-                            <a [routerLink]="['/billing']">Billing</a> -->
                             <a [routerLink]="['/list-of-companies']">List of Companies</a>
                             <a [routerLink]="['/list-of-sites']">List of Sites</a>
                             <a [routerLink]="['/list-of-company-user']">Company User Management</a>
@@ -106,21 +139,42 @@
                         </div>
                     </div>
 
+                </div> -->
+               
+                <div class="menu-box" style="width:100%;border-bottom: 1px solid grey;" [ngClass]="{'active':currUrl == 'dashboard'}">
+                    <div class="card-header clearfix" id="headingOne">
+                        <a class="btn side_menu"  routerLinkActive="active" onclick="showText();"  data-toggle="collapse" href="#collapseExampleone" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <span class="side_menu_icon">
+                                <img src="assets/img/Fleet.png" alt="icon" />
+                            </span>
+                            <span class="side_page_name">Fleet Management</span>
+                          </a>
+                          <div class="collapse" id="collapseExampleone">
+                            <div class="card card-body">
+                                <a [routerLink]="['/list-of-fleet-owner']">List Of Fleet Owner</a>
+                                <a [routerLink]="['/list-of-truck']">List Of Truck</a>
+                                <a [routerLink]="['/list-of-bid-by-fleet-owner']">List Of Bid By Fleet</a>
+                                <a [routerLink]="['/list-of-fleet-owner-booking']">List Of Booking Details</a>
+                                <a [routerLink]="['/list-of-fleet-owner-billing']">Billing</a>
+                                <a [routerLink]="['/list-of-driver']">List Of Driver</a>    
+                                
+                             </div>
+                          </div>
+                    </div>
                 </div>
-                <div class="menu-box dropdown" [ngClass]="{'active':currUrl == 'fleet-management'}"
+
+               
+                <!-- <div class="menu-box dropdown" [ngClass]="{'active':currUrl == 'fleet-management'}"
                     style="width:100%;border-bottom: 1px solid grey;">
                     <div class="card-header clearfix dropbtn" id="headingTwo">
                         <a class="side_menu" routerLinkActive="active">
+                            <span class="side_menu_icon">
+                                <img src="assets/img/dashboard-icon.png" alt="icon" />
+                            </span>
                             <span class="side_page_name">Fleet Management</span>
                         </a>
                     </div>
                     <div class="dropdown-content">
-                        <!-- <a [routerLink]="['/list_of_fleet_owner']">List Of Fleet Owner</a>
-                        <a [routerLink]="['/list_of_truck']">List Of Truck</a>
-                        <a [routerLink]="['/list_of_bid_by_fleet']">List Of Bid By Fleet</a>
-                        <a [routerLink]="['/list_of_booking_details']">List Of Booking Details</a>
-                        <a [routerLink]="['/billing_fleet']">Billing</a>
-                        <a [routerLink]="['/list_of_driver']">List Of Driver</a> -->
                         <a [routerLink]="['/list-of-fleet-owner']">List Of Fleet Owner</a>
                         <a [routerLink]="['/list-of-truck']">List Of Truck</a>
                         <a [routerLink]="['/list-of-bid-by-fleet-owner']">List Of Bid By Fleet</a>
@@ -128,7 +182,9 @@
                         <a [routerLink]="['/list-of-fleet-owner-billing']">Billing</a>
                         <a [routerLink]="['/list-of-driver']">List Of Driver</a>
                     </div>
-                </div>
+                </div> -->
+
+
                 <!-- <div class="menu-box"
                     [ngClass]="{'active':currUrl == 'all-user-trader' }">
                     <div class="card-header clearfix" id="headingThree">
@@ -141,21 +197,44 @@
                         </a>
                     </div>
                 </div> -->
-                <div class="menu-box dropdown" style="width:100%;border-bottom: 1px solid grey;"
+
+
+                <div class="menu-box" style="width:100%;border-bottom: 1px solid grey;" [ngClass]="{'active':currUrl == 'dashboard'}">
+                    <div class="card-header clearfix" id="headingOne">
+                        <a class="btn side_menu"  routerLinkActive="active" onclick="showText();"  data-toggle="collapse" href="#collapseExampleto" role="button" aria-expanded="false" aria-controls="collapseExample">
+
+                                <span class="side_menu_icon">
+                                    <img src="assets/img/Supplier.png" alt="icon" />
+                                </span>
+                                <span class="side_page_name"> Supplier Management</span>
+                          </a>
+                          <div class="collapse" id="collapseExampleto">
+                            <div class="card card-body">
+                                <a [routerLink]="['/list-of-supplier']">List Of Supplier</a>
+                                <a [routerLink]="['/list-of-supplier-booking']">My Booking</a>
+                                <a [routerLink]="['/list-of-supplier-quote']">Quotes</a>
+                                <a [routerLink]="['/list-of-supplier-billing']">Billing</a>
+                                <a [routerLink]="['/list-of-bid-by-fleet-owner-supplier']">List Of Bid To Fleet Owner</a>
+                                <a [routerLink]="['/list-of-fleet-owner-booking-supplier']">List Of Booking Details Fleet</a>
+                                <a [routerLink]="['/list-of-fleet-owner-billing-supplier']">Billing Fleet</a>  
+                                
+                             </div>
+                          </div>
+                    </div>
+                </div>
+
+
+                <!-- <div class="menu-box dropdown" style="width:100%;border-bottom: 1px solid grey;"
                     [ngClass]="{'active': currUrl == 'list-of-supplier'}">
                     <div class="card-header clearfix dropbtn" id="headingThree">
                         <a class="side_menu" routerLinkActive="active">
+                            <span class="side_menu_icon">
+                                <img src="assets/img/dashboard-icon.png" alt="icon" />
+                            </span>
                             <span class="side_page_name"> Supplier Management</span>
                         </a>
                     </div>
                     <div class="dropdown-content">
-                        <!-- <a [routerLink]="['/list_of_supplier']">List Of Supplier</a>
-                        <a [routerLink]="['/my_booking_supplier']">My Booking</a>
-                        <a [routerLink]="['/quotes_supplier']">Quotes</a>
-                        <a [routerLink]="['/billing_supplier']">Billing</a>
-                        <a [routerLink]="['/list_of_bid_to_fleet_owner']">List Of Bid To Fleet Owner</a>
-                        <a [routerLink]="['/list_of_booking_details_fleet']">List Of Booking Details Fleet</a>
-                        <a [routerLink]="['/billing_fleet']">Billing Fleet</a> -->
                         <a [routerLink]="['/list-of-supplier']">List Of Supplier</a>
                         <a [routerLink]="['/list-of-supplier-booking']">My Booking</a>
                         <a [routerLink]="['/list-of-supplier-quote']">Quotes</a>
@@ -164,12 +243,16 @@
                         <a [routerLink]="['/list-of-fleet-owner-booking-supplier']">List Of Booking Details Fleet</a>
                         <a [routerLink]="['/list-of-fleet-owner-billing-supplier']">Billing Fleet</a>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="menu-box" style="width:100%;"
                     [ngClass]="{'active':currUrl == 'truck-type'}">
                     <div class="card-header clearfix" id="headingThree">
                         <a class="side_menu" [routerLink]="['/truck-type']" routerLinkActive="active">
+                            <span class="side_menu_icon">
+                                <!-- <img src="assets/img/dashboard-icon.png" alt="icon" /> -->
+                                <i class="fa fa-truck" aria-hidden="true"></i>
+                            </span>
                             <span class="side_page_name">Add Truck Type</span>
                         </a>
                     </div>
@@ -179,6 +262,9 @@
                     style="width:100%;">
                     <div class="card-header clearfix" id="headingThree">
                         <a class="side_menu" [routerLink]="['/materials']" routerLinkActive="active">
+                            <span class="side_menu_icon">
+                                <img src="assets/img/Material.png" alt="icon" />
+                            </span>
                             <span class="side_page_name">Add Material 1</span>
                         </a>
                     </div>
@@ -188,6 +274,9 @@
                     [ngClass]="{'active':currUrl == 'thermal-plants'}">
                     <div class="card-header clearfix" id="headingThree">
                         <a class="side_menu" [routerLink]="['/thermal-plants']" routerLinkActive="active">
+                            <span class="side_menu_icon">
+                                <img src="assets/img/Plants.png" alt="icon" />
+                            </span>
                             <span class="side_page_name">Add Thermal Plants</span>
                         </a>
                     </div>
@@ -253,6 +342,9 @@
                     [ngClass]="{'active':currUrl == 'crushers-and-mining'}">
                     <div class="card-header clearfix" id="headingThree">
                         <a class="side_menu" [routerLink]="['/crushers-and-mining']" routerLinkActive="active">
+                            <span class="side_menu_icon">
+                                <img src="assets/img/Crushers.png" alt="icon" />
+                            </span>
                             <span class="side_page_name">Add Crushers And Mining Info</span>
                         </a>
                     </div>
@@ -265,28 +357,53 @@
                             <span class="side_page_name">Signup Data</span>
                         </a> -->
                         <a class="side_menu" [routerLink]="['/signup-data']" routerLinkActive="active">
+                            <span class="side_menu_icon">
+                                <!-- <img src="assets/img/dashboard-icon.png" alt="icon" /> -->
+                                <i class="fa fa-sign-in" aria-hidden="true"></i>
+                            </span>
                             <span class="side_page_name">Signup Data</span>
                         </a>
                     </div>
                 </div>
 
-                <div class="menu-box dropdown" style="width:100%;border-bottom: 1px solid grey;"
+
+                <div class="menu-box" style="width:100%;border-bottom: 1px solid grey;" [ngClass]="{'active':currUrl == 'dashboard'}">
+                    <div class="card-header clearfix" id="headingOne">
+                        <a class="btn side_menu"  routerLinkActive="active" onclick="showText();"  data-toggle="collapse" href="#collapseExamplethree" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <span class="side_menu_icon">
+                                <i class="fa fa-globe" aria-hidden="true"></i>
+                            </span>
+                            <span class="side_page_name">Others</span>
+                          </a>
+                          <div class="collapse" id="collapseExamplethree">
+                            <div class="card card-body">
+                                <a [routerLink]="['/contact-us']">Add Contact Us Mobile No And E-mail ID</a>
+                        <a [routerLink]="['/terms-and-conditions']">Terms And Conditions</a>
+                        <a [routerLink]="['/privacy-policy']">Privacy Policy</a> 
+                                
+                             </div>
+                          </div>
+                    </div>
+                </div>
+
+
+                <!-- <div class="menu-box dropdown" style="width:100%;border-bottom: 1px solid grey;"
                     [ngClass]="{'active':currUrl == 'contact-us' || currUrl == 'terms-and-conditions' || currUrl == 'privacy-policy'}">
                     <div class="card-header clearfix dropbtn" id="headingThree">
                         <a class="side_menu" routerLinkActive="active">
+                            <span class="side_menu_icon">
+                                <img src="assets/img/dashboard-icon.png" alt="icon" />
+                            </span>
                             <span class="side_page_name">Others</span>
                         </a>
                     </div>
                     <div class="dropdown-content" style="position: absolute;
                     bottom: 100%;">
-                        <!-- <a [routerLink]="['/add_contact_us']">Add Contact Us Mobile No And E-mail ID</a>
-                        <a [routerLink]="['/terms_and_conditions']">Terms And Conditions</a>
-                        <a [routerLink]="['/PrivacyPolicy']">Privacy Policy</a> -->
                         <a [routerLink]="['/contact-us']">Add Contact Us Mobile No And E-mail ID</a>
                         <a [routerLink]="['/terms-and-conditions']">Terms And Conditions</a>
                         <a [routerLink]="['/privacy-policy']">Privacy Policy</a>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- <div class="menu-box"
                     [ngClass]="{'active':currUrl == 'setting' || currUrl == 'my-profile' || currUrl == 'edit-profile' || currUrl == 'taker-maker-fee' || currUrl == 'view-limit' || currUrl == 'withdrawl-fee' || currUrl == 'withdrawl-limit' || currUrl == 'change-password'}">
@@ -303,6 +420,9 @@
                 <div class="menu-box" style="width:100%;">
                     <div class="card-header clearfix">
                         <a class="side_menu" href="#signout_modal" data-toggle="modal">
+                            <span class="side_menu_icon">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            </span>
                             <span class="side_page_name">Logout</span>
                         </a>
                     </div>
@@ -456,16 +576,14 @@
                         <div class="col">
                             <div class="box-title mb40 d-inline-block">
                                 <i class="fas fa-power-off off-icon" aria-hidden="true"></i>
-                                <p class="mt40">Are you sure you want to logout?</p>
+                                <p class="mt40">Are you sure you want <br>to logout?</p>
                             </div>
                             <div class="text-center">
-                                <a class="btn btn-blue btn-noYes" (click)="onLogout()"
-                                    style="background: black !important;">YES</a> &nbsp; &nbsp; &nbsp;
+                                <a class="btn btn-theme" (click)="onLogout()">YES</a> &nbsp; &nbsp; &nbsp;
                                 &nbsp;
                                 <!-- <button type="button" class="btn  btn-noYes" data-dismiss="modal"
                                     style="background: black !important;">CANCEL</button> -->
-                                    <a class="btn btn-blue btn-noYes" data-dismiss="modal"
-                                    style="background: black !important;">CANCEL</a> 
+                                    <a class="btn btn-theme" data-dismiss="modal">CANCEL</a> 
                             </div>
                         </div>
                     </div>
