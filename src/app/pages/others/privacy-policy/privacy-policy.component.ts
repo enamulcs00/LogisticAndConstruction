@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MainService } from 'src/app/provider/main.service';
 
@@ -10,7 +11,7 @@ export class PrivacyPolicyComponent implements OnInit {
 
   data: any = [];
 
-  constructor(public service: MainService) { }
+  constructor(public service: MainService,private router:Router) { }
 
   ngOnInit() {
     this.getPrivacyPolicy()
@@ -18,11 +19,17 @@ export class PrivacyPolicyComponent implements OnInit {
 
   // get privacy policy
   getPrivacyPolicy() {
+    let url =`account/admin/get-static-content?pageKey=Privacy Policy`
     this.service.showSpinner();
-    this.service.get('static/get-static-page-data?pageKey=TERMS AND CONDITION').subscribe(res => {
+    this.service.get(url).subscribe((res:any) => {
+
       this.service.hideSpinner();
       if (res['status'] == 200) {
         this.data = res['data'];
+        console.log('This is policydata',this.data)
+      }
+      else{
+        this.service.toasterErr(res.message)
       }
     }, err => {
       this.service.hideSpinner();
@@ -37,18 +44,26 @@ export class PrivacyPolicyComponent implements OnInit {
 
   // save terms and conditions
   savePrivacyPolicy() {
+    let url  = `account/admin/static-content/update-static-content`
+let obj = {
+  "contentId": this.data.staticId,
+  "pageData": this.data.pageData,
+  "pageKey": this.data.pageKey
+}
+
     var apiReq = {
       "pageKey": "Terms And Condition",
       "pageData": this.data.pageData
     }
     this.service.showSpinner();
-    this.service.post('static/update-static-content-data', apiReq).subscribe(res => {
+    this.service.post(url, obj).subscribe((res:any) => {
       this.service.hideSpinner();
       if (res['status'] == 200) {
         this.getPrivacyPolicy();
-        this.service.toasterSucc('Terms & Condition Updated Successfully')
+        this.service.toasterSucc(res.message)
+
       } else {
-        this.service.toasterErr('Terms & Condition Updated Successfully')
+        this.service.toasterErr(res.message)
       }
     }, err => {
       this.service.hideSpinner();

@@ -17,11 +17,16 @@ export class TermsAndConditionsComponent implements OnInit {
 
   // get terms and conditions
   getTermsAndConditions() {
+    let url = `account/admin/get-static-content?pageKey=Terms And Condition`
     this.service.showSpinner();
-    this.service.get('static/get-static-page-data?pageKey=TERMS AND CONDITION').subscribe(res => {
+    this.service.get(url).subscribe((res:any) => {
       this.service.hideSpinner();
       if (res['status'] == 200) {
         this.data = res['data'];
+        this.service.toasterSucc(res.message)
+      }
+      else{
+        this.service.toasterErr(res.message)
       }
     }, err => {
       this.service.hideSpinner();
@@ -36,18 +41,24 @@ export class TermsAndConditionsComponent implements OnInit {
 
   // save terms and conditions
   saveTermsAndConditions() {
+    let url  = `account/admin/static-content/update-static-content`
+    let obj = {
+      "contentId": this.data.staticId,
+      "pageData": this.data.pageData,
+      "pageKey": this.data.pageKey
+    }
     var apiReq = {
       "pageKey": "Terms And Condition",
       "pageData": this.data.pageData
     }
     this.service.showSpinner();
-    this.service.post('static/update-static-content-data', apiReq).subscribe(res => {
+    this.service.post(url,obj).subscribe((res:any) => {
       this.service.hideSpinner();
       if (res['status'] == 200) {
         this.getTermsAndConditions();
-        this.service.toasterSucc('Terms & Condition Updated Successfully')
+        this.service.toasterSucc(res.message)
       } else {
-        this.service.toasterErr('Terms & Condition Updated Successfully')
+        this.service.toasterErr(res.message)
       }
     }, err => {
       this.service.hideSpinner();
