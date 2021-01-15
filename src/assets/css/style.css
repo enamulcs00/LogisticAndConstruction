@@ -1464,7 +1464,7 @@ li {
 }
 .btn.btn-green {
    /* background: #2d3498;*/
-   background-color: black;
+   background-color: #313b48;
     color: #fff !important;
 }
 .btn-green,
@@ -1477,11 +1477,11 @@ select.form-control {
     background-image: url("../img/down_arrow.png");
     background-repeat: no-repeat;
     background-position: calc(100% - 10px) 50%;
-    background-size: 13px auto;
+    background-size: 9px auto;
     border-color: #e7eaee;
-    padding-right: 20px;
+    padding-right: 23px;
     box-shadow: none;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 select.form-control.select_style1 {
@@ -1846,7 +1846,7 @@ label.error {
 }
 
 .global-modal.modal.fade .modal-dialog {
-    max-width: 100%;
+  max-width: 400px;
     margin: 15px 0;
     position: absolute;
     left: 50%;
@@ -2209,7 +2209,7 @@ td .form-control {
 
 header {
     /*background: #2d3498;*/
-    background-color: black;
+    background-color: #313b48;
     left: 0;
     position: fixed;
     top: 0;
@@ -2596,7 +2596,6 @@ aside.sidebar {
     overflow-y: auto;
     overflow-x: hidden;
     z-index: 1;
-    border-right: 1px solid #000000;
 }
 
 .sidebar-logo {
@@ -2609,6 +2608,7 @@ aside.sidebar {
 }
 .middle-content {
     padding-left: 310px !important;
+    /* padding-top: 60px; */
 }
 .sidebar-menu {
     /*  overflow-y: auto; height:calc(100vh - 90px);  */
@@ -2689,7 +2689,7 @@ aside.sidebar {
 .menu-box .card-header,
 .inner-submenu li a {
    /* background: #2d3498;*/
-   background-color: black;
+   background-color: #313b48;
     width: 100%;
     border-top: 1px solid #c6cad0;
 }
@@ -4445,7 +4445,7 @@ button{
 .global-table .table-bordered th {
     color: #f8f9fa;
     /*background: #2d3498;*/
-    background-color: black;
+    background-color: #313b48;
     padding: 0.5rem 0.75rem;
     font-size: 14px;
     text-align: center;
@@ -4456,7 +4456,7 @@ button{
 /* th{
     font-family: inherit;
 } */
-.selectBox{border-radius:7px;border:1px solid #AAAAAA;}
+.selectBox{border-radius:7px;border:1px solid #e7eaee;}
 .filter_search .form-control {
     border: 1px solid #ccc;
     background: #fff;
@@ -4640,7 +4640,7 @@ button{
 .menu-box:hover .side_menu,
 .menu-box:focus .side_menu {
     background: grey;
-    color: #191b24;
+    color: #fff;
     /* color: #252d47; background:#b9c1ca; */
 }
 
@@ -5260,7 +5260,7 @@ select.form-control.select_opt {
 }
 .custom_tabs .nav-tabs .nav-item .nav-link {
    /* background: #2d3498;*/
-   background-color: black;
+   background-color: #313b48;
     color: #ffffff;
     border: 1px solid #f0f0f0;
     margin: -1px;
@@ -5469,7 +5469,7 @@ select.form-control.select_opt {
 }
 
 .btn-grey {
-    background-color: black;
+    background-color: #313b48;
    /* background: #2d3498;*/
     border-radius: 3px !important;
     font-size: 17px !important;
@@ -6395,12 +6395,12 @@ label.common-label {
 }
 .btn-theme:hover,
 .btn-theme:hover {
-    background-color: #e0a354 !important;
-    color: #3b3c3c;
+    background-color: #808080 !important;
+    color: #ffffff;
 }
 .btn-theme {
    /* background-color: #2d3498;*/
-   background-color: black;
+   background-color: #313b48;
     color: #fff;
 
     font-size: 14px !important;
@@ -6744,20 +6744,20 @@ button.take-action {
 
 .ngx-pagination .current {
     padding: 0.1875rem 0.625rem;
-    background: #000000 !important;
+    background: #313b48 !important;
     color: #ffffff !important;
     cursor: default;
 }
 .btn-success {
     color: #fff;
     /*background-color: #2d3498;*/
-    background-color: black;
+    background-color: #313b48;
     border-color: #191b24;
 }
 .btn-success:hover {
-    color: #3f3d3d;
-    background-color: #e0a354;
-    border-color: #e0a354;
+    color: #ffffff;
+    background-color: #808080;
+    border-color: #808080; 
 }
 .btn-warning {
     color: #3f3d3d;
@@ -6869,7 +6869,7 @@ body.body-class.toggle-wrapper main.middle-content {
 
 .sec_head_new button.btn.btn-theme {
    /* background: #2d3498;*/
-   background-color: black;
+   background-color: #313b48;
     opacity: 1;
 }
 @media (max-width: 1024px) {
@@ -7047,4 +7047,27 @@ img.view-img {
     height: 200px;
     margin-top: 20px;
     object-fit: cover;
+}
+.input-label {
+    text-align: center;
+}
+button.btn.btn-theme {
+    min-width: 120px;
+}
+select{
+    font-size: 14px;
+}
+button.btn.deleye-btn {
+    background-color: brown;
+}
+label.outup-label {
+    color: #aca6a6;
+}
+.header-dropdown-styling[_ngcontent-llc-c131] a[_ngcontent-llc-c131] {
+    margin: 0px 0px;
+    font-weight: 400;
+    color: #484848;
+}
+a.dropdown-item:active {
+    background-color: #f8f9fa;
 }

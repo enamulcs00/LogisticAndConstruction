@@ -27,11 +27,13 @@
                                         <div class="dash-select text-center">
                                             <div class="dash-select-inner">
                                                 <div class=" w-100">
-                                                    <select class="form-control" name="" id="" (change)="getCompanyCount($event)">
+                                                    <select class="form-control" name="" id=""
+                                                        (change)="getCompanyCount($event)">
                                                         <option value="">Select Company</option>
                                                         <!-- <option value="">Sdf</option>
                                                         <option value="">Jkl</option> -->
-                                                        <option *ngFor="let item of companyName" [value]="item">{{item}}
+                                                        <option *ngFor="let item of companyName" [value]="item?.name">
+                                                            {{item?.name}}
                                                         </option>
                                                     </select>
                                                 </div>
@@ -89,7 +91,8 @@
                                         <div class="dash-select text-center">
                                             <div class="dash-select-inner">
                                                 <div class=" w-100">
-                                                    <select class="form-control" name="" id="" (change)="getSupplierCount($event)">
+                                                    <select class="form-control" name="" id=""
+                                                        (change)="getSupplierCount($event)">
                                                         <option value="">Select Supplier</option>
                                                         <!-- <option value="">Abc</option>
                                                         <option value="">Xyz</option> -->
