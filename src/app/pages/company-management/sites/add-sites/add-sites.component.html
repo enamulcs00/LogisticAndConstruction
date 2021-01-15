@@ -10,38 +10,7 @@
 
                     <div>
                         <form [formGroup]="addSiteForm">
-                            <div class="form-group row">
-                                <label for="Fname" class="col-sm-2 col-form-label">First Name</label>
-                                <div class="col-sm-4">
-                                    <input type="text" id="Fname" class="form-control" placeholder="First name"
-                                        formControlName="firstName">
-                                    <span class="error"
-                                        *ngIf="addSiteForm.get('firstName').hasError('required') && (addSiteForm.get('firstName').dirty || addSiteForm.get('firstName').touched )"
-                                        class="error">
-                                        <p>*Please enter first name.</p>
-                                    </span>
-                                    <span class="error"
-                                        *ngIf="addSiteForm.get('firstName').hasError('pattern') && addSiteForm.get('firstName').dirty"
-                                        class="error">
-                                        <p> *Please enter valid first name.</p>
-                                    </span>
-                                </div>
-                                <label for="Lname" class="col-sm-2 col-form-label">Last Name</label>
-                                <div class="col-sm-4">
-                                    <input type="text" id="Lname" class="form-control" placeholder="Last name"
-                                        formControlName="lastName">
-                                    <span class="error"
-                                        *ngIf="addSiteForm.get('lastName').hasError('required') && (addSiteForm.get('lastName').dirty || addSiteForm.get('lastName').touched )"
-                                        class="error">
-                                        <p>*Please enter last name.</p>
-                                    </span>
-                                    <span class="error"
-                                        *ngIf="addSiteForm.get('lastName').hasError('pattern') && addSiteForm.get('lastName').dirty"
-                                        class="error">
-                                        <p> *Please enter valid Last name.</p>
-                                    </span>
-                                </div>
-                            </div>
+                           
                             <div class="form-group row">
                                 <!-- <label for="Mobile" class="col-sm-2 col-form-label">Mobile No</label>
                                 <div class="col-sm-4">
@@ -72,9 +41,7 @@
                                             class="error" padding>*Please enter valid email.</p>
                                     </span>
                                 </div>
-                            </div>
 
-                            <div class="form-group row">
                                 <label for="CompanyName" class="col-sm-2 col-form-label">Company Name</label>
                                 <div class="col-sm-4">
                                     <!-- <input type="text" id="CompanyName" class="form-control" placeholder="Company name"
@@ -88,6 +55,19 @@
                                             class="error" padding>*Please enter company name.</p>
                                     </span> -->
                                 </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="comanyAddress" class="col-sm-2 col-form-label">Site Location</label>
+                                <div class="col-sm-4">
+                                    <input type="text" id="comanyAddress" class="form-control"
+                                        placeholder="Site location" formControlName="siteLocation">
+                                    <span class="error">
+                                        <p *ngIf="addSiteForm.get('siteLocation').hasError('required') && (addSiteForm.get('siteLocation').dirty || addSiteForm.get('siteLocation').touched )"
+                                            class="error" padding>*Please enter site location.</p>
+                                    </span>
+                                </div>
+
                                 <label for="comanyAddress" class="col-sm-2 col-form-label">Site Address</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="comanyAddress" class="form-control"

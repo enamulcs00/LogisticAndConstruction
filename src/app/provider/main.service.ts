@@ -8,7 +8,7 @@ import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
-
+declare var $: any;
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +16,12 @@ export class MainService {
   loginSub = new BehaviorSubject(``);
   loginObs = this.loginSub.asObservable();
   code: string;
+  month: any;
+  day: any;
+  daily: string;
+  year: number;
+  dtToday: Date;
+  maxDate: string;
   httpOptions: { headers: HttpHeaders; };
   // public baseUrl = "http://182.72.203.244:4032/" // stagging Url
   public baseUrl = "https://logistic-constructionbackend.mobiloitte.com/" // stagging domain Url
@@ -134,6 +140,22 @@ export class MainService {
     let Numpattern = /^([0-9])*$/;
     let resultNum = Numpattern.test(event.key);
     return resultNum;
+  }
+
+  BlockFuture() {
+    $(() => {
+      this.dtToday = new Date();
+      this.month = this.dtToday.getMonth() + 1;
+      this.day = this.dtToday.getDate();
+      this.year = this.dtToday.getFullYear();
+      if (this.month < 10)
+        this.month = '0' + this.month.toString();
+      if (this.day < 10)
+        this.day = '0' + this.day.toString();
+      this.maxDate = this.year + '-' + this.month + '-' + this.day;
+      $('#fromDate').attr('max', this.maxDate);
+      $('#toDate').attr('max', this.maxDate);
+    });
   }
 
 }

@@ -36,6 +36,7 @@ export class ListOfSitesComponent implements OnInit {
   stateArr: any = [];
   selectedState: any;
   cityArr: any;
+  companyList: any=[];
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -98,8 +99,8 @@ export class ListOfSitesComponent implements OnInit {
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
-        this.listing = res['data']['list'];
-        this.listing.forEach(element => {
+        this.companyList = res['data']['list'];
+        this.companyList.forEach(element => {
           this.companyNameArr.push({
             'companyName': element.companyName,
             'companyId': element.userId
@@ -176,66 +177,40 @@ export class ListOfSitesComponent implements OnInit {
     this.getSiteList();    
   }
 
-  //========modal=======//
-  delete(id: number) {
-    this.userid = id;
-    $('#deleteModal').modal('show')
-  }
-  //------------------------------delete api integration ----------------------------------//
-  deleteUser() {
-    var url = 'account/admin/user-management/delete-user-detail?userIdToDelete=' + (this.userid) + '&ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location'));
-    this.service.get(url).subscribe((res: any) => {
-      this.deleted = res
-      if (this.deleted.ststus = 200) {
-        $('#deleteModal').modal('hide')
-        this.service.toasterSucc(this.deleted.message);
-        this.getSiteList();
-      }
-     }, err => {   
-       this.service.hideSpinner();  
-        if (err['status'] == '401') {  
-            this.service.onLogout();   
-           this.service.toasterErr('Unauthorized Access'); 
-         } 
-      else {    
-          this.service.toasterErr('Something Went Wrong');  
-        } 
-     })
-
-  }
+ 
 
   //-------------------------block api integration------------------------//
   block(status , id){   
      this.userid=id 
        this.userstatus=status 
+    console.log("user status", this.userStatus)
     $('#block').modal('show')
   } 
-   blockUser(){
-     this.service.showSpinner();
-    var url = 'account/admin/user-management/user-status?ipAddress='+(localStorage.getItem('ipAddress'))+'&location='+(localStorage.getItem('location'))+ '&userIdForStatusUpdate='+(this.userid) + '&userStatus=' + (this.action);
-       this.service.post(url,'').subscribe((res:any)=>{    
-        if(res.status == 200){ 
-        this.service.hideSpinner()
-           if (this.action == 'BLOCK') {
+   blockSite(){
+
+    let data= {
+      "isEnable": this.action,
+      "siteId": this.userid, 
+    }
+   
+    this.service.showSpinner()
+    var url = "account/admin/ChangeStatus-SiteBy-admin"
+    this.service.post(url,data).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.service.toasterSucc(res['message'])
+        if (this.action == true) {
           $('#block').modal('hide');
-          this.service.toasterSucc('User Blocked Successfully');
+          this.service.toasterSucc('Site Blocked Successfully');
         }
         else {
           $('#active').modal('hide');
-          this.service.toasterSucc('User Activated Successfully');
+          this.service.toasterSucc('Site Activated Successfully');
         }
-        this.getSiteList()        
-          } 
-     }, err => {   
-         this.service.hideSpinner();  
-        if (err['status'] == '401') {  
-            this.service.onLogout();   
-           this.service.toasterErr('Unauthorized Access'); 
-         } 
-      else {    
-          this.service.toasterErr('Something Went Wrong');  
-        } 
-     })
+        this.getSiteList() 
+        
+      }
+    })
   } 
 
    //---------------------------------- Delete / Block Function--------------//
@@ -245,7 +220,7 @@ export class ListOfSitesComponent implements OnInit {
     if (action == 'DELETE') {
       $('#deleteModal').modal('show')
 
-    } else if (action == 'BLOCK') {
+    } else if (action == 'false') {
       $('#block').modal('show')
     }
     else {
@@ -351,10 +326,10 @@ export class ListOfSitesComponent implements OnInit {
   }
   siteDetails(id){
     console.log(id)
-    this.router.navigate(['/view-site' ,2])
+    this.router.navigate(['/view-site' ,id])
   }
-  deleteSite(){
-    this.router.navigate(['/delete-site'])
+  deleteSite(id){
+    this.router.navigate(['/delete-site', id])
   }
   reset(){
     this.getSiteList();

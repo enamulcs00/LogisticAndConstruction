@@ -35,6 +35,7 @@ export class ListOfCompanyComponent implements OnInit {
   selectedState: any;
   cityArr: any;
   companyNameArr: any=[];
+  companylisting: any=[];
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -122,8 +123,8 @@ export class ListOfCompanyComponent implements OnInit {
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
-        this.listing = res['data']['list'];
-        this.listing.forEach(element => {
+        this.companylisting = res['data']['list'];
+        this.companylisting.forEach(element => {
           this.companyNameArr.push({
             'companyName': element.companyName,
             'companyId': element.userId

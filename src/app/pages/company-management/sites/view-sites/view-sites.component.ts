@@ -44,16 +44,16 @@ export class ViewSitesComponent implements OnInit {
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
-        this.listing = res['data']['list'];
+        this.listing = res['data'];
         this.gstimageUrl = this.listing.gstinUrl
         this.viewSiteForm.patchValue({
          
           'companyName': this.listing.companyName,
-          'address':this.listing.baseLocationAddress,
+          'address':this.listing.locationAddress,
           'city': this.listing.city,
           'state': this.listing.state,
           'gstNo': this.listing.gstinNo,
-          'dateOfCreation':this.listing.date
+          'dateOfCreation':this.listing.createTime
           
         })
        

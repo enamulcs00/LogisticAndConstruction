@@ -83,13 +83,13 @@ const routes: Routes = [
   { path: 'add-site', component: AddSitesComponent },
   { path: 'edit-site', component: EditSitesComponent },
   { path: 'view-site/:id', component: ViewSitesComponent },
-  { path: 'delete-site', component: DeleteSitesComponent },
+  { path: 'delete-site/:id', component: DeleteSitesComponent },
   // // company management-> company-user-management
   { path: 'list-of-company-user', component: ListOfCompanyUserComponent },
   { path: 'add-company-user', component: AddCompanyUserComponent },
   { path: 'edit-company-user', component: EditCompanyUserComponent },
-  { path: 'view-company-user', component: ViewCompanyUserComponent },
-  { path: 'delete-company-user', component: DeleteCompanyUserComponent },
+  { path: 'view-company-user/:id', component: ViewCompanyUserComponent },
+  { path: 'delete-company-user/:id', component: DeleteCompanyUserComponent },
   // company management-> booking
   { path: 'list-of-company-booking', component: ListOfCompanyBookingComponent },
   { path: 'view-company-booking/:id/:name', component: ViewCompanyBookingComponent },

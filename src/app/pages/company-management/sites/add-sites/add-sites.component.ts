@@ -29,17 +29,14 @@ export class AddSitesComponent implements OnInit {
    // add site form validation
    addSiteFormValidation() {
     this.addSiteForm = new FormGroup({
-      'firstName': new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]*$/i)]),
-      'lastName': new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]*$/i)]),
-      'phoneNo': new FormControl('', [Validators.required, Validators.pattern(/^[1-9][0-9]{9,13}$/)]),
       'email': new FormControl('', [Validators.required, Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,9}|[0-9]{1,3})(\]?)$/i)]),
       'companyName': new FormControl('', [Validators.required]),
-      'companyAddress': new FormControl('', [Validators.required]),
+      'siteLocation': new FormControl('', [Validators.required]),
       'siteAddress': new FormControl('', [Validators.required]),
-      'siteName': new FormControl('', [Validators.required]),
+      'siteName': new FormControl('',),
       'city': new FormControl(''),
       'state': new FormControl(''),
-      'gstNo': new FormControl('', [Validators.required]),
+      'gstNo': new FormControl('',),
     })
   }
 
@@ -112,17 +109,14 @@ export class AddSitesComponent implements OnInit {
    let data= {
       "city": this.addSiteForm.value.city,
       "companyName": '',
-     // "createTime": "2021-01-14T05:31:45.210Z",
       "fkcompanyId": this.addSiteForm.value.companyName,
       "gstinNo": this.addSiteForm.value.gstNo,
      // "isDeleted": true,
      // "isEnable": true,
-      "locationAddress": this.addSiteForm.value.companyAddress,
+      "locationAddress": this.addSiteForm.value.siteLocation,
       "siteAddress": this.addSiteForm.value.siteAddress,
-      //"siteId": 0,
       "state": this.addSiteForm.value.city,
       "gstinUrl":this.gstimageUrl,
-      //"updateTime": "2021-01-14T05:31:45.210Z"
     }
     console.log("add site data::", data)
     this.service.showSpinner()

@@ -33,6 +33,7 @@ export class ListOfCompanyBillingComponent implements OnInit {
   action: any;
   userstatus: any;
   supplierArr: any=[];
+
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -41,9 +42,11 @@ export class ListOfCompanyBillingComponent implements OnInit {
 
   ngOnInit() {
     this.userForm = new FormGroup({
-      'startdate': new FormControl('', Validators.required),
-      'enddate': new FormControl('', Validators.required),
-      'searchText': new FormControl(''),
+      'invoiceNo':new FormControl('',),
+      'startdate': new FormControl(''),
+      'enddate': new FormControl('',),
+      'month': new FormControl(''),
+      'supplierName': new FormControl(''),
     })
     
     let date = new Date()
@@ -111,16 +114,16 @@ export class ListOfCompanyBillingComponent implements OnInit {
   search() {
     let startdate = Date.parse(this.userForm.value.startdate)
     let enddate = Date.parse(this.userForm.value.enddate)
-    var search = this.userForm.value.searchText;
-    if( this.userForm.value.searchText && this.userForm.value.startdate && this.userForm.controls.enddate.value){
-      var url="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate+'&search='+search+'&page=0'
+  
+    if( this.userForm.value.month && this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.supplierName){
+      var url="account/admin/filter-fleet-request-details?months="+ this.userForm.value.month +'&fromDate='+startdate+'&toDate='+enddate + '&supplierName='+this.userForm.value.supplierName
     }
     else if(this.userForm.value.startdate && this.userForm.controls.enddate.value){
-      var url1="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate
+      var url1="account/admin/filter-fleet-request-details?months=00"+'&fromDate='+startdate+'&toDate='+enddate
     }
 
-    else if(this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.searchText ){
-      var url2="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate+'&search='+search
+    else if( this.userForm.value.month  ){
+      var url2="account/admin/filter-fleet-request-details?months="+ this.userForm.value.month
 
     }
     this.service.get( url || url1 || url2).subscribe((res: any) => {
@@ -213,6 +216,7 @@ export class ListOfCompanyBillingComponent implements OnInit {
   }
 
   reset(){
+    this.userForm.reset()
     this.getCompanyBillingList()
   }
 }

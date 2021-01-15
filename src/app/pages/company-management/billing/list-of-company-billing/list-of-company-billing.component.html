@@ -6,22 +6,23 @@
                     <div class="global-table no-radius p0">
                         <div class="tab-content1">
                             <div class="tab-pane1">
+                                <form [formGroup]="userForm">
                                 <div class="row">
                                     <div class="col-lg-2 mt-4">
                                         <label>Invoice No</label><br>
-                                        <input class="selectBox" type="text" placeholder="Invoice No">
+                                        <input class="selectBox" type="text" placeholder="Invoice No" formControlName="invoiceNo">
                                     </div>
                                     <div class="col-lg-2 mt-4">
                                         <label>Supplier</label><br>
-                                        <select id="city" class="selectBox" >
-                                            <option value="city">select</option>
+                                        <select id="city" class="selectBox" formControlName="supplierName" placeholder="Supplier">
+                                            <!-- <option value="city">select</option> -->
                                             <option *ngFor="let supplier of supplierArr">{{supplier}}</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 mt-4">
                                         <label>Month</label><br>
-                                        <select class="selectBox">
-                                            <option value="00">Month</option>
+                                        <select class="selectBox" formControlName="month" placeholder="month">
+                                            <option value="">Month</option>
                                             <option value="01">January</option>
                                             <option value="02">February</option>
                                             <option value="03">March</option>
@@ -38,19 +39,22 @@
                                     </div>
                                     <div class="col-lg-2 mt-4">
                                         <label>From Date</label><br>
-                                        <input type="date" class="selectBox">
+                                        <input type="date" class="selectBox" formControlName="startdate"
+                                        >
                                     </div>
                                     <div class="col-lg-2 mt-4">
                                         <label>To Date</label><br>
-                                        <input type="date" class="selectBox">
+                                        <input type="date" class="selectBox" formControlName="enddate"
+                                        >
                                     </div>
                                 </div>
                                 <div class="row  d-flex justify-content-end w_100 mt-3">
                                     <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green'
                                         (click)="ExportToCsv()"></i>
-                                    <button type="button" class="search-btn">Search</button>
+                                    <button type="button" class="search-btn" (click)="search()">Search</button>
                                     <button type="button" class="search-btn" (click)="reset()">Reset</button>
                                 </div>
+                            </form>
 
 
                                 <div class="table-responsive">
