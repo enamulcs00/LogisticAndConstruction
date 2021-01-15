@@ -73,5 +73,6 @@ img.avtar-pic {
   width: 38px;
   /* border-radius: 50%; */
   height: 38px;
+  border-radius: 50%;
   margin-right: 2px;
 }

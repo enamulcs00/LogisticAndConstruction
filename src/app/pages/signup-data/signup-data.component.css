@@ -32,11 +32,6 @@ select {
     table, td {
       font-size: 20px;
     }
-    
-    .global-modal .modal-content {
-      width: 632px!important;
-      border-radius: 7px;
-    }
     .w_100 {
         width: 100%!important;
         margin: 0;

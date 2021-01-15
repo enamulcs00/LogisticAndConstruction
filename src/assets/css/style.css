@@ -2596,7 +2596,6 @@ aside.sidebar {
     overflow-y: auto;
     overflow-x: hidden;
     z-index: 1;
-    border-right: 1px solid #000000;
 }
 
 .sidebar-logo {
@@ -7063,4 +7062,12 @@ button.btn.deleye-btn {
 }
 label.outup-label {
     color: #aca6a6;
+}
+.header-dropdown-styling[_ngcontent-llc-c131] a[_ngcontent-llc-c131] {
+    margin: 0px 0px;
+    font-weight: 400;
+    color: #484848;
+}
+a.dropdown-item:active {
+    background-color: #f8f9fa;
 }
