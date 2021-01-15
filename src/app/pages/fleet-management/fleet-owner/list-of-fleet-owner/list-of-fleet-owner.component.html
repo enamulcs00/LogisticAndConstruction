@@ -192,7 +192,7 @@
 
 <!-- block_modal Start -->
 <div class="modal fade global-modal reset-modal" id="block">
-    <div class="modal-dialog max-WT-500">
+    <div class="modal-dialog max-WT-400">
         <form class="change_password">
             <div class="modal-content">
                 <div>
@@ -206,13 +206,12 @@
                             style="margin-top: -85px;">&times;</button>
                         <div class="text-center modal_flax_height d-flex align-items-center justify-content-center">
                             <div class="w-100">
-                                <p style="font-size: 18px;">Are you sure you want to block this user?</p>
+                                <p style="font-size: 18px;">Are you sure you want to block <br> this user?</p>
                                 <!-- <p  *ngIf="userStatus=='ACTIVE'" style="font-size: 25px;">Are you sure you want to unblock?</p>
                                 <p  *ngIf="userStatus=='BLOCK'" style="font-size: 25px;">Are you sure you want to block?</p> -->
-                                <div>
-                                    <button type="submit" class="btn btn-info mr-2 "
-                                        style="width: 25%;background-color: black;" (click)="blockUser()">Yes</button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal"
+                                <div class="mt-4">
+                                    <button type="submit" class="btn  btn-theme mr-2 " (click)="blockUser()">Yes</button>
+                                    <button type="button" class="btn  btn-theme" data-dismiss="modal"
                                         style="width: 25%;">No</button>
                                 </div>
                             </div>
@@ -226,7 +225,7 @@
 
 <!-- active Start -->
 <div class="modal fade global-modal reset-modal" id="active">
-    <div class="modal-dialog max-WT-500">
+    <div class="modal-dialog max-WT-400">
         <form class="change_password">
             <div class="modal-content">
                 <div>
@@ -237,11 +236,10 @@
                             style="margin-top: -85px;">&times;</button>
                         <div class="text-center modal_flax_height d-flex align-items-center justify-content-center">
                             <div class="w-100">
-                                <p style="font-size: 18px;">Are you sure you want to active this user?</p>
-                                <div>
-                                    <button type="submit" class="btn btn-success mr-2"
-                                        style="width: 25%;background-color: black;" (click)="blockUser()">Yes</button>
-                                    <button type="button" class="btn btn-danger" style="width: 25%;"
+                                <p style="font-size: 18px;">Are you sure you want to active <br> this user?</p>
+                                <div  class="mt-4">
+                                    <button type="submit" class="btn  btn-theme mr-2" (click)="blockUser()">Yes</button>
+                                    <button type="button" class="btn  btn-theme"
                                         data-dismiss="modal">No</button>
                                 </div>
                             </div>
