@@ -9,8 +9,9 @@
                                 <div class="row">
                                     <div class="col-lg-2 pl-0 mt-4">
                                         <label>Company Name</label><br>
-                                        <select class="selectBox form-control">
-                                            <option>Select Company Name</option>
+                                        <select id="CompanyName" class="selectBox form-control" >
+                                            <option value="companyName">Company name</option>
+                                            <option *ngFor="let company of companyNameArr" >{{company.companyName}}</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 pl-0 mt-4">
@@ -21,21 +22,18 @@
                                     </div>
                                     <div class="col-lg-2 pl-0 mt-4">
                                         <label>First Name</label><br>
-                                        <select class="selectBox form-control">
-                                            <option>First Name</option>
-                                        </select>
+                                        <input type="text" id="Mobile" class="selectBox form-control"
+                                        >
                                     </div>
                                     <div class="col-lg-2 pl-0 mt-4">
                                         <label>Last Name</label><br>
-                                        <select class="selectBox form-control">
-                                            <option>Last Name</option>
-                                        </select>
+                                        <input type="text" id="Mobile" class="selectBox form-control"
+                                        >
                                     </div>
                                     <div class="col-lg-2 pl-0 mt-4">
                                         <label>Mobile</label><br>
-                                        <select class="selectBox form-control">
-                                            <option>Mobile</option>
-                                        </select>
+                                        <input type="text" id="Mobile" class="selectBox form-control"
+                                        >
                                     </div>
                                     <div class="col-lg-2 mt-4 p-0">
                                         <label>&nbsp;</label><br>
@@ -59,6 +57,7 @@
                                                 <th scope="col">Mobile No</th>
                                                 <th scope="col">First Name</th>
                                                 <th scope="col">Last Name</th>
+                                                <th scope="col">Email</th>
                                                 <th scope="col">Site</th>
                                                 <th scope="col">Roll Type</th>
                                                 <th scope="col" class="action_td_btn3">Action</th>
@@ -85,88 +84,26 @@
 
                                             </td>
                                         </tr> -->
-                                            <tr>
-                                                <td>Larsen & Toubro Ltd</td>
-                                                <td>9878676512</td>
-                                                <td>Ramesh</td>
-                                                <td>Mittal</td>
-                                                <td>Mumbai</td>
-                                                <td>Site Manager</td>
+                                            <tr *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber,totalItems: totalRecords };let i = index ">
+                                                <td>{{item?.companyName}}</td>
+                                                <td>{{item?.phoneNo}}</td>
+                                                <td>{{item?.firstName}}</td>
+                                                <td>{{item?.lastName}}</td>
+                                                <td>{{item?.email}}</td>
+                                                <td>{{item?.baseLocationAddress}}</td>
+                                                <td>{{item?.role}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
                                                     <!-- <a><i class="fa fa-plus-circle" aria-hidden="true"
                                                             (click)="addCompanyUser()"></i></a> -->
-                                                    <a><i class="fa fa-eye" (click)="viewCompanyUser()"></i></a>
-                                                    <a><i class="fa fa-trash" (click)="deleteCompanyUser()"></i></a>
+                                                    <a><i class="fa fa-eye" (click)="viewCompanyUser(item?.userId)"></i></a>
+                                                    <a><i class="fa fa-trash" (click)="deleteCompanyUser(item?.userId)"></i></a>
                                                     <a><i class="fa fa-ban" style="color: green;"></i></a>
                                                     <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Larsen & Toubro Ltd</td>
-                                                <td>9878676512</td>
-                                                <td>Ramesh</td>
-                                                <td>Mittal</td>
-                                                <td>Mumbai</td>
-                                                <td>Site Manager</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true"
-                                                            (click)="addCompanyUser()"></i></a> -->
-                                                    <a><i class="fa fa-eye" (click)="viewCompanyUser()"></i></a>
-                                                    <a><i class="fa fa-trash" (click)="deleteCompanyUser()"></i></a>
-                                                    <a><i class="fa fa-ban" style="color: green;"></i></a>
-                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Larsen & Toubro Ltd</td>
-                                                <td>9878676512</td>
-                                                <td>Ramesh</td>
-                                                <td>Mittal</td>
-                                                <td>Mumbai</td>
-                                                <td>Site Manager</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true"
-                                                            (click)="addCompanyUser()"></i></a> -->
-                                                    <a><i class="fa fa-eye" (click)="viewCompanyUser()"></i></a>
-                                                    <a><i class="fa fa-trash" (click)="deleteCompanyUser()"></i></a>
-                                                    <a><i class="fa fa-ban" style="color: green;"></i></a>
-                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Larsen & Toubro Ltd</td>
-                                                <td>9878676512</td>
-                                                <td>Ramesh</td>
-                                                <td>Mittal</td>
-                                                <td>Mumbai</td>
-                                                <td>Site Manager</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true"
-                                                            (click)="addCompanyUser()"></i></a> -->
-                                                    <a><i class="fa fa-eye" (click)="viewCompanyUser()"></i></a>
-                                                    <a><i class="fa fa-trash" (click)="deleteCompanyUser()"></i></a>
-                                                    <a><i class="fa fa-ban" style="color: green;"></i></a>
-                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Larsen & Toubro Ltd</td>
-                                                <td>9878676512</td>
-                                                <td>Ramesh</td>
-                                                <td>Mittal</td>
-                                                <td>Mumbai</td>
-                                                <td>Site Manager</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <!-- <a><i class="fa fa-plus-circle" aria-hidden="true"
-                                                            (click)="addCompanyUser()"></i></a> -->
-                                                    <a><i class="fa fa-eye" (click)="viewCompanyUser()"></i></a>
-                                                    <a><i class="fa fa-trash" (click)="deleteCompanyUser()"></i></a>
-                                                    <a><i class="fa fa-ban" style="color: green;"></i></a>
-                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
-                                                </td>
-                                            </tr>
+                                        
                                         </tbody>
-                                        <!-- <tbody *ngIf="listing?.length==0">
+                                        <tbody *ngIf="listing?.length==0">
                                         <tr>
                                             <td colspan="13" vertical-align="middle">
                                                 <div class="no-record">
@@ -176,13 +113,13 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                    </tbody> -->
+                                    </tbody>
                                     </table>
                                 </div>
-                                <!-- <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
+                                <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
                                 *ngIf="listing?.length">
                                 <pagination-controls (pageChange)="pagination($event)"></pagination-controls>
-                            </div> -->
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -240,7 +177,7 @@
                             <div class="w-100">
                                 <p style="font-size: 18px;">Are you sure you want to delete this user?</p>
                                 <div>
-                                    <button type="submit" class="btn btn-info mr-2" (click)="deleteUser()"
+                                    <button type="submit" class="btn btn-info mr-2" 
                                         data-dismiss="modal"
                                         style="min-width:100px;background-color: black;">Yes</button>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal"
@@ -277,7 +214,7 @@
                                 <p  *ngIf="userStatus=='BLOCK'" style="font-size: 25px;">Are you sure you want to block?</p> -->
                                 <div>
                                     <button type="submit" class="btn btn-info mr-2 "
-                                        style="width: 25%;background-color: black;" (click)="blockUser()">Yes</button>
+                                        style="width: 25%;background-color: black;" >Yes</button>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal"
                                         style="width: 25%;">No</button>
                                 </div>
@@ -306,7 +243,7 @@
                                 <p style="font-size: 18px;">Are you sure you want to active this user?</p>
                                 <div>
                                     <button type="submit" class="btn btn-success mr-2"
-                                        (click)="blockUser()">Yes</button>
+                                        >Yes</button>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
                                 </div>
                             </div>

@@ -37,11 +37,12 @@ export class ListOfTruckComponent implements OnInit {
     var url = `account/admin/filter-tuck-details?page=${this.currentPage - 1}&pageSize=${this.itemsPerPage}${(this.fleetOnwerCompanyName ? ('&fleetOnwerCompanyName=' + this.fleetOnwerCompanyName) : '')
       + (this.registrationNo ? ('&registrationNo=' + this.registrationNo) : '') + (this.typeOfTruck ? ('&typeOfTruck=' + this.typeOfTruck) : '') + (this.fleetOnwerNo ? ('&fleetOnwerNo=' + this.fleetOnwerNo) : '')}`
     this.service.get(url).subscribe((res: any) => {
-      this.service.hideSpinner()
       if (res['status'] == 200) {
+        this.service.hideSpinner()
         this.listing = res['data']['list'];
         this.totalItems = res.data.totalCount;
       } else {
+        this.service.hideSpinner()
         this.listing = []
         this.totalItems = 0
       }
@@ -96,7 +97,7 @@ export class ListOfTruckComponent implements OnInit {
     var url = 'account/admin/get-truckTypeDetails?page=0&pageSize=100'
     this.service.get(url).subscribe((res: any) => {
       if (res['status'] == 200) {
-        this.typeOfTruckArray = res['data'];
+        this.typeOfTruckArray = res['data']['data'];
       }
     })
   }

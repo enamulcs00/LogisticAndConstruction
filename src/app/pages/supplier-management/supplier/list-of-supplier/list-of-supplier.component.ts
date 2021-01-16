@@ -89,7 +89,7 @@ export class ListOfSupplierComponent implements OnInit {
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
         this.totalRecords = res.data.totalCount
-        this.service.toasterInfo(res.message)
+        this.service.toasterSucc(res.message)
       }
       else {
         this.service.hideSpinner()

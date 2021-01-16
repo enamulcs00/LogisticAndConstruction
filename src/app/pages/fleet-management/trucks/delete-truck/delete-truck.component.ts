@@ -45,11 +45,11 @@ export class DeleteTruckComponent implements OnInit {
 
   // ------------- get fleet owner name list ---------------- //
   getlist() {
-    this.service.showSpinner()
+    // this.service.showSpinner()
     var url = "account/admin/filter-user-details?roleStatus=FLEET"
     this.service.get(url).subscribe((res: any) => {
       console.log('kfg', this.listing);
-      this.service.hideSpinner()
+      // this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
       } else {
@@ -61,13 +61,13 @@ export class DeleteTruckComponent implements OnInit {
 
   //-----------------------------list api integration --------------------------------//
   getTruckTypelist() {
-    this.service.showSpinner()
+    // this.service.showSpinner()
     // var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
     var url = "account/admin/get-truckTypeDetails?page=" + (this.pageNumber - 1) + `&pageSize=${this.pageSize}`
     this.service.get(url).subscribe((res: any) => {
-      this.service.hideSpinner()
+      // this.service.hideSpinner()
       if (res['status'] == 200) {
-        this.listingTruckType = res['data'];
+        this.listingTruckType = res['data']['data'];
       }
 
     })

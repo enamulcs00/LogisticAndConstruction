@@ -216,9 +216,17 @@ export class ListOfFleetOwnerComponent implements OnInit {
     this.router.navigate(['/delete-fleet-owner', userId])
   }
 
-  resetPassword(userId) {
-    console.log("reset password calickw")
-    this.router.navigate(['/reset-password', userId])
+  // ------------- reset password ----------------- //
+  resetPassword(userId, phoneNo, email) {
+    var data = {
+      role: 'FLEET',
+      clientId: userId,
+      mobileNo: phoneNo,
+      email: email
+    }
+    let paramData = JSON.stringify(data)
+    console.log(paramData)
+    this.router.navigate(['/reset-password'], { queryParams: { paramData: paramData } })
   }
 
 }

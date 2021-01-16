@@ -12,10 +12,14 @@ export class ViewFleetOwnerComponent implements OnInit {
   editForm: any;
   id: any;
   editData: any
-
   aadharCardUrl: any;
   panCardUrl: any;
   gstinUrl: any;
+
+  stateArr: any = [];
+  selectedState: any;
+  cityArr: any = [];
+  selectedCity: any;
 
   constructor(public router: Router, public service: MainService, public activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe((params) => {
@@ -25,7 +29,8 @@ export class ViewFleetOwnerComponent implements OnInit {
   }
   ngOnInit(): void {
     this.addFormValidation()
-    this.viewFleetOwner()
+    this.viewFleetOwner();
+    this.getStateList()
   }
 
   // add form validation
@@ -46,22 +51,62 @@ export class ViewFleetOwnerComponent implements OnInit {
     this.editForm.disable();
   }
 
+  // --------- get State list -------------- //
+  getStateList() {
+    // this.service.showSpinner()
+    var url = "account/get-state-country-wise?countryName=" + 'INDIA'
+    this.service.get(url).subscribe((res: any) => {
+      // this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.stateArr = res['data'];
+      }
+    })
+  }
+
+  // ----------- get city list --------------- //
+  searchCity(event) {
+    console.log("event", event)
+    this.service.showSpinner()
+    this.selectedState = event.target.value
+    var url = "account/get-cities-state-wise?stateName=" + this.selectedState
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.cityArr = res['data'];
+      }
+    })
+  }
+
+  patchCity(value) {
+    this.service.showSpinner()
+    this.selectedState = value
+    var url = "account/get-cities-state-wise?stateName=" + this.selectedState
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.cityArr = res['data'];
+        this.editForm.patchValue({
+          'city': res.data.userDetail.city ? res.data.userDetail.city : ''
+        })
+      }
+    })
+  }
+
   // -------------- view fleet owner ------------------- //
   viewFleetOwner() {
     this.service.showSpinner();
-    // var url = "notification/get-announcement-data?announcementsId=" + this.id;
-    var url = "account/admin/get-client-details?userIdToGetDetails=" + this.id
+    var url = `account/admin/get-client-details?userIdToGetDetails=${this.id}`
     this.service.get(url).subscribe((res: any) => {
       console.log('dff', res);
       this.service.hideSpinner();
       if (res.status == 200) {
-        // this.editData=res.data[0],
-        // this.editImage=res.data[0].imageUrl
         this.editData = res.data
         this.aadharCardUrl = res.data.userDetail.aadharCardUrl ? res.data.userDetail.aadharCardUrl : '';
         this.panCardUrl = res.data.userDetail.panCardUrl ? res.data.userDetail.panCardUrl : ''
         this.gstinUrl = res.data.userDetail.gstinUrl ? res.data.userDetail.gstinUrl : ''
-
+        this.selectedCity = res.data.userDetail.city ? res.data.userDetail.city : ''
+        let state = res.data.userDetail.state ? res.data.userDetail.state : ''
+        this.patchCity(state)
         this.editForm.patchValue({
           'firstName': res.data.userDetail.firstName ? res.data.userDetail.firstName : '',
           'lastName': res.data.userDetail.lastName ? res.data.userDetail.lastName : '',
@@ -74,8 +119,8 @@ export class ViewFleetOwnerComponent implements OnInit {
           'aadharCardNo': res.data.userDetail.aadharCardNo ? res.data.userDetail.aadharCardNo : '',
           'panCardNo': res.data.userDetail.panCardNo ? res.data.userDetail.panCardNo : '',
           'gstinNo': res.data.userDetail.gstinNo ? res.data.userDetail.gstinNo : '',
-
         })
+
       }
 
     }, err => {
@@ -89,7 +134,9 @@ export class ViewFleetOwnerComponent implements OnInit {
     })
   }
 
+  // edit fleet owner
   editFleetOwner() {
     this.router.navigate(['edit-fleet-owner', this.id])
   }
+
 }

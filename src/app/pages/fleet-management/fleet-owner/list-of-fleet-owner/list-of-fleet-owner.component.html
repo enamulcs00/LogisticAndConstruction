@@ -97,7 +97,7 @@
                                                     <a *ngIf="item?.userStatus == 'BLOCK'"
                                                         (click)="openModal('ACTIVE',item?.userId)"><i
                                                             class="fa fa-ban"></i></a>
-                                                    <a (click)="resetPassword(item?.userId)"><i
+                                                    <a (click)="resetPassword(item?.userId, item?.phoneNo, item?.email)"><i
                                                             class="fa fa-unlock-alt"></i></a>
                                                 </td>
                                             </tr>

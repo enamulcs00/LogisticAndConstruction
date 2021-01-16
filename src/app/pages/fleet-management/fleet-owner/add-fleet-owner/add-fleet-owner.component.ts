@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router, RoutesRecognized } from '@angular/router';
+import { Router, RoutesRecognized, ActivatedRoute } from '@angular/router';
 import { MainService } from 'src/app/provider/main.service';
 // import 'rxjs/add/operator/filter';
 // import 'rxjs/add/operator/pairwise';
-import { filter, pairwise } from 'rxjs/operators';
+// import { filter, pairwise } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-fleet-owner',
@@ -19,21 +19,44 @@ export class AddFleetOwnerComponent implements OnInit {
 
   stateArr: any = [];
   selectedState: any;
-  cityArr: any;
-  constructor(private router: Router, public service: MainService) {
+  cityArr: any = [];
 
-    this.router.events
-      .pipe(filter((evt: any) => evt instanceof RoutesRecognized), pairwise())
-      .subscribe((events: RoutesRecognized[]) => {
-        console.log('previous url', events[0].urlAfterRedirects);
-        console.log('current url', events[1].urlAfterRedirects);
-      });
+  paramData: any;
+
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, public service: MainService) {
+    // this.router.events
+    //   .pipe(filter((evt: any) => evt instanceof RoutesRecognized), pairwise())
+    //   .subscribe((events: RoutesRecognized[]) => {
+    //     console.log('previous url', events[0].urlAfterRedirects);
+    //     console.log('current url', events[1].urlAfterRedirects);
+    //   });
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.paramData = this.router.getCurrentNavigation().extras.state.paramData;
+        console.log(this.paramData)
+      }
+    });
   }
 
   ngOnInit(): void {
     this.addFormValidation()
     this.getStateList()
-
+    if (this.paramData) {
+      this.addForm.patchValue({
+        'firstName': this.paramData.firstName ? this.paramData.firstName : '',
+        'lastName': this.paramData.lastName ? this.paramData.lastName : '',
+        'phoneNo': this.paramData.phoneNo ? this.paramData.phoneNo : '',
+        'email': this.paramData.email ? this.paramData.email : '',
+        'companyName': this.paramData.companyName ? this.paramData.companyName : '',
+        'baseLocationAddress': this.paramData.baseLocationAddress ? this.paramData.baseLocationAddress : '',
+        'city': this.paramData.city ? this.paramData.city : '',
+        'state': this.paramData.state ? this.paramData.state : '',
+        'aadharCardNo': this.paramData.aadharCardNo ? this.paramData.aadharCardNo : '',
+        'panCardNo': this.paramData.panCardNo ? this.paramData.panCardNo : '',
+        'gstinNo': this.paramData.gstInNo ? this.paramData.gstInNo : '',
+      })
+      this.addForm.disable()
+    }
   }
 
   // add form validation
@@ -81,7 +104,7 @@ export class AddFleetOwnerComponent implements OnInit {
 
   // submit add form 
   submitForm() {
-    let apiReqData = {
+    var apiReqData = {
       firstName: this.addForm.value.firstName,
       lastName: this.addForm.value.lastName,
       // countryCode: '+91',
@@ -100,10 +123,17 @@ export class AddFleetOwnerComponent implements OnInit {
       gstinUrl: this.gstinUrl,
       "roleStatus": "FLEET",
     }
+    if(this.paramData){
+      apiReqData['idForValidateData'] = this.paramData.userId
+    }
     console.log(apiReqData)
     this.service.post('account/admin/add-CompanyBy-admin', apiReqData).subscribe((res: any) => {
       console.log(res);
-      this.router.navigate(['/list-of-fleet-owner'])
+      if(res.status == 200){
+        // this.router.navigate(['/list-of-fleet-owner'])
+        this.router.navigate(['/routes', res.userId])
+        // this.router.navigate(['/routes', 1])
+      }
     })
   }
 
@@ -245,7 +275,7 @@ export class AddFleetOwnerComponent implements OnInit {
     });
   }
 
-  addRoutes() {
-    this.router.navigate(['/routes'])
-  }
+  // addRoutes() {
+  //   this.router.navigate(['/routes'])
+  // }
 }
