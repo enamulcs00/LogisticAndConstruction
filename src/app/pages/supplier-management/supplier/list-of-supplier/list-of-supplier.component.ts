@@ -95,9 +95,14 @@ export class ListOfSupplierComponent implements OnInit {
         this.service.hideSpinner()
         this.service.toasterErr(res.message)
       }
-    },error=>{
-      this.service.hideSpinner()
-      this.service.toasterErr(error.message)
+    },(error:any)=>{
+      if(error.status==401){
+        this.service.toasterErr("UnAuthorized Access Denied")
+      }
+      else{
+
+        this.service.toasterErr('something went wrong')
+      }
     }
     )
   }

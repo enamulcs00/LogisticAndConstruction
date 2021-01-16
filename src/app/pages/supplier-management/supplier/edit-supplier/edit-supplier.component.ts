@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MainService } from './../../../../provider/main.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -12,6 +12,7 @@ export class EditSupplierComponent implements OnInit {
   listing: any = [];
   editForm: FormGroup;
   id: any;
+  defaultCity:any;
   editData: any
   stateArr: any = [];
   selectedState: any;
@@ -19,7 +20,7 @@ export class EditSupplierComponent implements OnInit {
   aadharCardUrl: any;
   panCardUrl: any;
   gstinUrl: any;
-  constructor(private service:MainService,private activatedRoute:ActivatedRoute) { }
+  constructor(private service:MainService,private activatedRoute:ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((res:any)=>{
@@ -36,8 +37,8 @@ export class EditSupplierComponent implements OnInit {
     let AadharPattern = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$";
 
     this.editForm = new FormGroup({
-      'firstName': new FormControl(''),
-      'lastName': new FormControl(''),
+      'firstName': new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]*$/i)]),
+      'lastName': new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]*$/i)]),
       'phoneNo': new FormControl('',[Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
       'email': new FormControl('',[Validators.required, Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,9}|[0-9]{1,3})(\]?)$/i)]),
       'companyName': new FormControl(''),
@@ -198,6 +199,7 @@ export class EditSupplierComponent implements OnInit {
     })
   }
 
+
   //get city list
   searchCity(event) {
     console.log("event", event)
@@ -212,6 +214,7 @@ export class EditSupplierComponent implements OnInit {
     })
   }
   getlist(){
+
     let channel = `account/admin/get-client-details?userIdToGetDetails=${this.id}`
     this.service.showSpinner()
 
@@ -225,7 +228,7 @@ console.log('View Response',res.data)
         this.panCardUrl = res.data.userDetail.panCardUrl ? res.data.userDetail.panCardUrl : 'https://images.app.goo.gl/aDwPDsFSsVwxKQiq5'
         this.gstinUrl = res.data.userDetail.gstinUrl ? res.data.userDetail.gstinUrl : 'https://images.app.goo.gl/sCaxYXNT8VM47Ahq6'
         console.log('This is image pack',this.listing.userDetail)
-
+         this.defaultCity = this.listing?.userDetail?.city
 
         this.editForm.patchValue({
           firstName: this.listing?.userDetail?.firstName,
@@ -251,5 +254,46 @@ console.log('Error',error)
     }
     )
   }
-  editSupplier(){}
+  editSupplier(){
+    let url = `account/admin/update-profile-other-role?userIdForUpdateprofile=${this.id}`
+    let obj = {
+      "aadharCardNo": this.editForm.value.aadharCardNo,
+      "aadharCardUrl": this.aadharCardUrl,
+      "baseLocationAddress": this.editForm.value.baseLocationAddress,
+      "city": this.editForm.value.city,
+      "companyName": this.editForm.value.companyName,
+      "email": this.editForm.value.email,
+      "firstName": this.editForm.value.firstName,
+      "gstinNo": this.editForm.value.gstinNumber,
+      "gstinUrl": this.gstinUrl,
+
+      "lastName": this.editForm.value.lastName,
+
+      "panCardNo": this.editForm.value.panCardNo,
+      "panCardUrl": this.panCardUrl,
+      "phoneNo":  this.editForm.value.phoneNo,
+      "pnWithoutCountryCode": this.editForm.value.phoneNo,
+      "roleStatus": "SUPPLIER",
+
+      "state": this.editForm.value.state,
+
+    }
+    this.service.showSpinner()
+    this.service.post(url,obj).subscribe((res:any)=>{
+      console.log('This is Updated Profile',res)
+      this.service.hideSpinner()
+      if(res.status == 200){
+        this.service.toasterSucc(res.message);
+        this.router.navigate(['/list-of-supplier'])
+        this.editForm.reset()
+
+      }
+      else{
+        this.service.toasterErr(res.message);
+      }
+    },err=>{
+      this.service.toasterErr('Something went wrong')
+    }
+    )
+  }
 }

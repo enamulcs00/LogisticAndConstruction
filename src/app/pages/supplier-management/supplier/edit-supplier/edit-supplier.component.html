@@ -50,15 +50,15 @@
                                 <select id="city" class="form-control" formControlName="state"
                                     (change)="searchCity($event)">
                                     <option value="State">State</option>
-                                    <option *ngFor="let state of stateArr">{{state.name}}</option>
+                                    <option *ngFor="let state of stateArr" value="{{state.name}}">{{state.name}}</option>
                                 </select>
 
                             </div>
                             <label for="city" class="col-sm-2 col-form-label">City</label>
                             <div class="col-sm-4">
                                 <select id="city" class="form-control" formControlName="city">
-                                    <option value="city">City</option>
-                                    <option *ngFor="let city of cityArr">{{city.name}}</option>
+                                    <option value="{{defaultCity}}" selected>{{defaultCity}}</option>
+                                    <option *ngFor="let city of cityArr" value="{{city.name}}">{{city.name}}</option>
                                 </select>
                             </div>
                         </div>
