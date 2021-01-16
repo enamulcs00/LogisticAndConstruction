@@ -16,7 +16,7 @@
                                         <label>Supplier</label><br>
                                         <select id="city" class="selectBox form-control" formControlName="supplierName" placeholder="Supplier">
                                             <!-- <option value="city">select</option> -->
-                                            <option *ngFor="let supplier of supplierArr">{{supplier}}</option>
+                                            <option *ngFor="let supplier of supplierArr">{{supplier.name}}</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 pl-0 mt-4">
@@ -65,6 +65,7 @@
                                     <table class="table table-bordered" aria-describedby="user list" id="pdfcontent">
                                         <thead>
                                             <tr class="no_wrap_th">
+                                                <th scope="col">Sl No.</th>
                                                 <th scope="col">Invoice No</th>
                                                 <th scope="col">Invoice Date</th>
                                                 <th scope="col">Booking ID</th>
@@ -107,6 +108,7 @@
                                                 </td>
                                             </tr> -->
                                             <tr  *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber,totalItems: totalRecords };let i = index ">
+                                                <td>{{i+1}}</td>
                                                 <td>{{item?.inVoiceNoForCompany}}</td>
                                                 <td>{{item?.inVoiceDateForCompany}}</td>
                                                 <td>{{item?.bookingId}}</td>

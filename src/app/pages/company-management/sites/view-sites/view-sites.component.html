@@ -47,10 +47,12 @@
                            
 
                             <div class="form-group row">
+                               
                                 <label for="city" class="col-sm-2 col-form-label">City</label>
+                                <div class="col-sm-4">
                                 <input type="text" id="city" class="form-control"
                                 placeholder="City" formControlName="city" disabled>
-
+                            </div>
                                 <label for="state" class="col-sm-2 col-form-label">State</label>
                                 <div class="col-sm-4">
                                     <!-- <select id="city" class="form-control" formControlName="state"
@@ -71,7 +73,7 @@
                                  formControlName="dateOfCreation" disabled> -->
 
                                 <label for="gst" class="col-sm-2 col-form-label">GISTN No</label>
-                                <div class="col-sm-4 input-group">
+                                <div class="col-sm-4 ">
                                     <input type="text" id="gst" class="form-control" placeholder="Enter GISTN no"
                                         style="border: 1px solid;" formControlName="gstNo" maxlength="16" disabled>
                                     <!-- <div class="input-group-append">
@@ -102,9 +104,8 @@
                     </div>
                     <br>
                     <div class="head_flt_select">
-                        <div class="head_flt_select input-label">
-                            <button type="submit" class="btn btn-theme"
-                                >Save</button>
+                        <div class="head_flt_select input-label" >
+                            <button type="submit" class="btn btn-theme" (click)="edit()">Edit</button>
                         </div>
                     </div>
 

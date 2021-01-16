@@ -6,34 +6,35 @@
                     <div class="global-table no-radius p0">
                         <div class="tab-content1">
                             <div class="tab-pane1">
+                                <form [formGroup]="userForm">
                                 <div class="row">
                                     <div class="col-lg-2 mt-4 pl-0">
                                         <label>Company Name</label><br>
                                         <!-- <select class="selectBox">
                                             <option>Select Company Name</option>
                                         </select> -->
-                                        <select id="CompanyName" class="form-control selectBox" (change)="searchLocation($event)">
+                                        <select id="CompanyName" class="form-control selectBox" (change)="searchLocation($event)" formControlName="companyName">
                                             <option value="">Company name</option>
                                             <option *ngFor="let company of companyNameArr" value={{company.id}}>{{company.name}}</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 mt-4 pl-0">
                                         <label>Location</label><br>
-                                        <select class="form-control selectBox">
+                                        <select class="form-control selectBox" formControlName="location">
                                             <option  value="">Location</option>
                                             <option *ngFor="let site of siteArr" value={{site.id}}>{{site.address}}</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 mt-4 pl-0">
                                         <label>State</label><br>
-                                        <select class="form-control selectBox" (change)="searchCity($event)">
+                                        <select class="form-control selectBox" (change)="searchCity($event)" formControlName="state">
                                             <option value="State">State</option>
                                             <option *ngFor="let state of stateArr">{{state.name}}</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 mt-4 pl-0">
                                         <label>City</label><br>
-                                        <select class="form-control selectBox">
+                                        <select class="form-control selectBox" formControlName="city">
                                             <!-- <option>City<i class="caret pull-right"></i></option> -->
                                             <option value="city">City</option>
                                             <option *ngFor="let city of cityArr">{{city.name}}</option>
@@ -42,11 +43,16 @@
                                     <div class="col-lg-2 pl-0 mt-4 ">
                                         <label>Mobile</label><br>
                                         <input type="text" id="Mobile" class="form-control selectBox"
-                                        placeholder="Enter mobile number">
+                                        placeholder="Mobile" formControlName="phoneNo" maxlength="13">
+                                        <span class="error"
+                                        *ngIf="userForm.get('phoneNo').hasError('pattern') && userForm.get('phoneNo').dirty"
+                                        class="error">
+                                        <p> *Please enter valid mobile number.</p>
+                                    </span>
                                     </div>
                                     <div class="col-lg-2 mt-4 p-0">
                                         <label>&nbsp;</label><br>
-                                        <button type="button" class="search-btn">Search</button>
+                                        <button type="button" class="search-btn" (click)="search()">Search</button>
                                         <!-- <button type="button" class="search-btn">Reset</button> -->
                                     </div>
                                 </div>
@@ -57,10 +63,12 @@
                                     <button type="button" class="search-btn" (click)="reset()">Reset</button>
                                     <button type="button" class="btn-add" (click)="addCompany()">Add</button>
                                 </div>
+                                </form>
                                 <div class="table-responsive">
                                     <table class="table table-bordered" aria-describedby="user list" id="pdfcontent">
                                         <thead>
                                             <tr class="no_wrap_th">
+                                                <th scope="col">Sl No.</th>
                                                 <th scope="col">Company Name</th>
                                                 <th scope="col">Location</th>
                                                 <th scope="col">Mobile</th>
@@ -97,6 +105,7 @@
                                                 </td>
                                             </tr> -->
                                             <tr *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber,totalItems: totalRecords };let i = index ">
+                                                <td>{{i+1}}</td>
                                                 <td>{{item?.companyName}}</td>
                                                 <td>{{item?.baseLocationAddress}}</td>
                                                 <td>{{item?.phoneNo}}</td>
