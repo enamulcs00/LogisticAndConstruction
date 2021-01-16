@@ -52,7 +52,7 @@
                                     </div>
                                 </div>
                                 <div class="row  d-flex justify-content-end w_100 mt-3 mb-3">
-                                    <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green'
+                                    <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green; cursor: pointer;'
                                         (click)="exportToCsv()"></i>
 
                                     <button type="button" class="search-btn" (click)="reset()">Reset</button>
@@ -114,7 +114,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div *ngIf="totalItems > 10" class="custom-pagination mt20 "
+                                <div *ngIf="totalItems > 10" class="custom-pagination mt20"
                                     style="display: flex; justify-content:flex-end">
                                     <pagination-controls (pageChange)="pagination($event)"></pagination-controls>
                                 </div>

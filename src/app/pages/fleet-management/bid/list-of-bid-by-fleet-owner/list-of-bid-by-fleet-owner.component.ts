@@ -85,6 +85,8 @@ export class ListOfBidByFleetOwnerComponent implements OnInit {
       }
       else {
         this.service.toasterErr(res.message)
+        this.listing = [];
+        this.totalItems = 0
       }
     })
   }
@@ -178,7 +180,7 @@ export class ListOfBidByFleetOwnerComponent implements OnInit {
       useKeysAsHeaders: true,
       headers: ["Bid ID", "Fleet Owner", "Supplier", "Material", "Weight", "Delivery Date", "Location", "Amount", "PO Number", "Vehicle Number", "Vehicle Type", "Driver Name", "Driver Mobile", "Route ID",]
     };
-    new ngxCsv(dataArr, 'List-of-bid-by-Fleet-owner', options);
+    new ngxCsv(dataArr, 'List-Of-Bid-By-Fleet-Owner', options);
   }
 
 

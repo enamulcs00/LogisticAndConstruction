@@ -23,6 +23,7 @@ td.action_td_btn3 {
     border-radius: 7px;
     border: none;
     margin-left: 2px;
+    cursor: pointer;
 }
 
 .mt-5 {
@@ -36,6 +37,7 @@ td.action_td_btn3 {
     border-radius: 7px;
     border: none;
     margin-left: 2px;
+    cursor: pointer;
 }
 
 .btn-add {
@@ -45,6 +47,7 @@ td.action_td_btn3 {
     border-radius: 7px;
     border: none;
     margin-left: 2px;
+    cursor: pointer;
 }
 
 tr:nth-child(even) {
@@ -58,6 +61,7 @@ tr:nth-child(even) {
     border-radius: 7px;
     border: none;
     margin-left: 2px;
+    cursor: pointer;
 }
 
 .btn-reject {
@@ -67,6 +71,7 @@ tr:nth-child(even) {
     border-radius: 7px;
     border: none;
     margin-left: 2px;
+    cursor: pointer;
 }
 
 /* search filter input fields */
