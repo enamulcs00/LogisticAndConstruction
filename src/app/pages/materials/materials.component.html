@@ -9,15 +9,15 @@
 
                                 <form [formGroup]="addMaterialForm">
                                     <div class="row  d-flex justify-content-end w_100 mt-3">
-                                        <div class="col-lg-3 mt-5">
-                                            <input style="margin-left: -6%;" class="selectBox" type="text"
+                                        <div class="col-lg-3 pr-0">
+                                            <input  class="selectBox form-control" type="text"
                                                 placeholder="Material Name" formControlName="materialType">
                                         </div>
-                                        <div class="col-lg-6 mt-5">
-                                            <input style="width: 100%;" class="selectBox" type="text"
+                                        <div class="col-lg-6 ">
+                                            <input  class="selectBox form-control" type="text"
                                                 placeholder="Description" formControlName="description">
                                         </div>
-                                        <div class="col-lg-3 mt-5">
+                                        <div class="col-lg-3 pl-0 text-left">
                                             <button type="button" class="search-btn"
                                                 style="margin-left: 40;color: white;width: 66%;height: 101%; cursor: pointer;"
                                                 [disabled]="addMaterialForm.invalid"
@@ -26,7 +26,7 @@
                                     </div>
 
                                 </form>
-                                <div class="table-responsive mt-5">
+                                <div class="table-responsive mt-3">
                                     <table class="table table-bordered" aria-describedby="user list" id="pdfcontent">
                                         <thead>
                                             <tr class="no_wrap_th">

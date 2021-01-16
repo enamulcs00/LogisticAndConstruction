@@ -80,7 +80,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'reset-password/:id', component: ResetPasswordComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
 
   // dashboard
   { path: 'dashboard', component: DashboardComponent },
@@ -88,27 +88,27 @@ const routes: Routes = [
   // company management
   { path: 'list-of-companies', component: ListOfCompanyComponent },
   { path: 'add-company', component: AddCompanyComponent },
-  { path: 'edit-company', component: EditCompanyComponent },
+  { path: 'edit-company/:id', component: EditCompanyComponent },
   { path: 'view-company/:id', component: ViewCompanyComponent },
   { path: 'delete-company/:id', component: DeleteCompanyComponent },
   // company management-> site
   { path: 'list-of-sites', component: ListOfSitesComponent },
   { path: 'add-site', component: AddSitesComponent },
   { path: 'edit-site', component: EditSitesComponent },
-  { path: 'view-site', component: ViewSitesComponent },
-  { path: 'delete-site', component: DeleteSitesComponent },
+  { path: 'view-site/:id', component: ViewSitesComponent },
+  { path: 'delete-site/:id', component: DeleteSitesComponent },
   // // company management-> company-user-management
   { path: 'list-of-company-user', component: ListOfCompanyUserComponent },
   { path: 'add-company-user', component: AddCompanyUserComponent },
   { path: 'edit-company-user', component: EditCompanyUserComponent },
   { path: 'view-company-user/:id', component: ViewCompanyUserComponent },
-  { path: 'delete-company-user', component: DeleteCompanyUserComponent },
+  { path: 'delete-company-user/:id', component: DeleteCompanyUserComponent },
   // company management-> booking
   { path: 'list-of-company-booking', component: ListOfCompanyBookingComponent },
-  { path: 'view-company-booking/:id', component: ViewCompanyBookingComponent },
+  { path: 'view-company-booking/:id/:name', component: ViewCompanyBookingComponent },
   // company management-> quotes
   { path: 'list-of-company-quote', component: ListOfCompanyQuoteComponent },
-  { path: 'view-company-quote/:id', component: ViewCompanyQuoteComponent },
+  { path: 'view-company-quote/:id/:name', component: ViewCompanyQuoteComponent },
   // company management-> billing
   { path: 'list-of-company-billing', component: ListOfCompanyBillingComponent },
   { path: 'view-company-billing/:id', component: ViewCompanyBillingComponent },
@@ -132,7 +132,7 @@ const routes: Routes = [
   { path: 'view-driver/:id', component: ViewDriverComponent },
   { path: 'delete-driver/:id', component: DeleteDriverComponent },
   // fleet management-> routes
-  { path: 'routes', component: RoutesComponent },
+  { path: 'routes/:id', component: RoutesComponent },
   // fleet management-> bid
   { path: 'list-of-bid-by-fleet-owner', component: ListOfBidByFleetOwnerComponent },
   { path: 'view-bid-by-fleet-owner/:id', component: ViewBidByFleetOwnerComponent },

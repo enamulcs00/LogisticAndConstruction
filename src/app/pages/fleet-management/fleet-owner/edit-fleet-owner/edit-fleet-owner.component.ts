@@ -18,7 +18,12 @@ export class EditFleetOwnerComponent implements OnInit {
   panCardUrl: any;
   gstinUrl: any;
 
-  constructor(public route: Router, public service: MainService, public active: ActivatedRoute) {
+  stateArr: any = [];
+  selectedState: any;
+  cityArr: any = [];
+  selectedCity: any;
+
+  constructor(public router: Router, public service: MainService, public active: ActivatedRoute) {
     this.active.params.subscribe((params) => {
       console.log(params)
       this.id = params.id
@@ -27,6 +32,7 @@ export class EditFleetOwnerComponent implements OnInit {
   ngOnInit(): void {
     this.addFormValidation()
     this.viewFleetOwner()
+    this.getStateList()
   }
 
   // add form validation
@@ -45,7 +51,46 @@ export class EditFleetOwnerComponent implements OnInit {
       'gstinNo': new FormControl('')
     })
   }
+  // --------- get State list -------------- //
+  getStateList() {
+    // this.service.showSpinner()
+    var url = "account/get-state-country-wise?countryName=" + 'INDIA'
+    this.service.get(url).subscribe((res: any) => {
+      // this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.stateArr = res['data'];
+      }
+    })
+  }
 
+  // ----------- get city list --------------- //
+  searchCity(event) {
+    console.log("event", event)
+    this.service.showSpinner()
+    this.selectedState = event.target.value
+    var url = "account/get-cities-state-wise?stateName=" + this.selectedState
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.cityArr = res['data'];
+      }
+    })
+  }
+
+  patchCity(value) {
+    this.service.showSpinner()
+    this.selectedState = value
+    var url = "account/get-cities-state-wise?stateName=" + this.selectedState
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.cityArr = res['data'];
+        this.editForm.patchValue({
+          'city': res.data.userDetail.city ? res.data.userDetail.city : ''
+        })
+      }
+    })
+  }
   // -------------- view fleet owner ------------------- //
   viewFleetOwner() {
     this.service.showSpinner();
@@ -58,6 +103,12 @@ export class EditFleetOwnerComponent implements OnInit {
         // this.editData=res.data[0],
         // this.editImage=res.data[0].imageUrl
         this.editData = res.data
+        this.aadharCardUrl = res.data.userDetail.aadharCardUrl ? res.data.userDetail.aadharCardUrl : '';
+        this.panCardUrl = res.data.userDetail.panCardUrl ? res.data.userDetail.panCardUrl : ''
+        this.gstinUrl = res.data.userDetail.gstinUrl ? res.data.userDetail.gstinUrl : ''
+        this.selectedCity = res.data.userDetail.city ? res.data.userDetail.city : ''
+        let state = res.data.userDetail.state ? res.data.userDetail.state : ''
+        this.patchCity(state)
         this.editForm.patchValue({
           'firstName': res.data.userDetail.firstName ? res.data.userDetail.firstName : '',
           'lastName': res.data.userDetail.lastName ? res.data.userDetail.lastName : '',
@@ -84,7 +135,7 @@ export class EditFleetOwnerComponent implements OnInit {
       this.service.hideSpinner();
     })
   }
-  
+
   uploadAadhaar(event) {
     var self = this;
     if (event.target.files && event.target.files[0]) {
@@ -223,7 +274,40 @@ export class EditFleetOwnerComponent implements OnInit {
     });
   }
 
-  editFleetOwner(){
-    let url= 'https://logistic-constructionbackend.mobiloitte.com/account/admin/update-profile-other-role?userIdForUpdateprofile=1'
+  // submit add form 
+  editFleetOwner() {
+    var apiReqData = {
+      firstName: this.editForm.value.firstName,
+      lastName: this.editForm.value.lastName,
+      // countryCode: '+91',
+      phoneNo: '+91' + this.editForm.value.phoneNo,
+      pnWithoutCountryCode: this.editForm.value.phoneNo,
+      email: this.editForm.value.email,
+      companyName: this.editForm.value.companyName,
+      baseLocationAddress: this.editForm.value.baseLocationAddress,
+      city: this.editForm.value.city,
+      state: this.editForm.value.state,
+      aadharCardNo: this.editForm.value.aadharCardNo,
+      aadharCardUrl: this.aadharCardUrl,
+      panCardNo: this.editForm.value.panCardNo,
+      panCardUrl: this.panCardUrl,
+      gstinNo: this.editForm.value.gstinNo,
+      gstinUrl: this.gstinUrl,
+      "roleStatus": "FLEET",
+    }
+    // if(this.paramData){
+    //   apiReqData['idForValidateData'] = this.paramData.userId
+    // }
+    console.log(apiReqData)
+    let url = `account/admin/update-profile-other-role?userIdForUpdateprofile=${this.id}`
+    this.service.post(url, apiReqData).subscribe((res: any) => {
+      console.log(res);
+      if (res.status == 200) {
+        // this.router.navigate(['/list-of-fleet-owner'])
+        this.router.navigate(['/routes', res.userId])
+        // this.router.navigate(['/routes', 1])
+      }
+    })
   }
+
 }

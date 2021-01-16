@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainService } from 'src/app/provider/main.service';
 // import { ngxCsv } from 'ngx-csv/ngx-csv';
@@ -37,10 +37,14 @@ export class RoutesComponent implements OnInit {
   selectedState: any;
   cityArr: any
 
-  constructor(
+  responseArray: any = []
+  constructor(private activatedRoute: ActivatedRoute,
     private router: Router, public service: MainService
   ) {
-
+    this.activatedRoute.params.subscribe((params) => {
+      console.log(params)
+      this.id = params.id
+    })
   }
 
   ngOnInit() {
@@ -79,17 +83,17 @@ export class RoutesComponent implements OnInit {
   //-----------------------------list api integration --------------------------------//
   getlist() {
     this.service.showSpinner()
-    var url = "account/admin/user-management/filter-user-details?page=" + (this.pageNumber - 1) + `&pageSize=${this.pageSize}`
-    this.service.get(url).subscribe((res: any) => {
-      this.service.hideSpinner()
-      if (res['status'] == 200) {
-        this.listing = res['data']['list'];
-      }
-      console.log('kfg', this.listing);
-      this.totalRecords = res.data.totalCount
-      console.log('kn', this.totalRecords);
+    // var url = "account/admin/user-management/filter-user-details?page=" + (this.pageNumber - 1) + `&pageSize=${this.pageSize}`
+    // this.service.get(url).subscribe((res: any) => {
+    // this.service.hideSpinner()
+    // if (res['status'] == 200) {
+    this.listing = this.responseArray
+    // }
+    // console.log('kfg', this.listing);
+    this.totalRecords = this.responseArray.length
+    // console.log('kn', this.totalRecords);
 
-    })
+    // })
   }
   // ------------------------pagination -------------------------//
   pagination(page) {
@@ -337,31 +341,62 @@ export class RoutesComponent implements OnInit {
       'state': this.addRouteForm.value.state,
       'city': this.addRouteForm.value.city
     }
-    let url = ''
-    this.service.post(url, apiReqData).subscribe((res: any) => {
-      console.log(res)
-      if (res.status == 200) {
-        this.addRouteForm.reset()
-        this.getAddedRoute();
-      }
+    // let url = ''
+    // this.service.post(url, apiReqData).subscribe((res: any) => {
+    //   console.log(res)
+    //   if (res.status == 200) {
+    //     this.addRouteForm.reset()
+    //     this.getAddedRoute();
+    //   }
+    // })
+    this.responseArray.push({
+      'userId': this.id,
+      'supplyCity': this.addRouteForm.value.city,
+      "supplyState": this.addRouteForm.value.status
     })
   }
 
+  stateCityArray: any = []
   getAddedRoute() {
+    // let url = ''
+    // this.service.get(url).subscribe((res: any) => {
+    //   console.log(res)
+    // })
+    this.stateCityArray.push({
+      'supplyCity': this.addRouteForm.value.city,
+      "supplyState": this.addRouteForm.value.status
+    })
+  }
+
+  deleteAddedRoute() {
     let url = ''
     this.service.get(url).subscribe((res: any) => {
       console.log(res)
     })
   }
 
-  deleteAddedRoute(){
-    let url = ''
-    this.service.get(url).subscribe((res: any) => {
-      console.log(res)
-    })
-  }
 
-  backToAddFleetOwner() {
-    this.router.navigate(['/add-fleet-owner'])
+  // submit add form 
+  submit() {
+    var apiReqData = {
+      // "supplyCityDto": [
+      //   {
+      //     "id": 0,
+      //     "supplyCity": "string",
+      //     "supplyState": "string"
+      //   }
+      // ]
+      supplyCityDto: this.stateCityArray
+    }
+    console.log(apiReqData)
+    let url = `account/admin/update-profile-other-role?userIdForUpdateprofile=${this.id}`
+    console.log(url)
+    // this.service.post(url, apiReqData).subscribe((res: any) => {
+    //   console.log(res);
+    //   if(res.status == 200){
+        this.router.navigate(['/list-of-fleet-owner'])
+    // this.router.navigate(['/add-fleet-owner'])
+    //   }
+    // })
   }
 }

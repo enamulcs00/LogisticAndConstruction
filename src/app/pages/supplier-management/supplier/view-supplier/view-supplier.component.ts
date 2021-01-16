@@ -45,7 +45,7 @@ console.log('View Response',res.data)
       if (res['status'] == 200) {
         this.listing = res.data;
         this.totalRecords = res.data.totalCount
-        this.service.toasterInfo(res.message)
+        this.service.toasterSucc(res.message)
         this.ViewSupplierForm.patchValue({
           firstName: this.listing?.userDetail?.firstName,
           lastName: this.listing?.userDetail?.lastName,

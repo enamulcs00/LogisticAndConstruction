@@ -65,7 +65,7 @@ export class DeleteCompanyComponent implements OnInit {
           'phoneNo': this.companyDetails.pnWithoutCountryCode,
           'email': this.email,
           'companyName': this.companyDetails.companyName,
-          'companyAddress':this.companyDetails.companyAddress,
+          'companyAddress':this.companyDetails.baseLocationAddress,
           'city': this.companyDetails.city,
           'state': this.companyDetails.state,
           'aadhaarNo': this.companyDetails.aadharCardNo,

@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainService } from 'src/app/provider/main.service';
-// import { ngxCsv } from 'ngx-csv/ngx-csv';
-// import { ExportToCsv } from 'export-to-csv';
-
-declare var $: any
-declare var kendo: any;
+import { ngxCsv } from 'ngx-csv/ngx-csv';
 
 @Component({
   selector: 'app-list-of-bid-by-fleet-owner',
@@ -14,287 +9,181 @@ declare var kendo: any;
   styleUrls: ['./list-of-bid-by-fleet-owner.component.css']
 })
 export class ListOfBidByFleetOwnerComponent implements OnInit {
-
-  userForm: FormGroup;
   listing: any = [];
   id: number;
-  deleted: any;
-  totalRecords: any
-  pageNumber: number = 1
-  itemsPerPage: number = 20
   userid: number;
   userStatus: any;
-  fromDate: any;
-  maxFromDate: string;
-  maxToDate: string;
-  minToDate: any;
-  toDate: any;
-  pageSize: any = 10;
-  action: any;
-  userstatus: any;
-  constructor(
-    private router: Router, public service: MainService
-  ) {
 
-  }
+  // pagination variable 
+  currentPage: number = 1
+  itemsPerPage: number = 10
+  totalItems: any
+  // search filter variable
+  companyName: any = '';
+  supplierName: any = '';
+  months: any = '';
+  fromDate: any = ''
+  twoDate: any = ''
+  calender: any = { todate: '', formdate: '' }
+  minAge: Date;
+
+  fleetOnwerCompanyNameArray: any = [];
+  supplierNameArraya: any = []
+  monthsArray: any = [
+    { id: '01', name: 'January' },
+    { id: '02', name: 'February' },
+    { id: '03', name: 'March' },
+    { id: '04', name: 'April' },
+    { id: '05', name: 'May' },
+    { id: '06', name: 'June' },
+    { id: '07', name: 'July' },
+    { id: '08', name: 'August' },
+    { id: '09', name: 'September' },
+    { id: '10', name: 'October' },
+    { id: '11', name: 'November' },
+    { id: '12', name: 'December' }
+  ]
+
+  constructor(private router: Router, public service: MainService) { }
 
   ngOnInit() {
-    this.userForm = new FormGroup({
-      'startdate': new FormControl('', Validators.required),
-      'enddate': new FormControl('', Validators.required),
-      'searchText': new FormControl(''),
-    })
-
-    let date = new Date()
-    this.fromDate = (date.getDate() > 10 ? date.getDate() : '0' + date.getDate()) + '-' + (date.getMonth() > 10 ? date.getMonth() : '0' + (date.getMonth() + 1)) + '-' + date.getFullYear()
-    this.toDate = (date.getDate() > 10 ? date.getDate() : '0' + date.getDate()) + '-' + (date.getMonth() > 10 ? date.getMonth() + 1 : '0' + (date.getMonth() + 1)) + '-' + date.getFullYear()
     this.dateValidation()
     this.getlist();
+    this.getFleetOwnerList() // list of fleet owner for search filter
+    this.getSupplierList(); // list of supplier for search filter
   }
 
-  onFromChangeDate() {
-    this.minToDate = this.fromDate;
+  formdate() {
+    this.fromDate = new Date(this.calender.formdate)
+    this.fromDate = this.fromDate.getTime()
   }
-  onToChangeDate() {
-    this.maxFromDate = this.toDate;
+  todate() {
+    this.twoDate = new Date(this.calender.todate)
+    this.twoDate = this.twoDate.getTime()
   }
-  //----------------------date validation ----------------------//
+
+  // //----------------------date validation ----------------------//
   dateValidation() {
-    let date = new Date();
-    let currentDay = date.getDate() >= 10 ? date.getDate() : '0' + date.getDate();
-    let currentMonth = (date.getMonth() + 1) >= 10 ? (date.getMonth() + 1) : '0' + date.getMonth();
-    let currentYear = date.getFullYear();
-    this.maxFromDate = currentYear + '-' + currentMonth + '-' + currentDay;
-    this.maxToDate = currentYear + '-' + currentMonth + '-' + currentDay;
-
+    var today = new Date();
+    var minAge = 0;
+    this.minAge = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
   }
 
   //-----------------------------list api integration --------------------------------//
   getlist() {
     this.service.showSpinner()
-    // var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
-    var url = "account/admin/filter-fleet-request-details?page=" + (this.pageNumber - 1) + `&pageSize=${this.pageSize}&months=00`
+    var url = `account/admin/filter-fleet-request-details?&page=${(this.currentPage - 1) + ('&pageSize=' + this.itemsPerPage)
+      + (this.companyName ? ('&companyName=' + this.companyName) : '') + (this.supplierName ? ('&supplierName=' + this.supplierName) : '')
+      + (this.months ? ('&months=' + this.months) : ('&months=00'))
+      + (this.fromDate ? ('&fromDate=' + this.fromDate) : '') + (this.twoDate ? ('&toDate=' + this.twoDate) : '')}`
     this.service.get(url).subscribe((res: any) => {
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
         this.service.toasterSucc(res.message)
+        this.totalItems = res.data.totalCount
       }
-      else{
+      else {
         this.service.toasterErr(res.message)
+        this.listing = [];
+        this.totalItems = 0
       }
-      console.log('kfg', this.listing);
-      this.totalRecords = res.data.totalCount
-      console.log('kn', this.totalRecords);
-
     })
   }
+  // ----------- search --------------- //
+  search() {
+    if (this.companyName || this.supplierName || this.months || this.twoDate || this.fromDate) {
+      this.currentPage = 1;
+      this.getlist()
+    }
+  }
+
+  // ------------ reset -------------- //
+  reset() {
+    if (this.companyName || this.supplierName || this.months || this.twoDate || this.fromDate) {
+      this.companyName = ''
+      this.supplierName = ''
+      this.months = ''
+
+      this.calender = { todate: '', formdate: '' }
+      this.twoDate = ''
+      this.fromDate = ''
+      this.currentPage = 1
+      setTimeout(() => {
+        this.getlist()
+      }, 200);
+    }
+  }
+
   // ------------------------pagination -------------------------//
   pagination(page) {
-    this.totalRecords = []
-    console.log('jh', page);
-    this.pageNumber = page;
-    console.log('jh', this.pageNumber);
-
+    this.currentPage = page;
     this.getlist()
   }
-  //------------------------------filter by search api integration ---------------------------------//
-  search() {
-    let startdate = Date.parse(this.userForm.value.startdate)
-    let enddate = Date.parse(this.userForm.value.enddate)
-    var search = this.userForm.value.searchText;
-    if (this.userForm.value.searchText && this.userForm.value.startdate && this.userForm.controls.enddate.value) {
-      var url = "account/admin/user-management/filter-user-details?fromDate=" + startdate + '&toDate=' + enddate + '&search=' + search + '&page=0'
-    }
-    else if (this.userForm.value.startdate && this.userForm.controls.enddate.value) {
-      var url1 = "account/admin/user-management/filter-user-details?fromDate=" + startdate + '&toDate=' + enddate
-    }
 
-    else if (this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.searchText) {
-      var url2 = "account/admin/user-management/filter-user-details?fromDate=" + startdate + '&toDate=' + enddate + '&search=' + search
-
-    }
-    this.service.get(url || url1 || url2).subscribe((res: any) => {
-      this.listing = res.data.list;
-      console.log('kfg', this.listing);
-      this.totalRecords = res.data.totalCount
-    })
-  }
-
-  // ------------------------------reset filter------------------------------//
-  resetForm() {
-    this.userForm.reset()
-    this.getlist();
-  }
-
-  //========modal=======//
-  delete(id: number) {
-    this.userid = id;
-    $('#deleteModal').modal('show')
-  }
-  //------------------------------delete api integration ----------------------------------//
-  deleteUser() {
-    var url = 'account/admin/user-management/delete-user-detail?userIdToDelete=' + (this.userid) + '&ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location'));
+  /**
+ * fleet owner list, truck type list
+ * show fleet owner list in search filter
+ * show state list in search filter
+ * get city list on basis of state selected
+ */
+  //----------------------------- get fleet owner list --------------------------------//
+  getFleetOwnerList() {
+    var url = 'account/admin/filter-user-details?roleStatus=FLEET'
     this.service.get(url).subscribe((res: any) => {
-      this.deleted = res
-      if (this.deleted.ststus = 200) {
-        $('#deleteModal').modal('hide')
-        this.service.toasterSucc(this.deleted.message);
-        this.getlist();
-      }
-    }, err => {
-      this.service.hideSpinner();
-      if (err['status'] == '401') {
-        this.service.onLogout();
-        this.service.toasterErr('Unauthorized Access');
-      }
-      else {
-        this.service.toasterErr('Something Went Wrong');
+      if (res['status'] == 200) {
+        this.fleetOnwerCompanyNameArray = res['data']['list'];
       }
     })
-
   }
-
-  //-------------------------block api integration------------------------//
-  block(status, id) {
-    this.userid = id
-    this.userstatus = status
-    $('#block').modal('show')
-  }
-  blockUser() {
-    this.service.showSpinner();
-    var url = 'account/admin/user-management/user-status?ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location')) + '&userIdForStatusUpdate=' + (this.userid) + '&userStatus=' + (this.action);
-    this.service.post(url, '').subscribe((res: any) => {
-      if (res.status == 200) {
-        this.service.hideSpinner()
-        if (this.action == 'BLOCK') {
-          $('#block').modal('hide');
-          this.service.toasterSucc('User Blocked Successfully');
-        }
-        else {
-          $('#active').modal('hide');
-          this.service.toasterSucc('User Activated Successfully');
-        }
-        this.getlist()
-      }
-    }, err => {
-      this.service.hideSpinner();
-      if (err['status'] == '401') {
-        this.service.onLogout();
-        this.service.toasterErr('Unauthorized Access');
-      }
-      else {
-        this.service.toasterErr('Something Went Wrong');
+  //----------------------------- get supplier owner list --------------------------------//
+  getSupplierList() {
+    var url = 'account/admin/filter-user-details?roleStatus=SUPPLIER'
+    this.service.get(url).subscribe((res: any) => {
+      if (res['status'] == 200) {
+        this.supplierNameArraya = res['data']['list'];
       }
     })
   }
 
-  //---------------------------------- Delete / Block Function--------------//
-  openModal(action, userId) {
-    this.userid = userId;
-    this.action = action;
-    if (action == 'DELETE') {
-      $('#deleteModal').modal('show')
-
-    } else if (action == 'BLOCK') {
-      $('#block').modal('show')
-    }
-    else {
-      $('#active').modal('show')
-    }
-  }
-
-  //------------------- user details navigation------------------------------//
-  userDetails(id, email) {
-    this.router.navigate(['/user-details', id, email])
-
-  }
-
-  walletdetail(id) {
-    this.router.navigate(['walletdetails/' + id])
-  }
-
-  //--------------------------------pageSize ---------------------------------//
-  showList(val) {
-    this.pageSize = val
-    this.resetForm()
-  }
-
-
-  //----------------------------------export User---------------------------------//
-  exportAsXLSX() {
+  // --------------- export to csv ------------------- //
+  exportToCsv() {
     let dataArr = [];
     this.listing.forEach((element, ind) => {
-      let obj = {}
-      obj = {
-        "S no": ind + 1,
-        "User ID": element.userId ? element.userId : '',
-        "User Name": element.firstName + '' + element.lastName ? element.lastName : '',
-        "Email": element.email ? element.email : 'N/A',
-        "Phone": element.phoneNo ? element.phoneNo : 'N/A',
-        "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-        "Date": element.createTime ? element.createTime.slice(0, 10) : 'N/A',
+      let obj = {
+        "Bid ID": element.bookingId ? element.bookingId : 'N/A',
+        "Fleet Owner": element.companyName ? element.companyName : 'N/A',
+        "Supplier": element.supplierName ? element.supplierName : 'N/A',
+        "Material": element.material ? element.material : 'N/A',
+        "Weight": element.weight ? element.weight : 'N/A',
+        "Delivery Date": String(element.deliveryDate) ? String(element.deliveryDate).slice(0, 10) : 'N/A',
+        "Location": element.location ? element.location : 'N/A',
+        "Amount": element.bidAmount ? element.bidAmount : 'N/A',
+        "PO Number": element.poNumber ? element.poNumber : 'N/A',
+        "Vehicle Number": element.truckNumber ? element.truckNumber : 'N/A',
+        "Vehicle Type": element.truckType ? element.truckType : 'N/A',
+        "Driver Name": element.driverName ? element.driverName : 'N/A',
+        "Driver Mobile": element.driverMobileNo ? element.driverMobileNo : 'N/A',
+        "Route ID": element.route ? element.route : 'N/A',
       }
       dataArr.push(obj)
     })
-
-    this.service.exportAsExcelFile(dataArr, 'Admin User List');
-  }
-  // ----------------------------------------export CSV
-  ExportToCsv() {
-    this.service.showSpinner()
-    setTimeout(r => {
-      this.service.hideSpinner()
-    }, 3000)
-    let listingArr = []
-    this.listing.forEach((element, ind) => {
-      let obj = {}
-      obj = {
-        "S no": ind + 1,
-        "UserName": element.firstName + '' + element.lastName ? element.lastName : '',
-        "EmailID": element.email ? element.email : 'N/A',
-        "UserID": element.userId ? element.userId : 'N/A',
-        "PhoneNumber": String(element.phoneNo) ? String(element.phoneNo) : 'N/A',
-        "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-        "Registration Date": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A',
-      }
-      listingArr.push(obj)
-    });
     const options = {
       fieldSeparator: ',',
       quoteStrings: '"',
       decimalSeparator: '.',
       showLabels: true,
       showTitle: true,
-      title: 'Candidate Details CSV',
+      title: 'List Of Bid By Fleet Owner',
       useTextFile: false,
       useBom: true,
       useKeysAsHeaders: true,
+      headers: ["Bid ID", "Fleet Owner", "Supplier", "Material", "Weight", "Delivery Date", "Location", "Amount", "PO Number", "Vehicle Number", "Vehicle Type", "Driver Name", "Driver Mobile", "Route ID",]
     };
-    // const csvExporter = new ExportToCsv(options);
-    //  csvExporter.generateCsv(listingArr);
+    new ngxCsv(dataArr, 'List-Of-Bid-By-Fleet-Owner', options);
   }
 
-  //--------------------------------export pdf ----------------------------------------
 
-  exportPDF() {
-    this.service.showSpinner();
-    setTimeout(r => {
-      this.service.hideSpinner()
-    }, 3000);
-    kendo.drawing
-      .drawDOM("#pdfcontent",
-        {
-          paperSize: "A2",
-          margin: { top: "0.8cm", bottom: "1cm" },
-          scale: 0.8,
-          height: 400,
-        })
-      .then(function (group) {
-        kendo.drawing.pdf.saveAs(group, "Exported.pdf")
-      });
-
-  }
 
   viewBid(bookingId) {
     this.router.navigate(['/view-bid-by-fleet-owner', bookingId])
