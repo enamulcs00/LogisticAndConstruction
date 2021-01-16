@@ -18,9 +18,10 @@ export class ListOfSupplierComponent implements OnInit {
   listing: any = [];
   id: number;
   deleted: any;
-  totalRecords: any
+  totalItems: any
   pageNumber:number=1
-  itemsPerPage:number=20
+  itemsPerPage:number=10
+  currentPage: number = 1
   userid: number;
   userStatus: any;
   fromDate: any;
@@ -32,11 +33,15 @@ export class ListOfSupplierComponent implements OnInit {
   action: any;
   userstatus: any;
   supplierNameArray:any = []
-  SupplierName:any = '';
+
   location:any = '';
-  filterState:any = '';
-  filterCity:any = '';
-  filtercontact:any = '';
+  firstName: any = '';
+  state: any = '';
+  city: any = '';
+  phoneNo: any = '';
+  stateArr: any = []
+  selectedState: any;
+  cityArr: any = []
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -44,7 +49,9 @@ export class ListOfSupplierComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.FilterSupplierName()
+
     this.userForm = new FormGroup({
       'startdate': new FormControl('', Validators.required),
       'enddate': new FormControl('', Validators.required),
@@ -56,6 +63,7 @@ export class ListOfSupplierComponent implements OnInit {
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
     this.dateValidation()
     this.getlist();
+    this.getStateList();
   }
 
   addSupplier(){
@@ -88,16 +96,18 @@ export class ListOfSupplierComponent implements OnInit {
 
   getlist(){
 
-    let channel = `account/admin/filter-user-details?page=${this.pageNumber-1}&pageSize=${this.pageSize}&roleStatus=SUPPLIER`
+let url = `account/admin/filter-user-details?roleStatus=SUPPLIER&page=${(this.currentPage - 1) + ('&pageSize=' + this.itemsPerPage)
++ (this.location ? ('&siteLocation=' + this.location) : '') + (this.firstName ? ('&firstName=' + this.firstName) : '')
++ (this.state ? ('&state=' + this.state) : '') + (this.city ? ('&city=' + this.city) : '') + (this.phoneNo ? ('&phoneNo=' + this.phoneNo) : '')}`
     this.service.showSpinner()
-    var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
-    this.service.get(channel).subscribe((res:any)=>{
+
+    this.service.get(url).subscribe((res:any)=>{
 
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
-        this.supplierNameArray = res['data']['list'];
-        this.totalRecords = res.data.totalCount
+       // this.supplierNameArray = res['data']['list'];
+        this.totalItems = res.data.totalCount
         this.service.toasterSucc(res.message)
       }
       else {
@@ -126,16 +136,55 @@ export class ListOfSupplierComponent implements OnInit {
   }
 //SEARCH ITEMS
 searchItem(){
-  if (this.SupplierName || this.filterState || this.filterCity || this.filtercontact || this.location) {
+  if (this.firstName || this.state || this.city || this.phoneNo || this.location) {
     this.pageNumber = 1;
     this.getlist()
   }
 }
 
+reset() {
+  if (this.location || this.firstName || this.state || this.city || this.phoneNo) {
+    this.location = ''
+    this.firstName = ''
+    this.state = ''
+    this.city = ''
+    this.phoneNo = ''
+    this.currentPage = 1
+    setTimeout(() => {
+      this.getlist()
+    }, 200);
+  }
+}
+
+  // --------- get State list -------------- //
+  getStateList() {
+    // this.service.showSpinner()
+    var url = "account/get-state-country-wise?countryName=" + 'INDIA'
+    this.service.get(url).subscribe((res: any) => {
+      // this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.stateArr = res['data'];
+      }
+    })
+  }
+
+  // ----------- get city list --------------- //
+  searchCity(event) {
+    console.log("event", event)
+    this.service.showSpinner()
+    this.selectedState = event.target.value
+    var url = "account/get-cities-state-wise?stateName=" + this.selectedState
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.cityArr = res['data'];
+      }
+    })
+  }
 
   // ------------------------pagination -------------------------//
   pagination(page){
-    this.totalRecords=[]
+    this.totalItems=[]
     console.log('jh', page);
     this.pageNumber=page;
     console.log('jh', this.pageNumber);
@@ -161,7 +210,7 @@ searchItem(){
     this.service.get( url || url1 || url2).subscribe((res: any) => {
       this.listing = res.data.list;
       console.log('kfg',this.listing);
-      this.totalRecords = res.data.totalCount
+      this.totalItems = res.data.totalCount
     })
   }
 

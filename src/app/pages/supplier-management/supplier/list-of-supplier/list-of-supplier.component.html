@@ -9,11 +9,8 @@
                             <div class="row">
                                 <div class="col-lg-2 pr-0 mt-4">
                                      <label>Supplier Name</label><br>
-                                     <select class="selectBox form-control" [(ngModel)]="SupplierName">
-                                         <option value="">Select Supplier Name</option>
-                                         <option *ngFor="let item of supplierNameArray"
-                                            [value]="item?.firstName">{{item?.firstName}}</option>
-                                     </select>
+                                     <input type="text" class="form-control input-field" placeholder="First Name"
+                                            [(ngModel)]="firstName">
                                 </div>
 
                                 <div class="col-lg-2 pr-0 mt-4">
@@ -26,18 +23,20 @@
                                 </div>
                                 <div class="col-lg-2 pr-0 mt-4">
                                     <label>State</label><br>
-                                     <select class="selectBox form-control" [(ngModel)]="filterState">
+                                     <select class="selectBox form-control" [(ngModel)]="state" (change)="searchCity($event)">
                                          <option value="">State</option>
-                                         <option *ngFor="let item of supplierNameArray"
-                                            [value]="item?.state">{{item?.state}}</option>
+
+                                         <option *ngFor="let item of stateArr" [value]="item?.name">{{item?.name}}
+                                         </option>
                                      </select>
                                 </div>
                                 <div class="col-lg-2 pr-0 mt-4">
                                     <label>City</label><br>
-                                     <select class="selectBox form-control" [(ngModel)]="filterCity">
+                                     <select class="selectBox form-control" [(ngModel)]="city" [attr.disabled]="state ? null : '' ">
+
                                          <option value="">City</option>
-                                         <option *ngFor="let item of supplierNameArray"
-                                            [value]="item?.city">{{item?.city}}</option>
+                                            <option *ngFor="let item of cityArr" [value]="item?.name">{{item?.name}}
+                                            </option>
                                      </select>
                                 </div>
                                 <div class="col-lg-2 pr-0 mt-4">
@@ -48,7 +47,7 @@
                                             [value]="item?.phoneNo">{{item?.phoneNo}}</option>
                                      </select> -->
                                      <input type="text" class="form-control input-field"
-                                        placeholder="Mobile no" [(ngModel)]="filtercontact">
+                                        placeholder="Mobile no" [(ngModel)]="phoneNo">
                                 </div>
                                 <!-- <div class="col-lg-2 pr-0 mt-4">
                                     <label>&nbsp;</label><br>
@@ -58,7 +57,7 @@
                             <div class="row  d-flex justify-content-end w_100 mt-3 mb-3">
                                     <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green' (click)="ExportToCsv()"></i>
                                     <button type="button" class="search-btn" (click)="searchItem()">Search</button>
-                                    <button type="button" class="search-btn">Reset</button>
+                                    <button type="button" class="search-btn" (click)="reset()">Reset</button>
 
                                     <button type="button" class="btn-add" [routerLink]="['/add-supplier']">Add</button>
                             </div>
@@ -102,7 +101,7 @@
                                         <tr *ngFor="let item of listing| paginate: {
                                     itemsPerPage: itemsPerPage,
                                     currentPage: pageNumber,
-                                    totalItems: totalRecords };let i = index ">
+                                    totalItems: totalItems };let i = index ">
                                             <!-- <td>{{itemsPerPage*(this.pageNumber-1)+i+1}}</td> -->
                                             <td>{{item?.firstName}} {{item?.lastName}}</td>
                                             <td>{{item?.baseLocationAddress}}</td>
@@ -138,7 +137,7 @@
                                 </table>
                             </div>
                             <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
-                                *ngIf="listing?.length">
+                                *ngIf="totalItems > 10">
                                 <pagination-controls (pageChange)="pagination($event)"></pagination-controls>
                             </div>
 
