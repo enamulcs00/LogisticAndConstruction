@@ -60,4 +60,7 @@ export class ViewCompanyUserComponent implements OnInit {
       }
     })
   }
+  edit(){
+    this.router.navigate(['/edit-company-user',this.userId])
+  }
 }

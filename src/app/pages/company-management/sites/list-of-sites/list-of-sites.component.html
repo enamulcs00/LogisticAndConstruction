@@ -6,20 +6,21 @@
                     <div class="global-table no-radius p0">
                         <div class="tab-content1">
                             <div class="tab-pane1">
+                                <form [formGroup]="userForm">
                                 <div class="row">
                                     <div class="col-lg-2 mt-4">
                                         <label>Company Name</label><br>
                                         <!-- <select class="selectBox">
                                             <option>Select Company Name</option>
                                         </select> -->
-                                        <select id="CompanyName" class="selectBox" (change)="searchLocation($event)">
+                                        <select id="CompanyName" class="selectBox" (change)="searchLocation($event)" formControlName="companyName">
                                             <option value="">Company name</option>
                                             <option *ngFor="let company of companyNameArr" value={{company.id}}>{{company.name}}</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 mt-4">
                                         <label>Location</label><br>
-                                        <select class="selectBox">
+                                        <select class="selectBox" formControlName="location">
                                             <option value="">Location</option>
                                             <option *ngFor="let site of siteArr" value={{site.id}}>{{site.address}}</option>
                                         </select>
@@ -30,7 +31,7 @@
                                             <option>State</option>
                                         </select> -->
                                         <select id="city" class="selectBox" 
-                                        (change)="searchCity($event)">
+                                        (change)="searchCity($event)" formControlName="state">
                                         <option value="State">State</option>
                                         <option *ngFor="let state of stateArr">{{state.name}}</option>
                                     </select>
@@ -40,7 +41,7 @@
                                         <!-- <select class="selectBox">
                                             <option>City</option>
                                         </select> -->
-                                        <select id="city" class="selectBox" >
+                                        <select id="city" class="selectBox" formControlName="city">
                                             <option value="city">City</option>
                                             <option *ngFor="let city of cityArr">{{city.name}}</option>
                                         </select>
@@ -51,7 +52,12 @@
                                             <option>Mobile</option>
                                         </select> -->
                                         <input type="text" id="mobile" class="selectBox"
-                                        placeholder="Mobile" >
+                                        placeholder="Mobile" formControlName="phoneNo" maxlength="13">
+                                        <span class="error"
+                                        *ngIf="userForm.get('phoneNo').hasError('pattern') && userForm.get('phoneNo').dirty"
+                                        class="error">
+                                        <p> *Please enter valid mobile number.</p>
+                                    </span>
                                     </div>
                                 </div>
                                 <div class="row  d-flex justify-content-end w_100 mt-3">
@@ -61,6 +67,7 @@
                                     <button type="button" class="search-btn" (click)="reset()">Reset</button>
                                     <button type="button" class="btn-add" (click)="addSite()">Add</button>
                                 </div>
+                                </form>
 
                                 <div class="table-responsive">
                                     <table class="table table-bordered" aria-describedby="user list" id="pdfcontent">

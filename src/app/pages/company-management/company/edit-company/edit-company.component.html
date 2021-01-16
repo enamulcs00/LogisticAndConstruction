@@ -97,23 +97,23 @@
                             <div class="form-group row">
                                 <label for="state" class="col-sm-2 col-form-label">State</label>
                                 <div class="col-sm-4">
-                                    <!-- <select id="city" class="form-control" formControlName="state"
+                                    <select id="city" class="form-control" formControlName="state"
                                         (change)="searchCity($event)">
                                         <option value="State">State</option>
                                         <option *ngFor="let state of stateArr">{{state.name}}</option>
-                                    </select> -->
-                                    <input type="text" id="state" class="form-control"
-                                    placeholder="State" formControlName="state" >
+                                    </select>
+                                    <!-- <input type="text" id="state" class="form-control"
+                                    placeholder="State" formControlName="state" > -->
 
                                 </div>
                                 <label for="city" class="col-sm-2 col-form-label">City</label>
                                 <div class="col-sm-4">
-                                    <!-- <select id="city" class="form-control" formControlName="city">
+                                    <select id="city" class="form-control" formControlName="city">
                                         <option value="city">City</option>
                                         <option *ngFor="let city of cityArr">{{city.name}}</option>
-                                    </select> -->
-                                    <input type="text" id="city" class="form-control"
-                                    placeholder="City" formControlName="city" >
+                                    </select>
+                                    <!-- <input type="text" id="city" class="form-control"
+                                    placeholder="City" formControlName="city" > -->
                                 </div>
                             </div>
 
@@ -218,7 +218,7 @@
                         <div class="head_flt_select input-label" style="margin-left: 1%">
                             <button type="submit" class="btn btn-theme"
                                 style="width: 15%;margin-left: 40%;margin-bottom: 3%;"
-                                (click)="edit()">UPDATE</button>
+                                (click)="update()">UPDATE</button>
                         </div>
                     </div>
 

@@ -35,6 +35,8 @@ export class ListOfCompanyUserComponent implements OnInit {
   cityArr: any;
   companyNameArr: any=[];
   companyListing: any=[];
+  selectedCompany: any;
+  siteArr: any=[];
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -43,16 +45,18 @@ export class ListOfCompanyUserComponent implements OnInit {
 
   ngOnInit() {
     this.userForm = new FormGroup({
-      'startdate': new FormControl('', Validators.required),
-      'enddate': new FormControl('', Validators.required),
-      'searchText': new FormControl(''),
+      'companyName':new FormControl('',),
+      'siteAddress': new FormControl(''),
+      'firstName': new FormControl('', [ Validators.pattern(/^[a-zA-Z ]*$/i)]),
+      'lastName': new FormControl('', [Validators.pattern(/^[a-zA-Z ]*$/i)]),
+      'phoneNo': new FormControl('', [Validators.pattern(/^[1-9][0-9]{9,13}$/)]),
     })
     
     let date = new Date()
     this.fromDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() : '0'+ (date.getMonth() + 1) )+ '-' + date.getFullYear()
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
     this.dateValidation()
-     this.getCompanyList();
+     this.getCompanyUserList();
      this.getStateList()
      this.getCompanyNameList()
     
@@ -76,7 +80,7 @@ export class ListOfCompanyUserComponent implements OnInit {
   }
 
   //-----------------------------list api integration --------------------------------//
-  getCompanyList(){
+  getCompanyUserList(){
     this.service.showSpinner()
     var url="account/admin/filter-user-details?roleStatus="+'COMPANY_SITE_ENGG'
     this.service.get(url).subscribe((res:any)=>{
@@ -118,22 +122,29 @@ export class ListOfCompanyUserComponent implements OnInit {
 
   getCompanyNameList(){
     this.service.showSpinner()
-    var url="account/admin/filter-user-details?roleStatus="+'COMPANY'
+    var url="account/admin/get-company-by-company-name"
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
-        this.companyListing = res['data']['list'];
-        this.companyListing.forEach(element => {
-          this.companyNameArr.push({
-            'companyName': element.companyName,
-            'companyId': element.userId
-          })
-        });
-        console.log('Company array', this.companyNameArr)
-      }
-     
+         this.companyNameArr = res['data'];
+      }   
     })
   }
+
+  searchLocation(event) { 
+    this.siteArr=[]
+    this.service.showSpinner()
+    this.selectedCompany = event.target.value
+    console.log("event", this.selectedCompany)
+    var url = "account/admin/get-location?idOfCompany=" + this.selectedCompany
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.siteArr = res['data'];
+      }
+    })
+  }
+ 
   // ------------------------pagination -------------------------//
   pagination(page){
     this.totalRecords=[]
@@ -141,7 +152,7 @@ export class ListOfCompanyUserComponent implements OnInit {
     this.pageNumber=page;
     console.log('jh', this.pageNumber);
 
-    this.getCompanyList()
+    this.getCompanyUserList()
   }
   //------------------------------filter by search api integration ---------------------------------//
   search() {
@@ -169,7 +180,7 @@ export class ListOfCompanyUserComponent implements OnInit {
   // ------------------------------reset filter------------------------------//
   resetForm(){
     this.userForm.reset()
-    this.getCompanyList();    
+    this.getCompanyUserList();    
   }
 
   //========modal=======//
@@ -192,13 +203,13 @@ export class ListOfCompanyUserComponent implements OnInit {
         this.service.hideSpinner()
            if (this.action == 'BLOCK') {
           $('#block').modal('hide');
-          this.service.toasterSucc('Company Blocked Successfully');
+          this.service.toasterSucc('Company User Blocked Successfully');
         }
         else {
           $('#active').modal('hide');
-          this.service.toasterSucc('Company Activated Successfully');
+          this.service.toasterSucc('Company User Activated Successfully');
         }
-        this.getCompanyList()        
+        this.getCompanyUserList()        
           } 
      }, err => {   
          this.service.hideSpinner();  
@@ -211,6 +222,7 @@ export class ListOfCompanyUserComponent implements OnInit {
         } 
      })
   } 
+
 
    //---------------------------------- Delete / Block Function--------------//
    openModal(action, userId) {
@@ -255,14 +267,14 @@ export class ListOfCompanyUserComponent implements OnInit {
       obj ={
         "S no": ind + 1,
         "Company Name":  element.companyName,
-        "Location": element.baseLocationAddress ,
-        "Mobile": element.phoneNo ,
+        "Mobile No": element.phoneNo ,
+        "First Name":element.firstName,
+        "Last Name": element.lastName,
         "Email": element.email ,
-        "City": element.city ,
-        "State": element.state ,
-        "GSTIN ": element.gstInNo ,
+        "Site": element.baseLocationAddress ,
+        "Roll Type": element.role.role ,
         "Status": element.userStatus,
-        "Date Of Creation": element.createTime,
+      
         
       }
       listingArr.push(obj)
@@ -273,7 +285,7 @@ export class ListOfCompanyUserComponent implements OnInit {
       decimalSeparator: '.',
       showLabels: true, 
       showTitle: true,
-      title: 'Company Details CSV',
+      title: 'Company User Details CSV',
       useTextFile: false,
       useBom: true,
       useKeysAsHeaders: true,
@@ -298,7 +310,9 @@ export class ListOfCompanyUserComponent implements OnInit {
     this.router.navigate(['/reset-password'])
   }
   reset(){
-    this.getCompanyList();
+    this.userForm.reset()
+
+    this.getCompanyUserList();
   }
 }
 

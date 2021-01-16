@@ -102,10 +102,12 @@
 
                             <div class="form-group row">
                                 <label for="city" class="col-sm-2 col-form-label">City</label>
+                                <div class="col-sm-4">
                                 <select id="city" class="form-control" formControlName="city">
                                     <option value="city">City</option>
                                     <option *ngFor="let city of cityArr">{{city.name}}</option>
                                 </select>
+                                </div>
 
                                 <label for="gst" class="col-sm-2 col-form-label">GISTN No</label>
                                 <div class="col-sm-4 input-group">

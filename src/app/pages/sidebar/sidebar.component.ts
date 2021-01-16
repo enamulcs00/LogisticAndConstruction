@@ -124,12 +124,24 @@ export class SidebarComponent implements OnInit {
     if (this.currUrl == `view-site`) {
       this.currentText = 'View Site';
     }
+    if (this.currUrl == `edit-site`) {
+      this.currentText = 'Edit Site';
+    }
     if (this.currUrl == `delete-site`) {
       this.currentText = 'Delete Site';
     }
     // if(this.currUrl==`company_user_management`){
     if (this.currUrl == `list-of-company-user`) {
       this.currentText = 'User Management';
+    }
+    if (this.currUrl == `view-company-user`) {
+      this.currentText = 'View User';
+    }
+    if (this.currUrl == `edit-company-user`) {
+      this.currentText = 'Edit User';
+    }
+    if (this.currUrl == `delete-company-user`) {
+      this.currentText = 'Delete User';
     }
     // if(this.currUrl==`my_booking`){
     if (this.currUrl == `list-of-company-booking`) {

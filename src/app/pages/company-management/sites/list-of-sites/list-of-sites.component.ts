@@ -47,9 +47,11 @@ export class ListOfSitesComponent implements OnInit {
 
   ngOnInit() {
     this.userForm = new FormGroup({
-      'startdate': new FormControl('', Validators.required),
-      'enddate': new FormControl('', Validators.required),
-      'searchText': new FormControl(''),
+      'companyName':new FormControl('',),
+      'location': new FormControl(''),
+      'state': new FormControl('', ),
+      'city': new FormControl('', ),
+      'phoneNo': new FormControl('', [Validators.pattern(/^[1-9][0-9]{9,13}$/)]),
     })
     
     let date = new Date()
@@ -340,6 +342,7 @@ export class ListOfSitesComponent implements OnInit {
     this.router.navigate(['/delete-site', id])
   }
   reset(){
+    this.userForm.reset()
     this.getSiteList();
   }
 }
