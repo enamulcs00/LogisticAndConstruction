@@ -42,11 +42,11 @@ export class EditTruckComponent implements OnInit {
 
   // ------------- get fleet owner name list ---------------- //
   getlist() {
-    this.service.showSpinner()
+    // this.service.showSpinner()
     var url = "account/admin/filter-user-details?roleStatus=FLEET"
     this.service.get(url).subscribe((res: any) => {
       console.log('kfg', this.listing);
-      this.service.hideSpinner()
+      // this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
       } else {
@@ -58,12 +58,12 @@ export class EditTruckComponent implements OnInit {
 
   //-----------------------------list api integration --------------------------------//
   getTruckTypelist() {
-    this.service.showSpinner()
+    // this.service.showSpinner()
     var url = "account/admin/get-truckTypeDetails?page=" + (this.pageNumber - 1) + `&pageSize=${this.pageSize}`
     this.service.get(url).subscribe((res: any) => {
-      this.service.hideSpinner()
+      // this.service.hideSpinner()
       if (res['status'] == 200) {
-        this.listingTruckType = res['data'];
+        this.listingTruckType = res['data']['data'];
       }
 
     })
@@ -86,10 +86,29 @@ export class EditTruckComponent implements OnInit {
     })
   }
 
-  // ---------------------- navigate to edit truck --------------------- //
+
+  // ------------- edit truck form ----------------- //
   updateTruck() {
-    console.log("update truck..")
-    // this.router.navigate(['/edit-truck'])
+    let apiReqData = {
+      description: this.editForm.value.description,
+      fleetOnwerNo: this.editForm.value.fleetOnwerNo,
+      fkFleetId: this.editForm.value.fleetOnwerNo,
+      typeOfTruck: this.editForm.value.typeOfTruck,
+      registrationNo: this.editForm.value.registrationNo,
+      "truckId": this.id
+    }
+    console.log(apiReqData)
+    this.service.showSpinner()
+    this.service.post('account/admin/add-truckByAdmin', apiReqData).subscribe((res: any) => {
+      console.log(res);
+      this.service.hideSpinner()
+      if (res.status == 200) {
+        this.service.toasterSucc('Truck updated successfully.')
+        this.router.navigate(['/list-of-truck'])
+      } else {
+        this.service.toasterErr('Something went wrong.')
+      }
+    })
   }
 
   cancel() {

@@ -13,11 +13,13 @@
                             <div class="form-group row">
                                 <label for="Fname" class="col-sm-2 col-form-label">First Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="Fname" class="form-control" placeholder="First name" formControlName="firstName">
+                                    <input type="text" id="Fname" class="form-control" placeholder="First name"
+                                        formControlName="firstName">
                                 </div>
                                 <label for="Lname" class="col-sm-2 col-form-label">Last Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="Lname" class="form-control" placeholder="Last name" formControlName="lastName">
+                                    <input type="text" id="Lname" class="form-control" placeholder="Last name"
+                                        formControlName="lastName">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -28,14 +30,16 @@
                                 </div>
                                 <label for="email" class="col-sm-2 col-form-label">Email ID</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="email" class="form-control" placeholder="Enter mail Id" formControlName="email">
+                                    <input type="text" id="email" class="form-control" placeholder="Enter mail Id"
+                                        formControlName="email">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="CompanyName" class="col-sm-2 col-form-label">Fleet Owner Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="CompanyName" class="form-control" placeholder="Company name" formControlName="companyName">
+                                    <input type="text" id="CompanyName" class="form-control" placeholder="Company name"
+                                        formControlName="companyName">
                                 </div>
                                 <label for="comanyAddress" class="col-sm-2 col-form-label">Fleet Owner Address</label>
                                 <div class="col-sm-4">
@@ -47,7 +51,8 @@
                             <div class="form-group row">
                                 <label for="city" class="col-sm-2 col-form-label">City</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="city" class="form-control" placeholder="Enter city name" formControlName="city">
+                                    <input type="text" id="city" class="form-control" placeholder="Enter city name"
+                                        formControlName="city">
                                 </div>
                                 <label for="state" class="col-sm-2 col-form-label">State</label>
                                 <div class="col-sm-4">
@@ -63,20 +68,24 @@
                                 <label for="aadhar" class="col-sm-2 col-form-label">Aadhar No</label>
                                 <div class="col-sm-4 input-group">
                                     <input type="text" id="aadhar" class="form-control" placeholder="Enter aadhar no"
-                                        style="border: 1px solid;" formControlName="aadharCardNo">
+                                        formControlName="aadharCardNo">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
-                                            style="background-color: green;">Validate</button>
+                                            style="background-color: green;     height: 38px;     z-index: 0;">Validate</button>
                                     </div>
+                                    <img [src]="aadharCardUrl" alt="" class="view-img">
+
                                 </div>
                                 <label for="pan" class="col-sm-2 col-form-label">Pan Card</label>
                                 <div class="col-sm-4 input-group">
                                     <input type="text" id="pan" class="form-control" placeholder="Enter Pan no"
-                                        style="border: 1px solid;" formControlName="panCardNo">
+                                        formControlName="panCardNo">
+
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
-                                            style="background-color: green;">Validate</button>
+                                            style="background-color: green;     height: 38px;     z-index: 0;">Validate</button>
                                     </div>
+                                    <img [src]="panCardUrl" alt="" class="view-img">
                                 </div>
                             </div>
 
@@ -88,6 +97,8 @@
 
                                     <input type="file" id="AadharCard" accept="image/*" style="display: none"
                                         class="form-control" (change)="uploadAadhaar($event)">
+                        
+
                                 </div>
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-4">
@@ -102,11 +113,13 @@
                                 <label for="gst" class="col-sm-2 col-form-label">GISTN No</label>
                                 <div class="col-sm-4 input-group">
                                     <input type="text" id="gst" class="form-control" placeholder="Enter GISTN no"
-                                        style="border: 1px solid;" formControlName="gstinNo">
+                                        formControlName="gstinNo">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
-                                            style="background-color: green;">Validate</button>
+                                            style="background-color: green;     height: 38px;     z-index: 0;">Validate</button>
                                     </div>
+                                    <img [src]="gstinUrl" alt="" class="view-img">
+
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -122,11 +135,10 @@
                     </div>
                     <br>
                     <div class="head_flt_select">
-                        <div class="head_flt_select input-label" style="margin-left: 1%">
-                            <button  type="submit" class="btn btn-theme"
-                                style="width: 15%;margin-left: 40%;margin-bottom: 3%;" [routerLink]="['/list-of-fleet-owner']">Cancel</button>
-                                <button  type="submit" class="btn btn-theme"
-                                style="width: 15%;margin-left: 40%;margin-bottom: 3%;" (click)="editFleetOwner()">Update</button>
+                        <div class="head_flt_select input-label">
+                            <button type="submit" class="btn btn-theme mr-3"
+                                [routerLink]="['/list-of-fleet-owner']">Cancel</button>
+                            <button type="submit" class="btn btn-theme" (click)="editFleetOwner()">Update</button>
                         </div>
                     </div>
 

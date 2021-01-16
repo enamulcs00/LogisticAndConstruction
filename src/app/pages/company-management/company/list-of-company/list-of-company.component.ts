@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainService } from 'src/app/provider/main.service';
-// import { ngxCsv } from 'ngx-csv/ngx-csv';
-// import { ExportToCsv } from 'export-to-csv';
+ import { ngxCsv } from 'ngx-csv/ngx-csv';
+ import { ExportToCsv } from 'export-to-csv';
 
 declare var $: any
 declare var kendo: any;
@@ -31,6 +31,13 @@ export class ListOfCompanyComponent implements OnInit {
   pageSize: any=10;
   action: any;
   userstatus: any;
+  stateArr: any = [];
+  selectedState: any;
+  cityArr: any;
+  companyNameArr: any=[];
+  companylisting: any=[];
+  selectedCompany: any;
+  siteArr: any=[];
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -49,6 +56,9 @@ export class ListOfCompanyComponent implements OnInit {
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
     this.dateValidation()
      this.getCompanyList();
+     this.getStateList()
+     this.getCompanyNameList()
+    
   }
 
   onFromChangeDate(){
@@ -83,6 +93,57 @@ export class ListOfCompanyComponent implements OnInit {
       
     })
   }
+  //get State list
+  getStateList() {
+    this.service.showSpinner()
+    var url = "account/get-state-country-wise?countryName=" + 'INDIA'
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.stateArr = res['data'];
+      }
+    })
+  }
+
+  //get city list
+  searchCity(event) {
+    console.log("event", event)
+    this.service.showSpinner()
+    this.selectedState = event.target.value
+    var url = "account/get-cities-state-wise?stateName=" + this.selectedState
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.cityArr = res['data'];
+      }
+    })
+  }
+
+  getCompanyNameList(){
+    this.service.showSpinner()
+    var url="account/admin/get-company-by-company-name"
+    this.service.get(url).subscribe((res:any)=>{
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+         this.companyNameArr = res['data'];
+      }   
+    })
+  }
+
+  searchLocation(event) { 
+    this.siteArr=[]
+    this.service.showSpinner()
+    this.selectedCompany = event.target.value
+    console.log("event", this.selectedCompany)
+    var url = "account/admin/get-location?idOfCompany=" + this.selectedCompany
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.siteArr = res['data'];
+      }
+    })
+  }
+ 
   // ------------------------pagination -------------------------//
   pagination(page){
     this.totalRecords=[]
@@ -126,29 +187,7 @@ export class ListOfCompanyComponent implements OnInit {
     this.userid = id;
     $('#deleteModal').modal('show')
   }
-  //------------------------------delete api integration ----------------------------------//
-  deleteUser() {
-    var url = 'account/admin/user-management/delete-user-detail?userIdToDelete=' + (this.userid) + '&ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location'));
-    this.service.get(url).subscribe((res: any) => {
-      this.deleted = res
-      if (this.deleted.ststus = 200) {
-        $('#deleteModal').modal('hide')
-        this.service.toasterSucc(this.deleted.message);
-        this.getCompanyList();
-      }
-     }, err => {   
-       this.service.hideSpinner();  
-        if (err['status'] == '401') {  
-            this.service.onLogout();   
-           this.service.toasterErr('Unauthorized Access'); 
-         } 
-      else {    
-          this.service.toasterErr('Something Went Wrong');  
-        } 
-     })
-
-  }
-
+  
   //-------------------------block api integration------------------------//
   block(status , id){   
      this.userid=id 
@@ -157,17 +196,17 @@ export class ListOfCompanyComponent implements OnInit {
   } 
    blockUser(){
      this.service.showSpinner();
-    var url = 'account/admin/user-management/user-status?ipAddress='+(localStorage.getItem('ipAddress'))+'&location='+(localStorage.getItem('location'))+ '&userIdForStatusUpdate='+(this.userid) + '&userStatus=' + (this.action);
-       this.service.post(url,'').subscribe((res:any)=>{    
+    var url = 'account/admin/enable-desable-status-by-admin?userStatus=' + this.action + '&userId=' + this.userid
+       this.service.get(url).subscribe((res:any)=>{    
         if(res.status == 200){ 
         this.service.hideSpinner()
            if (this.action == 'BLOCK') {
           $('#block').modal('hide');
-          this.service.toasterSucc('User Blocked Successfully');
+          this.service.toasterSucc('Company Blocked Successfully');
         }
         else {
           $('#active').modal('hide');
-          this.service.toasterSucc('User Activated Successfully');
+          this.service.toasterSucc('Company Activated Successfully');
         }
         this.getCompanyList()        
           } 
@@ -204,9 +243,7 @@ export class ListOfCompanyComponent implements OnInit {
 
   }
 
-  walletdetail(id) {
-    this.router.navigate(['walletdetails/' + id])
-  }
+  
 
 //--------------------------------pageSize ---------------------------------//
   showList(val) {
@@ -245,12 +282,16 @@ export class ListOfCompanyComponent implements OnInit {
       let obj ={}
       obj ={
         "S no": ind + 1,
-        "UserName": element.firstName + '' + element.lastName ? element.lastName : '',
-        "EmailID":  element.email ? element.email : 'N/A',
-        "UserID": element.userId ? element.userId : 'N/A',
-        "PhoneNumber": String(element.phoneNo) ? String(element.phoneNo) : 'N/A',
-        "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-        "Registration Date": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A', 
+        "Company Name":  element.companyName,
+        "Location": element.baseLocationAddress ,
+        "Mobile": element.phoneNo ,
+        "Email": element.email ,
+        "City": element.city ,
+        "State": element.state ,
+        "GSTIN ": element.gstInNo ,
+        "Status": element.userStatus,
+        "Date Of Creation": element.createTime,
+        
       }
       listingArr.push(obj)
     });
@@ -260,13 +301,13 @@ export class ListOfCompanyComponent implements OnInit {
       decimalSeparator: '.',
       showLabels: true, 
       showTitle: true,
-      title: 'Candidate Details CSV',
+      title: 'Company Details CSV',
       useTextFile: false,
       useBom: true,
       useKeysAsHeaders: true,
     };
-    // const csvExporter = new ExportToCsv(options);
-    //  csvExporter.generateCsv(listingArr); 
+     const csvExporter = new ExportToCsv(options);
+     csvExporter.generateCsv(listingArr); 
   }
 
   //--------------------------------export pdf ----------------------------------------
@@ -294,7 +335,7 @@ export class ListOfCompanyComponent implements OnInit {
     this.router.navigate(['/add-company'])
   }
   viewCompany(id){
-    this.router.navigate(['/view-company', id])
+    this.router.navigate(['/view-company',id])
   }
   deleteCompany(id){
     this.router.navigate(['/delete-company',id])
@@ -302,5 +343,8 @@ export class ListOfCompanyComponent implements OnInit {
   resetPassword(){
     console.log("reset password calickw")
     this.router.navigate(['/reset-password'])
+  }
+  reset(){
+    this.getCompanyList();
   }
 }

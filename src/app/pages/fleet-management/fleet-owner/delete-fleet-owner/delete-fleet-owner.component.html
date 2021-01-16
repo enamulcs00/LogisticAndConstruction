@@ -49,20 +49,21 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="state" class="col-sm-2 col-form-label">State</label>
+                                <div class="col-sm-4">
+                                    <!-- <select id="city" class="form-control" formControlName="state">
+                                        <option value="State">State</option>
+                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                    </select> -->
+                                    <input type="text" id="city" class="form-control" placeholder="Enter State name"
+                                    formControlName="state">
+                                </div>
                                 <label for="city" class="col-sm-2 col-form-label">City</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="city" class="form-control" placeholder="Enter city name"
                                         formControlName="city">
                                 </div>
-                                <label for="state" class="col-sm-2 col-form-label">State</label>
-                                <div class="col-sm-4">
-                                    <select id="city" class="form-control" formControlName="state">
-                                        <option value="State">State</option>
-                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
-
-                                    </select>
-
-                                </div>
+                         
                             </div>
                             <div class="form-group row">
                                 <label for="aadhar" class="col-sm-2 col-form-label">Aadhar No</label>
@@ -133,11 +134,10 @@
                     </div>
                     <br>
                     <div class="head_flt_select">
-                        <div class="head_flt_select input-label" style="margin-left: 1%">
+                        <div class="head_flt_select input-label" >
                             <!-- <button  type="submit" class="btn btn-theme"
                                 style="width: 15%;margin-left: 40%;margin-bottom: 3%;" [routerLink]="['/list-of-fleet-owner']">Back</button> -->
-                            <button type="submit" class="btn btn-theme"
-                                style="width: 15%;margin-left: 40%;margin-bottom: 3%; background-color: brown;"
+                            <button type="submit" class="btn btn-theme deleye-btn"
                                 (click)="deleteUser()">Delete</button>
                         </div>
                     </div>

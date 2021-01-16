@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainService } from 'src/app/provider/main.service';
-// import { ngxCsv } from 'ngx-csv/ngx-csv';
-// import { ExportToCsv } from 'export-to-csv';
+ import { ngxCsv } from 'ngx-csv/ngx-csv';
+ import { ExportToCsv } from 'export-to-csv';
 
 declare var $: any
 declare var kendo: any;
@@ -32,6 +32,8 @@ export class ListOfCompanyBillingComponent implements OnInit {
   pageSize: any=10;
   action: any;
   userstatus: any;
+  supplierArr: any=[];
+
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -40,16 +42,19 @@ export class ListOfCompanyBillingComponent implements OnInit {
 
   ngOnInit() {
     this.userForm = new FormGroup({
-      'startdate': new FormControl('', Validators.required),
-      'enddate': new FormControl('', Validators.required),
-      'searchText': new FormControl(''),
+      'invoiceNo':new FormControl('',),
+      'startdate': new FormControl(''),
+      'enddate': new FormControl('',),
+      'month': new FormControl(''),
+      'supplierName': new FormControl(''),
     })
     
     let date = new Date()
     this.fromDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() : '0'+ (date.getMonth() + 1) )+ '-' + date.getFullYear()
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
     this.dateValidation()
-    // this.getlist();
+    this.getSupplierList()
+     this.getCompanyBillingList();
   }
 
   onFromChangeDate(){
@@ -70,20 +75,32 @@ export class ListOfCompanyBillingComponent implements OnInit {
   }
 
   //-----------------------------list api integration --------------------------------//
-  getlist(){
+  getCompanyBillingList(){
     this.service.showSpinner()
-    var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
+    var url="account/admin/filter-fleet-request-details?months=00"
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
       }
-      console.log('kfg',this.listing);
-      this.totalRecords = res.data.totalCount
-      console.log('kn', this.totalRecords);
+      // console.log('kfg',this.listing);
+      // this.totalRecords = res.data.totalCount
+      // console.log('kn', this.totalRecords);
       
     })
   }
+
+  getSupplierList(){
+    this.service.showSpinner()
+    var url="account/get-supplier-name"
+    this.service.get(url).subscribe((res:any)=>{
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.supplierArr = res['data'];
+      }   
+    })
+  }
+
   // ------------------------pagination -------------------------//
   pagination(page){
     this.totalRecords=[]
@@ -91,22 +108,22 @@ export class ListOfCompanyBillingComponent implements OnInit {
     this.pageNumber=page;
     console.log('jh', this.pageNumber);
 
-    this.getlist()
+    this.getCompanyBillingList()
   }
   //------------------------------filter by search api integration ---------------------------------//
   search() {
     let startdate = Date.parse(this.userForm.value.startdate)
     let enddate = Date.parse(this.userForm.value.enddate)
-    var search = this.userForm.value.searchText;
-    if( this.userForm.value.searchText && this.userForm.value.startdate && this.userForm.controls.enddate.value){
-      var url="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate+'&search='+search+'&page=0'
+  
+    if( this.userForm.value.month && this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.supplierName){
+      var url="account/admin/filter-fleet-request-details?months="+ this.userForm.value.month +'&fromDate='+startdate+'&toDate='+enddate + '&supplierName='+this.userForm.value.supplierName
     }
     else if(this.userForm.value.startdate && this.userForm.controls.enddate.value){
-      var url1="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate
+      var url1="account/admin/filter-fleet-request-details?months=00"+'&fromDate='+startdate+'&toDate='+enddate
     }
 
-    else if(this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.searchText ){
-      var url2="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate+'&search='+search
+    else if( this.userForm.value.month  ){
+      var url2="account/admin/filter-fleet-request-details?months="+ this.userForm.value.month
 
     }
     this.service.get( url || url1 || url2).subscribe((res: any) => {
@@ -119,7 +136,7 @@ export class ListOfCompanyBillingComponent implements OnInit {
   // ------------------------------reset filter------------------------------//
   resetForm(){
     this.userForm.reset()
-    this.getlist();    
+    this.getCompanyBillingList();    
   }
 
   //========modal=======//
@@ -127,87 +144,17 @@ export class ListOfCompanyBillingComponent implements OnInit {
     this.userid = id;
     $('#deleteModal').modal('show')
   }
-  //------------------------------delete api integration ----------------------------------//
-  deleteUser() {
-    var url = 'account/admin/user-management/delete-user-detail?userIdToDelete=' + (this.userid) + '&ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location'));
-    this.service.get(url).subscribe((res: any) => {
-      this.deleted = res
-      if (this.deleted.ststus = 200) {
-        $('#deleteModal').modal('hide')
-        this.service.toasterSucc(this.deleted.message);
-        this.getlist();
-      }
-     }, err => {   
-       this.service.hideSpinner();  
-        if (err['status'] == '401') {  
-            this.service.onLogout();   
-           this.service.toasterErr('Unauthorized Access'); 
-         } 
-      else {    
-          this.service.toasterErr('Something Went Wrong');  
-        } 
-     })
+ 
 
-  }
-
-  //-------------------------block api integration------------------------//
-  block(status , id){   
-     this.userid=id 
-       this.userstatus=status 
-    $('#block').modal('show')
-  } 
-   blockUser(){
-     this.service.showSpinner();
-    var url = 'account/admin/user-management/user-status?ipAddress='+(localStorage.getItem('ipAddress'))+'&location='+(localStorage.getItem('location'))+ '&userIdForStatusUpdate='+(this.userid) + '&userStatus=' + (this.action);
-       this.service.post(url,'').subscribe((res:any)=>{    
-        if(res.status == 200){ 
-        this.service.hideSpinner()
-           if (this.action == 'BLOCK') {
-          $('#block').modal('hide');
-          this.service.toasterSucc('User Blocked Successfully');
-        }
-        else {
-          $('#active').modal('hide');
-          this.service.toasterSucc('User Activated Successfully');
-        }
-        this.getlist()        
-          } 
-     }, err => {   
-         this.service.hideSpinner();  
-        if (err['status'] == '401') {  
-            this.service.onLogout();   
-           this.service.toasterErr('Unauthorized Access'); 
-         } 
-      else {    
-          this.service.toasterErr('Something Went Wrong');  
-        } 
-     })
-  } 
-
-   //---------------------------------- Delete / Block Function--------------//
-   openModal(action, userId) {
-    this.userid = userId;
-    this.action = action;
-    if (action == 'DELETE') {
-      $('#deleteModal').modal('show')
-
-    } else if (action == 'BLOCK') {
-      $('#block').modal('show')
-    }
-    else {
-      $('#active').modal('show')
-    }
-  }
-
+ 
+ 
+  
   //------------------- user details navigation------------------------------//
-  userDetails(id,email){
-    this.router.navigate(['/user-details',id,email] )
+  billingDetails(id){
+    this.router.navigate(['/view-company-billing',id] )
 
   }
 
-  walletdetail(id) {
-    this.router.navigate(['walletdetails/' + id])
-  }
 
 //--------------------------------pageSize ---------------------------------//
   showList(val) {
@@ -216,25 +163,7 @@ export class ListOfCompanyBillingComponent implements OnInit {
   }
 
 
-  //----------------------------------export User---------------------------------//
-  exportAsXLSX() {
-    let dataArr = [];
-    this.listing.forEach((element, ind) => {
-      let obj ={}
-      obj={
-        "S no": ind + 1,
-        "User ID": element.userId ? element.userId : '',
-        "User Name": element.firstName + '' + element.lastName ? element.lastName : '',
-        "Email": element.email ? element.email : 'N/A',
-        "Phone": element.phoneNo ? element.phoneNo : 'N/A',
-        "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-        "Date": element.createTime ? element.createTime.slice(0, 10) : 'N/A',
-      }
-      dataArr.push(obj)
-    })
-
-    this.service.exportAsExcelFile(dataArr, 'Admin User List');
-  }
+ 
   // ----------------------------------------export CSV
   ExportToCsv(){
     this.service.showSpinner()
@@ -246,12 +175,21 @@ export class ListOfCompanyBillingComponent implements OnInit {
       let obj ={}
       obj ={
         "S no": ind + 1,
-        "UserName": element.firstName + '' + element.lastName ? element.lastName : '',
-        "EmailID":  element.email ? element.email : 'N/A',
-        "UserID": element.userId ? element.userId : 'N/A',
-        "PhoneNumber": String(element.phoneNo) ? String(element.phoneNo) : 'N/A',
-        "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-        "Registration Date": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A', 
+        "Invoice No":  element.inVoiceNoForCompany,
+        "Invoice Date": element.inVoiceDateForCompany ,
+        "Booking Id": element.bookingId ,
+        "Supplier": element.supplierName ,
+        "Material": element.material ,
+        "Weight": element.weight ,
+        "Delivery Date ": element.deliveryDate ,
+        "Location": element.location,
+        "Amount": element.bidAmount,
+        "PO Number": element.poNumber,
+        "Vehicle Number": element.truckNumber,
+        "Vehicle Type": element.truckType,
+        "Driver Name": element.driverName,
+        "Driver Mobile": element.driverMobileNo,
+        "Route Id": element.routeId,
       }
       listingArr.push(obj)
     });
@@ -261,38 +199,24 @@ export class ListOfCompanyBillingComponent implements OnInit {
       decimalSeparator: '.',
       showLabels: true, 
       showTitle: true,
-      title: 'Candidate Details CSV',
+      title: 'Company Billing Details CSV',
       useTextFile: false,
       useBom: true,
       useKeysAsHeaders: true,
     };
-    // const csvExporter = new ExportToCsv(options);
-    //  csvExporter.generateCsv(listingArr); 
+     const csvExporter = new ExportToCsv(options);
+      csvExporter.generateCsv(listingArr); 
   }
 
   //--------------------------------export pdf ----------------------------------------
   
-  exportPDF(){
-    this.service.showSpinner();
-    setTimeout( r => {
-      this.service.hideSpinner()
-    },3000);
-    kendo.drawing
-      .drawDOM("#pdfcontent",
-        {
-          paperSize: "A2",
-          margin: { top: "0.8cm", bottom: "1cm" },
-          scale: 0.8,
-          height: 400,          
-        })
-      .then(function (group) {
-        kendo.drawing.pdf.saveAs(group, "Exported.pdf")
-      });
-    
-  }
-
+ 
   viewBooking(){
     this.router.navigate(['/view-company-billing'])
   }
 
+  reset(){
+    this.userForm.reset()
+    this.getCompanyBillingList()
+  }
 }

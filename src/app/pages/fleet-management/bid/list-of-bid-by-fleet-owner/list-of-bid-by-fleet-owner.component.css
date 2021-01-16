@@ -103,4 +103,7 @@ select {
       margin-right: 40px;
     }
     
-    
+    .row{
+      width: 100%;
+      margin: auto;
+    }

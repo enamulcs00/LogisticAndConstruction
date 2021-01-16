@@ -80,10 +80,10 @@ export class MaterialsComponent implements OnInit {
     this.service.get(url).subscribe((res: any) => {
       this.service.hideSpinner()
       if (res['status'] == 200) {
-        this.listing = res['data']
+        this.listing = res['data']['data']
       }
       console.log('kfg', this.listing);
-      this.totalRecords = res.data.totalCount
+      this.totalRecords = res.data.count
       console.log('kn', this.totalRecords);
 
     })

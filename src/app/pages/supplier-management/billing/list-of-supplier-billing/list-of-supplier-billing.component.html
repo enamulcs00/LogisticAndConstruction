@@ -7,35 +7,39 @@
                         <div class="tab-content1">
                             <div class="tab-pane1">
                                 <div class="row">
-                                    <div class="col-lg-2 mt-4">
+                                    <div class="col-lg-2 pr-0 mt-4">
                                         <label class="ml-3">Invoice No</label><br>
-                                        <input class="selectBox" type="text" placeholder="Invoice No">
+                                        <input class="selectBox form-control" type="text" placeholder="Invoice No">
                                     </div>
-                                    <div class="col-lg-2 mt-4">
+                                    <div class="col-lg-2 pr-0 mt-4">
                                         <label class="ml-5">Supplier</label><br>
-                                        <select class="selectBox">
+                                        <select class="selectBox form-control">
                                             <option>Supplier</option>
                                         </select>
                                     </div>
-                                    <div class="col-lg-2 mt-4">
+                                    <div class="col-lg-2 pr-0 mt-4">
                                         <label class="ml-5">Month</label><br>
-                                        <select class="selectBox">
+                                        <select class="selectBox form-control">
                                             <option>Month</option>
                                         </select>
                                     </div>
-                                    <div class="col-lg-2 mt-4">
+                                    <div class="col-lg-2 pr-0 mt-4">
                                         <label class="ml-5">From Date</label><br>
-                                        <input type="date" class="selectBox">
+                                        <input type="date" class="selectBox form-control">
                                     </div>
-                                    <div class="col-lg-2 mt-4">
+                                    <div class="col-lg-2 pr-0 mt-4">
                                         <label class="ml-5">To Date</label><br>
-                                        <input type="date" class="selectBox">
+                                        <input type="date" class="selectBox form-control">
+                                    </div>
+                                    <div class="col-lg-2 pr-0 mt-4">
+                                        <label class="ml-5">&nbsp;</label><br>
+                                        <button type="button" class="search-btn">Search</button>
                                     </div>
                                 </div>
-                                <div class="row  d-flex justify-content-end w_100 mt-3">
+                                <div class="row  d-flex justify-content-end w_100 mt-3 mb-3">
                                     <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green'
                                         (click)="ExportToCsv()"></i>
-                                    <button type="button" class="search-btn">Search</button>
+                                  
                                     <button type="button" class="search-btn">Reset</button>
                                 </div>
 

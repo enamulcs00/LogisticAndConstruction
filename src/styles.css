@@ -23,6 +23,7 @@ td.action_td_btn3 {
     border-radius: 7px;
     border: none;
     margin-left: 2px;
+    cursor: pointer;
 }
 
 .mt-5 {
@@ -36,37 +37,52 @@ td.action_td_btn3 {
     border-radius: 7px;
     border: none;
     margin-left: 2px;
+    cursor: pointer;
 }
 
-.btn-add{
+.btn-add {
     background-color: #008000;
     color: white;
     width: 100px;
     border-radius: 7px;
     border: none;
     margin-left: 2px;
+    cursor: pointer;
 }
 
+tr:nth-child(even) {
+    background-color: #dfdfdf;
+}
 
-tr:nth-child(even) { 
-    background-color: #dfdfdf; 
-} 
-
-
-.btn-validate{
+.btn-validate {
     background-color: #008000;
     color: white;
     width: 100px;
     border-radius: 7px;
     border: none;
     margin-left: 2px;
+    cursor: pointer;
 }
 
-.btn-reject{
+.btn-reject {
     background-color: #800b00;
     color: white;
     width: 100px;
     border-radius: 7px;
     border: none;
     margin-left: 2px;
+    cursor: pointer;
+}
+
+/* search filter input fields */
+.input-field {
+    width: 100%;
+    border-radius: 7px;
+    border: 1px solid #aaaaaa;
+}
+input.form-control.input-field {
+    border: 1px solid #aaaaaa;
+}
+select.selectBox.form-control {
+    border: 1px solid #aaaaaa;
 }

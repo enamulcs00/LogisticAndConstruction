@@ -54,7 +54,6 @@ console.log('View Response',res.data)
         this.gstinUrl = res.data.userDetail.gstinUrl ? res.data.userDetail.gstinUrl : 'https://images.app.goo.gl/sCaxYXNT8VM47Ahq6'
         console.log('This is image pack',this.listing.userDetail)
         this.totalRecords = res.data.totalCount
-
         this.ViewSupplierForm.patchValue({
           firstName: this.listing?.userDetail?.firstName,
           lastName: this.listing?.userDetail?.lastName,

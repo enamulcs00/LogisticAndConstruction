@@ -14,7 +14,7 @@ export class EditDriverComponent implements OnInit {
   listing: any = [];
   id: any;
 
-  constructor(public route: Router, public service: MainService, public active: ActivatedRoute) {
+  constructor(public router: Router, public service: MainService, public active: ActivatedRoute) {
     this.active.params.subscribe((params) => {
       console.log(params)
       this.id = params.id
@@ -82,13 +82,38 @@ export class EditDriverComponent implements OnInit {
     })
   }
 
+  // --------------------- edit driver ----------------- //
   editDriver() {
     console.log("edit driver..")
     // this.route.navigate(['/edit-driver', this.id])
-    let url = 'https://logistic-constructionbackend.mobiloitte.com/account/admin/edit-DriverByAdmin'
+    let url = 'account/admin/edit-DriverByAdmin'
+    let apiReqData = {
+      aadharCardNo: this.editForm.value.aadharCardNo,
+      // companyName: this.editForm.value.companyName,
+      drivingLicenceNo: this.editForm.value.drivingLicenceNo,
+      firstName: this.editForm.value.firstName,
+      lastName: this.editForm.value.lastName,
+      phoneNo: this.editForm.value.phoneNo,
+      suffixPhoneNo: this.editForm.value.phoneNo,
+      roleStatus: "DRIVER",
+      fkFleetId: this.editForm.value.companyName,
+      "userDetailId": Number(this.id)
+    }
+    console.log(apiReqData)
+    this.service.post(url, apiReqData).subscribe((res: any) => {
+      console.log(res);
+      if (res.status == 200) {
+        this.service.toasterSucc('Driver updated successfully.')
+        this.router.navigate(['/list-of-driver'])
+      } else {
+        this.service.toasterErr('Something went wrong.')
+      }
+    })
   }
 
+
   cancel() {
-    this.route.navigate(['/list-of-driver'])
+    this.router.navigate(['/list-of-driver'])
   }
 }
+

@@ -64,7 +64,7 @@ export class ViewTruckComponent implements OnInit {
     this.service.get(url).subscribe((res: any) => {
       this.service.hideSpinner()
       if (res['status'] == 200) {
-        this.listingTruckType = res['data'];
+        this.listingTruckType = res['data']['data'];
       }
 
     })

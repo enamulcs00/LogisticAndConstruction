@@ -31,6 +31,12 @@ export class ListOfSupplierComponent implements OnInit {
   pageSize: any=10;
   action: any;
   userstatus: any;
+  supplierNameArray:any = []
+  SupplierName:any = '';
+  location:any = '';
+  filterState:any = '';
+  filterCity:any = '';
+  filtercontact:any = '';
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -38,6 +44,7 @@ export class ListOfSupplierComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.FilterSupplierName()
     this.userForm = new FormGroup({
       'startdate': new FormControl('', Validators.required),
       'enddate': new FormControl('', Validators.required),
@@ -80,7 +87,8 @@ export class ListOfSupplierComponent implements OnInit {
   //-----------------------------list api integration --------------------------------//
 
   getlist(){
-    let channel = "account/admin/filter-user-details?roleStatus=SUPPLIER"
+
+    let channel = `account/admin/filter-user-details?page=${this.pageNumber-1}&pageSize=${this.pageSize}&roleStatus=SUPPLIER`
     this.service.showSpinner()
     var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
     this.service.get(channel).subscribe((res:any)=>{
@@ -88,6 +96,7 @@ export class ListOfSupplierComponent implements OnInit {
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
+        this.supplierNameArray = res['data']['list'];
         this.totalRecords = res.data.totalCount
         this.service.toasterSucc(res.message)
       }
@@ -106,6 +115,24 @@ export class ListOfSupplierComponent implements OnInit {
     }
     )
   }
+  FilterSupplierName(){
+    let url = `account/admin/filter-user-details?roleStatus=SUPPLIER`
+    this.service.get(url).subscribe((res: any) => {
+      if (res['status'] == 200) {
+        this.supplierNameArray = res['data']['list'];
+        console.log('SuppListName',this.supplierNameArray)
+      }
+    })
+  }
+//SEARCH ITEMS
+searchItem(){
+  if (this.SupplierName || this.filterState || this.filterCity || this.filtercontact || this.location) {
+    this.pageNumber = 1;
+    this.getlist()
+  }
+}
+
+
   // ------------------------pagination -------------------------//
   pagination(page){
     this.totalRecords=[]

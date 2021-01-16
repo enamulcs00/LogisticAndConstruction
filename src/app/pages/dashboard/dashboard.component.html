@@ -1,10 +1,10 @@
-<section>
-    <div class="container1440 mt-5">
-        <main class="middle-content" style="margin-bottom:20px;margin-top: 17px;">
+<section class="dashboard">
+    <div class="container1440">
+        <main class="middle-content" >
             <!-- <div class="page_title_block">
                 <h1 class="page_title" style="color:#26272d">DASHBOARD</h1>
             </div> -->
-            <div class="content-section">
+            <div class="content-section mb-0">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="row">
@@ -13,7 +13,7 @@
                                     <div class="dash-list-inner dash-gray">
                                         <div class=" w-100">
                                             <div class="dash_icn">
-                                                <i class="fas fa-users fa-3x" aria-hidden="true"></i>
+                                                <i class="fa fa-building-o fa-3x" aria-hidden="true"></i>
                                             </div>
                                             <h2>Total Number of <br> Companies</h2>
                                             <h4>{{dashboardCountData?.companyCount || 0}}</h4>
@@ -27,11 +27,13 @@
                                         <div class="dash-select text-center">
                                             <div class="dash-select-inner">
                                                 <div class=" w-100">
-                                                    <select class="form-control" name="" id="" (change)="getCompanyCount($event)">
+                                                    <select class="form-control" name="" id=""
+                                                        (change)="getCompanyCount($event)">
                                                         <option value="">Select Company</option>
                                                         <!-- <option value="">Sdf</option>
                                                         <option value="">Jkl</option> -->
-                                                        <option *ngFor="let item of companyName" [value]="item">{{item}}
+                                                        <option *ngFor="let item of companyName" [value]="item?.name">
+                                                            {{item?.name}}
                                                         </option>
                                                     </select>
                                                 </div>
@@ -43,7 +45,7 @@
                                             <div class="dash-list-inner dash-gray">
                                                 <div class=" w-100">
                                                     <div class="dash_icn">
-                                                        <i class="fas fa-users fa-3x" aria-hidden="true"></i>
+                                                        <i class="fa fa-file-text fa-3x" aria-hidden="true"></i>
                                                     </div>
                                                     <h2>Total number of <br> pending invoices</h2>
                                                     <h4>{{companyCount?.invoiceCount || 0}}</h4>
@@ -56,7 +58,7 @@
                                             <div class="dash-list-inner dash-gray">
                                                 <div class=" w-100">
                                                     <div class="dash_icn">
-                                                        <i class="fas fa-users fa-3x" aria-hidden="true"></i>
+                                                        <i class="fa fa-calendar-check-o fa-3x" aria-hidden="true"></i>
                                                     </div>
                                                     <h2>Today's Scheduled <br> trips</h2>
                                                     <h4>{{companyCount?.tudaysScheduleTripCompany || 0}}</h4>
@@ -75,7 +77,8 @@
                                     <div class="dash-list-inner dash-gray">
                                         <div class=" w-100">
                                             <div class="dash_icn">
-                                                <i class="fas fa-users fa-3x" aria-hidden="true"></i>
+                                                <!-- <i class="fas fa-users fa-3x" aria-hidden="true"></i> -->
+                                                <img src="assets/img/Supplier.png">
                                             </div>
                                             <h2>Total Number of<br> Suppliers</h2>
                                             <h4>{{dashboardCountData?.supplierCount || 0}}</h4>
@@ -89,7 +92,8 @@
                                         <div class="dash-select text-center">
                                             <div class="dash-select-inner">
                                                 <div class=" w-100">
-                                                    <select class="form-control" name="" id="" (change)="getSupplierCount($event)">
+                                                    <select class="form-control" name="" id=""
+                                                        (change)="getSupplierCount($event)">
                                                         <option value="">Select Supplier</option>
                                                         <!-- <option value="">Abc</option>
                                                         <option value="">Xyz</option> -->
@@ -105,7 +109,7 @@
                                             <div class="dash-list-inner dash-gray">
                                                 <div class=" w-100">
                                                     <div class="dash_icn">
-                                                        <i class="fas fa-users fa-3x" aria-hidden="true"></i>
+                                                        <i class="fa fa-line-chart fa-3x" aria-hidden="true"></i>
                                                     </div>
                                                     <h2>Total Revenue last<br> One Year</h2>
                                                     <h4>{{supplierCount?.totalRevenueLastOneYear || 0}}</h4>
@@ -118,7 +122,7 @@
                                             <div class="dash-list-inner dash-gray">
                                                 <div class=" w-100">
                                                     <div class="dash_icn">
-                                                        <i class="fas fa-users fa-3x" aria-hidden="true"></i>
+                                                        <i class="fa fa-calendar-check-o fa-3x" aria-hidden="true"></i>
                                                     </div>
                                                     <h2>Today's Schedeled<br> trips</h2>
                                                     <h4>{{supplierCount?.tudaysScheduleTrip || 0}}</h4>
@@ -137,7 +141,7 @@
                                     <div class="dash-list-inner dash-gray">
                                         <div class=" w-100">
                                             <div class="dash_icn">
-                                                <i class="fas fa-users fa-3x" aria-hidden="true"></i>
+                                                <i class="fa fa-user-secret  fa-3x" aria-hidden="true"></i>
                                             </div>
                                             <h2>Total Number of<br> Fleet Owners</h2>
                                             <h4>{{dashboardCountData?.fleetCount || 0}}</h4>
@@ -151,7 +155,8 @@
                                     <div class="dash-list-inner dash-gray">
                                         <div class=" w-100">
                                             <div class="dash_icn">
-                                                <i class="fas fa-users fa-3x" aria-hidden="true"></i>
+                                                <!-- <i class="fas fa-users fa-3x" aria-hidden="true"></i> -->
+                                                <img src="assets/img/driver.png">
                                             </div>
                                             <h2>Total Number of <br> Active Drivers</h2>
                                             <h4>{{dashboardCountData?.driverCount || 0}}</h4>
@@ -164,7 +169,7 @@
                                     <div class="dash-list-inner dash-gray">
                                         <div class=" w-100">
                                             <div class="dash_icn">
-                                                <i class="fas fa-users fa-3x" aria-hidden="true"></i>
+                                                <i class="fa fa-truck fa-3x" aria-hidden="true"></i>
                                             </div>
                                             <h2>Total Number of <br> Active Trucks</h2>
                                             <h4>{{dashboardCountData?.truckCount || 0}}</h4>
