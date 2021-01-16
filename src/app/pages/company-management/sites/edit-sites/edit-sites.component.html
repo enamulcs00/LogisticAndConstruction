@@ -33,7 +33,7 @@
                                         formControlName="companyName"> -->
                                         <select id="CompanyName" class="form-control" formControlName="companyName">
                                             <option value="companyName">Company name</option>
-                                            <option *ngFor="let company of companyNameArr" value="{{company.companyId}}">{{company.companyName}}</option>
+                                            <option *ngFor="let company of companyNameArr" >{{company.companyName}}</option>
                                         </select>
                                     <!-- <span class="error">
                                         <p *ngIf="editSiteForm.get('companyName').hasError('required') && (editSiteForm.get('companyName').dirty || editSiteForm.get('companyName').touched )"

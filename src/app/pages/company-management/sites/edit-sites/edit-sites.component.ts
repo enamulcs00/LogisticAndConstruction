@@ -136,8 +136,29 @@ export class EditSitesComponent implements OnInit {
     })
   }
 
-    update(){
-
-    }
+  update(){
+    let data= {
+       "city": this.editSiteForm.value.city,
+       "companyName": this.editSiteForm.value.companyName,
+       "gstinNo": this.editSiteForm.value.gstNo,
+      // "isDeleted": true,
+      // "isEnable": true,
+       "siteId": this.userId, 
+       "locationAddress": this.editSiteForm.value.siteLocation,
+       "siteAddress": this.editSiteForm.value.siteAddress,
+       "state": this.editSiteForm.value.state,
+       "gstinUrl":this.gstimageUrl,
+     }
+     console.log("add site data::", data)
+     this.service.showSpinner()
+     var url = "account/admin/edit-SiteBy-admin"
+     this.service.post(url,data).subscribe((res: any) => {
+       this.service.hideSpinner()
+       if (res['status'] == 200) {
+         this.service.toasterSucc(res['message'])
+         this.router.navigateByUrl('/list-of-sites')
+       }
+     })
+   }
 
 }

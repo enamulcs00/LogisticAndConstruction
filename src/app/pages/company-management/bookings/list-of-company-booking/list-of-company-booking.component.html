@@ -6,24 +6,25 @@
                     <div class="global-table no-radius p0">
                         <div class="tab-content1">
                             <div class="tab-pane1">
+                                <form [formGroup]="userForm">
                                 <div class="row">
                                     <div class="col-lg-2 mt-4">
                                         <label>Booking ID</label><br>
-                                        <input class="selectBox" type="text" placeholder="Booking ID">
+                                        <input class="selectBox" type="text" placeholder="Booking ID" formControlName="bookingId">
                                     </div>
                                     <div class="col-lg-2 mt-4">
                                         <label>Supplier</label><br>
                                         <!-- <select class="selectBox">
                                             <option>Supplier</option>
                                         </select> -->
-                                        <select id="city" class="selectBox" >
+                                        <select id="city" class="selectBox" formControlName="supplier">
                                             <option value="city">select</option>
-                                            <option *ngFor="let supplier of supplierArr">{{supplier}}</option>
+                                            <option *ngFor="let supplier of supplierArr">{{supplier.name}}</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 mt-4">
                                         <label>Month</label><br>
-                                        <select class="selectBox">
+                                        <select class="selectBox" formControlName="month">
                                             <option value="00">Month</option>
                                             <option value="01">January</option>
                                             <option value="02">February</option>
@@ -41,24 +42,26 @@
                                     </div>
                                     <div class="col-lg-2 mt-4">
                                         <label>From Date</label><br>
-                                        <input class="selectBox" type="date">
+                                        <input class="selectBox" type="date" formControlName="startdate">
                                     </div>
                                     <div class="col-lg-2 mt-4">
                                         <label>To Date</label><br>
-                                        <input class="selectBox" type="date">
+                                        <input class="selectBox" type="date" formControlName="enddate">
                                     </div>
                                 </div>
                                 <div class="row  d-flex justify-content-end w_100 mt-3">
                                     <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green'
                                         (click)="ExportToCsv()"></i>
-                                    <button type="button" class="search-btn">Search</button>
+                                    <button type="button" class="search-btn" (click)="search()">Search</button>
                                     <button type="button" class="search-btn"  (click)="reset()">Reset</button>
                                 </div>
+                            </form>
 
                                 <div class="table-responsive">
                                     <table class="table table-bordered" aria-describedby="user list" id="pdfcontent">
                                         <thead>
                                             <tr class="no_wrap_th">
+                                                <th scope="col">Sl No.</th>
                                                 <th scope="col">Booking ID</th>
                                                 <th scope="col">Supplier</th>
                                                 <th scope="col">Material</th>
@@ -95,6 +98,7 @@
                                                 </td>
                                             </tr> -->
                                             <tr  *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber,totalItems: totalRecords };let i = index ">
+                                                <td>{{i+1}}</td>
                                                 <td>{{item?.quotesId}}</td>
                                                 <td>{{item?.supplierName}}</td>
                                                 <td>{{item?.material}}</td>

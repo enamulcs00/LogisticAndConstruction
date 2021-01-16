@@ -46,11 +46,9 @@
                                             <option *ngFor="let city of cityArr">{{city.name}}</option>
                                         </select>
                                     </div>
-                                    <div class="col-lg-2 mt-4">
+                                    <!-- <div class="col-lg-2 mt-4">
                                         <label>Mobile</label><br>
-                                        <!-- <select class="selectBox">
-                                            <option>Mobile</option>
-                                        </select> -->
+                                      
                                         <input type="text" id="mobile" class="selectBox"
                                         placeholder="Mobile" formControlName="phoneNo" maxlength="13">
                                         <span class="error"
@@ -58,12 +56,12 @@
                                         class="error">
                                         <p> *Please enter valid mobile number.</p>
                                     </span>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="row  d-flex justify-content-end w_100 mt-3">
                                     <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green'
                                         (click)="ExportToCsv()"></i>
-                                    <button type="button" class="search-btn">Search</button>
+                                    <button type="button" class="search-btn" (click)="search()">Search</button>
                                     <button type="button" class="search-btn" (click)="reset()">Reset</button>
                                     <button type="button" class="btn-add" (click)="addSite()">Add</button>
                                 </div>
@@ -73,6 +71,7 @@
                                     <table class="table table-bordered" aria-describedby="user list" id="pdfcontent">
                                         <thead>
                                             <tr class="no_wrap_th">
+                                                <th scope="col">Sl No.</th>
                                                 <th scope="col">Company Name</th>
                                                 <!-- <th scope="col">Site Name</th> -->
                                                 <th scope="col">Site Address</th>
@@ -80,7 +79,7 @@
                                                 <th scope="col">City</th>
                                                 <th scope="col">State</th>
                                                 <th scope="col">GSTIN</th>
-                                                <th scope="col">Date Of Creation</th>
+                                                <!-- <th scope="col">Date & Time</th> -->
                                                 <th scope="col" class="action_td_btn3">Action</th>
                                             </tr>
                                         </thead>
@@ -109,6 +108,7 @@
                                                 itemsPerPage: itemsPerPage,
                                                 currentPage: pageNumber,
                                                 totalItems: totalRecords };let i = index ">
+                                                <td>{{i+1}}</td>
                                                 <td>{{item?.companyName}}</td>
                                                 <!-- <td>{{item?.email}}</td> -->
                                                 <td>{{item?.siteAddress}}</td>
@@ -116,7 +116,8 @@
                                                 <td>{{item?.city}}</td>
                                                 <td>{{item?.state}}</td>
                                                 <td>{{item?.gstinNo}}</td>
-                                                <td>{{item?.createTime | date: 'short'}}</td>
+                                                <!-- <td *ngIf="item?.createTime">{{item?.createTime | date: 'short'}}</td>
+                                                <td *ngIf="item?.updateTime">{{item?.updateTime | date: 'short'}}</td> -->
                                                 <td class="action_td_btn3" style="cursor: pointer">
                                                     <!-- <a><i class="fa fa-plus-circle" aria-hidden="true"
                                                             (click)="addSite()"></i></a> -->
@@ -127,12 +128,9 @@
 
                                                 </td>
                                             </tr>
-                                           
-                                           
-                                           
-                                            
+                                                       
                                         </tbody>
-                                        <!-- <tbody *ngIf="listing?.length==0">
+                                        <tbody *ngIf="listing?.length==0">
                                             <tr>
                                                 <td colspan="13" vertical-align="middle">
                                                     <div class="no-record">
@@ -142,13 +140,13 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                        </tbody> -->
+                                        </tbody>
                                     </table>
                                 </div>
-                                <!-- <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
+                                <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
                                     *ngIf="listing?.length">
                                     <pagination-controls (pageChange)="pagination($event)"></pagination-controls>
-                                </div> -->
+                                </div>
 
                             </div>
                         </div>

@@ -18,8 +18,8 @@ export class ListOfCompanyUserComponent implements OnInit {
   id: number;
   deleted: any;
   totalRecords: any
-  pageNumber:number=1
-  itemsPerPage:number=20
+  pageNumber:number=0
+  itemsPerPage:number=5
   userid: number;
   userStatus: any;
   fromDate: any;
@@ -27,7 +27,7 @@ export class ListOfCompanyUserComponent implements OnInit {
   maxToDate: string;
   minToDate: any;
   toDate: any;
-  pageSize: any=10;
+  pageSize: any=5;
   action: any;
   userstatus: any;
   stateArr: any = [];
@@ -156,21 +156,24 @@ export class ListOfCompanyUserComponent implements OnInit {
   }
   //------------------------------filter by search api integration ---------------------------------//
   search() {
-    let startdate = Date.parse(this.userForm.value.startdate)
-    let enddate = Date.parse(this.userForm.value.enddate)
-    var search = this.userForm.value.searchText;
-    if( this.userForm.value.searchText && this.userForm.value.startdate && this.userForm.controls.enddate.value){
-      var url="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate+'&search='+search+'&page=0'
+   
+    if(this.userForm.value.companyName && this.userForm.value.siteAddress && this.userForm.value.firstName && this.userForm.value.lastName && this.userForm.value.mobileNo){
+      var url="account/admin/filter-user-details?roleStatus="+'COMPANY_SITE_ENGG' + '&companyName='+this.userForm.value.companyName + '&siteLocation='+this.userForm.value.siteAddress
+      + '&firstName='+this.userForm.value.firstName + '&lastName='+this.userForm.value.lastName + '&search='+this.userForm.value.mobileNo
     }
-    else if(this.userForm.value.startdate && this.userForm.controls.enddate.value){
-      var url1="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate
+    else if(this.userForm.value.companyName ){
+      var url1="account/admin/filter-user-details?roleStatus="+'COMPANY_SITE_ENGG' + '&companyName='+this.userForm.value.companyName
     }
-
-    else if(this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.searchText ){
-      var url2="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate+'&search='+search
-
+    else if(this.userForm.value.companyName && this.userForm.value.siteAddress){
+      var url2="account/admin/filter-user-details?roleStatus="+'COMPANY_SITE_ENGG' + '&companyName='+this.userForm.value.companyName + '&siteLocation='+this.userForm.value.siteAddress
     }
-    this.service.get( url || url1 || url2).subscribe((res: any) => {
+    else if(this.userForm.value.firstName && this.userForm.value.lastName){
+      var url3="account/admin/filter-user-details?roleStatus="+'COMPANY_SITE_ENGG' + '&firstName='+this.userForm.value.firstName + '&lastName='+this.userForm.value.lastName
+    }
+    else if(this.userForm.value.phoneNo ){
+      var url4="account/admin/filter-user-details?roleStatus="+'COMPANY_SITE_ENGG' + '&search='+this.userForm.value.phoneNo
+    }
+    this.service.get( url || url1 || url2 || url3 || url4).subscribe((res: any) => {
       this.listing = res.data.list;
       console.log('kfg',this.listing);
       this.totalRecords = res.data.totalCount

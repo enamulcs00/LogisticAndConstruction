@@ -54,7 +54,7 @@
                                 <div class="row  d-flex justify-content-end w_100 mt-3">
                                     <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green'
                                         (click)="ExportToCsv()"></i>
-                                    <button type="button" class="search-btn">Search</button>
+                                    <button type="button" class="search-btn" (click)="search()">Search</button>
                                     <button type="button" class="search-btn" (click)="reset()">Reset</button>
                                     <button type="button" class="btn-add" (click)="addCompany()">Add</button>
                                 </div>
@@ -63,6 +63,7 @@
                                     <table class="table table-bordered" aria-describedby="user list" id="pdfcontent">
                                         <thead>
                                             <tr class="no_wrap_th">
+                                                <th scope="col">Sl No.</th>
                                                 <th scope="col">Company Name</th>
                                                 <th scope="col">Location</th>
                                                 <th scope="col">Mobile</th>
@@ -99,6 +100,7 @@
                                                 </td>
                                             </tr> -->
                                             <tr *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber,totalItems: totalRecords };let i = index ">
+                                                <td>{{i+1}}</td>
                                                 <td>{{item?.companyName}}</td>
                                                 <td>{{item?.baseLocationAddress}}</td>
                                                 <td>{{item?.phoneNo}}</td>
