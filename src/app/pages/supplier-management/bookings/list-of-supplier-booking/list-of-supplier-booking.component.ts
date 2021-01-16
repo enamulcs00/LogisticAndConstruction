@@ -64,16 +64,7 @@ export class ListOfSupplierBookingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userForm = new FormGroup({
-      'startdate': new FormControl('', Validators.required),
-      'enddate': new FormControl('', Validators.required),
-      'searchText': new FormControl(''),
-    })
 
-    let date = new Date()
-    this.fromDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() : '0'+ (date.getMonth() + 1) )+ '-' + date.getFullYear()
-    this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
-    this.dateValidation()
      this.getlist();
      this.getSupplierList();
   }
@@ -87,15 +78,7 @@ export class ListOfSupplierBookingComponent implements OnInit {
     this.twoDate = this.twoDate.getTime()
   }
 //----------------------date validation ----------------------//
-  dateValidation(){
-    let date = new Date();
-    let currentDay = date.getDate() >= 10 ? date.getDate(): '0'+ date.getDate();
-    let currentMonth = (date.getMonth() + 1) >= 10 ? (date.getMonth() + 1): '0'+date.getMonth();
-    let currentYear = date.getFullYear();
-    this.maxFromDate = currentYear + '-' + currentMonth + '-' + currentDay;
-    this.maxToDate = currentYear + '-' + currentMonth + '-' + currentDay;
 
-  }
 
   getSupplierList() {
     var url = 'account/admin/filter-fleet-request-details?months=00'

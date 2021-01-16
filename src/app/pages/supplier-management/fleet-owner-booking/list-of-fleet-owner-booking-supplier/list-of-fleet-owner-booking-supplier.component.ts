@@ -15,16 +15,19 @@ declare var kendo: any;
 })
 export class ListOfFleetOwnerBookingSupplierComponent implements OnInit {
 
+  currentPage: number = 1
+  itemsPerPage: number = 10
+  totalItems: any
   userForm: FormGroup;
   listing: any = [];
   id: number;
   deleted: any;
   totalRecords: any
   pageNumber:number=1
-  itemsPerPage:number=20
+
   userid: number;
   userStatus: any;
-  fromDate: any;
+
   maxFromDate: string;
   maxToDate: string;
   minToDate: any;
@@ -32,6 +35,31 @@ export class ListOfFleetOwnerBookingSupplierComponent implements OnInit {
   pageSize: any=10;
   action: any;
   userstatus: any;
+  BookingId:any = ''
+  firstName:any=''
+  companyName:any=''
+
+  months:any = ''
+  fromDate: any = ''
+  twoDate: any = ''
+  calender: any = { todate: '', formdate: '' }
+  minAge: Date;
+  supplierNameArray:any = []
+
+  monthsArray: any = [
+    { id: '01', name: 'January' },
+    { id: '02', name: 'February' },
+    { id: '03', name: 'March' },
+    { id: '04', name: 'April' },
+    { id: '05', name: 'May' },
+    { id: '06', name: 'June' },
+    { id: '07', name: 'July' },
+    { id: '08', name: 'August' },
+    { id: '09', name: 'September' },
+    { id: '10', name: 'October' },
+    { id: '11', name: 'November' },
+    { id: '12', name: 'December' }
+  ]
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -39,57 +67,74 @@ export class ListOfFleetOwnerBookingSupplierComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userForm = new FormGroup({
-      'startdate': new FormControl('', Validators.required),
-      'enddate': new FormControl('', Validators.required),
-      'searchText': new FormControl(''),
-    })
 
-    let date = new Date()
-    this.fromDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() : '0'+ (date.getMonth() + 1) )+ '-' + date.getFullYear()
-    this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
-    this.dateValidation()
-     this.getlist();
+    this.getlist();
+    this.getSupplierList()
   }
 
-  onFromChangeDate(){
-    this.minToDate = this.fromDate;
+  formdate() {
+    this.fromDate = new Date(this.calender.formdate)
+    this.fromDate = this.fromDate.getTime()
   }
-  onToChangeDate(){
-    this.maxFromDate = this.toDate;
+  todate() {
+    this.twoDate = new Date(this.calender.todate)
+    this.twoDate = this.twoDate.getTime()
   }
 //----------------------date validation ----------------------//
-  dateValidation(){
-    let date = new Date();
-    let currentDay = date.getDate() >= 10 ? date.getDate(): '0'+ date.getDate();
-    let currentMonth = (date.getMonth() + 1) >= 10 ? (date.getMonth() + 1): '0'+date.getMonth();
-    let currentYear = date.getFullYear();
-    this.maxFromDate = currentYear + '-' + currentMonth + '-' + currentDay;
-    this.maxToDate = currentYear + '-' + currentMonth + '-' + currentDay;
 
+  search() {
+    if (this.companyName || this.firstName || this.months || this.twoDate || this.fromDate) {
+      this.currentPage = 1;
+      this.getlist()
+    }
+  }
+  reset() {
+    if (this.companyName || this.firstName || this.months || this.twoDate || this.fromDate) {
+      this.companyName = ''
+      this.firstName = ''
+      this.months = ''
+
+      this.calender = { todate: '', formdate: '' }
+      this.twoDate = ''
+      this.fromDate = ''
+      this.currentPage = 1
+      setTimeout(() => {
+        this.getlist()
+      }, 200);
+    }
   }
 
+  getSupplierList() {
+    var url = 'account/admin/filter-fleet-request-details?months=00'
+    this.service.get(url).subscribe((res: any) => {
+      if (res['status'] == 200) {
+        this.supplierNameArray = res['data']['list'];
+        console.log('Supp',this.supplierNameArray)
+      }
+    })
+  }
   //-----------------------------list api integration --------------------------------//
-  getlist(){
-    let channel = `account/admin/filter-fleet-request-details?months=00&page=${this.pageNumber-1}&pageSize=${this.pageSize}`
+  getlist() {
     this.service.showSpinner()
-    var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
-    this.service.get(channel).subscribe((res:any)=>{
-      console.log('QuoteRes',res)
+    var url = `account/admin/filter-fleet-request-details?&page=${(this.currentPage - 1) + ('&pageSize=' + this.itemsPerPage)
+      + (this.BookingId ? ('&bookingId=' + this.BookingId) : '') + (this.firstName ? ('&supplierName=' + this.firstName) : '')
+      + (this.months ? ('&months=' + this.months) : ('&months=00'))
+      + (this.fromDate ? ('&fromDate=' + this.fromDate) : '') + (this.twoDate ? ('&toDate=' + this.twoDate) : '')}`
+    this.service.get(url).subscribe((res: any) => {
+      console.log('Get',res)
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
         this.service.toasterSucc(res.message)
+        this.totalItems = res.data.totalCount
       }
-      else{
+      else {
         this.service.toasterErr(res.message)
+        this.listing = [];
+        this.totalItems = 0
       }
-      console.log('kfg',this.listing);
-      this.totalRecords = res.data.totalCount
-      console.log('kn', this.totalRecords);
-
     },err=>{
-      this.service.toasterErr('some thing went wrong')
+      this.service.toasterErr('Something went wrong')
     }
     )
   }
@@ -103,27 +148,6 @@ export class ListOfFleetOwnerBookingSupplierComponent implements OnInit {
     this.getlist()
   }
   //------------------------------filter by search api integration ---------------------------------//
-  search() {
-    let startdate = Date.parse(this.userForm.value.startdate)
-    let enddate = Date.parse(this.userForm.value.enddate)
-    var search = this.userForm.value.searchText;
-    if( this.userForm.value.searchText && this.userForm.value.startdate && this.userForm.controls.enddate.value){
-      var url="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate+'&search='+search+'&page=0'
-    }
-    else if(this.userForm.value.startdate && this.userForm.controls.enddate.value){
-      var url1="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate
-    }
-
-    else if(this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.searchText ){
-      var url2="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate+'&search='+search
-
-    }
-    this.service.get( url || url1 || url2).subscribe((res: any) => {
-      this.listing = res.data.list;
-      console.log('kfg',this.listing);
-      this.totalRecords = res.data.totalCount
-    })
-  }
 
   // ------------------------------reset filter------------------------------//
   resetForm(){
