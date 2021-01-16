@@ -86,7 +86,7 @@ export class ViewFleetOwnerComponent implements OnInit {
       if (res['status'] == 200) {
         this.cityArr = res['data'];
         this.editForm.patchValue({
-          'city': res.data.userDetail.city ? res.data.userDetail.city : ''
+          'city': this.editData.userDetail.city ? this.editData.userDetail.city : ''
         })
       }
     })

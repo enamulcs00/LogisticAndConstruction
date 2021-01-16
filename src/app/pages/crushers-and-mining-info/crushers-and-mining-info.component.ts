@@ -12,16 +12,18 @@ export class CrushersAndMiningInfoComponent implements OnInit {
   constructor(public service: MainService) { }
 
   ngOnInit() {
-    this.getPrivacyPolicy()
+    this.getCrusherAndMining()
   }
 
-  // get privacy policy
-  getPrivacyPolicy() {
+  // ------------- get creshur and mining ------------------ //
+  getCrusherAndMining() {
     this.service.showSpinner();
-    this.service.get('static/get-static-page-data?pageKey=TERMS AND CONDITION').subscribe(res => {
+    this.service.get('account/admin/get-static-content?pageKey=crushers and mining').subscribe(res => {
       this.service.hideSpinner();
       if (res['status'] == 200) {
         this.data = res['data'];
+      } else {
+        this.data = []
       }
     }, err => {
       this.service.hideSpinner();
@@ -34,28 +36,55 @@ export class CrushersAndMiningInfoComponent implements OnInit {
     })
   }
 
-  // save terms and conditions
-  savePrivacyPolicy() {
+  // ------------- add crusher and mining first time -------------- //
+  saveCrusherAndMining() {
     var apiReq = {
-      "pageKey": "Terms And Condition",
+      "pageKey": "crushers and mining",
       "pageData": this.data.pageData
     }
     this.service.showSpinner();
-    this.service.post('static/update-static-content-data', apiReq).subscribe(res => {
+    this.service.post('account/admin/static-content/add-new-static-content', apiReq).subscribe(res => {
       this.service.hideSpinner();
       if (res['status'] == 200) {
-        this.getPrivacyPolicy();
-        this.service.toasterSucc('Terms & Condition Updated Successfully')
+        this.getCrusherAndMining();
+        this.service.toasterSucc('Crusher and mining updated successfully.')
       } else {
-        this.service.toasterErr('Terms & Condition Updated Successfully')
+        this.service.toasterErr(res['message'])
       }
     }, err => {
       this.service.hideSpinner();
       if (err['status'] == '401') {
         this.service.onLogout();
-        this.service.toasterErr('Unauthorized Access');
+        this.service.toasterErr('Unauthorized Access.');
       } else {
-        this.service.toasterErr('Something Went Wrong');
+        this.service.toasterErr('Something Went Wrong.');
+      }
+    })
+  }
+
+  // ------------ update creusher and mining --------------------- //
+  updateCrusherAndMining() {
+    var apiReq = {
+      contentIdd: this.data.staticId,
+      "pageKey": "crushers and mining",
+      "pageData": this.data.pageData
+    }
+    this.service.showSpinner();
+    this.service.post('account/admin/static-content/update-static-content', apiReq).subscribe(res => {
+      this.service.hideSpinner();
+      if (res['status'] == 200) {
+        this.getCrusherAndMining();
+        this.service.toasterSucc('Crusher and mining updated successfully.')
+      } else {
+        this.service.toasterErr(res['message'])
+      }
+    }, err => {
+      this.service.hideSpinner();
+      if (err['status'] == '401') {
+        this.service.onLogout();
+        this.service.toasterErr('Unauthorized Access.');
+      } else {
+        this.service.toasterErr('Something Went Wrong.');
       }
     })
   }

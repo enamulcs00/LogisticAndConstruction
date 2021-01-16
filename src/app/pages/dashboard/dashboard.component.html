@@ -97,8 +97,8 @@
                                                         <option value="">Select Supplier</option>
                                                         <!-- <option value="">Abc</option>
                                                         <option value="">Xyz</option> -->
-                                                        <option *ngFor="let item of supplierName" [value]="item">
-                                                            {{item}}</option>
+                                                        <option *ngFor="let item of supplierName" [value]="item.name">
+                                                            {{item.name}}</option>
                                                     </select>
                                                 </div>
                                             </div>
