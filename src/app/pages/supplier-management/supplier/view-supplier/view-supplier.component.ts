@@ -1,5 +1,5 @@
 import { FormGroup, FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MainService } from 'src/app/provider/main.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -13,7 +13,10 @@ id:any;
 ViewSupplierForm: FormGroup
 listing: any = [];
 totalRecords: any
-  constructor(private service:MainService,private activatedRoute:ActivatedRoute) {
+aadharCardUrl: any;
+  panCardUrl: any;
+  gstinUrl: any;
+  constructor(private service:MainService,private activatedRoute:ActivatedRoute, private route:Router ) {
     this.ViewSupplierForm = new FormGroup({
 firstName: new FormControl(''),
 lastName: new FormControl(''),
@@ -27,6 +30,7 @@ AadharNo: new FormControl(''),
 PanNumber: new FormControl(''),
 gstNumber: new FormControl('')
     })
+
   }
 
   ngOnInit(){
@@ -43,9 +47,13 @@ gstNumber: new FormControl('')
 console.log('View Response',res.data)
       this.service.hideSpinner()
       if (res['status'] == 200) {
-        this.listing = res.data;
-        this.totalRecords = res.data.totalCount
         this.service.toasterSucc(res.message)
+        this.listing = res.data;
+        this.aadharCardUrl = res.data.userDetail.aadharCardUrl ? res.data.userDetail.aadharCardUrl : 'https://images.app.goo.gl/8DASmk93XpRTLdsG9';
+        this.panCardUrl = res.data.userDetail.panCardUrl ? res.data.userDetail.panCardUrl : 'https://images.app.goo.gl/aDwPDsFSsVwxKQiq5'
+        this.gstinUrl = res.data.userDetail.gstinUrl ? res.data.userDetail.gstinUrl : 'https://images.app.goo.gl/sCaxYXNT8VM47Ahq6'
+        console.log('This is image pack',this.listing.userDetail)
+        this.totalRecords = res.data.totalCount
         this.ViewSupplierForm.patchValue({
           firstName: this.listing?.userDetail?.firstName,
           lastName: this.listing?.userDetail?.lastName,
@@ -61,13 +69,16 @@ console.log('View Response',res.data)
         })
       }
       else {
-        this.service.hideSpinner()
+
         this.service.toasterErr(res.message)
       }
-    },error=>{
-      this.service.hideSpinner()
-      this.service.toasterErr(error.message)
+    },(error:any)=>{
+console.log('Error',error)
+      this.service.toasterErr('Something went wrong')
     }
     )
+  }
+  editSupplier(){
+    this.route.navigate(['edit-supplier', this.id])
   }
 }
