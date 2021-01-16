@@ -106,36 +106,23 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="city" class="col-sm-2 col-form-label">City</label>
-                                <div class="col-sm-4">
-                                    <input type="text" id="city" class="form-control" placeholder="Enter city name" (keypress)="service.AlphabetOnly($event)" formControlName="cityName">
-                                    <div class="text-danger">
-                                      <span
-                                          *ngIf="AddSupplerForm.get('cityName').hasError('required') && (AddSupplerForm.get('cityName').dirty || AddSupplerForm.get('cityName').touched)">
-                                          *Please enter city name.
-                                      </span>
+                              <label for="state" class="col-sm-2 col-form-label">State</label>
+                              <div class="col-sm-4">
+                                  <select id="city" class="form-control" formControlName="state"
+                                      (change)="searchCity($event)">
+                                      <option value="State">State</option>
+                                      <option *ngFor="let state of stateArr">{{state.name}}</option>
+                                  </select>
 
-                                  </div>
-                                  </div>
-                                <label for="state" class="col-sm-2 col-form-label">State</label>
-                                <div class="col-sm-4">
-                                    <select id="city" class="form-control" formControlName="stateName">
-                                        <option selected>State</option>
-                                        <option value="Delhi">Delhi</option>
-                                        <option value="Mumbai">Mumbai</option>
-                                        <option value="Bihar">Bihar</option>
-                                        <option value="Gujrat">Gujrat</option>
-                                        <option value="Asam">Asam</option>
-                                    </select>
-                                    <div class="text-danger">
-                                      <span
-                                          *ngIf="AddSupplerForm.get('stateName').hasError('required') && (AddSupplerForm.get('stateName').dirty || AddSupplerForm.get('stateName').touched)">
-                                          *Please Choose state.
-                                      </span>
-                                  </div>
-
-                                </div>
-                            </div>
+                              </div>
+                              <label for="city" class="col-sm-2 col-form-label">City</label>
+                              <div class="col-sm-4">
+                                  <select id="city" class="form-control" formControlName="city">
+                                      <option value="city">City</option>
+                                      <option *ngFor="let city of cityArr">{{city.name}}</option>
+                                  </select>
+                              </div>
+                          </div>
                             <div class="form-group row">
                                 <label for="aadhar" class="col-sm-2 col-form-label">Aadhar No</label>
                                 <div class="col-sm-4">
@@ -143,8 +130,8 @@
                                     <input type="text" id="aadhar" class="form-control" minlength="14" maxlength="14" placeholder="Enter aadhar no" formControlName="AadharNumber"
                                         style="border: 1px solid;">
                                     <div class="input-group-append">
-                                        <button class="btn" type="button"
-                                            style="background-color: green;">Validate</button>
+                          <button class="btn" type="button"
+                           style="background-color: green;height: 38px; z-index: 0;">Validate</button>
                                     </div>
                                   </div>
                                     <div class="text-danger">
@@ -167,7 +154,7 @@
                                         style="border: 1px solid;">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
-                                            style="background-color: green;">Validate</button>
+                                            style="background-color: green;height: 38px; z-index: 0;">Validate</button>
                                     </div>
                                   </div>
                                     <div class="text-danger">
@@ -191,6 +178,7 @@
                                         Card</label>
                                     <input type="file" id="AadharCard" (change)="uploadAadhaar($event)" accept="image/*" style="display: none"
                                         class="form-control">
+                                        <img [src]="aadharCardUrl" alt="">
                                 </div>
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-4">
@@ -198,6 +186,7 @@
                                         Card</label>
                                     <input type="file" id="PanCard" (change)="uplaodPan($event)" accept="image/*" style="display: none"
                                         class="form-control">
+                                        <img [src]="panCardUrl" alt="">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -208,7 +197,7 @@
                                         style="border: 1px solid;">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
-                                            style="background-color: green;">Validate</button>
+                                            style="background-color: green;height: 38px; z-index: 0;">Validate</button>
                                     </div>
                                   </div>
                                     <div class="text-danger">
@@ -230,8 +219,8 @@
                                 <div class="col-sm-4">
                                     <label for="gstfile" class="btn btn-success btn-block btn-outlined">GISTN
                                         Copy</label>
-                                    <input type="file" id="gstfile" (change)="uplaodGst($event)" accept="image/*" style="display: none"
-                                        class="form-control">
+                                    <input type="file" id="gstfile" (change)="uplaodGst($event)" accept="image/*" style="display: none"class="form-control">
+                                    <img [src]="gstinUrl" alt="">
                                 </div>
                             </div>
                         </form>

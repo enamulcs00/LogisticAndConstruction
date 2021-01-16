@@ -1,5 +1,5 @@
 import { FormGroup, FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MainService } from 'src/app/provider/main.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -16,7 +16,7 @@ totalRecords: any
 aadharCardUrl: any;
   panCardUrl: any;
   gstinUrl: any;
-  constructor(private service:MainService,private activatedRoute:ActivatedRoute) {
+  constructor(private service:MainService,private activatedRoute:ActivatedRoute, private route:Router ) {
     this.ViewSupplierForm = new FormGroup({
 firstName: new FormControl(''),
 lastName: new FormControl(''),
@@ -30,6 +30,7 @@ AadharNo: new FormControl(''),
 PanNumber: new FormControl(''),
 gstNumber: new FormControl('')
     })
+
   }
 
   ngOnInit(){
@@ -77,5 +78,8 @@ console.log('Error',error)
       this.service.toasterErr('Something went wrong')
     }
     )
+  }
+  editSupplier(){
+    this.route.navigate(['edit-supplier', this.id])
   }
 }

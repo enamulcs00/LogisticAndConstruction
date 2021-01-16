@@ -17,11 +17,14 @@ export class AddSupplierComponent implements OnInit {
   aadharCardUrl: any;
   panCardUrl: any;
   gstinUrl: any;
-
+  stateArr: any = [];
+  selectedState: any;
+  cityArr: any;
   constructor(public service:MainService, private router:Router ) {}
 
   ngOnInit(): void {
   this.formValidation()
+  this.getStateList()
   }
 
   // handleInputChange(e,identity) {
@@ -62,14 +65,37 @@ export class AddSupplierComponent implements OnInit {
       'mobileNumber': new FormControl('', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
       'companyName': new FormControl('', [Validators.required]),
       'companyAddress': new FormControl('', [Validators.required]),
-      'cityName': new FormControl('', [Validators.required]),
-      'stateName': new FormControl('', [Validators.required]),
+      'city': new FormControl('', [Validators.required]),
+      'state': new FormControl('', [Validators.required]),
       'AadharNumber': new FormControl('', [Validators.required,Validators.pattern(AadharPattern)]),
       'panNumber': new FormControl('', [Validators.required,Validators.pattern(panPattern)]),
       'gstNumber': new FormControl('', [Validators.required,Validators.pattern(Gstpattern)]),
 
     })
   }
+  getStateList() {
+    this.service.showSpinner()
+    var url = "account/get-state-country-wise?countryName=" + 'INDIA'
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.stateArr = res['data'];
+      }
+    })
+  }
+  searchCity(event) {
+    console.log("event", event)
+    this.service.showSpinner()
+    this.selectedState = event.target.value
+    var url = "account/get-cities-state-wise?stateName=" + this.selectedState
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.cityArr = res['data'];
+      }
+    })
+  }
+
   AddSupplier(){
 let url = 'account/admin/add-CompanyBy-admin'
 let obj =
@@ -78,7 +104,7 @@ let obj =
     aadharCardUrl: this.aadharCardUrl,
     baseLocationAddress: this.AddSupplerForm.value.companyAddress,
     //countryCode: '+91',
-    city: this.AddSupplerForm.value.cityName,
+    city: this.AddSupplerForm.value.city,
     companyName: this.AddSupplerForm.value.companyName,
     email: this.AddSupplerForm.value.emailId,
     firstName: this.AddSupplerForm.value.firstName,
@@ -91,14 +117,15 @@ let obj =
     phoneNo: '+91' + this.AddSupplerForm.value.mobileNumber,
     pnWithoutCountryCode: this.AddSupplerForm.value.mobileNumber,
     roleStatus: "SUPPLIER",
-    state: this.AddSupplerForm.value.stateName,
+    state: this.AddSupplerForm.value.state,
 
   }
   this.service.showSpinner()
   this.service.post(url,obj).subscribe((res:any)=>{
+    this.service.hideSpinner()
     console.log('This is Add supplier Response',res);
     if(res.status==200){
-      this.service.hideSpinner()
+
       this.service.toasterSucc(res.message)
       this.router.navigate(['/list-of-supplier'])
       this.AddSupplerForm.reset()
@@ -109,7 +136,7 @@ let obj =
     }
   },(err:any)=>{
     this.service.hideSpinner()
-    this.service.toasterErr(err.message)
+    this.service.toasterErr('Something went wrong')
   }
   )
 }
