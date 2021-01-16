@@ -162,7 +162,41 @@ export class EditCompanyComponent implements OnInit {
       this.service.hideSpinner();
     })
   }
-  edit(){
-
+  update() {
+    let apiReqData = {
+     
+     
+      "companyName": this.editCompanyForm.value.companyName,
+      "baseLocationAddress":  this.editCompanyForm.value.companyAddress,
+      "email": this.editCompanyForm.value.email,
+      "firstName": this.editCompanyForm.value.firstName,
+      "lastName": this.editCompanyForm.value.lastName,
+      "roleStatus": "COMPANY",
+      "phoneNo": '+91' + this.editCompanyForm.value.phoneNo,
+      "pnWithoutCountryCode": this.editCompanyForm.value.phoneNo,
+      "countryCode": "+91",
+      "country": "INDIA",
+      "state": this.editCompanyForm.value.state,
+      "city": this.editCompanyForm.value.city,
+      "aadharCardNo": this.editCompanyForm.value.aadhaarNo,
+      "aadharCardUrl": this.aadharimageUrl,
+      "panCardNo": this.editCompanyForm.value.panCard,
+      "panCardUrl": this.panimageUrl,
+      "gstinNo": this.editCompanyForm.value.gstNo,
+      "gstinUrl": this.gstimageUrl,
+      
+    }
+    console.log("data", apiReqData)
+    this.service.showSpinner()
+    var url = "account/admin/update-profile-other-role?userIdForUpdateprofile="+this.userId
+    this.service.post(url,apiReqData).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.service.toasterSucc('Company updated successfully.')
+        this.router.navigateByUrl('/list-of-companies')
+        //this.stateArr = res['data'];
+      }
+    })
   }
+
 }

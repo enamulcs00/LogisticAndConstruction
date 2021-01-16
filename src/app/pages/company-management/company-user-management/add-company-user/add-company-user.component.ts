@@ -29,6 +29,7 @@ export class AddCompanyUserComponent implements OnInit {
       'email': new FormControl('', [Validators.required, Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,9}|[0-9]{1,3})(\]?)$/i)]),
       'companyName': new FormControl('', [Validators.required]),
       'userType': new FormControl('', [Validators.required]),
+      'site': new FormControl('',),
      
     })
   }
@@ -71,6 +72,7 @@ export class AddCompanyUserComponent implements OnInit {
       "phoneNo": '+91' + this.addCompanyUserForm.value.phoneNo,
       "pnWithoutCountryCode": this.addCompanyUserForm.value.phoneNo,
       "countryCode": "+91",
+      "baseLocationAddress": this.addCompanyUserForm.value.site,
     }
     console.log("data", apiReqData)
     this.service.showSpinner()

@@ -78,15 +78,18 @@ export class EditFleetOwnerComponent implements OnInit {
   }
 
   patchCity(value) {
+    console.log("city value", value)
     this.service.showSpinner()
     this.selectedState = value
     var url = "account/get-cities-state-wise?stateName=" + this.selectedState
     this.service.get(url).subscribe((res: any) => {
+      console.log(res)
       this.service.hideSpinner()
       if (res['status'] == 200) {
+        // console.log(res.data.userDetail.city)
         this.cityArr = res['data'];
         this.editForm.patchValue({
-          'city': res.data.userDetail.city ? res.data.userDetail.city : ''
+          'city': this.editData.userDetail.city ? this.editData.userDetail.city : ''
         })
       }
     })
@@ -280,7 +283,8 @@ export class EditFleetOwnerComponent implements OnInit {
       firstName: this.editForm.value.firstName,
       lastName: this.editForm.value.lastName,
       // countryCode: '+91',
-      phoneNo: '+91' + this.editForm.value.phoneNo,
+      // phoneNo: this.editForm.value.phoneNo,
+      phoneNo: this.editForm.value.phoneNo.startsWith('+91') ? this.editForm.value.phoneNo : '+91' + this.editForm.value.phoneNo,
       pnWithoutCountryCode: this.editForm.value.phoneNo,
       email: this.editForm.value.email,
       companyName: this.editForm.value.companyName,
@@ -295,17 +299,19 @@ export class EditFleetOwnerComponent implements OnInit {
       gstinUrl: this.gstinUrl,
       "roleStatus": "FLEET",
     }
-    // if(this.paramData){
-    //   apiReqData['idForValidateData'] = this.paramData.userId
-    // }
     console.log(apiReqData)
+    this.service.showSpinner()
     let url = `account/admin/update-profile-other-role?userIdForUpdateprofile=${this.id}`
     this.service.post(url, apiReqData).subscribe((res: any) => {
       console.log(res);
+      this.service.hideSpinner()
       if (res.status == 200) {
         // this.router.navigate(['/list-of-fleet-owner'])
-        this.router.navigate(['/routes', res.userId])
+        this.router.navigate(['/routes', this.id])
+        this.service.toasterSucc(res.message)
         // this.router.navigate(['/routes', 1])
+      } else {
+        this.service.toasterErr(res.message)
       }
     })
   }

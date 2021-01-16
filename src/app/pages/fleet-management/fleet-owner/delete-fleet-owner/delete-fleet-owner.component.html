@@ -74,7 +74,7 @@
                                         <button class="btn" type="button"
                                             style="background-color: green;">Validate</button>
                                     </div> -->
-                                    <img [src]="aadharCardUrl" alt="" class="view-img">  
+                                    <img *ngIf="aadharCardUrl" [src]="aadharCardUrl" alt="" class="view-img">  
 
                                 </div>
                                 <label for="pan" class="col-sm-2 col-form-label">Pan Card</label>
@@ -85,7 +85,7 @@
                                         <button class="btn" type="button"
                                             style="background-color: green;">Validate</button>
                                     </div> -->
-                                    <img [src]="panCardUrl" alt="" class="view-img"> 
+                                    <img *ngIf="panCardUrl" [src]="panCardUrl" alt="" class="view-img"> 
 
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
                                         <button class="btn" type="button"
                                             style="background-color: green;">Validate</button>
                                     </div> -->
-                                    <img [src]="gstinUrl" alt="" class="view-img"> 
+                                    <img *ngIf="gstinUrl" [src]="gstinUrl" alt="" class="view-img"> 
 
                                 </div>
                             </div>

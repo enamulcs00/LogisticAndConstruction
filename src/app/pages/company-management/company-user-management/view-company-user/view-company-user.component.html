@@ -9,39 +9,42 @@
                 <div class="order-view mt30 mrgn-0-auto">
 
                     <div>
-                        <form>
+                        <form [formGroup]="viewCompanyUserForm">
                             <div class="form-group row">
                                 <label for="Fname" class="col-sm-2 col-form-label">First Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="Fname" class="form-control" placeholder="First name">
+                                    <input type="text" id="Fname" class="form-control" placeholder="First name" formControlName="firstName" disabled>
                                 </div>
                                 <label for="Lname" class="col-sm-2 col-form-label">Last Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="Lname" class="form-control" placeholder="Last name">
+                                    <input type="text" id="Lname" class="form-control" placeholder="Last name" formControlName="lastName" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="Mobile" class="col-sm-2 col-form-label">Mobile No</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="Mobile" class="form-control"
-                                        placeholder="Enter Mobile Number">
+                                        placeholder="Enter Mobile Number" formControlName="phoneNo" disabled>
                                 </div>
                                 <label for="email" class="col-sm-2 col-form-label">Email ID</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="email" class="form-control" placeholder="Enter mail Id">
+                                    <input type="text" id="email" class="form-control" placeholder="Enter mail Id" formControlName="email" disabled>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="CompanyName" class="col-sm-2 col-form-label">Company Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="CompanyName" class="form-control" placeholder="Company name">
+                                    <input type="text" id="CompanyName" class="form-control" placeholder="Company name" formControlName="companyName" disabled>
                                 </div>
                                 <label for="state" class="col-sm-2 col-form-label">Site</label>
-                                <div class="col-sm-4">
+                                <!-- <div class="col-sm-4">
                                     <select id="city" class="form-control">
                                         <option value="State">Mumbai</option>
                                     </select>
+                                </div> -->
+                                <div class="col-sm-4">
+                                    <input type="text" id="CompanyName" class="form-control" placeholder="Site" formControlName="site" disabled>
                                 </div>
                             </div>
 
@@ -49,17 +52,18 @@
 
                                 <label for="state" class="col-sm-2 col-form-label">User Type</label>
                                 <div class="col-sm-4">
-                                    <select id="city" class="form-control">
+                                    <!-- <select id="city" class="form-control">
                                         <option value="State">Site manager</option>
-                                    </select>
+                                    </select> -->
+                                    <input type="text" id="CompanyName" class="form-control" placeholder="Site" formControlName="userType" disabled>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <br>
                     <div class="head_flt_select">
-                        <div class="head_flt_select input-label" >
-                            <button routerLink='/list-of-company-user' type="submit" class="btn btn-theme">Save</button>
+                        <div class="head_flt_select input-label">
+                            <button (click)="edit()" type="submit" class="btn btn-theme">Edit</button>
                         </div>
                     </div>
                 </div>
