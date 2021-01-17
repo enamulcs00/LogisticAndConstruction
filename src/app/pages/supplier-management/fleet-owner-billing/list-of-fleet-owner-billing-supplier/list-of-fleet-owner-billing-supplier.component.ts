@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainService } from 'src/app/provider/main.service';
-// import { ngxCsv } from 'ngx-csv/ngx-csv';
+ import { ngxCsv } from 'ngx-csv/ngx-csv';
 // import { ExportToCsv } from 'export-to-csv';
 
 declare var $: any
@@ -268,40 +268,42 @@ export class ListOfFleetOwnerBillingSupplierComponent implements OnInit {
     this.service.exportAsExcelFile(dataArr, 'Admin User List');
   }
   // ----------------------------------------export CSV
-  ExportToCsv(){
-    this.service.showSpinner()
-    setTimeout( r => {
-      this.service.hideSpinner()
-    },3000)
-    let listingArr=[]
-    this.listing.forEach((element,ind )=> {
-      let obj ={}
-      obj ={
-        "S no": ind + 1,
-        "UserName": element.firstName + '' + element.lastName ? element.lastName : '',
-        "EmailID":  element.email ? element.email : 'N/A',
-        "UserID": element.userId ? element.userId : 'N/A',
-        "PhoneNumber": String(element.phoneNo) ? String(element.phoneNo) : 'N/A',
-        "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-        "Registration Date": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A',
+  ExportToCsv() {
+    let dataArr = [];
+    this.listing.forEach((element, ind) => {
+      let obj = {
+        "Invoice No":element.inVoiceNoForSupplier ? element.inVoiceNoForSupplier : 'N/A',
+        "Invoice date":element.inVoiceDateForSupplier?element.inVoiceDateForSupplier:'N/A',
+        "Supplier": element.supplierName ? element.supplierName  : 'N/A',
+        "Material": element.material ? element.material  : 'N/A',
+        "Weight": element.weight ? element.weight  : 'N/A',
+        "Delivery date":  String(element.deliveryDate) ? String(element.deliveryDate).slice(0, 10) : 'N/A',
+        "Location": element.baseLocationAddress ? element.baseLocationAddress : 'N/A',
+        "Amount": element.bidAmount ? element.bidAmount  : 'N/A',
+        "PO Number": element.poNumber ? element.poNumber  : 'N/A',
+        "Vehicle No":element.truckNumber?element.truckNumber: 'N/A',
+        "Vehicle Type": element.truckType ? element.truckType : 'N/A',
+        "Driver Name": element.driverName ? element.driverName : 'N/A',
+        "Driver Mobile No": element.driverMobileNo ? element.driverMobileNo : 'N/A',
+        "Route Id": element.routeId ? element.routeId : 'N/A',
+
       }
-      listingArr.push(obj)
-    });
+      dataArr.push(obj)
+    })
     const options = {
       fieldSeparator: ',',
       quoteStrings: '"',
       decimalSeparator: '.',
       showLabels: true,
       showTitle: true,
-      title: 'Candidate Details CSV',
+      title: 'Fleet billing',
       useTextFile: false,
       useBom: true,
       useKeysAsHeaders: true,
+      headers: ["fleet Billing", "Invoice No", "Invoice Date", "Supplier", "Material", "Weight","Location", "Amount", "Delevery Date","Driver Name", "Driver Mobile","Vehicle Number","Vehicle Type","Route Id" ]
     };
-    // const csvExporter = new ExportToCsv(options);
-    //  csvExporter.generateCsv(listingArr);
+    new ngxCsv(dataArr, 'fleet Billing', options);
   }
-
   //--------------------------------export pdf ----------------------------------------
 
   exportPDF(){

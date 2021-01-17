@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainService } from 'src/app/provider/main.service';
-// import { ngxCsv } from 'ngx-csv/ngx-csv';
+import { ngxCsv } from 'ngx-csv/ngx-csv';
 // import { ExportToCsv } from 'export-to-csv';
 
 declare var $: any
@@ -236,23 +236,23 @@ reset() {
         this.service.toasterSucc(this.deleted.message);
         this.getlist();
       }
-     }, err => {   
-       this.service.hideSpinner();  
-        if (err['status'] == '401') {  
-            this.service.onLogout();   
-           this.service.toasterErr('Unauthorized Access'); 
-         } 
-      else {    
-          this.service.toasterErr('Something Went Wrong');  
-        } 
+     }, err => {
+       this.service.hideSpinner();
+        if (err['status'] == '401') {
+            this.service.onLogout();
+           this.service.toasterErr('Unauthorized Access');
+         }
+      else {
+          this.service.toasterErr('Something Went Wrong');
+        }
      })
 
   }
 
   //-------------------------block api integration------------------------//
-  openblockModal(status , id){   
-     this.userid=id 
-       this.userstatus=status 
+  openblockModal(status , id){
+     this.userid=id
+       this.userstatus=status
     if(status == 'BLOCK'){
       $('#block').modal('show')
     }
@@ -260,13 +260,13 @@ reset() {
       $('#active').modal('show')
     }
 
-  } 
+  }
    blockUser(){
      this.service.showSpinner();
     let url = `account/admin/enable-desable-status-by-admin?userId=${this.userid}&userStatus=${this.userstatus}`;
-       this.service.get(url).subscribe((res:any)=>{  
-        
-        if(res.status == 200){ 
+       this.service.get(url).subscribe((res:any)=>{
+
+        if(res.status == 200){
         this.service.hideSpinner()
            if (this.userstatus == 'BLOCK') {
           $('#block').modal('hide');
@@ -276,19 +276,19 @@ reset() {
           $('#active').modal('hide');
           this.service.toasterSucc('User Activated Successfully');
         }
-        this.getlist()        
-          } 
-     }, err => {   
-         this.service.hideSpinner();  
-        if (err['status'] == '401') {  
-            this.service.onLogout();   
-           this.service.toasterErr('Unauthorized Access'); 
-         } 
-      else {    
-          this.service.toasterErr('Something Went Wrong');  
-        } 
+        this.getlist()
+          }
+     }, err => {
+         this.service.hideSpinner();
+        if (err['status'] == '401') {
+            this.service.onLogout();
+           this.service.toasterErr('Unauthorized Access');
+         }
+      else {
+          this.service.toasterErr('Something Went Wrong');
+        }
      })
-  } 
+  }
 
    //---------------------------------- Delete / Block Function--------------//
    openModal(action, userId) {
@@ -324,60 +324,37 @@ reset() {
     this.resetForm()
   }
 
+ // --------------- export to csv ------------------- //
+ exportToCsv() {
+  let dataArr = [];
+  this.listing.forEach((element, ind) => {
+    let obj = {
+      "Supplier Name": element.firstName + element.lastName ? element.firstName + element.lastName  : 'N/A',
+      "Location": element.baseLocationAddress ? element.baseLocationAddress : 'N/A',
 
-  //----------------------------------export User---------------------------------//
-  exportAsXLSX() {
-    let dataArr = [];
-    this.listing.forEach((element, ind) => {
-      let obj ={}
-      obj={
-        "S no": ind + 1,
-        "User ID": element.userId ? element.userId : '',
-        "User Name": element.firstName + '' + element.lastName ? element.lastName : '',
-        "Email": element.email ? element.email : 'N/A',
-        "Phone": element.phoneNo ? element.phoneNo : 'N/A',
-        "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-        "Date": element.createTime ? element.createTime.slice(0, 10) : 'N/A',
-      }
-      dataArr.push(obj)
-    })
-
-    this.service.exportAsExcelFile(dataArr, 'Admin User List');
-  }
-  // ----------------------------------------export CSV
-  ExportToCsv(){
-    this.service.showSpinner()
-    setTimeout( r => {
-      this.service.hideSpinner()
-    },3000)
-    let listingArr=[]
-    this.listing.forEach((element,ind )=> {
-      let obj ={}
-      obj ={
-        "S no": ind + 1,
-        "UserName": element.firstName + '' + element.lastName ? element.lastName : '',
-        "EmailID":  element.email ? element.email : 'N/A',
-        "UserID": element.userId ? element.userId : 'N/A',
-        "PhoneNumber": String(element.phoneNo) ? String(element.phoneNo) : 'N/A',
-        "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-        "Registration Date": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A',
-      }
-      listingArr.push(obj)
-    });
-    const options = {
-      fieldSeparator: ',',
-      quoteStrings: '"',
-      decimalSeparator: '.',
-      showLabels: true,
-      showTitle: true,
-      title: 'Candidate Details CSV',
-      useTextFile: false,
-      useBom: true,
-      useKeysAsHeaders: true,
-    };
-    // const csvExporter = new ExportToCsv(options);
-    //  csvExporter.generateCsv(listingArr);
-  }
+      "Mobile": element.phoneNo ? element.phoneNo : 'N/A',
+      "E-Mail": element.email ? element.email : 'N/A',
+      "State": element.state ? element.state : 'N/A',
+      "City": element.city ? element.city : 'N/A',
+      "GSTIN": element.gstInNo ? element.gstInNo : 'N/A',
+      "Date Of Creation": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A',
+    }
+    dataArr.push(obj)
+  })
+  const options = {
+    fieldSeparator: ',',
+    quoteStrings: '"',
+    decimalSeparator: '.',
+    showLabels: true,
+    showTitle: true,
+    title: 'List Of Supplier',
+    useTextFile: false,
+    useBom: true,
+    useKeysAsHeaders: true,
+    headers: ["Supplier List", "Supplier Name", "Location", "Mobile", "E-Mail", "State","City", "GSTIN", "Date Of Creation"]
+  };
+  new ngxCsv(dataArr, 'List-of-Supplier', options);
+}
 
   //--------------------------------export pdf ----------------------------------------
 

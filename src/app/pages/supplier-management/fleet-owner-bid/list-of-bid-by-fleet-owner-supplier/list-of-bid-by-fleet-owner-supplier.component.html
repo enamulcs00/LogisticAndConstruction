@@ -72,7 +72,7 @@
                                       </thead>
                                       <tbody>
                                           <tr *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber, totalItems: totalRecords };let i = index ">
-                                            <td>{{item?.bidId || 'NA'}}</td>
+                                            <td>{{item?.bookingId || 'NA'}}</td>
                                             <td>{{item?.FleetOwner || 'NA'}}</td>
                                             <td>{{item?.supplierName || 'NA'}}</td>
                                             <td>{{item?.material || 'NA'}}</td>
