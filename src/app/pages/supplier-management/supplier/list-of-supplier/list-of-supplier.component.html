@@ -119,7 +119,7 @@
 
                                                 <a *ngIf="item?.userStatus == 'ACTIVE'" (click)="openblockModal('BLOCK',item?.userId)"><i class="fa fa-ban" title="deactivate" style="color: green;"></i></a>
                                                 <a *ngIf="item?.userStatus == 'BLOCK'" (click)="openblockModal('ACTIVE',item?.userId)"><i class="fa fa-ban" title="activate" style="color: red;"></i></a>
-                                                  <a><i class="fa fa-unlock-alt" aria-hidden="true" title="Reset Password" [routerLink]="['/reset-password',item?.userId]"></i></a>
+                                                  <a><i class="fa fa-unlock-alt" aria-hidden="true" title="Reset Password" (click)="resetPassword(item?.userId, item?.phoneNo, item?.email)"></i></a>
                                             </td>
                                         </tr>
                                     </tbody>

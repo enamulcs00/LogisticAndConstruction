@@ -74,7 +74,7 @@ export class ListOfSupplierComponent implements OnInit {
   }
   viewSupplier(){}
   deleteSupplier(){}
-  resetPassword(){}
+
   onFromChangeDate(){
     this.minToDate = this.fromDate;
   }
@@ -376,7 +376,17 @@ reset() {
       });
 
   }
-
+  resetPassword(userId, phoneNo, email) {
+    var data = {
+      role: 'SUPPLIER',
+      clientId: userId,
+      mobileNo: phoneNo,
+      email: email
+    }
+    let paramData = JSON.stringify(data)
+    console.log(paramData)
+    this.router.navigate(['/reset-password'], { queryParams: { paramData: paramData } })
+  }
 
 }
 

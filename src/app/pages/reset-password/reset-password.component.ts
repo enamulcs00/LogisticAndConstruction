@@ -78,7 +78,7 @@ export class ResetPasswordComponent implements OnInit {
       }
     }, err => {
       this.service.hideSpinner()
-      this.service.toasterSucc('Something went wrong.')
+      this.service.toasterErr('Something went wrong.')
       // this.router.navigate(['/list-of-supplier'])
     })
   }

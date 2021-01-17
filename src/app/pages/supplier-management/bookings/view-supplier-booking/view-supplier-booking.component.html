@@ -2,8 +2,6 @@
   <div class="container1440 mt-5" >
 <main class="middle-content" style="overflow-y: scroll; height: -webkit-fill-available;">
   <div class="content-section">
-
-   
       <div class="order-view mt30 mrgn-0-auto">
 
       <div>
@@ -25,7 +23,7 @@
     </div>
     <label for="email" class="col-sm-2 col-form-label">Booking Date</label>
     <div class="col-sm-4">
-      <label id="email" class="outup-label">{{bookingItems?.createTime | date}}</label>
+      <label id="email" class="outup-label">{{bookingItems?.createTime | date:'medium'|| 'NA'}}</label>
     </div>
   </div>
 
@@ -36,7 +34,7 @@
     </div>
     <label for="comanyAddress" class="col-sm-2 col-form-label">Invoice date</label>
     <div class="col-sm-4">
-      <label id="companyAddress" class="outup-label">{{bookingItems?.invoiceDateForSupplier |date }}</label>
+      <label id="companyAddress" class="outup-label">{{bookingItems?.invoiceDateForSupplier | date:'medium' || 'NA' }}</label>
     </div>
   </div>
 
@@ -78,27 +76,27 @@
     </div>
     <label for="unlod" class="col-sm-2 col-form-label">Unloaded Weight</label>
     <div class="col-sm-4">
-      <label id="unlod" class="outup-label">{{bookingItems?.UnloadedWeight || 'NA'}}</label>
+      <label id="unlod" class="outup-label">{{bookingItems?.unLoadedWeight || 'NA'}}</label>
     </div>
   </div>
   <div class="form-group row">
     <label for="Rname" class="col-sm-2 col-form-label">Receiver Name</label>
     <div class="col-sm-4">
-      <label id="Rname" class="outup-label">{{bookingItems?.receiverName || 'NA'}}</label>
+      <label id="Rname" class="outup-label">{{bookingItems?.transpotarName || 'NA'}}</label>
     </div>
     <label for="comnts" class="col-sm-2 col-form-label">Comments</label>
     <div class="col-sm-4">
-      <label id="comnts" class="outup-label">{{bookingItems?.comments || 'NA'}}</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly>{{bookingItems?.comments||"N/A"}}</textarea>
     </div>
   </div>
   <div class="form-group row">
     <label for="pick" class="col-sm-2 col-form-label">PickUp Site</label>
     <div class="col-sm-4">
-      <label id="pick" class="outup-label">{{bookingItems?.pickUpSite || 'NA'}}</label>
+      <label id="pick" class="outup-label">{{bookingItems?.location || 'NA'}}</label>
     </div>
     <label for="drop" class="col-sm-2 col-form-label">Drop Site</label>
     <div class="col-sm-4">
-      <label id="drop" class="outup-label">{{bookingItems?.dropSite || 'NA'}}</label>
+      <label id="drop" class="outup-label">{{bookingItems?.dropLocation || 'NA'}}</label>
     </div>
   </div>
 </form>
