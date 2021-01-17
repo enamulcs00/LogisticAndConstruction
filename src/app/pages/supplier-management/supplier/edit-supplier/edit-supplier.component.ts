@@ -12,7 +12,7 @@ export class EditSupplierComponent implements OnInit {
   listing: any = [];
   editForm: FormGroup;
   id: any;
-  defaultCity:any;
+
   editData: any
   stateArr: any = [];
   selectedState: any;
@@ -199,7 +199,23 @@ export class EditSupplierComponent implements OnInit {
     })
   }
 
-
+  patchCity(value) {
+    console.log("city value", value)
+    this.service.showSpinner()
+    this.selectedState = value
+    var url = "account/get-cities-state-wise?stateName=" + this.selectedState
+    this.service.get(url).subscribe((res: any) => {
+      console.log(res)
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        // console.log(res.data.userDetail.city)
+        this.cityArr = res['data'];
+        this.editForm.patchValue({
+          'city': this.editData.userDetail.city ? this.editData.userDetail.city : ''
+        })
+      }
+    })
+  }
   //get city list
   searchCity(event) {
     console.log("event", event)
@@ -228,8 +244,9 @@ console.log('View Response',res.data)
         this.panCardUrl = res.data.userDetail.panCardUrl ? res.data.userDetail.panCardUrl : 'https://images.app.goo.gl/aDwPDsFSsVwxKQiq5'
         this.gstinUrl = res.data.userDetail.gstinUrl ? res.data.userDetail.gstinUrl : 'https://images.app.goo.gl/sCaxYXNT8VM47Ahq6'
         console.log('This is image pack',this.listing.userDetail)
-         this.defaultCity = this.listing?.userDetail?.city
 
+         let state = res.data.userDetail.state ? res.data.userDetail.state : ''
+         this.patchCity(state)
         this.editForm.patchValue({
           firstName: this.listing?.userDetail?.firstName,
           lastName: this.listing?.userDetail?.lastName,
