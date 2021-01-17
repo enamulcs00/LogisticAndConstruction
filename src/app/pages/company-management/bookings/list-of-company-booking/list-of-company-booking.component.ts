@@ -19,8 +19,8 @@ export class ListOfCompanyBookingComponent implements OnInit {
   id: number;
   deleted: any;
   totalRecords: any
-  pageNumber:number=1
-  itemsPerPage:number=20
+  pageNumber:number=0
+  itemsPerPage:number=5
   userid: number;
   userStatus: any;
   fromDate: any;
@@ -28,7 +28,7 @@ export class ListOfCompanyBookingComponent implements OnInit {
   maxToDate: string;
   minToDate: any;
   toDate: any;
-  pageSize: any=10;
+  pageSize: any=5;
   action: any;
   userstatus: any;
   supplierArr: any=[];
@@ -40,9 +40,12 @@ export class ListOfCompanyBookingComponent implements OnInit {
 
   ngOnInit() {
     this.userForm = new FormGroup({
-      'startdate': new FormControl('', Validators.required),
-      'enddate': new FormControl('', Validators.required),
-      'searchText': new FormControl(''),
+      'startdate': new FormControl('',),
+      'enddate': new FormControl('',),
+      'bookingId': new FormControl(''),
+      'month': new FormControl(''),
+      'supplier': new FormControl(''),
+
     })
     
     let date = new Date()
@@ -73,13 +76,13 @@ export class ListOfCompanyBookingComponent implements OnInit {
   //-----------------------------list api integration --------------------------------//
   getQuoteList(){
     this.service.showSpinner()
-    var url="account/admin/filter-client-request-details"
+    var url="account/admin/filter-client-request-details?page="+this.pageNumber +'&pageSize='+this.pageSize
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
       }
-      
+      this.totalRecords = res.data.totalCount
       
     })
   }
@@ -109,18 +112,26 @@ export class ListOfCompanyBookingComponent implements OnInit {
     let startdate = Date.parse(this.userForm.value.startdate)
     let enddate = Date.parse(this.userForm.value.enddate)
     var search = this.userForm.value.searchText;
-    if( this.userForm.value.searchText && this.userForm.value.startdate && this.userForm.controls.enddate.value){
-      var url="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate+'&search='+search+'&page=0'
+    if( this.userForm.value.bookingId && this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.supplier && this.userForm.value.month){
+      var url="account/admin/filter-client-request-details?fromDate="+startdate+'&toDate='+enddate+'&months='+this.userForm.value.month + '&supplierName='+ this.userForm.value.supplier + '&quotesId=' + this.userForm.value.bookingId
     }
     else if(this.userForm.value.startdate && this.userForm.controls.enddate.value){
-      var url1="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate
+      var url1="account/admin/filter-client-request-details?fromDate="+startdate+'&toDate='+enddate
     }
 
-    else if(this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.searchText ){
-      var url2="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate+'&search='+search
+    else if(this.userForm.value.bookingId){
+      var url2="account/admin/filter-client-request-details?quotesId="+this.userForm.value.bookingId
 
     }
-    this.service.get( url || url1 || url2).subscribe((res: any) => {
+    else if(this.userForm.value.month){
+      var url3="account/admin/filter-client-request-details?months="+this.userForm.value.month
+
+    }
+    else if(this.userForm.value.supplier){
+      var url4="account/admin/filter-client-request-details?supplierName="+ this.userForm.value.supplier
+
+    }
+    this.service.get( url || url1 || url2 ||url3 || url4).subscribe((res: any) => {
       this.listing = res.data.list;
       console.log('kfg',this.listing);
       this.totalRecords = res.data.totalCount
@@ -308,6 +319,7 @@ export class ListOfCompanyBookingComponent implements OnInit {
   }
 
   reset(){
+    this.userForm.reset()
     this.getQuoteList();
   }
 

@@ -3,10 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainService } from 'src/app/provider/main.service';
 import { ngxCsv } from 'ngx-csv/ngx-csv';
-// import { ExportToCsv } from 'export-to-csv';
-
-declare var $: any
-// declare var kendo: any;
+declare var $: any;
 
 @Component({
   selector: 'app-list-of-driver',
@@ -19,9 +16,7 @@ export class ListOfDriverComponent implements OnInit {
   listing: any = [];
   id: number;
   deleted: any;
-  // totalRecords: any
-  // pageNumber:number=1
-  // itemsPerPage:number=20
+
   userid: number;
   userStatus: any;
   fromDate: any;
@@ -52,46 +47,17 @@ export class ListOfDriverComponent implements OnInit {
   constructor(private router: Router, public service: MainService) {}
 
   ngOnInit() {
-    // this.userForm = new FormGroup({
-    //   'startdate': new FormControl('', Validators.required),
-    //   'enddate': new FormControl('', Validators.required),
-    //   'searchText': new FormControl(''),
-    // })
-    
-    // let date = new Date()
-    // this.fromDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() : '0'+ (date.getMonth() + 1) )+ '-' + date.getFullYear()
-    // this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
-    // this.dateValidation()
     this.getlist();
     this.getFleetOwnerlist() // list of fleet owner for search filter
     this.getStateList(); // list of state for search filter
   }
 
-//   onFromChangeDate(){
-//     this.minToDate = this.fromDate;
-//   }
-//   onToChangeDate(){
-//     this.maxFromDate = this.toDate;
-//   }
-// //----------------------date validation ----------------------//
-//   dateValidation(){
-//     let date = new Date();
-//     let currentDay = date.getDate() >= 10 ? date.getDate(): '0'+ date.getDate();
-//     let currentMonth = (date.getMonth() + 1) >= 10 ? (date.getMonth() + 1): '0'+date.getMonth();
-//     let currentYear = date.getFullYear();
-//     this.maxFromDate = currentYear + '-' + currentMonth + '-' + currentDay;
-//     this.maxToDate = currentYear + '-' + currentMonth + '-' + currentDay;
-
-//   }
-
   //-----------------------------list api integration --------------------------------//
   getlist(){
     this.service.showSpinner()
-    // var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
     var url = `account/admin/filter-user-details?roleStatus=DRIVER&page=${(this.currentPage - 1) + ('&pageSize=' + this.itemsPerPage)
     + (this.companyName ? ('&companyName=' + this.companyName) : '') + (this.firstName ? ('&firstName=' + this.firstName) : '')
     + (this.state ? ('&state=' + this.state) : '') + (this.city ? ('&city=' + this.city) : '') + (this.phoneNo ? ('&phoneNo=' + this.phoneNo) : '')}`
-
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
@@ -173,36 +139,6 @@ export class ListOfDriverComponent implements OnInit {
     })
   }
 
-
-  //------------------------------filter by search api integration ---------------------------------//
-  // search() {
-  //   let startdate = Date.parse(this.userForm.value.startdate)
-  //   let enddate = Date.parse(this.userForm.value.enddate)
-  //   var search = this.userForm.value.searchText;
-  //   if( this.userForm.value.searchText && this.userForm.value.startdate && this.userForm.controls.enddate.value){
-  //     var url="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate+'&search='+search+'&page=0'
-  //   }
-  //   else if(this.userForm.value.startdate && this.userForm.controls.enddate.value){
-  //     var url1="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate
-  //   }
-
-  //   else if(this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.searchText ){
-  //     var url2="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate+'&search='+search
-
-  //   }
-  //   this.service.get( url || url1 || url2).subscribe((res: any) => {
-  //     this.listing = res.data.list;
-  //     console.log('kfg',this.listing);
-  //     this.totalRecords = res.data.totalCount
-  //   })
-  // }
-
-  // // ------------------------------reset filter------------------------------//
-  // resetForm(){
-  //   this.userForm.reset()
-  //   this.getlist();    
-  // }
-
     //---------------------------------- Delete / Block Function--------------//
     openModal(action, userId) {
       this.userid = userId;
@@ -218,36 +154,6 @@ export class ListOfDriverComponent implements OnInit {
       }
     }
 
-    
-  //========modal=======//
-  // delete(id: number) {
-  //   this.userid = id;
-  //   $('#deleteModal').modal('show')
-  // }
-  // //------------------------------delete api integration ----------------------------------//
-  // deleteUser() {
-  //   // var url = 'account/admin/user-management/delete-user-detail?userIdToDelete=' + (this.userid) + '&ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location'));
-  //   var url = `account/admin/delete-client-details?userIdToDeleteClient=${this.userid}`
-  //   this.service.get(url).subscribe((res: any) => {
-  //     this.deleted = res
-  //     if (this.deleted.ststus = 200) {
-  //       $('#deleteModal').modal('hide')
-  //       this.service.toasterSucc(this.deleted.message);
-  //       this.getlist();
-  //     }
-  //    }, err => {   
-  //      this.service.hideSpinner();  
-  //       if (err['status'] == '401') {  
-  //           this.service.onLogout();   
-  //          this.service.toasterErr('Unauthorized Access'); 
-  //        } 
-  //     else {    
-  //         this.service.toasterErr('Something Went Wrong');  
-  //       } 
-  //    })
-
-  // }
-
   //-------------------------block api integration------------------------//
   block(status , id){   
      this.userid=id 
@@ -256,9 +162,7 @@ export class ListOfDriverComponent implements OnInit {
   } 
    blockUser(){
      this.service.showSpinner();
-    // var url = 'account/admin/user-management/user-status?ipAddress='+(localStorage.getItem('ipAddress'))+'&location='+(localStorage.getItem('location'))+ '&userIdForStatusUpdate='+(this.userid) + '&userStatus=' + (this.action);
     var url = `account/admin/enable-desable-status-by-admin?&userId=${this.userid}&userStatus=${this.action}`;
-    //    this.service.post(url,'').subscribe((res:any)=>{    
          this.service.get(url).subscribe((res:any)=>{    
         if(res.status == 200){ 
         this.service.hideSpinner()
@@ -283,99 +187,6 @@ export class ListOfDriverComponent implements OnInit {
         } 
      })
   } 
-
- 
-  //------------------- user details navigation------------------------------//
-  // userDetails(id,email){
-  //   this.router.navigate(['/user-details',id,email] )
-
-  // }
-
-  // walletdetail(id) {
-  //   this.router.navigate(['walletdetails/' + id])
-  // }
-
-//--------------------------------pageSize ---------------------------------//
-  // showList(val) {
-  //   this.pageSize = val
-  //   this.resetForm()
-  // }
-
-
-  //----------------------------------export User---------------------------------//
-  // exportAsXLSX() {
-  //   let dataArr = [];
-  //   this.listing.forEach((element, ind) => {
-  //     let obj ={}
-  //     obj={
-  //       "S no": ind + 1,
-  //       "User ID": element.userId ? element.userId : '',
-  //       "User Name": element.firstName + '' + element.lastName ? element.lastName : '',
-  //       "Email": element.email ? element.email : 'N/A',
-  //       "Phone": element.phoneNo ? element.phoneNo : 'N/A',
-  //       "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-  //       "Date": element.createTime ? element.createTime.slice(0, 10) : 'N/A',
-  //     }
-  //     dataArr.push(obj)
-  //   })
-
-  //   this.service.exportAsExcelFile(dataArr, 'Admin User List');
-  // }
-  // // ----------------------------------------export CSV
-  // ExportToCsv(){
-  //   this.service.showSpinner()
-  //   setTimeout( r => {
-  //     this.service.hideSpinner()
-  //   },3000)
-  //   let listingArr=[]
-  //   this.listing.forEach((element,ind )=> {
-  //     let obj ={}
-  //     obj ={
-  //       "S no": ind + 1,
-  //       "UserName": element.firstName + '' + element.lastName ? element.lastName : '',
-  //       "EmailID":  element.email ? element.email : 'N/A',
-  //       "UserID": element.userId ? element.userId : 'N/A',
-  //       "PhoneNumber": String(element.phoneNo) ? String(element.phoneNo) : 'N/A',
-  //       "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-  //       "Registration Date": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A', 
-  //     }
-  //     listingArr.push(obj)
-  //   });
-  //   const options = { 
-  //     fieldSeparator: ',',
-  //     quoteStrings: '"',
-  //     decimalSeparator: '.',
-  //     showLabels: true, 
-  //     showTitle: true,
-  //     title: 'Candidate Details CSV',
-  //     useTextFile: false,
-  //     useBom: true,
-  //     useKeysAsHeaders: true,
-  //   };
-  //   const csvExporter = new ExportToCsv(options);
-  //    csvExporter.generateCsv(listingArr); 
-  // }
-
-  // //--------------------------------export pdf ----------------------------------------
-  
-  // exportPDF(){
-  //   this.service.showSpinner();
-  //   setTimeout( r => {
-  //     this.service.hideSpinner()
-  //   },3000);
-  //   kendo.drawing
-  //     .drawDOM("#pdfcontent",
-  //       {
-  //         paperSize: "A2",
-  //         margin: { top: "0.8cm", bottom: "1cm" },
-  //         scale: 0.8,
-  //         height: 400,          
-  //       })
-  //     .then(function (group) {
-  //       kendo.drawing.pdf.saveAs(group, "Exported.pdf")
-  //     });
-    
-  // }
 
   // --------------- export to csv ------------------- //
   exportToCsv() {
@@ -432,4 +243,5 @@ export class ListOfDriverComponent implements OnInit {
       console.log(paramData)
       this.router.navigate(['/reset-password'], { queryParams: { paramData: paramData } })
     }
+    
 }

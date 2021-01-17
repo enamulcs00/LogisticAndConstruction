@@ -102,13 +102,12 @@ export class AddFleetOwnerComponent implements OnInit {
     })
   }
 
-  // submit add form 
+  // ----------------------- submit add form ---------------------------- //
   submitForm() {
     var apiReqData = {
       firstName: this.addForm.value.firstName,
       lastName: this.addForm.value.lastName,
-      // countryCode: '+91',
-      phoneNo: '+91' + this.addForm.value.phoneNo,
+      phoneNo: this.addForm.value.phoneNo.startsWith('+91') ? this.addForm.value.phoneNo : '+91' + this.addForm.value.phoneNo,
       pnWithoutCountryCode: this.addForm.value.phoneNo,
       email: this.addForm.value.email,
       companyName: this.addForm.value.companyName,
@@ -123,16 +122,23 @@ export class AddFleetOwnerComponent implements OnInit {
       gstinUrl: this.gstinUrl,
       "roleStatus": "FLEET",
     }
-    if(this.paramData){
+    if (this.paramData) {
       apiReqData['idForValidateData'] = this.paramData.userId
     }
     console.log(apiReqData)
+    this.service.showSpinner()
     this.service.post('account/admin/add-CompanyBy-admin', apiReqData).subscribe((res: any) => {
       console.log(res);
-      if(res.status == 200){
+      this.service.hideSpinner()
+      if (res.status == 200) {
         // this.router.navigate(['/list-of-fleet-owner'])
-        this.router.navigate(['/routes', res.userId])
+        let userId = this.paramData ? this.paramData.userId : res.data
+        console.log(userId)
+        this.router.navigate(['/routes', userId])
+        this.service.toasterSucc(res.message)
         // this.router.navigate(['/routes', 1])
+      } else {
+        this.service.toasterErr(res.message);
       }
     })
   }

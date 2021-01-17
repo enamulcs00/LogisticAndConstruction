@@ -6,20 +6,21 @@
                     <div class="global-table no-radius p0">
                         <div class="tab-content1">
                             <div class="tab-pane1">
+                                <form [formGroup]="userForm">
                                 <div class="row">
                                     <div class="col-lg-2  pl-0 mt-4">
                                         <label>Company Name</label><br>
                                         <!-- <select class="selectBox">
                                             <option>Select Company Name</option>
                                         </select> -->
-                                        <select id="CompanyName" class="selectBox form-control" (change)="searchLocation($event)">
+                                        <select id="CompanyName" class="selectBox form-control" (change)="searchLocation($event)" formControlName="companyName">
                                             <option value="">Company name</option>
                                             <option *ngFor="let company of companyNameArr" value={{company.id}}>{{company.name}}</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2  pl-0 mt-4">
                                         <label>Location</label><br>
-                                        <select class="selectBox form-control">
+                                        <select class="selectBox form-control" formControlName="location">
                                             <option value="">Location</option>
                                             <option *ngFor="let site of siteArr" value={{site.id}}>{{site.address}}</option>
                                         </select>
@@ -30,7 +31,7 @@
                                             <option>State</option>
                                         </select> -->
                                         <select id="city" class="selectBox form-control" 
-                                        (change)="searchCity($event)">
+                                        (change)="searchCity($event)" formControlName="state">
                                         <option value="State">State</option>
                                         <option *ngFor="let state of stateArr">{{state.name}}</option>
                                     </select>
@@ -40,7 +41,7 @@
                                         <!-- <select class="selectBox">
                                             <option>City</option>
                                         </select> -->
-                                        <select id="city" class="selectBox form-control" >
+                                        <select id="city" class="selectBox form-control" formControlName="city">
                                             <option value="city">City</option>
                                             <option *ngFor="let city of cityArr">{{city.name}}</option>
                                         </select>
@@ -51,12 +52,12 @@
                                             <option>Mobile</option>
                                         </select> -->
                                         <input type="text" id="mobile" class="selectBox form-control"
-                                        placeholder="Mobile" >
+                                        placeholder="Mobile" formControlName="phoneNo" maxlength="13">
                                     </div>
 
                                     <div class="col-lg-2 mt-4 p-0">
                                         <label>&nbsp;</label><br>
-                                        <button type="button" class="search-btn">Search</button>
+                                        <button type="button" class="search-btn" (click)="search()">Search</button>
                                         <!-- <button type="button" class="search-btn">Reset</button> -->
                                     </div>
                                 </div>
@@ -67,11 +68,13 @@
                                     <button type="button" class="search-btn" (click)="reset()">Reset</button>
                                     <button type="button" class="btn-add" (click)="addSite()">Add</button>
                                 </div>
+                                </form>
 
                                 <div class="table-responsive">
                                     <table class="table table-bordered" aria-describedby="user list" id="pdfcontent">
                                         <thead>
                                             <tr class="no_wrap_th">
+                                                <th scope="col">Sl No.</th>
                                                 <th scope="col">Company Name</th>
                                                 <!-- <th scope="col">Site Name</th> -->
                                                 <th scope="col">Site Address</th>
@@ -79,7 +82,7 @@
                                                 <th scope="col">City</th>
                                                 <th scope="col">State</th>
                                                 <th scope="col">GSTIN</th>
-                                                <th scope="col">Date Of Creation</th>
+                                                <!-- <th scope="col">Date & Time</th> -->
                                                 <th scope="col" class="action_td_btn3">Action</th>
                                             </tr>
                                         </thead>
@@ -108,6 +111,7 @@
                                                 itemsPerPage: itemsPerPage,
                                                 currentPage: pageNumber,
                                                 totalItems: totalRecords };let i = index ">
+                                                <td>{{i+1}}</td>
                                                 <td>{{item?.companyName}}</td>
                                                 <!-- <td>{{item?.email}}</td> -->
                                                 <td>{{item?.siteAddress}}</td>
@@ -115,7 +119,8 @@
                                                 <td>{{item?.city}}</td>
                                                 <td>{{item?.state}}</td>
                                                 <td>{{item?.gstinNo}}</td>
-                                                <td>{{item?.createTime | date: 'short'}}</td>
+                                                <!-- <td *ngIf="item?.createTime">{{item?.createTime | date: 'short'}}</td>
+                                                <td *ngIf="item?.updateTime">{{item?.updateTime | date: 'short'}}</td> -->
                                                 <td class="action_td_btn3" style="cursor: pointer">
                                                     <!-- <a><i class="fa fa-plus-circle" aria-hidden="true"
                                                             (click)="addSite()"></i></a> -->
@@ -126,12 +131,9 @@
 
                                                 </td>
                                             </tr>
-                                           
-                                           
-                                           
-                                            
+                                                       
                                         </tbody>
-                                        <!-- <tbody *ngIf="listing?.length==0">
+                                        <tbody *ngIf="listing?.length==0">
                                             <tr>
                                                 <td colspan="13" vertical-align="middle">
                                                     <div class="no-record">
@@ -141,13 +143,13 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                        </tbody> -->
+                                        </tbody>
                                     </table>
                                 </div>
-                                <!-- <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
+                                <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
                                     *ngIf="listing?.length">
                                     <pagination-controls (pageChange)="pagination($event)"></pagination-controls>
-                                </div> -->
+                                </div>
 
                             </div>
                         </div>

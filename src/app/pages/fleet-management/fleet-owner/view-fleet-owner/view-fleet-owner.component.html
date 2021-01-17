@@ -52,16 +52,17 @@
                                 <label for="state" class="col-sm-2 col-form-label">State</label>
                                 <div class="col-sm-4">
                                     <select id="city" class="form-control" formControlName="state"
-                                    (change)="searchCity($event)">
-                                    <option value="State">State</option>
-                                    <option *ngFor="let state of stateArr">{{state.name}}</option>
-                                </select>
+                                        (change)="searchCity($event)">
+                                        <option value="">State</option>
+                                        <option *ngFor="let state of stateArr" [value]="state?.name">{{state?.name}}
+                                        </option>
+                                    </select>
                                 </div>
                                 <label for="city" class="col-sm-2 col-form-label">City</label>
                                 <div class="col-sm-4">
                                     <select id="city" class="form-control" formControlName="city">
-                                        <option value="city">City</option>
-                                        <option *ngFor="let city of cityArr">{{city.name}}</option>
+                                        <option value="">City</option>
+                                        <option *ngFor="let city of cityArr" [value]="city?.name">{{city.name}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -74,7 +75,7 @@
                                         <button class="btn" type="button"
                                             style="background-color: green;     height: 38px;     z-index: 0;">Validate</button>
                                     </div> -->
-                                    <img [src]="aadharCardUrl" alt="" class="view-img">
+                                    <img *ngIf="aadharCardUrl" [src]="aadharCardUrl" alt="" class="view-img">
 
                                 </div>
                                 <label for="pan" class="col-sm-2 col-form-label">Pan Card</label>
@@ -85,7 +86,7 @@
                                         <button class="btn" type="button"
                                             style="background-color: green;     height: 38px;     z-index: 0;">Validate</button>
                                     </div> -->
-                                    <img [src]="panCardUrl" alt="" class="view-img">
+                                    <img *ngIf="panCardUrl" [src]="panCardUrl" alt="" class="view-img">
 
                                 </div>
                             </div>
@@ -116,7 +117,7 @@
                                         <button class="btn" type="button"
                                             style="background-color: green;     height: 38px;     z-index: 0;">Validate</button>
                                     </div> -->
-                                    <img [src]="gstinUrl" alt="" class="view-img">
+                                    <img *ngIf="gstinUrl" [src]="gstinUrl" alt="" class="view-img">
 
                                 </div>
                             </div>

@@ -20,8 +20,8 @@ export class ListOfCompanyBillingComponent implements OnInit {
   id: number;
   deleted: any;
   totalRecords: any
-  pageNumber:number=1
-  itemsPerPage:number=20
+  pageNumber:number=0
+  itemsPerPage:number=5
   userid: number;
   userStatus: any;
   fromDate: any;
@@ -29,7 +29,7 @@ export class ListOfCompanyBillingComponent implements OnInit {
   maxToDate: string;
   minToDate: any;
   toDate: any;
-  pageSize: any=10;
+  pageSize: any=5;
   action: any;
   userstatus: any;
   supplierArr: any=[];
@@ -84,7 +84,7 @@ export class ListOfCompanyBillingComponent implements OnInit {
         this.listing = res['data']['list'];
       }
       // console.log('kfg',this.listing);
-      // this.totalRecords = res.data.totalCount
+       this.totalRecords = res.data.totalCount
       // console.log('kn', this.totalRecords);
       
     })
@@ -114,19 +114,27 @@ export class ListOfCompanyBillingComponent implements OnInit {
   search() {
     let startdate = Date.parse(this.userForm.value.startdate)
     let enddate = Date.parse(this.userForm.value.enddate)
-  
-    if( this.userForm.value.month && this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.supplierName){
-      var url="account/admin/filter-fleet-request-details?months="+ this.userForm.value.month +'&fromDate='+startdate+'&toDate='+enddate + '&supplierName='+this.userForm.value.supplierName
+    var search = this.userForm.value.searchText;
+    if( this.userForm.value.invoiceNo && this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.supplier && this.userForm.value.month){
+      var url="account/admin/filter-fleet-request-details?fromDate="+startdate+'&toDate='+enddate+'&months='+this.userForm.value.month + '&supplierName='+ this.userForm.value.supplier + '&bookingId=' + this.userForm.value.invoiceNo+'&months='+ "00"
     }
     else if(this.userForm.value.startdate && this.userForm.controls.enddate.value){
-      var url1="account/admin/filter-fleet-request-details?months=00"+'&fromDate='+startdate+'&toDate='+enddate
+      var url1="account/admin/filter-fleet-request-details?fromDate="+startdate+'&toDate='+enddate +'&months='+ "00"
     }
 
-    else if( this.userForm.value.month  ){
-      var url2="account/admin/filter-fleet-request-details?months="+ this.userForm.value.month
+    else if(this.userForm.value.invoiceNo){
+      var url2="account/admin/filter-fleet-request-details?bookingId="+this.userForm.value.invoiceNo+'&months='+ "00"
 
     }
-    this.service.get( url || url1 || url2).subscribe((res: any) => {
+    else if(this.userForm.value.month){
+      var url3="account/admin/filter-fleet-request-details?months="+this.userForm.value.month
+
+    }
+    else if(this.userForm.value.supplier){
+      var url4="account/admin/filter-fleet-request-details?supplierName="+ this.userForm.value.supplier+'&months='+ "00"
+
+    }
+    this.service.get( url || url1 || url2 ||url3 || url4).subscribe((res: any) => {
       this.listing = res.data.list;
       console.log('kfg',this.listing);
       this.totalRecords = res.data.totalCount

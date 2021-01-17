@@ -61,11 +61,11 @@ export class ViewSitesComponent implements OnInit {
       }
      
     })
+    }
+
+    edit(){
+      this.router.navigate(['/edit-site',this.userId])
+    }
   }
-  
 
-   
 
-  
-
-}

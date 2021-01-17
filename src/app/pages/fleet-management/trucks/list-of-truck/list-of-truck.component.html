@@ -12,7 +12,7 @@
                                         <select class="selectBox form-control" [(ngModel)]="fleetOnwerCompanyName">
                                             <option value="">Select Fleet Owner</option>
                                             <option *ngFor="let item of fleetOnwerCompanyNameArray"
-                                            [value]="item?.companyName">{{item?.companyName}}</option>
+                                                [value]="item?.companyName">{{item?.companyName}}</option>
                                         </select>
                                     </div>
 
@@ -22,7 +22,7 @@
                                             <option>Truck No</option>
                                         </select> -->
                                         <input type="text" class="form-control input-field" placeholder="Truck No"
-                                            [(ngModel)]="registrationNo">
+                                            [(ngModel)]="registrationNo" maxlength="20">
                                     </div>
                                     <div class="col-lg-3  mt-4">
                                         <label>Truck Type</label><br>
@@ -44,7 +44,8 @@
                                             <option>Fleet Owner Mobile</option>
                                         </select> -->
                                         <input type="text" class="form-control input-field"
-                                        placeholder="Fleet Owner Mobile" [(ngModel)]="fleetOnwerNo">
+                                            placeholder="Fleet Owner Mobile" [(ngModel)]="fleetOnwerNo"
+                                            (keypress)="service.numberOnly($event)" maxlength="20">
                                     </div>
                                 </div>
                                 <div class="row  d-flex justify-content-end w_100 mt-3 mb-3">

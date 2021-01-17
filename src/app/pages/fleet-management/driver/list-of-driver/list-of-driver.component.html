@@ -48,7 +48,7 @@
                                             <option>Mobile</option>
                                         </select> -->
                                         <input type="text" class="form-control input-field" placeholder="Mobile"
-                                        [(ngModel)]="phoneNo">
+                                        [(ngModel)]="phoneNo" (keypress)="service.numberOnly($event)" maxlength="60">
                                     </div>
                                     <div class="col-lg-2 pr-0 mt-4">
                                         <label>&nbsp;</label><br>

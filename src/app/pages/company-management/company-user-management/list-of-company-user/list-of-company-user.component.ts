@@ -18,8 +18,8 @@ export class ListOfCompanyUserComponent implements OnInit {
   id: number;
   deleted: any;
   totalRecords: any
-  pageNumber:number=1
-  itemsPerPage:number=20
+  pageNumber:number=0
+  itemsPerPage:number=5
   userid: number;
   userStatus: any;
   fromDate: any;
@@ -27,7 +27,7 @@ export class ListOfCompanyUserComponent implements OnInit {
   maxToDate: string;
   minToDate: any;
   toDate: any;
-  pageSize: any=10;
+  pageSize: any=5;
   action: any;
   userstatus: any;
   stateArr: any = [];
@@ -35,6 +35,8 @@ export class ListOfCompanyUserComponent implements OnInit {
   cityArr: any;
   companyNameArr: any=[];
   companyListing: any=[];
+  selectedCompany: any;
+  siteArr: any=[];
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -43,16 +45,18 @@ export class ListOfCompanyUserComponent implements OnInit {
 
   ngOnInit() {
     this.userForm = new FormGroup({
-      'startdate': new FormControl('', Validators.required),
-      'enddate': new FormControl('', Validators.required),
-      'searchText': new FormControl(''),
+      'companyName':new FormControl('',),
+      'siteAddress': new FormControl(''),
+      'firstName': new FormControl('', [ Validators.pattern(/^[a-zA-Z ]*$/i)]),
+      'lastName': new FormControl('', [Validators.pattern(/^[a-zA-Z ]*$/i)]),
+      'phoneNo': new FormControl('', [Validators.pattern(/^[1-9][0-9]{9,13}$/)]),
     })
     
     let date = new Date()
     this.fromDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() : '0'+ (date.getMonth() + 1) )+ '-' + date.getFullYear()
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
     this.dateValidation()
-     this.getCompanyList();
+     this.getCompanyUserList();
      this.getStateList()
      this.getCompanyNameList()
     
@@ -76,7 +80,7 @@ export class ListOfCompanyUserComponent implements OnInit {
   }
 
   //-----------------------------list api integration --------------------------------//
-  getCompanyList(){
+  getCompanyUserList(){
     this.service.showSpinner()
     var url="account/admin/filter-user-details?roleStatus="+'COMPANY_SITE_ENGG'
     this.service.get(url).subscribe((res:any)=>{
@@ -118,22 +122,29 @@ export class ListOfCompanyUserComponent implements OnInit {
 
   getCompanyNameList(){
     this.service.showSpinner()
-    var url="account/admin/filter-user-details?roleStatus="+'COMPANY'
+    var url="account/admin/get-company-by-company-name"
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
-        this.companyListing = res['data']['list'];
-        this.companyListing.forEach(element => {
-          this.companyNameArr.push({
-            'companyName': element.companyName,
-            'companyId': element.userId
-          })
-        });
-        console.log('Company array', this.companyNameArr)
-      }
-     
+         this.companyNameArr = res['data'];
+      }   
     })
   }
+
+  searchLocation(event) { 
+    this.siteArr=[]
+    this.service.showSpinner()
+    this.selectedCompany = event.target.value
+    console.log("event", this.selectedCompany)
+    var url = "account/admin/get-location?idOfCompany=" + this.selectedCompany
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.siteArr = res['data'];
+      }
+    })
+  }
+ 
   // ------------------------pagination -------------------------//
   pagination(page){
     this.totalRecords=[]
@@ -141,25 +152,28 @@ export class ListOfCompanyUserComponent implements OnInit {
     this.pageNumber=page;
     console.log('jh', this.pageNumber);
 
-    this.getCompanyList()
+    this.getCompanyUserList()
   }
   //------------------------------filter by search api integration ---------------------------------//
   search() {
-    let startdate = Date.parse(this.userForm.value.startdate)
-    let enddate = Date.parse(this.userForm.value.enddate)
-    var search = this.userForm.value.searchText;
-    if( this.userForm.value.searchText && this.userForm.value.startdate && this.userForm.controls.enddate.value){
-      var url="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate+'&search='+search+'&page=0'
+   
+    if(this.userForm.value.companyName && this.userForm.value.siteAddress && this.userForm.value.firstName && this.userForm.value.lastName && this.userForm.value.mobileNo){
+      var url="account/admin/filter-user-details?roleStatus="+'COMPANY_SITE_ENGG' + '&companyName='+this.userForm.value.companyName + '&siteLocation='+this.userForm.value.siteAddress
+      + '&firstName='+this.userForm.value.firstName + '&lastName='+this.userForm.value.lastName + '&search='+this.userForm.value.mobileNo
     }
-    else if(this.userForm.value.startdate && this.userForm.controls.enddate.value){
-      var url1="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate
+    else if(this.userForm.value.companyName ){
+      var url1="account/admin/filter-user-details?roleStatus="+'COMPANY_SITE_ENGG' + '&companyName='+this.userForm.value.companyName
     }
-
-    else if(this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.searchText ){
-      var url2="account/admin/user-management/filter-user-details?fromDate="+startdate+'&toDate='+enddate+'&search='+search
-
+    else if(this.userForm.value.companyName && this.userForm.value.siteAddress){
+      var url2="account/admin/filter-user-details?roleStatus="+'COMPANY_SITE_ENGG' + '&companyName='+this.userForm.value.companyName + '&siteLocation='+this.userForm.value.siteAddress
     }
-    this.service.get( url || url1 || url2).subscribe((res: any) => {
+    else if(this.userForm.value.firstName && this.userForm.value.lastName){
+      var url3="account/admin/filter-user-details?roleStatus="+'COMPANY_SITE_ENGG' + '&firstName='+this.userForm.value.firstName + '&lastName='+this.userForm.value.lastName
+    }
+    else if(this.userForm.value.phoneNo ){
+      var url4="account/admin/filter-user-details?roleStatus="+'COMPANY_SITE_ENGG' + '&search='+this.userForm.value.phoneNo
+    }
+    this.service.get( url || url1 || url2 || url3 || url4).subscribe((res: any) => {
       this.listing = res.data.list;
       console.log('kfg',this.listing);
       this.totalRecords = res.data.totalCount
@@ -169,7 +183,7 @@ export class ListOfCompanyUserComponent implements OnInit {
   // ------------------------------reset filter------------------------------//
   resetForm(){
     this.userForm.reset()
-    this.getCompanyList();    
+    this.getCompanyUserList();    
   }
 
   //========modal=======//
@@ -192,13 +206,13 @@ export class ListOfCompanyUserComponent implements OnInit {
         this.service.hideSpinner()
            if (this.action == 'BLOCK') {
           $('#block').modal('hide');
-          this.service.toasterSucc('Company Blocked Successfully');
+          this.service.toasterSucc('Company User Blocked Successfully');
         }
         else {
           $('#active').modal('hide');
-          this.service.toasterSucc('Company Activated Successfully');
+          this.service.toasterSucc('Company User Activated Successfully');
         }
-        this.getCompanyList()        
+        this.getCompanyUserList()        
           } 
      }, err => {   
          this.service.hideSpinner();  
@@ -211,6 +225,7 @@ export class ListOfCompanyUserComponent implements OnInit {
         } 
      })
   } 
+
 
    //---------------------------------- Delete / Block Function--------------//
    openModal(action, userId) {
@@ -255,14 +270,14 @@ export class ListOfCompanyUserComponent implements OnInit {
       obj ={
         "S no": ind + 1,
         "Company Name":  element.companyName,
-        "Location": element.baseLocationAddress ,
-        "Mobile": element.phoneNo ,
+        "Mobile No": element.phoneNo ,
+        "First Name":element.firstName,
+        "Last Name": element.lastName,
         "Email": element.email ,
-        "City": element.city ,
-        "State": element.state ,
-        "GSTIN ": element.gstInNo ,
+        "Site": element.baseLocationAddress ,
+        "Roll Type": element.role.role ,
         "Status": element.userStatus,
-        "Date Of Creation": element.createTime,
+      
         
       }
       listingArr.push(obj)
@@ -273,7 +288,7 @@ export class ListOfCompanyUserComponent implements OnInit {
       decimalSeparator: '.',
       showLabels: true, 
       showTitle: true,
-      title: 'Company Details CSV',
+      title: 'Company User Details CSV',
       useTextFile: false,
       useBom: true,
       useKeysAsHeaders: true,
@@ -298,7 +313,9 @@ export class ListOfCompanyUserComponent implements OnInit {
     this.router.navigate(['/reset-password'])
   }
   reset(){
-    this.getCompanyList();
+    this.userForm.reset()
+
+    this.getCompanyUserList();
   }
 }
 
