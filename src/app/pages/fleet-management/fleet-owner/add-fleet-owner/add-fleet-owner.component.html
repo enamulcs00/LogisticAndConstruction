@@ -74,23 +74,32 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="CompanyName" class="col-sm-2 col-form-label">Fleet Owner Name</label>
+                                <!-- <label for="CompanyName" class="col-sm-2 col-form-label">Fleet Owner Name</label> -->
+                                <label for="CompanyName" class="col-sm-2 col-form-label">Company Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" id="CompanyName" class="form-control"
-                                        placeholder="Fleet Owner name" formControlName="companyName" maxlength="60">
+                                    <!-- <input type="text" id="CompanyName" class="form-control"
+                                        placeholder="Fleet Owner name" formControlName="companyName" maxlength="60"> -->
+                                    <input type="text" id="CompanyName" class="form-control" placeholder="Company name"
+                                        formControlName="companyName" maxlength="60">
                                     <span class="error">
+                                        <!-- <p *ngIf="addForm.get('companyName').hasError('required') && (addForm.get('companyName').dirty || addForm.get('companyName').touched )"
+                                            class="error" padding>*Please enter Fleet Owner name.</p> -->
                                         <p *ngIf="addForm.get('companyName').hasError('required') && (addForm.get('companyName').dirty || addForm.get('companyName').touched )"
-                                            class="error" padding>*Please enter Fleet Owner name.</p>
+                                            class="error" padding>*Please enter company name.</p>
                                     </span>
                                 </div>
-                                <label for="comanyAddress" class="col-sm-2 col-form-label">Fleet Owner Address</label>
+                                <!-- <label for="comanyAddress" class="col-sm-2 col-form-label">Fleet Owner Address</label> -->
+                                <label for="comanyAddress" class="col-sm-2 col-form-label">Company Address</label>
                                 <div class="col-sm-4">
+                                    <!-- <input type="text" id="comanyAddress" class="form-control" placeholder="Fleet Owner Address" formControlName="baseLocationAddress"maxlength="60"> -->
                                     <input type="text" id="comanyAddress" class="form-control"
-                                        placeholder="Fleet Owner Address" formControlName="baseLocationAddress"
+                                        placeholder="Company Address" formControlName="baseLocationAddress"
                                         maxlength="60">
                                     <span class="error">
+                                        <!-- <p *ngIf="addForm.get('baseLocationAddress').hasError('required') && (addForm.get('baseLocationAddress').dirty || addForm.get('baseLocationAddress').touched )"
+                                            class="error" padding>*Please enter Fleet Owner address.</p> -->
                                         <p *ngIf="addForm.get('baseLocationAddress').hasError('required') && (addForm.get('baseLocationAddress').dirty || addForm.get('baseLocationAddress').touched )"
-                                            class="error" padding>*Please enter Fleet Owner address.</p>
+                                            class="error" padding>*Please enter company address.</p>
                                     </span>
                                 </div>
                             </div>
@@ -153,7 +162,7 @@
                                 <label for="pan" class="col-sm-2 col-form-label">Pan Card</label>
                                 <div class="col-sm-4 input-group">
                                     <input type="text" id="pan" class="form-control" placeholder="Enter Pan no"
-                                        formControlName="panCardNo">
+                                        formControlName="panCardNo" maxlength="20">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
                                             style="background-color: green;     height: 38px;     z-index: 0;">Validate</button>
@@ -195,7 +204,7 @@
                                 <label for="gst" class="col-sm-2 col-form-label">GISTN No</label>
                                 <div class="col-sm-4 input-group">
                                     <input type="text" id="gst" class="form-control" placeholder="Enter GISTN no"
-                                        formControlName="gstinNo">
+                                        formControlName="gstinNo" maxlength="20">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
                                             style="background-color: green;     height: 38px;     z-index: 0;">Validate</button>
@@ -234,7 +243,8 @@
                         <div class="head_flt_select input-label">
                             <!-- <button  type="submit" class="btn btn-theme"
                                 (click)="submitForm()">Save</button> -->
-                            <button type="submit" class="btn btn-theme" (click)="submitForm()">Next Step</button>
+                            <button type="submit" class="btn btn-theme" [disabled]="addForm.invalid"
+                                (click)="submitForm()">Next Step</button>
                         </div>
                     </div>
 

@@ -42,7 +42,7 @@ export class ListOfFleetOwnerComponent implements OnInit {
     this.service.showSpinner()
     var url = `account/admin/filter-user-details?roleStatus=FLEET&page=${(this.currentPage - 1) + ('&pageSize=' + this.itemsPerPage)
       + (this.companyName ? ('&companyName=' + this.companyName) : '') + (this.firstName ? ('&firstName=' + this.firstName) : '')
-      + (this.state ? ('&state=' + this.state) : '') + (this.city ? ('&city=' + this.city) : '') + (this.phoneNo ? ('&search=' + this.phoneNo) : '')}`
+      + (this.state ? ('&state=' + this.state) : '') + (this.city ? ('&city=' + this.city) : '') + (this.phoneNo ? ('&phoneNo=' + this.phoneNo) : '')}`
     this.service.get(url).subscribe((res: any) => {
       this.service.hideSpinner()
       if (res['status'] == 200) {

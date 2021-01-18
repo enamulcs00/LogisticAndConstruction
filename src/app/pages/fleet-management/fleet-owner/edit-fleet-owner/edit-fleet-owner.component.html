@@ -14,28 +14,66 @@
                                 <label for="Fname" class="col-sm-2 col-form-label">First Name</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="Fname" class="form-control" placeholder="First name"
-                                        formControlName="firstName">
+                                        formControlName="firstName" maxlength="60">
+                                    <span class="error"
+                                        *ngIf="editForm.get('firstName').hasError('required') && (editForm.get('firstName').dirty || editForm.get('firstName').touched )"
+                                        class="error">
+                                        <p>*Please enter first name.</p>
+                                    </span>
+                                    <span class="error"
+                                        *ngIf="editForm.get('firstName').hasError('pattern') && editForm.get('firstName').dirty"
+                                        class="error">
+                                        <p> *Please enter valid first name.</p>
+                                    </span>
                                 </div>
                                 <label for="Lname" class="col-sm-2 col-form-label">Last Name</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="Lname" class="form-control" placeholder="Last name"
-                                        formControlName="lastName">
+                                        formControlName="lastName" maxlength="60">
+                                    <span class="error"
+                                        *ngIf="editForm.get('lastName').hasError('required') && (editForm.get('lastName').dirty || editForm.get('lastName').touched )"
+                                        class="error">
+                                        <p>*Please enter last name.</p>
+                                    </span>
+                                    <span class="error"
+                                        *ngIf="editForm.get('lastName').hasError('pattern') && editForm.get('lastName').dirty"
+                                        class="error">
+                                        <p> *Please enter valid Last name.</p>
+                                    </span>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="Mobile" class="col-sm-2 col-form-label">Mobile No</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="Mobile" class="form-control"
-                                        placeholder="Enter Mobile Number" formControlName="phoneNo">
+                                        placeholder="Enter Mobile Number" formControlName="phoneNo" maxlength="20">
+                                    <span class="error"
+                                        *ngIf="editForm.get('phoneNo').hasError('required') && (editForm.get('phoneNo').dirty || editForm.get('phoneNo').touched )"
+                                        class="error">
+                                        <p> *Please enter mobile number.</p>
+                                    </span>
+                                    <span class="error"
+                                        *ngIf="editForm.get('phoneNo').hasError('pattern') && editForm.get('phoneNo').dirty"
+                                        class="error">
+                                        <p> *Please enter valid mobile number.</p>
+                                    </span>
                                 </div>
                                 <label for="email" class="col-sm-2 col-form-label">Email ID</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="email" class="form-control" placeholder="Enter mail Id"
-                                        formControlName="email">
+                                        formControlName="email" maxlength="60">
+                                    <span class="error">
+                                        <p *ngIf="editForm.get('email').hasError('required') && (editForm.get('email').dirty || editForm.get('email').touched )"
+                                            class="error" padding>*Please enter email id.</p>
+                                    </span>
+                                    <span class="error">
+                                        <p *ngIf="editForm.get('email').hasError('pattern') && editForm.get('email').dirty"
+                                            class="error" padding>*Please enter valid email.</p>
+                                    </span>
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                                 <label for="CompanyName" class="col-sm-2 col-form-label">Fleet Owner Name</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="CompanyName" class="form-control" placeholder="Company name"
@@ -46,7 +84,34 @@
                                     <input type="text" id="comanyAddress" class="form-control"
                                         placeholder="Company Address" formControlName="baseLocationAddress">
                                 </div>
+                            </div> -->
+
+                            <div class="form-group row">
+                                <label for="CompanyName" class="col-sm-2 col-form-label">Company Name</label>
+                                <div class="col-sm-4">
+                                    <input type="text" id="CompanyName" class="form-control" placeholder="Company name"
+                                        formControlName="companyName" maxlength="60">
+                                    <span class="error">
+                                        <!-- <p *ngIf="editForm.get('companyName').hasError('required') && (editForm.get('companyName').dirty || editForm.get('companyName').touched )"
+                                                class="error" padding>*Please enter Fleet Owner name.</p> -->
+                                        <p *ngIf="editForm.get('companyName').hasError('required') && (editForm.get('companyName').dirty || editForm.get('companyName').touched )"
+                                            class="error" padding>*Please enter company name.</p>
+                                    </span>
+                                </div>
+                                <label for="comanyAddress" class="col-sm-2 col-form-label">Company Address</label>
+                                <div class="col-sm-4">
+                                    <input type="text" id="comanyAddress" class="form-control"
+                                        placeholder="Company Address" formControlName="baseLocationAddress"
+                                        maxlength="60">
+                                    <span class="error">
+                                        <!-- <p *ngIf="editForm.get('baseLocationAddress').hasError('required') && (editForm.get('baseLocationAddress').dirty || editForm.get('baseLocationAddress').touched )"
+                                                class="error" padding>*Please enter Fleet Owner address.</p> -->
+                                        <p *ngIf="editForm.get('baseLocationAddress').hasError('required') && (editForm.get('baseLocationAddress').dirty || editForm.get('baseLocationAddress').touched )"
+                                            class="error" padding>*Please enter company address.</p>
+                                    </span>
+                                </div>
                             </div>
+
 
                             <div class="form-group row">
                                 <label for="state" class="col-sm-2 col-form-label">State</label>
@@ -78,7 +143,7 @@
                                 <label for="aadhar" class="col-sm-2 col-form-label">Aadhar No</label>
                                 <div class="col-sm-4 input-group">
                                     <input type="text" id="aadhar" class="form-control" placeholder="Enter aadhar no"
-                                        formControlName="aadharCardNo">
+                                        formControlName="aadharCardNo" maxlength="12">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
                                             style="background-color: green;     height: 38px;     z-index: 0;">Validate</button>
@@ -89,7 +154,7 @@
                                 <label for="pan" class="col-sm-2 col-form-label">Pan Card</label>
                                 <div class="col-sm-4 input-group">
                                     <input type="text" id="pan" class="form-control" placeholder="Enter Pan no"
-                                        formControlName="panCardNo">
+                                        formControlName="panCardNo" maxlength="20">
 
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
@@ -123,7 +188,7 @@
                                 <label for="gst" class="col-sm-2 col-form-label">GISTN No</label>
                                 <div class="col-sm-4 input-group">
                                     <input type="text" id="gst" class="form-control" placeholder="Enter GISTN no"
-                                        formControlName="gstinNo">
+                                        formControlName="gstinNo" maxlength="20">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
                                             style="background-color: green;     height: 38px;     z-index: 0;">Validate</button>

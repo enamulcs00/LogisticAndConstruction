@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainService } from 'src/app/provider/main.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -38,11 +38,11 @@ export class EditFleetOwnerComponent implements OnInit {
   // add form validation
   addFormValidation() {
     this.editForm = new FormGroup({
-      'firstName': new FormControl(''),
-      'lastName': new FormControl(''),
-      'phoneNo': new FormControl(''),
-      'email': new FormControl(''),
-      'companyName': new FormControl(''),
+      'firstName': new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]*$/i)]),
+      'lastName': new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]*$/i)]),
+      'phoneNo': new FormControl('', [Validators.required, Validators.pattern(/^[1-9][0-9]{9,13}$/)]),
+      'email': new FormControl('', [Validators.required, Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,9}|[0-9]{1,3})(\]?)$/i)]),
+      'companyName': new FormControl('', [Validators.required]),
       'baseLocationAddress': new FormControl(''),
       'city': new FormControl(''),
       'state': new FormControl(''),

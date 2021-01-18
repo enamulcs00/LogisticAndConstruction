@@ -99,7 +99,7 @@ export class EditTruckComponent implements OnInit {
     }
     console.log(apiReqData)
     this.service.showSpinner()
-    this.service.post('account/admin/add-truckByAdmin', apiReqData).subscribe((res: any) => {
+    this.service.post('account/admin/edit-truckByAdmin', apiReqData).subscribe((res: any) => {
       console.log(res);
       this.service.hideSpinner()
       if (res.status == 200) {

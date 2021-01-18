@@ -9,12 +9,12 @@
                                 <form [formGroup]="addTruckForm">
                                     <div class="row  d-flex justify-content-end w_100 mt-3">
                                         <div class="col-lg-3 pr-0">
-                                            <input  class="selectBox form-control" type="text"
-                                                placeholder="Truck Type" formControlName="typeOfTruck">
+                                            <input class="selectBox form-control" type="text" placeholder="Truck Type"
+                                                formControlName="typeOfTruck">
                                         </div>
                                         <div class="col-lg-6 ">
-                                            <input  class="selectBox form-control" type="text"
-                                                placeholder="Description" formControlName="description">
+                                            <input class="selectBox form-control" type="text" placeholder="Description"
+                                                formControlName="description">
                                         </div>
                                         <div class="col-lg-3 text-left pl-0">
                                             <button type="button" class="search-btn" [disabled]="addTruckForm.invalid"
@@ -67,8 +67,8 @@
                                                 <td class="action_td_btn3" style="cursor: pointer">
                                                     <!-- <a><i class="fa fa-eye"
                                                             (click)="userDetails(item?.userId,item?.email)"></i></a> -->
-                                                    <a><i class="fa fa-trash"
-                                                            (click)="openModal('DELETE',item?.truckTypeId)"></i></a>
+                                                    <a (click)="openModal('DELETE',item?.truckTypeId)">
+                                                        <i class="fa fa-trash"></i></a>
                                                     <!-- <a *ngIf="item?.enable == true"
                                                         (click)="openModal('false',item?.thermalPlantsId)"><i
                                                             class="fa fa-ban" style="color: green;"></i></a>

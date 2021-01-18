@@ -139,4 +139,10 @@ export class ViewFleetOwnerComponent implements OnInit {
     this.router.navigate(['edit-fleet-owner', this.id])
   }
 
+
+  // -------------------- view route --------------- //
+  viewRoute() {
+    this.router.navigate(['/routes', this.id])
+  }
+  
 }
