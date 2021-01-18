@@ -16,11 +16,11 @@
                                   </select>
                               </div>
                                 <div class="col-lg-1.5 pl-0 mt-4">
-                                    <label class="ml-2">Invoice</label><br>
-                                    <input type="text" (keypress)="service.numberOnly($event)" class="form-control" [(ngModel)]="InvoiceNoForSupplier" placeholder="Invoice No">
+                                    <label class="ml-3">Invoice</label><br>
+                                    <input type="text" (keypress)="service.numberOnly($event)" class="form-control" style="margin: 1px;" [(ngModel)]="InvoiceNoForSupplier" placeholder="Invoice No">
                                 </div>
                                 <div class="col-lg-1.5 pl-0 mt-4">
-                                    <label class="ml-2">Supplier</label><br>
+                                    <label class="ml-3">Supplier</label><br>
                                     <select class="selectBox form-control" [(ngModel)]="firstName">
                                       <option value="">Supplier</option>
                                       <option *ngFor="let item of supplierNameArray" [value]="item?.supplierName">
