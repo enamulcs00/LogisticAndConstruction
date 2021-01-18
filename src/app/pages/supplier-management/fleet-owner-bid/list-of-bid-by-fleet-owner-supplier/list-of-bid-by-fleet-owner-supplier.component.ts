@@ -82,17 +82,17 @@ export class ListOfBidByFleetOwnerSupplierComponent implements OnInit {
 //----------------------date validation ----------------------//
 
   search() {
-    if (this.companyName || this.firstName || this.months || this.twoDate || this.fromDate) {
+    if (this.companyName || this.firstName || this.months || this.twoDate || this.fromDate || this.BookingId) {
       this.currentPage = 1;
       this.getlist()
     }
   }
   reset() {
-    if (this.companyName || this.firstName || this.months || this.twoDate || this.fromDate) {
+    if (this.companyName || this.firstName || this.months || this.twoDate || this.fromDate || this.BookingId) {
       this.companyName = ''
       this.firstName = ''
       this.months = ''
-
+      this.BookingId=''
       this.calender = { todate: '', formdate: '' }
       this.twoDate = ''
       this.fromDate = ''

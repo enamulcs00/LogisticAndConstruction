@@ -83,7 +83,7 @@ export class ListOfFleetOwnerBookingSupplierComponent implements OnInit {
 //----------------------date validation ----------------------//
 
   search() {
-    if (this.companyName || this.firstName || this.months || this.twoDate || this.fromDate) {
+    if (this.companyName || this.firstName || this.months || this.twoDate || this.fromDate || this.BookingId) {
       this.currentPage = 1;
       this.getlist()
     }
@@ -92,6 +92,7 @@ export class ListOfFleetOwnerBookingSupplierComponent implements OnInit {
     if (this.companyName || this.firstName || this.months || this.twoDate || this.fromDate) {
       this.companyName = ''
       this.firstName = ''
+      this.BookingId = ''
       this.months = ''
 
       this.calender = { todate: '', formdate: '' }
