@@ -18,8 +18,8 @@ export class ListOfSupplierBillingComponent implements OnInit {
   listing: any = [];
   id: number;
   deleted: any;
-  totalRecords: any
-  pageNumber:number=1
+//  totalRecords: any
+//  pageNumber:number=1
 
   userid: number;
   userStatus: any;
@@ -28,7 +28,7 @@ export class ListOfSupplierBillingComponent implements OnInit {
   maxToDate: string;
   minToDate: any;
   toDate: any;
-  pageSize: any=10;
+  //pageSize: any=10;
   action: any;
   userstatus: any;
   InvoiceNoForSupplier:any = ''
@@ -137,13 +137,10 @@ export class ListOfSupplierBillingComponent implements OnInit {
     )
   }
   // ------------------------pagination -------------------------//
-  pagination(page){
-    this.totalRecords=[]
-    console.log('jh', page);
-    this.pageNumber=page;
-    console.log('jh', this.pageNumber);
-
+  pagination(page) {
+    this.currentPage = page;
     this.getlist()
+
   }
 
 
@@ -168,30 +165,30 @@ export class ListOfSupplierBillingComponent implements OnInit {
         this.service.toasterSucc(this.deleted.message);
         this.getlist();
       }
-     }, err => {   
-       this.service.hideSpinner();  
-        if (err['status'] == '401') {  
-            this.service.onLogout();   
-           this.service.toasterErr('Unauthorized Access'); 
-         } 
-      else {    
-          this.service.toasterErr('Something Went Wrong');  
-        } 
+     }, err => {
+       this.service.hideSpinner();
+        if (err['status'] == '401') {
+            this.service.onLogout();
+           this.service.toasterErr('Unauthorized Access');
+         }
+      else {
+          this.service.toasterErr('Something Went Wrong');
+        }
      })
 
   }
 
   //-------------------------block api integration------------------------//
-  block(status , id){   
-     this.userid=id 
-       this.userstatus=status 
+  block(status , id){
+     this.userid=id
+       this.userstatus=status
     $('#block').modal('show')
-  } 
+  }
    blockUser(){
      this.service.showSpinner();
     var url = 'account/admin/user-management/user-status?ipAddress='+(localStorage.getItem('ipAddress'))+'&location='+(localStorage.getItem('location'))+ '&userIdForStatusUpdate='+(this.userid) + '&userStatus=' + (this.action);
-       this.service.post(url,'').subscribe((res:any)=>{    
-        if(res.status == 200){ 
+       this.service.post(url,'').subscribe((res:any)=>{
+        if(res.status == 200){
         this.service.hideSpinner()
            if (this.action == 'BLOCK') {
           $('#block').modal('hide');
@@ -201,19 +198,19 @@ export class ListOfSupplierBillingComponent implements OnInit {
           $('#active').modal('hide');
           this.service.toasterSucc('User Activated Successfully');
         }
-        this.getlist()        
-          } 
-     }, err => {   
-         this.service.hideSpinner();  
-        if (err['status'] == '401') {  
-            this.service.onLogout();   
-           this.service.toasterErr('Unauthorized Access'); 
-         } 
-      else {    
-          this.service.toasterErr('Something Went Wrong');  
-        } 
+        this.getlist()
+          }
+     }, err => {
+         this.service.hideSpinner();
+        if (err['status'] == '401') {
+            this.service.onLogout();
+           this.service.toasterErr('Unauthorized Access');
+         }
+      else {
+          this.service.toasterErr('Something Went Wrong');
+        }
      })
-  } 
+  }
 
    //---------------------------------- Delete / Block Function--------------//
    openModal(action, userId) {
@@ -241,10 +238,10 @@ export class ListOfSupplierBillingComponent implements OnInit {
   }
 
 //--------------------------------pageSize ---------------------------------//
-  showList(val) {
-    this.pageSize = val
-    this.resetForm()
-  }
+  // showList(val) {
+  //   this.pageSize = val
+  //   this.resetForm()
+  // }
 
 
   //----------------------------------export User---------------------------------//

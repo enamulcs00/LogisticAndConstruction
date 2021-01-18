@@ -20,8 +20,8 @@ export class ListOfSupplierBookingComponent implements OnInit {
   listing: any = [];
   id: number;
   deleted: any;
-  totalRecords: any
-  pageNumber:number=1
+  //totalRecords: any
+//  pageNumber:number=1
 
   userid: number;
   userStatus: any;
@@ -32,7 +32,7 @@ export class ListOfSupplierBookingComponent implements OnInit {
   maxToDate: string;
   minToDate: any;
   toDate: any;
-  pageSize: any=10;
+  //pageSize: any=10;
   action: any;
   userstatus: any;
   companyName:any = '';
@@ -116,12 +116,8 @@ export class ListOfSupplierBookingComponent implements OnInit {
     )
   }
   // ------------------------pagination -------------------------//
-  pagination(page){
-    this.totalRecords=[]
-    console.log('jh', page);
-    this.pageNumber=page;
-    console.log('jh', this.pageNumber);
-
+  pagination(page) {
+    this.currentPage = page;
     this.getlist()
   }
   search() {
@@ -165,7 +161,7 @@ export class ListOfSupplierBookingComponent implements OnInit {
     this.service.get( url || url1 || url2).subscribe((res: any) => {
       this.listing = res.data.list;
       console.log('kfg',this.listing);
-      this.totalRecords = res.data.totalCount
+      this.totalItems = res.data.totalCount
     })
   }
 
@@ -263,10 +259,10 @@ export class ListOfSupplierBookingComponent implements OnInit {
   }
 
 //--------------------------------pageSize ---------------------------------//
-  showList(val) {
-    this.pageSize = val
-    this.resetForm()
-  }
+  // showList(val) {
+  //   this.pageSize = val
+  //   this.resetForm()
+  // }
 
 
   //----------------------------------export User---------------------------------//

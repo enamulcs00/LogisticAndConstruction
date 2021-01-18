@@ -21,8 +21,8 @@ export class ListOfSupplierQuoteComponent implements OnInit {
   listing: any = [];
   id: number;
   deleted: any;
-  totalRecords: any
-  pageNumber:number=1
+//  totalRecords: any
+  //pageNumber:number=1
 
   userid: number;
   userStatus: any;
@@ -31,7 +31,7 @@ export class ListOfSupplierQuoteComponent implements OnInit {
   maxToDate: string;
   minToDate: any;
   toDate: any;
-  pageSize: any=10;
+  //pageSize: any=10;
   action: any;
   userstatus: any;
   firstName:any=''
@@ -137,12 +137,8 @@ export class ListOfSupplierQuoteComponent implements OnInit {
     )
   }
   // ------------------------pagination -------------------------//
-  pagination(page){
-    this.totalRecords=[]
-    console.log('jh', page);
-    this.pageNumber=page;
-    console.log('jh', this.pageNumber);
-
+  pagination(page) {
+    this.currentPage = page;
     this.getlist()
   }
   //------------------------------filter by search api integration ---------------------------------//
@@ -164,7 +160,7 @@ export class ListOfSupplierQuoteComponent implements OnInit {
     this.service.get( url || url1 || url2).subscribe((res: any) => {
       this.listing = res.data.list;
       console.log('kfg',this.listing);
-      this.totalRecords = res.data.totalCount
+      this.totalItems = res.data.totalCount
     })
   }
 
@@ -262,10 +258,10 @@ export class ListOfSupplierQuoteComponent implements OnInit {
   }
 
 //--------------------------------pageSize ---------------------------------//
-  showList(val) {
-    this.pageSize = val
-    this.resetForm()
-  }
+  // showList(val) {
+  //   this.pageSize = val
+  //   this.resetForm()
+  // }
 
 
   //----------------------------------export User---------------------------------//

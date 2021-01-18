@@ -19,7 +19,7 @@ export class ListOfSupplierComponent implements OnInit {
   id: number;
   deleted: any;
   totalItems: any
-  pageNumber:number=1
+  //pageNumber:number=1
   itemsPerPage:number=10
   currentPage: number = 1
   userid: number;
@@ -137,7 +137,7 @@ let url = `account/admin/filter-user-details?roleStatus=SUPPLIER&page=${(this.cu
 //SEARCH ITEMS
 searchItem(){
   if (this.firstName || this.state || this.city || this.phoneNo || this.location) {
-    this.pageNumber = 1;
+    this.currentPage = 1;
     this.getlist()
   }
 }
@@ -183,12 +183,8 @@ reset() {
   }
 
   // ------------------------pagination -------------------------//
-  pagination(page){
-    this.totalItems=[]
-    console.log('jh', page);
-    this.pageNumber=page;
-    console.log('jh', this.pageNumber);
-
+  pagination(page) {
+    this.currentPage = page;
     this.getlist()
   }
   //------------------------------filter by search api integration ---------------------------------//

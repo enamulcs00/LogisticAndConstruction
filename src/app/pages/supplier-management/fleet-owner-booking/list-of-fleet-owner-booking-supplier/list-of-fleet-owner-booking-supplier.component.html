@@ -71,7 +71,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber, totalItems: totalRecords };let i = index ">
+                                            <tr *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: currentPage, totalItems: totalItems };let i = index ">
                                               <td>{{item?.bookingId || 'NA'}}</td>
                                               <td>{{item?.transpotarName || 'NA'}}</td>
                                               <td>{{item?.supplierName || 'NA'}}</td>
@@ -205,7 +205,7 @@
                                     </table>
                                 </div>
                                 <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
-                                    *ngIf="listing?.length">
+                                    *ngIf="totalItems > 10">
                                     <pagination-controls (pageChange)="pagination($event)"></pagination-controls>
                                 </div>
                             </div>
