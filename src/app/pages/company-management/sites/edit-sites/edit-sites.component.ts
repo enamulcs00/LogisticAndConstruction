@@ -42,6 +42,7 @@ export class EditSitesComponent implements OnInit {
       'city': new FormControl(''),
       'state': new FormControl(''),
       'gstNo': new FormControl('',),
+     
     })
   }
 
@@ -61,6 +62,7 @@ export class EditSitesComponent implements OnInit {
           'address':this.listing.locationAddress,
           'city': this.listing.city,
           'state': this.listing.state,
+          'email': this.listing.email,
           'gstNo': this.listing.gstinNo,
           
           
@@ -141,6 +143,7 @@ export class EditSitesComponent implements OnInit {
        "city": this.editSiteForm.value.city,
        "companyName": this.editSiteForm.value.companyName,
        "gstinNo": this.editSiteForm.value.gstNo,
+       "email": this.editSiteForm.value.email,
       // "isDeleted": true,
       // "isEnable": true,
        "siteId": this.userId, 

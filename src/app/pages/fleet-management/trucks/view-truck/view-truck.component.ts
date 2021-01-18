@@ -58,15 +58,24 @@ export class ViewTruckComponent implements OnInit {
 
 
   //-----------------------------list api integration --------------------------------//
+  // getTruckTypelist() {
+  //   this.service.showSpinner()
+  //   var url = "account/admin/get-truckTypeDetails?page=" + (this.pageNumber - 1) + `&pageSize=${this.pageSize}`
+  //   this.service.get(url).subscribe((res: any) => {
+  //     this.service.hideSpinner()
+  //     if (res['status'] == 200) {
+  //       this.listingTruckType = res['data']['data'];
+  //     }
+  //   })
+  // }
   getTruckTypelist() {
     this.service.showSpinner()
-    var url = "account/admin/get-truckTypeDetails?page=" + (this.pageNumber - 1) + `&pageSize=${this.pageSize}`
+    var url = 'account/admin/get-truckTypeName'
     this.service.get(url).subscribe((res: any) => {
       this.service.hideSpinner()
       if (res['status'] == 200) {
-        this.listingTruckType = res['data']['data'];
+        this.listingTruckType = res['data'];
       }
-
     })
   }
 

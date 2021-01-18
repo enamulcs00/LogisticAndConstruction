@@ -9,6 +9,16 @@
                                 <form [formGroup]="userForm">
                                 <div class="row">
                                     <div class="col-lg-2 pl-0 mt-4">
+                                        <label>Company Name</label><br>
+                                        <!-- <select class="selectBox">
+                                            <option>Select Company Name</option>
+                                        </select> -->
+                                        <select id="CompanyName" class="form-control selectBox"  formControlName="companyName">
+                                            <option value="">Company name</option>
+                                            <option *ngFor="let company of companyNameArr" >{{company.name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2 pl-0 mt-4">
                                         <label>Booking ID</label><br>
                                         <input class="selectBox form-control" type="text" placeholder="Booking ID" formControlName="bookingId">
                                     </div>
@@ -68,6 +78,7 @@
                                             <tr class="no_wrap_th">
                                                 <th scope="col">Sl No.</th>
                                                 <th scope="col">Booking ID</th>
+                                                <th scope="col">Company Name</th>
                                                 <th scope="col">Supplier</th>
                                                 <th scope="col">Material</th>
                                                 <th scope="col">Weight</th>
@@ -102,9 +113,10 @@
                                                             class="fa fa-ban"></i></a>
                                                 </td>
                                             </tr> -->
-                                            <tr  *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber,totalItems: totalRecords };let i = index ">
-                                                <td>{{i+1}}</td>
+                                            <tr  *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: currentPage,totalItems: totalRecords };let i = index ">
+                                                <td>{{itemsPerPage*(this.currentPage-1)+i+1}}</td>
                                                 <td>{{item?.quotesId}}</td>
+                                                <td>{{item?.companyName}}</td>
                                                 <td>{{item?.supplierName}}</td>
                                                 <td>{{item?.material}}</td>
                                                 <td>{{item?.weight}}</td>

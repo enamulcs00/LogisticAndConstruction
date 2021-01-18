@@ -13,7 +13,7 @@ export class ResetPasswordComponent implements OnInit {
   resetPasswordForm: FormGroup
   clientId: any;
   resetParamData: any;
-  roleArray: any = ['COMPANY', 'FLEET', 'SUPPLIER', 'DRIVER'];
+  roleArray: any = ['COMPANY', 'FLEET', 'SUPPLIER', 'DRIVER', 'USER'];
 
   constructor(
     private router: Router, public service: MainService, private activatedRoute: ActivatedRoute) {
@@ -71,6 +71,9 @@ export class ResetPasswordComponent implements OnInit {
           case 'DRIVER':
             this.router.navigate(['/list-of-driver'])
             break;
+          case 'USER':
+            this.router.navigate(['/list-of-company-user'])
+            break;
           default:
             this.router.navigate(['/dashboard'])
             break
@@ -78,10 +81,32 @@ export class ResetPasswordComponent implements OnInit {
       }
     }, err => {
       this.service.hideSpinner()
-      this.service.toasterSucc('Something went wrong.')
+      this.service.toasterErr('Something went wrong.')
       // this.router.navigate(['/list-of-supplier'])
     })
   }
 
+  back() {
+    switch (this.resetParamData.role) {
+      case 'COMPANY':
+        this.router.navigate(['/list-of-companies'])
+        break;
+      case 'FLEET':
+        this.router.navigate(['/list-of-fleet-owner'])
+        break;
+      case 'SUPPLIER':
+        this.router.navigate(['/list-of-supplier'])
+        break;
+      case 'DRIVER':
+        this.router.navigate(['/list-of-driver'])
+        break;
+      case 'USER':
+        this.router.navigate(['/list-of-company-user'])
+        break;
+      default:
+        this.router.navigate(['/dashboard'])
+        break
+    }
+  }
 }
 

@@ -67,12 +67,12 @@ export class AddFleetOwnerComponent implements OnInit {
       'phoneNo': new FormControl('', [Validators.required, Validators.pattern(/^[1-9][0-9]{9,13}$/)]),
       'email': new FormControl('', [Validators.required, Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,9}|[0-9]{1,3})(\]?)$/i)]),
       'companyName': new FormControl('', [Validators.required]),
-      'baseLocationAddress': new FormControl('', [Validators.required]),
+      'baseLocationAddress': new FormControl(''),
       'city': new FormControl(''),
       'state': new FormControl(''),
-      'aadharCardNo': new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/i), Validators.minLength(12)]),
-      'panCardNo': new FormControl('', [Validators.required, Validators.minLength(10)]),
-      'gstinNo': new FormControl('', [Validators.required]),
+      'aadharCardNo': new FormControl(''),
+      'panCardNo': new FormControl(''),
+      'gstinNo': new FormControl('')
     })
   }
 

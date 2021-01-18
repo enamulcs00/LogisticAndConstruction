@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewSupplierBookingComponent implements OnInit {
 id:any;
+comment:any = ''
 bookingItems:any=[];
   constructor(private actroute:ActivatedRoute, private service:MainService,private route:Router) {
     this.actroute.params.subscribe((res:any)=>{
@@ -26,6 +27,7 @@ viewMyBookings(){
 if(res.status == 200){
   this.bookingItems = res.data.list[0]
   console.log('Booking',this.bookingItems)
+this.comment = res.data.list[0].comments
   this.service.hideSpinner()
   this.service.toasterSucc(res.message)
 }

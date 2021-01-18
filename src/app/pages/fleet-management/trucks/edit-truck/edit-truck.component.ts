@@ -57,18 +57,27 @@ export class EditTruckComponent implements OnInit {
 
 
   //-----------------------------list api integration --------------------------------//
+  // getTruckTypelist() {
+  //   // this.service.showSpinner()
+  //   var url = "account/admin/get-truckTypeDetails?page=" + (this.pageNumber - 1) + `&pageSize=${this.pageSize}`
+  //   this.service.get(url).subscribe((res: any) => {
+  //     // this.service.hideSpinner()
+  //     if (res['status'] == 200) {
+  //       this.listingTruckType = res['data']['data'];
+  //     }
+  //   })
+  // }
   getTruckTypelist() {
     // this.service.showSpinner()
-    var url = "account/admin/get-truckTypeDetails?page=" + (this.pageNumber - 1) + `&pageSize=${this.pageSize}`
+    var url = 'account/admin/get-truckTypeName'
     this.service.get(url).subscribe((res: any) => {
       // this.service.hideSpinner()
       if (res['status'] == 200) {
-        this.listingTruckType = res['data']['data'];
+        this.listingTruckType = res['data'];
       }
-
     })
   }
-
+  
   // ------------------------ get truck details ---------------------- //
   getTruckDetail() {
     var url = `account/admin/get-truckByAdmin?truckId=${this.id}`
@@ -99,7 +108,7 @@ export class EditTruckComponent implements OnInit {
     }
     console.log(apiReqData)
     this.service.showSpinner()
-    this.service.post('account/admin/add-truckByAdmin', apiReqData).subscribe((res: any) => {
+    this.service.post('account/admin/edit-truckByAdmin', apiReqData).subscribe((res: any) => {
       console.log(res);
       this.service.hideSpinner()
       if (res.status == 200) {

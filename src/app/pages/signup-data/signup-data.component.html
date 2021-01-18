@@ -23,11 +23,13 @@
                                         <!-- <select class="selectBox form-control">
                                             <option>Location</option>
                                         </select> -->
-                                        <select class="selectBox form-control" [(ngModel)]="siteLocation">
+                                        <!-- <select class="selectBox form-control" [(ngModel)]="siteLocation">
                                             <option value="">Location</option>
                                             <option *ngFor="let item of siteLocationArray" [value]="item?.siteLocation">
                                                 {{item?.siteLocation}}</option>
-                                        </select>
+                                        </select> -->
+                                        <input type="text" id="Mobile" class="form-control selectBox"
+                                        placeholder="Location" [(ngModel)]="siteLocation" >
                                     </div>
                                     <div class="col-lg-2 pr-0 mt-4">
                                         <label>State</label><br>

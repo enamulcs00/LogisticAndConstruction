@@ -76,7 +76,7 @@
     </div>
     <label for="unlod" class="col-sm-2 col-form-label">Unloaded Weight</label>
     <div class="col-sm-4">
-      <label id="unlod"class="outup-label">{{bookingItems?.UnloadedWeight || 'NA'}}</label>
+      <label id="unlod"class="outup-label">{{bookingItems?.unLoadedWeight || 'NA'}}</label>
     </div>
   </div>
   <div class="form-group row">
@@ -86,7 +86,7 @@
     </div>
     <label for="comnts" class="col-sm-2 col-form-label">Comments</label>
     <div class="col-sm-4">
-      <label id="comnts"class="outup-label">{{bookingItems?.comments || 'NA'}}</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly>{{bookingItems?.comments||"N/A"}}</textarea>
     </div>
   </div>
   <div class="form-group row">
@@ -100,25 +100,29 @@
     </div>
   </div>
   <div class="form-group row">
-    <label for="Rmap" class="col-sm-2 col-form-label">Route Map</label>
+    <label for="Fname" class="col-sm-2 col-form-label">Route Map :</label>
     <div class="col-sm-4">
-      <label id="Rmap" class="outup-label">{{bookingItems?.routeMap || 'NA'}}</label>
+        <!-- <label for="Fname" cloutup-label ass="col-form-label">{{billingData?.supplierName || 'N/A'}}</label> -->
+        <img src="assets/img/dummy.png" alt="" class="view-img">
     </div>
-    <label for="slip" class="col-sm-2 col-form-label">View WeightSlip</label>
+    <label for="Lname" class="col-sm-2 col-form-label">View Weight Slip :</label>
     <div class="col-sm-4">
-      <label id="slip" class="outup-label">{{bookingItems?.weightSlip || 'NA'}}</label>
+        <!-- <label for="Fname" class=" col-form-label">{{billingData?.supplierName || 'N/A'}}</label> -->
+        <img src="assets/img/dummy.png" alt="" class="view-img">
     </div>
-  </div>
-  <div class="form-group row">
-    <label for="selfi" class="col-sm-2 col-form-label">View Selfi</label>
+</div>
+<div class="form-group row">
+    <label for="Mobile" class="col-sm-2 col-form-label">View Selfie :</label>
     <div class="col-sm-4">
-      <label id="selfi" class="outup-label">{{bookingItems?.selfi || 'NA'}}</label>
+        <!-- <label for="Fname" class="col-form-label">{{billingData?.supplierName || 'N/A'}}</label> -->
+        <img src="assets/img/dummy.png" alt="" class="view-img">
     </div>
-    <label for="invoice" class="col-sm-2 col-form-label">View Invoice</label>
+    <label for="email" class="col-sm-2 col-form-label">View Invoice :</label>
     <div class="col-sm-4">
-      <label id="invoice" class="outup-label">{{bookingItems?.invoiceSlip || 'NA'}}</label>
+        <!-- <label for="Fname" class="col-form-label">{{billingData?.supplierName || 'N/A'}}</label> -->
+        <img src="assets/img/dummy.png" alt="" class="view-img">
     </div>
-  </div>
+</div>
 </form>
       </div>
       <br>

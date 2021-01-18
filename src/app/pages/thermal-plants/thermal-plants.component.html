@@ -11,6 +11,11 @@
                                         <div class="col-lg-3 pr-0">
                                             <input class="selectBox form-control" type="text"
                                                 placeholder="Thermal Plant Name" formControlName="description">
+                                            <span class="error"
+                                                *ngIf="addThermalPlantForm.get('description').hasError('required') && (addThermalPlantForm.get('description').dirty || addThermalPlantForm.get('description').touched )"
+                                                class="error">
+                                                <p>*Please enter thermal plant name.</p>
+                                            </span>
                                         </div>
                                         <div class="col-lg-3 pr-0">
                                             <select class="selectBox form-control" formControlName="state"
@@ -19,14 +24,23 @@
                                                 <option *ngFor="let item of stateArr" [value]="item?.name">
                                                     {{item?.name}}</option>
                                             </select>
+                                            <span class="error"
+                                                *ngIf="addThermalPlantForm.get('state').hasError('required') && (addThermalPlantForm.get('state').dirty || addThermalPlantForm.get('state').touched )"
+                                                class="error">
+                                                <p>*Please select state.</p>
+                                            </span>
                                         </div>
                                         <div class="col-lg-3 pr-0">
                                             <select class="selectBox form-control" formControlName="city">
                                                 <option value="" class="fa fa-caret-down">City</option>
                                                 <option *ngFor="let item of cityArr" [value]="item?.name">{{item?.name}}
                                                 </option>
-
                                             </select>
+                                            <span class="error"
+                                                *ngIf="addThermalPlantForm.get('city').hasError('required') && (addThermalPlantForm.get('city').dirty || addThermalPlantForm.get('city').touched )"
+                                                class="error">
+                                                <p>*Please select city.</p>
+                                            </span>
                                         </div>
                                         <div class="col-lg-3 text-left">
                                             <button type="button" class="search-btn"
@@ -51,21 +65,18 @@
                                         <tbody>
                                             <tr
                                                 *ngFor="let item of listing | paginate: { itemsPerPage: itemsPerPage,currentPage: currentPage,totalItems: totalItems };let i = index ">
-                                                <td>{{itemsPerPage*(this.currentPage-1)+i+1}}</td>
+                                                <td>{{itemsPerPage * (currentPage - 1) +i+1}}</td>
                                                 <td>{{item?.description || 'N/A'}}</td>
                                                 <td>{{item?.state || 'N/A'}}</td>
                                                 <td>{{item?.city || 'N/A'}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <!-- <a><i class="fa fa-eye"
-                                                            (click)="userDetails(item?.userId,item?.email)"></i></a>
-                                                    <a><i class="fa fa-trash"
-                                                            (click)="openModal('DELETE',item?.userId)"></i></a> -->
                                                     <a *ngIf="item?.enable == true"
-                                                        (click)="openModal('false',item?.thermalPlantsId)"><i
-                                                            class="fa fa-ban" style="color: green;"></i></a>
+                                                        (click)="openModal('false',item?.thermalPlantsId)">
+                                                        <i class="fa fa-ban" style="color: green;"
+                                                            aria-hidden="true"></i></a>
                                                     <a *ngIf="item?.enable == false"
-                                                        (click)="openModal('true',item?.thermalPlantsId)"><i
-                                                            class="fa fa-ban"></i></a>
+                                                        (click)="openModal('true',item?.thermalPlantsId)">
+                                                        <i class="fa fa-ban" aria-hidden="true"></i></a>
                                                 </td>
                                             </tr>
                                         </tbody>

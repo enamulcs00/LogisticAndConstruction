@@ -40,8 +40,10 @@
                                     </div>
                                     <div class="col-lg-2 pl-0 mt-4">
                                         <label>Mobile</label><br>
-                                        <input type="text" class="form-control input-field" placeholder="Mobile"
-                                            [(ngModel)]="phoneNo" (keypress)="service.numberOnly($event)" maxlength="20">
+                                        <!-- <input type="text" class="form-control input-field" placeholder="Mobile"
+                                            [(ngModel)]="phoneNo" (keypress)="service.numberOnly($event)" maxlength="20"> -->
+                                            <input type="text" class="form-control input-field" placeholder="Mobile"
+                                            [(ngModel)]="phoneNo" maxlength="20">
                                     </div>
                                     <div class="col-lg-2 pl-0 mt-4">
                                         <label>&nbsp;</label><br>

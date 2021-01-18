@@ -34,6 +34,7 @@ export class ViewSitesComponent implements OnInit {
       'dateOfCreation': new FormControl('', [Validators.required]),
       'city': new FormControl(''),
       'state': new FormControl(''),
+      'email': new FormControl(''),
       'gstNo': new FormControl('', [Validators.required]),
     })
   }
@@ -53,6 +54,7 @@ export class ViewSitesComponent implements OnInit {
           'city': this.listing.city,
           'state': this.listing.state,
           'gstNo': this.listing.gstinNo,
+          'email': this.listing.email,
           'dateOfCreation':this.listing.createTime
           
         })

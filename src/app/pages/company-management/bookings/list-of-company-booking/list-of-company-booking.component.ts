@@ -19,8 +19,8 @@ export class ListOfCompanyBookingComponent implements OnInit {
   id: number;
   deleted: any;
   totalRecords: any
-  pageNumber:number=0
-  itemsPerPage:number=5
+  currentPage: number = 1
+  itemsPerPage: number = 10
   userid: number;
   userStatus: any;
   fromDate: any;
@@ -28,10 +28,10 @@ export class ListOfCompanyBookingComponent implements OnInit {
   maxToDate: string;
   minToDate: any;
   toDate: any;
-  pageSize: any=5;
   action: any;
   userstatus: any;
   supplierArr: any=[];
+  companyNameArr: any=[];
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -45,6 +45,7 @@ export class ListOfCompanyBookingComponent implements OnInit {
       'bookingId': new FormControl(''),
       'month': new FormControl(''),
       'supplier': new FormControl(''),
+      'companyName': new FormControl(''),
 
     })
     
@@ -54,6 +55,7 @@ export class ListOfCompanyBookingComponent implements OnInit {
     this.dateValidation()
      this.getQuoteList();
      this.getSupplierList()
+     this.getCompanyNameList()
   }
 
   onFromChangeDate(){
@@ -76,7 +78,7 @@ export class ListOfCompanyBookingComponent implements OnInit {
   //-----------------------------list api integration --------------------------------//
   getQuoteList(){
     this.service.showSpinner()
-    var url="account/admin/filter-client-request-details?page="+this.pageNumber +'&pageSize='+this.pageSize
+    var url="account/admin/filter-client-request-details?page=" + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
@@ -87,6 +89,16 @@ export class ListOfCompanyBookingComponent implements OnInit {
     })
   }
 
+  getCompanyNameList(){
+    this.service.showSpinner()
+    var url="account/admin/get-company-by-company-name"
+    this.service.get(url).subscribe((res:any)=>{
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+         this.companyNameArr = res['data'];
+      }   
+    })
+  }
   getSupplierList(){
     this.service.showSpinner()
     var url="account/get-supplier-name"
@@ -99,39 +111,45 @@ export class ListOfCompanyBookingComponent implements OnInit {
   }
 
   // ------------------------pagination -------------------------//
-  pagination(page){
-    this.totalRecords=[]
-    console.log('jh', page);
-    this.pageNumber=page;
-    console.log('jh', this.pageNumber);
-
-    this.getQuoteList()
+ 
+  pagination(page) {
+    this.currentPage = page;
+    this.getQuoteList()  
   }
   //------------------------------filter by search api integration ---------------------------------//
   search() {
     let startdate = Date.parse(this.userForm.value.startdate)
     let enddate = Date.parse(this.userForm.value.enddate)
     var search = this.userForm.value.searchText;
-    if( this.userForm.value.bookingId && this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.supplier && this.userForm.value.month){
+    if( this.userForm.value.bookingId && this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.supplier && this.userForm.value.month && this.userForm.value.companyName){
       var url="account/admin/filter-client-request-details?fromDate="+startdate+'&toDate='+enddate+'&months='+this.userForm.value.month + '&supplierName='+ this.userForm.value.supplier + '&quotesId=' + this.userForm.value.bookingId
+      + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage +'&companyName=' + this.userForm.value.companyName
+    }
+    else if(this.userForm.value.companyName){
+      var url1="account/admin/filter-client-request-details?companyName="+this.userForm.value.companyName
+      + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage
     }
     else if(this.userForm.value.startdate && this.userForm.controls.enddate.value){
-      var url1="account/admin/filter-client-request-details?fromDate="+startdate+'&toDate='+enddate
+      var url2="account/admin/filter-client-request-details?fromDate="+startdate+'&toDate='+enddate
+      + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage
     }
 
     else if(this.userForm.value.bookingId){
-      var url2="account/admin/filter-client-request-details?quotesId="+this.userForm.value.bookingId
+      var url3="account/admin/filter-client-request-details?quotesId="+this.userForm.value.bookingId
+      + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage
 
     }
     else if(this.userForm.value.month){
-      var url3="account/admin/filter-client-request-details?months="+this.userForm.value.month
+      var url4="account/admin/filter-client-request-details?months="+this.userForm.value.month
+      + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage
 
     }
     else if(this.userForm.value.supplier){
-      var url4="account/admin/filter-client-request-details?supplierName="+ this.userForm.value.supplier
+      var url5="account/admin/filter-client-request-details?supplierName="+ this.userForm.value.supplier
+      + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage
 
     }
-    this.service.get( url || url1 || url2 ||url3 || url4).subscribe((res: any) => {
+    this.service.get( url || url1 || url2 ||url3 || url4 || url5).subscribe((res: any) => {
       this.listing = res.data.list;
       console.log('kfg',this.listing);
       this.totalRecords = res.data.totalCount
@@ -233,10 +251,10 @@ export class ListOfCompanyBookingComponent implements OnInit {
   }
 
 //--------------------------------pageSize ---------------------------------//
-  showList(val) {
-    this.pageSize = val
-    this.resetForm()
-  }
+  // showList(val) {
+  //   this.pageSize = val
+  //   this.resetForm()
+  // }
 
 
   //----------------------------------export User---------------------------------//

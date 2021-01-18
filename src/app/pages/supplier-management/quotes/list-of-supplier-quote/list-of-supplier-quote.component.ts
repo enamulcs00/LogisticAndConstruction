@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainService } from 'src/app/provider/main.service';
-// import { ngxCsv } from 'ngx-csv/ngx-csv';
+import { ngxCsv } from 'ngx-csv/ngx-csv';
 // import { ExportToCsv } from 'export-to-csv';
 
 declare var $: any
@@ -14,24 +14,50 @@ declare var kendo: any;
   styleUrls: ['./list-of-supplier-quote.component.css']
 })
 export class ListOfSupplierQuoteComponent implements OnInit {
-
+  currentPage: number = 1
+  itemsPerPage: number = 10
+  totalItems: any
   userForm: FormGroup;
   listing: any = [];
   id: number;
   deleted: any;
-  totalRecords: any
-  pageNumber:number=1
-  itemsPerPage:number=20
+//  totalRecords: any
+  //pageNumber:number=1
+
   userid: number;
   userStatus: any;
-  fromDate: any;
+
   maxFromDate: string;
   maxToDate: string;
   minToDate: any;
   toDate: any;
-  pageSize: any=10;
+  //pageSize: any=10;
   action: any;
   userstatus: any;
+  firstName:any=''
+  companyName:any=''
+
+  months:any = ''
+  fromDate: any = ''
+  twoDate: any = ''
+  calender: any = { todate: '', formdate: '' }
+  minAge: Date;
+  supplierNameArray:any = []
+
+  monthsArray: any = [
+    { id: '01', name: 'January' },
+    { id: '02', name: 'February' },
+    { id: '03', name: 'March' },
+    { id: '04', name: 'April' },
+    { id: '05', name: 'May' },
+    { id: '06', name: 'June' },
+    { id: '07', name: 'July' },
+    { id: '08', name: 'August' },
+    { id: '09', name: 'September' },
+    { id: '10', name: 'October' },
+    { id: '11', name: 'November' },
+    { id: '12', name: 'December' }
+  ]
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -39,71 +65,84 @@ export class ListOfSupplierQuoteComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userForm = new FormGroup({
-      'startdate': new FormControl('', Validators.required),
-      'enddate': new FormControl('', Validators.required),
-      'searchText': new FormControl(''),
-    })
 
-    let date = new Date()
-    this.fromDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() : '0'+ (date.getMonth() + 1) )+ '-' + date.getFullYear()
-    this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
-    this.dateValidation()
     this.getlist();
+    this.getSupplierList()
   }
 
-  onFromChangeDate(){
-    this.minToDate = this.fromDate;
+  formdate() {
+    this.fromDate = new Date(this.calender.formdate)
+    this.fromDate = this.fromDate.getTime()
   }
-  onToChangeDate(){
-    this.maxFromDate = this.toDate;
+  todate() {
+    this.twoDate = new Date(this.calender.todate)
+    this.twoDate = this.twoDate.getTime()
   }
 //----------------------date validation ----------------------//
-  dateValidation(){
-    let date = new Date();
-    let currentDay = date.getDate() >= 10 ? date.getDate(): '0'+ date.getDate();
-    let currentMonth = (date.getMonth() + 1) >= 10 ? (date.getMonth() + 1): '0'+date.getMonth();
-    let currentYear = date.getFullYear();
-    this.maxFromDate = currentYear + '-' + currentMonth + '-' + currentDay;
-    this.maxToDate = currentYear + '-' + currentMonth + '-' + currentDay;
 
+  search() {
+    if (this.companyName || this.firstName || this.months || this.twoDate || this.fromDate) {
+      this.currentPage = 1;
+      this.getlist()
+    }
+  }
+  reset() {
+    if (this.companyName || this.firstName || this.months || this.twoDate || this.fromDate) {
+      this.companyName = ''
+      this.firstName = ''
+      this.months = ''
+
+      this.calender = { todate: '', formdate: '' }
+      this.twoDate = ''
+      this.fromDate = ''
+      this.currentPage = 1
+      setTimeout(() => {
+        this.getlist()
+      }, 200);
+    }
   }
 
+  getSupplierList() {
+    var url = 'account/admin/filter-fleet-request-details?months=00'
+    this.service.get(url).subscribe((res: any) => {
+      if (res['status'] == 200) {
+        this.supplierNameArray = res['data']['list'];
+        console.log('Supp',this.supplierNameArray)
+      }
+    })
+  }
   //-----------------------------list api integration --------------------------------//
-  getlist(){
-    let channel = `account/admin/filter-fleet-request-details?months=00&page=${this.pageNumber-1}&pageSize=${this.pageSize}`
+  getlist() {
     this.service.showSpinner()
-    var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
-    this.service.get(channel).subscribe((res:any)=>{
-      console.log('QuoteRes',res)
+    var url = `account/admin/filter-fleet-request-details?&page=${(this.currentPage - 1) + ('&pageSize=' + this.itemsPerPage)
+      + (this.companyName ? ('&companyName=' + this.companyName) : '') + (this.firstName ? ('&supplierName=' + this.firstName) : '')
+      + (this.months ? ('&months=' + this.months) : ('&months=00'))
+      + (this.fromDate ? ('&fromDate=' + this.fromDate) : '') + (this.twoDate ? ('&toDate=' + this.twoDate) : '')}`
+    this.service.get(url).subscribe((res: any) => {
+      console.log('Get',res)
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
         this.service.toasterSucc(res.message)
+        this.totalItems = res.data.totalCount
       }
-      else{
+      else {
         this.service.toasterErr(res.message)
+        this.listing = [];
+        this.totalItems = 0
       }
-      console.log('kfg',this.listing);
-      this.totalRecords = res.data.totalCount
-      console.log('kn', this.totalRecords);
-
     },err=>{
-      this.service.toasterErr('some thing went wrong')
+      this.service.toasterErr('Something went wrong')
     }
     )
   }
   // ------------------------pagination -------------------------//
-  pagination(page){
-    this.totalRecords=[]
-    console.log('jh', page);
-    this.pageNumber=page;
-    console.log('jh', this.pageNumber);
-
+  pagination(page) {
+    this.currentPage = page;
     this.getlist()
   }
   //------------------------------filter by search api integration ---------------------------------//
-  search() {
+  searchItem() {
     let startdate = Date.parse(this.userForm.value.startdate)
     let enddate = Date.parse(this.userForm.value.enddate)
     var search = this.userForm.value.searchText;
@@ -121,7 +160,7 @@ export class ListOfSupplierQuoteComponent implements OnInit {
     this.service.get( url || url1 || url2).subscribe((res: any) => {
       this.listing = res.data.list;
       console.log('kfg',this.listing);
-      this.totalRecords = res.data.totalCount
+      this.totalItems = res.data.totalCount
     })
   }
 
@@ -219,10 +258,10 @@ export class ListOfSupplierQuoteComponent implements OnInit {
   }
 
 //--------------------------------pageSize ---------------------------------//
-  showList(val) {
-    this.pageSize = val
-    this.resetForm()
-  }
+  // showList(val) {
+  //   this.pageSize = val
+  //   this.resetForm()
+  // }
 
 
   //----------------------------------export User---------------------------------//
@@ -244,39 +283,41 @@ export class ListOfSupplierQuoteComponent implements OnInit {
 
     this.service.exportAsExcelFile(dataArr, 'Admin User List');
   }
-  // ----------------------------------------export CSV
-  ExportToCsv(){
-    this.service.showSpinner()
-    setTimeout( r => {
-      this.service.hideSpinner()
-    },3000)
-    let listingArr=[]
-    this.listing.forEach((element,ind )=> {
-      let obj ={}
-      obj ={
-        "S no": ind + 1,
-        "UserName": element.firstName + '' + element.lastName ? element.lastName : '',
-        "EmailID":  element.email ? element.email : 'N/A',
-        "UserID": element.userId ? element.userId : 'N/A',
-        "PhoneNumber": String(element.phoneNo) ? String(element.phoneNo) : 'N/A',
-        "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-        "Registration Date": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A',
+  ExportToCsv() {
+    let dataArr = [];
+    this.listing.forEach((element, ind) => {
+      let obj = {
+        "QuoteId":element.quotesId ? element.quotesId : 'N/A',
+        "Company":element.companyName?element.companyName:'N/A',
+        "Supplier": element.supplierName ? element.supplierName  : 'N/A',
+        "Material": element.material ? element.material  : 'N/A',
+        "Weight": element.weight ? element.weight  : 'N/A',
+        "Delivery date":  String(element.deliveryDate) ? String(element.deliveryDate).slice(0, 10) : 'N/A',
+        "Location": element.baseLocationAddress ? element.baseLocationAddress : 'N/A',
+        "Amount": element.bidAmount ? element.bidAmount  : 'N/A',
+        "PO Number": element.poNumber ? element.poNumber  : 'N/A',
+        "Vehicle No":element.truckNumber?element.truckNumber: 'N/A',
+        "Vehicle Type": element.truckType ? element.truckType : 'N/A',
+        "Driver Name": element.driverName ? element.driverName : 'N/A',
+        "Driver Mobile No": element.driverMobileNo ? element.driverMobileNo : 'N/A',
+        "Route Id": element.routeId ? element.routeId : 'N/A',
+
       }
-      listingArr.push(obj)
-    });
+      dataArr.push(obj)
+    })
     const options = {
       fieldSeparator: ',',
       quoteStrings: '"',
       decimalSeparator: '.',
       showLabels: true,
       showTitle: true,
-      title: 'Candidate Details CSV',
+      title: 'List of Quotes',
       useTextFile: false,
       useBom: true,
       useKeysAsHeaders: true,
+      headers: ["Company Quotes", "QuoteId", "Company", "Supplier", "Material", "Weight","Location", "Amount", "Delevery Date","Driver Name", "Driver Mobile","Vehicle Number","Vehicle Type","Route Id" ]
     };
-    // const csvExporter = new ExportToCsv(options);
-    //  csvExporter.generateCsv(listingArr);
+    new ngxCsv(dataArr, 'Company Quotes', options);
   }
 
   //--------------------------------export pdf ----------------------------------------

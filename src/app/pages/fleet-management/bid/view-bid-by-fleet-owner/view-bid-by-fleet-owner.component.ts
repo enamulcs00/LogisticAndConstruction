@@ -25,7 +25,7 @@ export class ViewBidByFleetOwnerComponent implements OnInit {
   getBid() {
     this.service.showSpinner()
     // var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
-    var url = `account/admin/filter-fleet-request-details?&months=00${this.id}`
+    var url = `account/admin/filter-fleet-request-details?&months=00&bookingId=${this.id}`
     this.service.get(url).subscribe((res: any) => {
       this.service.hideSpinner()
       console.log('kfg', res);

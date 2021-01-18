@@ -219,6 +219,10 @@ export class RoutesComponent implements OnInit {
       if (res.status == 200) {
         this.service.hideSpinner()
         this.routeDataArray = res.data
+      } else if (res.status == 205) {
+        console.log("No route found")
+        this.service.hideSpinner();
+        this.service.toasterInfo('Please add route.')
       } else {
         this.service.hideSpinner();
         this.service.toasterErr(res.message)

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainService } from 'src/app/provider/main.service';
-// import { ngxCsv } from 'ngx-csv/ngx-csv';
+import { ngxCsv } from 'ngx-csv/ngx-csv';
 // import { ExportToCsv } from 'export-to-csv';
 
 declare var $: any
@@ -18,9 +18,10 @@ export class ListOfSupplierComponent implements OnInit {
   listing: any = [];
   id: number;
   deleted: any;
-  totalRecords: any
-  pageNumber:number=1
-  itemsPerPage:number=20
+  totalItems: any
+  //pageNumber:number=1
+  itemsPerPage:number=10
+  currentPage: number = 1
   userid: number;
   userStatus: any;
   fromDate: any;
@@ -32,11 +33,15 @@ export class ListOfSupplierComponent implements OnInit {
   action: any;
   userstatus: any;
   supplierNameArray:any = []
-  SupplierName:any = '';
+
   location:any = '';
-  filterState:any = '';
-  filterCity:any = '';
-  filtercontact:any = '';
+  firstName: any = '';
+  state: any = '';
+  city: any = '';
+  phoneNo: any = '';
+  stateArr: any = []
+  selectedState: any;
+  cityArr: any = []
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -44,7 +49,9 @@ export class ListOfSupplierComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.FilterSupplierName()
+
     this.userForm = new FormGroup({
       'startdate': new FormControl('', Validators.required),
       'enddate': new FormControl('', Validators.required),
@@ -56,6 +63,7 @@ export class ListOfSupplierComponent implements OnInit {
     this.toDate =(date.getDate() > 10 ? date.getDate(): '0'+date.getDate())+'-'+( date.getMonth() > 10 ? date.getMonth() + 1 : '0'+ (date.getMonth()+1) )+'-'+ date.getFullYear()
     this.dateValidation()
     this.getlist();
+    this.getStateList();
   }
 
   addSupplier(){
@@ -66,7 +74,7 @@ export class ListOfSupplierComponent implements OnInit {
   }
   viewSupplier(){}
   deleteSupplier(){}
-  resetPassword(){}
+
   onFromChangeDate(){
     this.minToDate = this.fromDate;
   }
@@ -88,16 +96,18 @@ export class ListOfSupplierComponent implements OnInit {
 
   getlist(){
 
-    let channel = `account/admin/filter-user-details?page=${this.pageNumber-1}&pageSize=${this.pageSize}&roleStatus=SUPPLIER`
+let url = `account/admin/filter-user-details?roleStatus=SUPPLIER&page=${(this.currentPage - 1) + ('&pageSize=' + this.itemsPerPage)
++ (this.location ? ('&baseLocationAddress=' + this.location) : '') + (this.firstName ? ('&firstName=' + this.firstName) : '')
++ (this.state ? ('&state=' + this.state) : '') + (this.city ? ('&city=' + this.city) : '') + (this.phoneNo ? ('&phoneNo=' + this.phoneNo) : '')}`
     this.service.showSpinner()
-    var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
-    this.service.get(channel).subscribe((res:any)=>{
+
+    this.service.get(url).subscribe((res:any)=>{
 
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.listing = res['data']['list'];
-        this.supplierNameArray = res['data']['list'];
-        this.totalRecords = res.data.totalCount
+       // this.supplierNameArray = res['data']['list'];
+        this.totalItems = res.data.totalCount
         this.service.toasterSucc(res.message)
       }
       else {
@@ -126,20 +136,55 @@ export class ListOfSupplierComponent implements OnInit {
   }
 //SEARCH ITEMS
 searchItem(){
-  if (this.SupplierName || this.filterState || this.filterCity || this.filtercontact || this.location) {
-    this.pageNumber = 1;
+  if (this.firstName || this.state || this.city || this.phoneNo || this.location) {
+    this.currentPage = 1;
     this.getlist()
   }
 }
 
+reset() {
+  if (this.location || this.firstName || this.state || this.city || this.phoneNo) {
+    this.location = ''
+    this.firstName = ''
+    this.state = ''
+    this.city = ''
+    this.phoneNo = ''
+    this.currentPage = 1
+    setTimeout(() => {
+      this.getlist()
+    }, 200);
+  }
+}
+
+  // --------- get State list -------------- //
+  getStateList() {
+    // this.service.showSpinner()
+    var url = "account/get-state-country-wise?countryName=" + 'INDIA'
+    this.service.get(url).subscribe((res: any) => {
+      // this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.stateArr = res['data'];
+      }
+    })
+  }
+
+  // ----------- get city list --------------- //
+  searchCity(event) {
+    console.log("event", event)
+    this.service.showSpinner()
+    this.selectedState = event.target.value
+    var url = "account/get-cities-state-wise?stateName=" + this.selectedState
+    this.service.get(url).subscribe((res: any) => {
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        this.cityArr = res['data'];
+      }
+    })
+  }
 
   // ------------------------pagination -------------------------//
-  pagination(page){
-    this.totalRecords=[]
-    console.log('jh', page);
-    this.pageNumber=page;
-    console.log('jh', this.pageNumber);
-
+  pagination(page) {
+    this.currentPage = page;
     this.getlist()
   }
   //------------------------------filter by search api integration ---------------------------------//
@@ -161,7 +206,7 @@ searchItem(){
     this.service.get( url || url1 || url2).subscribe((res: any) => {
       this.listing = res.data.list;
       console.log('kfg',this.listing);
-      this.totalRecords = res.data.totalCount
+      this.totalItems = res.data.totalCount
     })
   }
 
@@ -187,23 +232,23 @@ searchItem(){
         this.service.toasterSucc(this.deleted.message);
         this.getlist();
       }
-     }, err => {   
-       this.service.hideSpinner();  
-        if (err['status'] == '401') {  
-            this.service.onLogout();   
-           this.service.toasterErr('Unauthorized Access'); 
-         } 
-      else {    
-          this.service.toasterErr('Something Went Wrong');  
-        } 
+     }, err => {
+       this.service.hideSpinner();
+        if (err['status'] == '401') {
+            this.service.onLogout();
+           this.service.toasterErr('Unauthorized Access');
+         }
+      else {
+          this.service.toasterErr('Something Went Wrong');
+        }
      })
 
   }
 
   //-------------------------block api integration------------------------//
-  openblockModal(status , id){   
-     this.userid=id 
-       this.userstatus=status 
+  openblockModal(status , id){
+     this.userid=id
+       this.userstatus=status
     if(status == 'BLOCK'){
       $('#block').modal('show')
     }
@@ -211,13 +256,13 @@ searchItem(){
       $('#active').modal('show')
     }
 
-  } 
+  }
    blockUser(){
      this.service.showSpinner();
     let url = `account/admin/enable-desable-status-by-admin?userId=${this.userid}&userStatus=${this.userstatus}`;
-       this.service.get(url).subscribe((res:any)=>{  
-        
-        if(res.status == 200){ 
+       this.service.get(url).subscribe((res:any)=>{
+
+        if(res.status == 200){
         this.service.hideSpinner()
            if (this.userstatus == 'BLOCK') {
           $('#block').modal('hide');
@@ -227,19 +272,19 @@ searchItem(){
           $('#active').modal('hide');
           this.service.toasterSucc('User Activated Successfully');
         }
-        this.getlist()        
-          } 
-     }, err => {   
-         this.service.hideSpinner();  
-        if (err['status'] == '401') {  
-            this.service.onLogout();   
-           this.service.toasterErr('Unauthorized Access'); 
-         } 
-      else {    
-          this.service.toasterErr('Something Went Wrong');  
-        } 
+        this.getlist()
+          }
+     }, err => {
+         this.service.hideSpinner();
+        if (err['status'] == '401') {
+            this.service.onLogout();
+           this.service.toasterErr('Unauthorized Access');
+         }
+      else {
+          this.service.toasterErr('Something Went Wrong');
+        }
      })
-  } 
+  }
 
    //---------------------------------- Delete / Block Function--------------//
    openModal(action, userId) {
@@ -275,60 +320,37 @@ searchItem(){
     this.resetForm()
   }
 
+ // --------------- export to csv ------------------- //
+ exportToCsv() {
+  let dataArr = [];
+  this.listing.forEach((element, ind) => {
+    let obj = {
+      "Supplier Name": element.firstName + element.lastName ? element.firstName + element.lastName  : 'N/A',
+      "Location": element.baseLocationAddress ? element.baseLocationAddress : 'N/A',
 
-  //----------------------------------export User---------------------------------//
-  exportAsXLSX() {
-    let dataArr = [];
-    this.listing.forEach((element, ind) => {
-      let obj ={}
-      obj={
-        "S no": ind + 1,
-        "User ID": element.userId ? element.userId : '',
-        "User Name": element.firstName + '' + element.lastName ? element.lastName : '',
-        "Email": element.email ? element.email : 'N/A',
-        "Phone": element.phoneNo ? element.phoneNo : 'N/A',
-        "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-        "Date": element.createTime ? element.createTime.slice(0, 10) : 'N/A',
-      }
-      dataArr.push(obj)
-    })
-
-    this.service.exportAsExcelFile(dataArr, 'Admin User List');
-  }
-  // ----------------------------------------export CSV
-  ExportToCsv(){
-    this.service.showSpinner()
-    setTimeout( r => {
-      this.service.hideSpinner()
-    },3000)
-    let listingArr=[]
-    this.listing.forEach((element,ind )=> {
-      let obj ={}
-      obj ={
-        "S no": ind + 1,
-        "UserName": element.firstName + '' + element.lastName ? element.lastName : '',
-        "EmailID":  element.email ? element.email : 'N/A',
-        "UserID": element.userId ? element.userId : 'N/A',
-        "PhoneNumber": String(element.phoneNo) ? String(element.phoneNo) : 'N/A',
-        "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-        "Registration Date": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A',
-      }
-      listingArr.push(obj)
-    });
-    const options = {
-      fieldSeparator: ',',
-      quoteStrings: '"',
-      decimalSeparator: '.',
-      showLabels: true,
-      showTitle: true,
-      title: 'Candidate Details CSV',
-      useTextFile: false,
-      useBom: true,
-      useKeysAsHeaders: true,
-    };
-    // const csvExporter = new ExportToCsv(options);
-    //  csvExporter.generateCsv(listingArr);
-  }
+      "Mobile": element.phoneNo ? element.phoneNo : 'N/A',
+      "E-Mail": element.email ? element.email : 'N/A',
+      "State": element.state ? element.state : 'N/A',
+      "City": element.city ? element.city : 'N/A',
+      "GSTIN": element.gstInNo ? element.gstInNo : 'N/A',
+      "Date Of Creation": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A',
+    }
+    dataArr.push(obj)
+  })
+  const options = {
+    fieldSeparator: ',',
+    quoteStrings: '"',
+    decimalSeparator: '.',
+    showLabels: true,
+    showTitle: true,
+    title: 'List Of Supplier',
+    useTextFile: false,
+    useBom: true,
+    useKeysAsHeaders: true,
+    headers: ["Supplier List", "Supplier Name", "Location", "Mobile", "E-Mail", "State","City", "GSTIN", "Date Of Creation"]
+  };
+  new ngxCsv(dataArr, 'List-of-Supplier', options);
+}
 
   //--------------------------------export pdf ----------------------------------------
 
@@ -350,7 +372,17 @@ searchItem(){
       });
 
   }
-
+  resetPassword(userId, phoneNo, email) {
+    var data = {
+      role: 'SUPPLIER',
+      clientId: userId,
+      mobileNo: phoneNo,
+      email: email
+    }
+    let paramData = JSON.stringify(data)
+    console.log(paramData)
+    this.router.navigate(['/reset-password'], { queryParams: { paramData: paramData } })
+  }
 
 }
 

@@ -109,6 +109,7 @@ export class AddSitesComponent implements OnInit {
    let data= {
       "city": this.addSiteForm.value.city,
       "companyName": '',
+      "email": this.addSiteForm.value.email,
       "fkcompanyId": this.addSiteForm.value.companyName,
       "gstinNo": this.addSiteForm.value.gstNo,
      // "isDeleted": true,

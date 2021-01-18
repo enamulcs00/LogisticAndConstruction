@@ -17,14 +17,22 @@
                                     </div>
 
                                     <div class="col-lg-2 pr-0 mt-4">
-                                        <label>Driver Name</label><br>
+                                        <label>Driver First Name</label><br>
                                         <!-- <select class="selectBox form-control">
                                             <option>Driver Name</option>
                                         </select> -->
-                                        <input type="text" class="form-control input-field" placeholder="First Name"
+                                        <input type="text" class="form-control input-field" placeholder="Driver First Name"
                                         [(ngModel)]="firstName">
                                     </div>
                                     <div class="col-lg-2 pr-0 mt-4">
+                                        <label>Driver Last Name</label><br>
+                                        <!-- <select class="selectBox form-control">
+                                            <option>Driver Name</option>
+                                        </select> -->
+                                        <input type="text" class="form-control input-field" placeholder="Driver Last Name"
+                                        [(ngModel)]="lastName">
+                                    </div>
+                                    <!-- <div class="col-lg-2 pr-0 mt-4">
                                         <label>State</label><br>
                                         <select class="selectBox form-control" [(ngModel)]="state"
                                         (change)="searchCity($event)">
@@ -41,14 +49,16 @@
                                         <option *ngFor="let item of cityArr" [value]="item?.name">{{item?.name}}
                                         </option>
                                     </select>
-                                    </div>
+                                    </div> -->
                                     <div class="col-lg-2 pr-0 mt-4">
                                         <label>Mobile</label><br>
                                         <!-- <select class="selectBox form-control">
                                             <option>Mobile</option>
                                         </select> -->
+                                        <!-- <input type="text" class="form-control input-field" placeholder="Mobile"
+                                        [(ngModel)]="phoneNo" (keypress)="service.numberOnly($event)" maxlength="60"> -->
                                         <input type="text" class="form-control input-field" placeholder="Mobile"
-                                        [(ngModel)]="phoneNo" (keypress)="service.numberOnly($event)" maxlength="60">
+                                        [(ngModel)]="phoneNo" maxlength="60">
                                     </div>
                                     <div class="col-lg-2 pr-0 mt-4">
                                         <label>&nbsp;</label><br>

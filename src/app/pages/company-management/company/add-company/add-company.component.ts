@@ -175,6 +175,7 @@ export class AddCompanyComponent implements OnInit {
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.service.toasterSucc('Company added successfully.')
+        this.router.navigateByUrl('/list-of-companies')
         //this.stateArr = res['data'];
       }
     })

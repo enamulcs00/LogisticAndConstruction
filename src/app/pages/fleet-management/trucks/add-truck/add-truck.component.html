@@ -11,29 +11,32 @@
                     <div>
                         <form [formGroup]="addForm">
                             <div class="form-group row">
-                                <label for="Fname" class="col-sm-2 col-form-label">Fleet Owner ID</label>
+                                <!-- <label for="Fname" class="col-sm-2 col-form-label">Fleet Owner ID</label> -->
+                                <label for="Fname" class="col-sm-2 col-form-label">Fleet Owner Name</label>
+
                                 <div class="col-sm-4">
                                     <!-- <input type="text" id="Fname" class="form-control" placeholder="Fleet Owner ID"
                                         formControlName="fleetOnwerNo"> -->
                                     <select name="" id="" class="form-control" formControlName="fleetOnwerNo">
-                                        <option value="">Fleet Owner ID</option>
-                                        <option *ngFor="let item of listing" [value]="item.userId">{{item.userId}}
-                                        </option>
+                                        <!-- <option value="">Fleet Owner ID</option>
+                                        <option *ngFor="let item of listing" [value]="item.userId">{{item.userId}}</option> -->
+                                        <option value="">Fleet Owner Name</option>
+                                        <option *ngFor="let item of listing" [value]="item.userId">{{item.companyName}}</option>
                                     </select>
                                     <span class="error"
                                         *ngIf="addForm.get('fleetOnwerNo').hasError('required') && (addForm.get('fleetOnwerNo').dirty || addForm.get('fleetOnwerNo').touched )"
                                         class="error">
-                                        <p>*Please select fleet owner id.</p>
+                                        <p>*Please select fleet owner name.</p>
                                     </span>
                                 </div>
-                                <label for="Lname" class="col-sm-2 col-form-label">Truck Typer</label>
+                                <label for="Lname" class="col-sm-2 col-form-label">Truck Type</label>
                                 <div class="col-sm-4">
                                     <!-- <input type="text" class="form-control" placeholder="Driver First name"
                                         formControlName="typeOfTruck"> -->
                                     <select name="" id="" class="form-control" formControlName="typeOfTruck">
-                                        <option value="">Truck Typer</option>
-                                        <option *ngFor="let item of listingTruckType" [value]="item.typeOfTruck">
-                                            {{item.typeOfTruck}}</option>
+                                        <option value="">Truck Type</option>
+                                        <option *ngFor="let item of listingTruckType" [value]="item.name">
+                                            {{item.name}}</option>
                                     </select>
                                     <span class="error"
                                         *ngIf="addForm.get('typeOfTruck').hasError('required') && (addForm.get('typeOfTruck').dirty || addForm.get('typeOfTruck').touched )"
@@ -46,7 +49,7 @@
                                 <label for="Mobile" class="col-sm-2 col-form-label">Truck Number</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" placeholder="Truck Number"
-                                        formControlName="registrationNo">
+                                        formControlName="registrationNo" maxlength="15">
                                     <span class="error"
                                         *ngIf="addForm.get('registrationNo').hasError('required') && (addForm.get('registrationNo').dirty || addForm.get('registrationNo').touched )"
                                         class="error">

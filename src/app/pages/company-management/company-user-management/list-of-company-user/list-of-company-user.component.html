@@ -8,19 +8,32 @@
                             <div class="tab-pane1">
                                 <form [formGroup]="userForm">
                                 <div class="row">
+                                   
+                                    <div class="col-lg-2 pl-0 mt-4">
+                                        <label>User Type</label><br>
+                                        <select id="city" class="form-control" formControlName="userType" (change)="getCompanyUserList()">
+                                            <!-- <option value="">Select</option> -->
+                                            <option value="COMPANY_ADMIN">Admin</option>
+                                            <option value="COMPANY_SITE_ENGG">Site Engineer</option>
+                                            <option value="COMPANY_MANAGER">Company Manager</option>
+                                        </select>
+                                    </div>
+
                                     <div class="col-lg-2 pl-0 mt-4">
                                         <label>Company Name</label><br>
-                                        <select id="CompanyName" class="selectBox form-control" (change)="searchLocation($event)" formControlName="companyName">
+                                        <select id="CompanyName" class="selectBox form-control"  formControlName="companyName">
                                             <option value="">Company name</option>
-                                            <option *ngFor="let company of companyNameArr" value={{company.id}}>{{company.name}}</option>
+                                            <option *ngFor="let company of companyNameArr" >{{company.name}}</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 pl-0 mt-4">
                                         <label>Site</label><br>
-                                        <select class="selectBox form-control" formControlName="siteAddress">
+                                        <!-- <select class="selectBox form-control" formControlName="siteAddress">
                                             <option  value="">Site</option>
                                             <option *ngFor="let site of siteArr" value={{site.id}}>{{site.address}}</option>
-                                        </select>
+                                        </select> -->
+                                        <input type="text" id="Mobile" class="form-control selectBox"
+                                        placeholder="Site" formControlName="siteAddress" >
                                     </div>
                                     <div class="col-lg-2 pl-0 mt-4">
                                         <label>First Name</label><br>
@@ -114,8 +127,8 @@
 
                                             </td>
                                         </tr> -->
-                                            <tr *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber,totalItems: totalRecords };let i = index ">
-                                                <td>{{i+1}}</td>
+                                            <tr *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: currentPage,totalItems: totalRecords };let i = index ">
+                                                <td>{{itemsPerPage*(this.currentPage-1)+i+1}}</td>
                                                 <td>{{item?.companyName}}</td>
                                                 <td>{{item?.phoneNo}}</td>
                                                 <td>{{item?.firstName}}</td>
@@ -131,7 +144,7 @@
                                                     <a><i class="fa fa-trash" (click)="deleteCompanyUser(item?.userId)"></i></a>
                                                     <a *ngIf="item?.userStatus == 'ACTIVE'" (click)="openModal('BLOCK',item?.userId)"><i class="fa fa-ban" style="color: green;"></i></a>
                                                     <a *ngIf="item?.userStatus == 'BLOCK'" (click)="openModal('ACTIVE',item?.userId)"><i class="fa fa-ban" style="color: red;"></i></a>
-                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
+                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword(item?.userId, item?.phoneNo, item?.email)"></i></a>
                                                 </td>
                                             </tr>
                                         
