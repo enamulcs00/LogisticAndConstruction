@@ -83,5 +83,24 @@ export class ResetPasswordComponent implements OnInit {
     })
   }
 
+  back(){
+    switch (this.resetParamData.role) {
+      case 'COMPANY':
+        this.router.navigate(['/list-of-companies'])
+        break;
+      case 'FLEET':
+        this.router.navigate(['/list-of-fleet-owner'])
+        break;
+      case 'SUPPLIER':
+        this.router.navigate(['/list-of-supplier'])
+        break;
+      case 'DRIVER':
+        this.router.navigate(['/list-of-driver'])
+        break;
+      default:
+        this.router.navigate(['/dashboard'])
+        break
+    }
+  }
 }
 

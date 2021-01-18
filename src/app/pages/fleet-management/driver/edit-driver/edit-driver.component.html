@@ -23,14 +23,14 @@
                                 <label for="Lname" class="col-sm-2 col-form-label">Driver First Name</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" placeholder="Driver First name"
-                                        formControlName="firstName">
+                                        formControlName="firstName" maxlength="60">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="Mobile" class="col-sm-2 col-form-label">Driver Last Name</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control"
-                                        placeholder="Driver Last Name" formControlName="lastName">
+                                        placeholder="Driver Last Name" formControlName="lastName" maxlength="60">
                                 </div>
                                 <label for="email" class="col-sm-2 col-form-label">Driver Mobile No.</label>
                                 <div class="col-sm-4">
@@ -43,12 +43,12 @@
                                 <label for="CompanyName" class="col-sm-2 col-form-label">Driver Licence No.</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" placeholder="Driver Licence No."
-                                        formControlName="drivingLicenceNo">
+                                        formControlName="drivingLicenceNo" maxlength="20">
                                 </div>
                                 <label for="comanyAddress" class="col-sm-2 col-form-label">Driver Aadhaar No.</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control"
-                                        placeholder="Driver Aadhaar No." formControlName="aadharCardNo">
+                                        placeholder="Driver Aadhaar No." formControlName="aadharCardNo" maxlength="12">
                                 </div>
                             </div>
                         </form>
@@ -56,7 +56,7 @@
                     <br>
                     <div class="head_flt_select">
                         <div class="head_flt_select input-label" >
-                            <button type="submit" class="btn btn-theme"
+                            <button type="submit" class="btn btn-theme" [disabled]="editForm.invalid"
                                 (click)="editDriver()">Update</button>
                                 <button type="submit" class="btn btn-theme ml-3"
                                 (click)="cancel()">Cancel</button>

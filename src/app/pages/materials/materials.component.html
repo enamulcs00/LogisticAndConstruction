@@ -12,10 +12,20 @@
                                         <div class="col-lg-3 pr-0">
                                             <input class="selectBox form-control" type="text"
                                                 placeholder="Material Name" formControlName="materialType">
+                                            <span class="error"
+                                                *ngIf="addMaterialForm.get('materialType').hasError('required') && (addMaterialForm.get('materialType').dirty || addMaterialForm.get('materialType').touched )"
+                                                class="error">
+                                                <p>*Please enter material type.</p>
+                                            </span>
                                         </div>
                                         <div class="col-lg-6 ">
                                             <input class="selectBox form-control" type="text" placeholder="Description"
                                                 formControlName="description">
+                                            <span class="error"
+                                                *ngIf="addMaterialForm.get('description').hasError('required') && (addMaterialForm.get('description').dirty || addMaterialForm.get('description').touched )"
+                                                class="error">
+                                                <p>*Please enter description.</p>
+                                            </span>
                                         </div>
                                         <div class="col-lg-3 pl-0 text-left">
                                             <button type="button" class="search-btn"
@@ -24,8 +34,8 @@
                                                 (click)="addMaterial()">Save</button>
                                         </div>
                                     </div>
-
                                 </form>
+
                                 <div class="table-responsive mt-3">
                                     <table class="table table-bordered" aria-describedby="user list" id="pdfcontent">
                                         <thead>
@@ -38,41 +48,14 @@
                                         </thead>
                                         <tbody>
                                             <tr
-                                                *ngFor="let item of listing | paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber,totalItems: totalRecords };let i = index ">
-                                                <td>{{itemsPerPage*(this.pageNumber-1)+i+1}}</td>
+                                                *ngFor="let item of listing | paginate: { itemsPerPage: itemsPerPage,currentPage: currentPage,totalItems: totalItems };let i = index ">
+                                                <td>{{itemsPerPage * (currentPage - 1) +i+1}}</td>
                                                 <td>{{item?.materialType}}</td>
                                                 <td>{{item?.description}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <!-- <a><i class="fa fa-eye"
-                                                            (click)="userDetails(item?.userId,item?.email)"></i></a> -->
                                                     <a (click)="openModal('DELETE',item?.materialId)">
-                                                        <i class="fa fa-trash"></i></a>
-                                                    <!-- <a *ngIf="item?.enable == true"
-                                                        (click)="openModal('false',item?.thermalPlantsId)"><i
-                                                            class="fa fa-ban" style="color: green;"></i></a>
-                                                    <a *ngIf="item?.enable == false"
-                                                        (click)="openModal('true',item?.thermalPlantsId)"><i
-                                                            class="fa fa-ban"></i></a> -->
+                                                        <i class="fa fa-trash" aria-hidden="true"></i></a>
                                                 </td>
-
-                                                <!-- <td>{{item?.userId}}</td>
-                                                <td>{{item?.phoneNo}}</td>
-                                                <td>{{item?.userStatus}}</td>
-                                                <td>{{item?.createTime | date:'medium'}}</td> -->
-
-                                                <!-- <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye"
-                                                            (click)="userDetails(item?.userId,item?.email)"></i></a>
-                                                    <a><i class="fa fa-trash"
-                                                            (click)="openModal('DELETE',item?.userId)"></i></a>
-                                                    <a *ngIf="item?.userStatus == 'ACTIVE'"
-                                                        (click)="openModal('BLOCK',item?.userId)"><i class="fa fa-ban"
-                                                            style="color: green;"></i></a>
-                                                    <a *ngIf="item?.userStatus == 'BLOCK'"
-                                                        (click)="openModal('ACTIVE',item?.userId)"><i
-                                                            class="fa fa-ban"></i></a>
-
-                                                </td> -->
                                             </tr>
                                         </tbody>
                                         <tbody *ngIf="listing?.length==0">
@@ -88,8 +71,8 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
-                                    *ngIf="listing?.length">
+                                <div *ngIf="totalItems > 10" class="custom-pagination mt20 "
+                                    style="display: flex; justify-content:flex-end">
                                     <pagination-controls (pageChange)="pagination($event)"></pagination-controls>
                                 </div>
 
@@ -99,43 +82,10 @@
                 </div>
             </div>
         </main>
-
     </div>
-
 </section>
 
 <app-footer></app-footer>
-
-<!-- <div id = "pdfcontent">
-    <div class="upload-info more-content">
-        <p class="up-load head-ings">USER DETAILS</p>
-        <table>
-            <thead>
-                <tr>
-                    <th >S.No</th>
-                    <th >User Name</th>
-                    <th >Email</th>
-                    <th >User ID</th>
-                    <th >Phone Number</th>
-                    <th >Status</th>
-                    <th >Registration Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of listing">
-                    <td>{{item?.firstName}}{{item?.lastName}}</td>
-                    <td>{{item?.email}}</td>
-                    <td>{{item?.userId}}</td>
-                    <td>{{item?.phoneNo}}</td>
-                    <td>{{item?.userStatus}}</td>
-                    <td>{{item?.createTime | date:'medium'}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>       
-</div> -->
-
-
 
 <!-- delete_modal Start -->
 <div class="modal fade global-modal reset-modal" id="deleteModal">
@@ -167,66 +117,3 @@
     </div>
 </div>
 <!-- delete_modal End -->
-
-<!-- block_modal Start -->
-<div class="modal fade global-modal reset-modal" id="block">
-    <div class="modal-dialog max-WT-500">
-        <form class="change_password">
-            <div class="modal-content">
-                <div>
-                    <div class="modal-body">
-                        <h3 style="text-align: center;font-size: 20px; ">Block User </h3>
-
-                        <!-- <h3 *ngIf="userStatus=='ACTIVE'" style="text-align: center; ">Unblock  </h3>
-                        <h3  *ngIf="userStatus=='BLOCK'" style="text-align: center; ">Block  </h3> -->
-                        <hr>
-                        <button type="button" class="close" data-dismiss="modal"
-                            style="margin-top: -85px;">&times;</button>
-                        <div class="text-center modal_flax_height d-flex align-items-center justify-content-center">
-                            <div class="w-100">
-                                <p style="font-size: 18px;">Are you sure you want to block this user?</p>
-                                <!-- <p  *ngIf="userStatus=='ACTIVE'" style="font-size: 25px;">Are you sure you want to unblock?</p>
-                                <p  *ngIf="userStatus=='BLOCK'" style="font-size: 25px;">Are you sure you want to block?</p> -->
-                                <div>
-                                    <button type="submit" class="btn btn-info mr-2 "
-                                        style="width: 25%;background-color: black;" (click)="blockUser()">Yes</button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal"
-                                        style="width: 25%;">No</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-<!-- active Start -->
-<div class="modal fade global-modal reset-modal" id="active">
-    <div class="modal-dialog max-WT-500">
-        <form class="change_password">
-            <div class="modal-content">
-                <div>
-                    <div class="modal-body">
-                        <h3 style="text-align: center;font-size: 20px; ">Active User </h3>
-                        <hr>
-                        <button type="button" class="close" data-dismiss="modal"
-                            style="margin-top: -85px;">&times;</button>
-                        <div class="text-center modal_flax_height d-flex align-items-center justify-content-center">
-                            <div class="w-100">
-                                <p style="font-size: 18px;">Are you sure you want to active this user?</p>
-                                <div>
-                                    <button type="submit" class="btn btn-success mr-2"
-                                        (click)="blockUser()">Yes</button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>

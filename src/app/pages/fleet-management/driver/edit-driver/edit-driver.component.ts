@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MainService } from 'src/app/provider/main.service';
 
@@ -30,12 +30,12 @@ export class EditDriverComponent implements OnInit {
   // ------------ add form validation ---------------- //
   editFormValidation() {
     this.editForm = new FormGroup({
-      'aadharCardNo': new FormControl(''),
-      'companyName': new FormControl(''),
-      'drivingLicenceNo': new FormControl(''),
-      'firstName': new FormControl(''),
-      'lastName': new FormControl(''),
-      'phoneNo': new FormControl('')
+      'aadharCardNo': new FormControl('', Validators.required),
+      'companyName': new FormControl('', Validators.required),
+      'drivingLicenceNo': new FormControl('', Validators.required),
+      'firstName': new FormControl('', Validators.required),
+      'lastName': new FormControl('', Validators.required),
+      'phoneNo': new FormControl('', Validators.required)
     })
   }
 

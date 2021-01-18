@@ -35,8 +35,8 @@
                                         formControlName="typeOfTruck"> -->
                                     <select name="" id="" class="form-control" formControlName="typeOfTruck">
                                         <option value="">Truck Type</option>
-                                        <option *ngFor="let item of listingTruckType" [value]="item.typeOfTruck">
-                                            {{item.typeOfTruck}}</option>
+                                        <option *ngFor="let item of listingTruckType" [value]="item.name">
+                                            {{item.name}}</option>
                                     </select>
                                     <span class="error"
                                         *ngIf="addForm.get('typeOfTruck').hasError('required') && (addForm.get('typeOfTruck').dirty || addForm.get('typeOfTruck').touched )"

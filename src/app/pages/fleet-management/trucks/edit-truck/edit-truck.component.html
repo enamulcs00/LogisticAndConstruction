@@ -38,8 +38,8 @@
                                         formControlName="typeOfTruck"> -->
                                     <select name="" id="" class="form-control" formControlName="typeOfTruck">
                                         <option value="">Truck Type</option>
-                                        <option *ngFor="let item of listingTruckType" [value]="item.typeOfTruck">
-                                            {{item.typeOfTruck}}</option>
+                                        <option *ngFor="let item of listingTruckType" [value]="item.name">
+                                            {{item.name}}</option>
                                     </select>
                                     <span class="error"
                                         *ngIf="editForm.get('typeOfTruck').hasError('required') && (editForm.get('typeOfTruck').dirty || editForm.get('typeOfTruck').touched )"
@@ -52,7 +52,7 @@
                                 <label for="Mobile" class="col-sm-2 col-form-label">Truck Number</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" placeholder="Truck Number"
-                                        formControlName="registrationNo">
+                                        formControlName="registrationNo" maxlength="15">
                                     <span class="error"
                                         *ngIf="editForm.get('registrationNo').hasError('required') && (editForm.get('registrationNo').dirty || editForm.get('registrationNo').touched )"
                                         class="error">

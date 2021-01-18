@@ -93,11 +93,19 @@ export class ListOfTruckComponent implements OnInit {
   }
 
   //----------------------------- get truck type list --------------------------------//
+  // getTruckTypelist() {
+  //   var url = 'account/admin/get-truckTypeDetails?page=0&pageSize=100'
+  //   this.service.get(url).subscribe((res: any) => {
+  //     if (res['status'] == 200) {
+  //       this.typeOfTruckArray = res['data']['data'];
+  //     }
+  //   })
+  // }
   getTruckTypelist() {
-    var url = 'account/admin/get-truckTypeDetails?page=0&pageSize=100'
+    var url = 'account/admin/get-truckTypeName'
     this.service.get(url).subscribe((res: any) => {
       if (res['status'] == 200) {
-        this.typeOfTruckArray = res['data']['data'];
+        this.typeOfTruckArray = res['data'];
       }
     })
   }

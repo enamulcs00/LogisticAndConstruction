@@ -44,7 +44,7 @@ export class SidebarComponent implements OnInit {
     routes.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.currUrl = event.url.split('/')[1];
-        // console.log("current url", this.currUrl)
+        console.log("current url", this.currUrl)
         if (localStorage.data) {
           // console.log('hh', localStorage.data);
           this.service.changeLoginSub('login')
@@ -349,7 +349,7 @@ export class SidebarComponent implements OnInit {
       this.currentText = 'Change Password';
     }
     // reset password
-    if (this.currUrl == `reset-password`) {
+    if (this.currUrl.includes('reset-password')) {
       this.currentText = 'Reset Password';
     }
   }

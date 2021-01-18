@@ -28,8 +28,10 @@
                                         <label>Truck Type</label><br>
                                         <select class="selectBox form-control" [(ngModel)]="typeOfTruck">
                                             <option value="">Truck Type</option>
-                                            <option *ngFor="let item of typeOfTruckArray" [value]="item?.typeOfTruck">
-                                                {{item?.typeOfTruck}}</option>
+                                            <!-- <option *ngFor="let item of typeOfTruckArray" [value]="item?.typeOfTruck">
+                                                {{item?.typeOfTruck}}</option> -->
+                                                <option *ngFor="let item of typeOfTruckArray" [value]="item?.name">
+                                                    {{item?.name}}</option>
                                         </select>
                                     </div>
                                     <!-- <div class="col-lg-3  mt-4">
