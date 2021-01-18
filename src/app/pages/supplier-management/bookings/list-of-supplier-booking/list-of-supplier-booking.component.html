@@ -18,7 +18,7 @@
                                 <div class="col-lg-2 pr-0 mt-4">
                                     <label class="ml-5">Supplier</label><br>
                                      <select class="selectBox form-control" [(ngModel)]="firstName">
-                                         <option value="">Supplier</option>
+                                         <option [value]=''>Supplier </option>
                                          <option *ngFor="let item of supplierNameArray" [value]="item?.supplierName">
                                           {{item?.supplierName}}</option>
                                      </select>
