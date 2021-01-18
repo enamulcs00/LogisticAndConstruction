@@ -6,7 +6,7 @@
                 <div class="global-table no-radius p0">
                     <div class="tab-content1">
                         <div class="tab-pane1">
-                            
+
                             <form [formGroup]="contactUsForm">
                             <div class="row  d-flex justify-content-end w_100 mt-3">
                                     <div class="col-lg-6">
@@ -14,7 +14,7 @@
                                       <div *ngIf="contactUsForm.get('contactNo').hasError('required') && contactUsForm.get('contactNo').touched"><span style="color:red">*Please enter contact number.</span></div>
                                       <div *ngIf="contactUsForm.controls['contactNo'].hasError('minlength')"><span style="color:red">*Minlength should be 10 digits.</span></div>
                                       <div *ngIf="contactUsForm.controls['contactNo'].hasError('pattern')"><span style="color:red">*Please enter valid contact number.</span>
-  
+
                                   </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -22,14 +22,14 @@
                                         <div *ngIf="contactUsForm.get('emailId').hasError('required') && contactUsForm.get('emailId').touched"><span style="color:red">*Please enter email id.</span></div>
                                         <div *ngIf="contactUsForm.controls['emailId'].hasError('maxlength')"><span style="color:red">*Maxlength should be 60 characters</span></div>
                                         <div *ngIf="contactUsForm.controls['emailId'].hasError('pattern')"><span style="color:red">*Please enter valid email id.</span>
-    
+
                                     </div>
                                     </div>
                                     <!-- <div class="col-lg-3 mt-5">
                                         <button type="button" style="margin-left: 40%;background: black;
                                         color: white;
                                         width: 66%;
-    height: 101%;">Save</button>    
+    height: 101%;">Save</button>
                                     </div> -->
 
                             </div>
@@ -81,14 +81,19 @@
                                 *ngIf="listing?.length">
                                 <pagination-controls (pageChange)="pagination($event)"></pagination-controls>
                             </div> -->
-                            <div class="text-center mt-5 row">
-                              <div class="col-sm-6">
-                                <button type="button"style="background: black;color: white;"class="btn btn-success" (click)="setEditContactDetails()">save</button>
+                            <br>
+                            <br>
+                            <div class="head_flt_select">
+                              <div class="head_flt_select input-label text-center">
+                                  <button  type="submit" class="btn btn-theme mr-3"
+                                  (click)="setEditContactDetails()" *ngIf="IsSave || listing?.length==0" [disabled]="contactUsForm.invalid">Save</button>
+                                  <button  type="submit" class="btn btn-theme mr-3"
+                                  (click)="UpdateContact()" *ngIf="IsUpdate" [disabled]="contactUsForm.invalid">Update</button>
+                                      <button  type="submit" class="btn btn-theme"
+                                     (click)="EditContactUsDetails()" [disabled]="listing?.length" *ngIf="IsEdit">Edit</button>
                               </div>
-                              <div class="col-sm-6" style="position: relative;right: 20%;">
-                                <button type="button" (click)="EditContactUsDetails()"[disabled]="listing?.length==0" class="btn btn-success" style="background: black;color: white;">Edit</button>
-                              </div>
-                            </div>
+                          </div>
+
                         </div>
                     </div>
                 </div>

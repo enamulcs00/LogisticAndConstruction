@@ -13,7 +13,7 @@ export class ListOfFleetOwnerComponent implements OnInit {
   listing: any = [];
   userid: number;
   action: any;
-  // pagination variable 
+  // pagination variable
   currentPage: number = 1
   itemsPerPage: number = 10
   totalItems: any

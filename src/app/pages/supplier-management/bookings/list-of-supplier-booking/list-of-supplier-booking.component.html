@@ -9,37 +9,47 @@
                             <div class="row">
                                 <div class="col-lg-2 pr-0 mt-4">
                                      <label class="ml-3">Company Name</label><br>
-                                     <input class="selectBox form-control" type="text" placeholder="Enter Company Name">
+                                     <select class="selectBox form-control" [(ngModel)]="companyName">
+                                      <option value="">Select Company</option>
+                                      <option *ngFor="let item of supplierNameArray"
+                                          [value]="item?.companyName">{{item?.companyName}}</option>
+                                  </select>
                                 </div>
                                 <div class="col-lg-2 pr-0 mt-4">
                                     <label class="ml-5">Supplier</label><br>
-                                     <select class="selectBox form-control">
-                                         <option>Supplier</option>
+                                     <select class="selectBox form-control" [(ngModel)]="firstName">
+                                         <option value="">Supplier</option>
+                                         <option *ngFor="let item of supplierNameArray" [value]="item?.supplierName">
+                                          {{item?.supplierName}}</option>
                                      </select>
                                 </div>
                                 <div class="col-lg-2 pr-0 mt-4">
                                     <label class="ml-5">Month</label><br>
-                                     <select class="selectBox form-control">
-                                         <option>Month</option>
-                                     </select>
+                                    <select class="selectBox form-control" [(ngModel)]="months">
+                                      <option value="">Select Month</option>
+                                      <option *ngFor="let item of monthsArray" [value]="item.id">{{item.name}}
+                                      </option>
+                                  </select>
                                 </div>
-                                <div class="col-lg-2 pr-0 mt-4">
+                                <div class="col-lg-3 pr-0 mt-4">
                                     <label class="ml-5">From Date</label><br>
-                                    <input type="date" class="selectBox form-control">
+                                    <input type="date" max="{{minAge | date:'yyyy-MM-dd'}}" name="formdate"
+                                    [(ngModel)]="calender.formdate" (change)="formdate()"
+                                    class="form-control">
                                 </div>
-                                <div class="col-lg-2 pr-0 mt-4">
+                                <div class="col-lg-3 pr-0 mt-4">
                                     <label class="ml-5">To Date</label><br>
-                                    <input type="date" class="selectBox form-control">
+                                    <input type="date" name="todate" min="{{fromDate | date:'yyyy-MM-dd'}}"
+                                    (change)="todate()" [disabled]="!calender.formdate"
+                                    [(ngModel)]="calender.todate" class="form-control">
                                 </div>
-                                <div class="col-lg-2 pr-0 mt-4">
-                                    <label class="ml-5">&nbsp;</label><br>
-                                    <button type="button" class="search-btn">Search</button>
-                                </div>
+
                             </div>
                             <div class="row  d-flex justify-content-end w_100 mt-3 mb-3">
                                     <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green' (click)="ExportToCsv()"></i>
-                                 
-                                    <button type="button" class="search-btn">Reset</button>                              </div>
+                                    <button type="button" class="search-btn" (click)="search()">Search</button>
+                                    <button type="button" class="search-btn"(click)="reset()">Reset</button>
+                                   </div>
 
 
                             <div class="table-responsive">
@@ -69,8 +79,8 @@
                                     <tbody>
                                         <tr *ngFor="let item of listing| paginate: {
                                     itemsPerPage: itemsPerPage,
-                                    currentPage: pageNumber,
-                                    totalItems: totalRecords };let i = index ">
+                                    currentPage: currentPage,
+                                    totalItems: totalItems };let i = index ">
                                             <td>{{item?.bookingId || 'NA'}}</td>
                                             <td>{{item?.companyName || 'NA'}}</td>
                                             <td>{{item?.supplierName || 'NA'}}</td>
@@ -84,7 +94,7 @@
                                             <td>{{item?.truckType || 'NA'}}</td>
                                             <td>{{item?.driverName || 'NA'}}</td>
                                             <td>{{item?.driverMobileNo || 'NA'}}</td>
-                                            <td>{{item?.quotesId || 'NA'}}</td>
+                                            <td>{{item?.routeId || 'NA'}}</td>
                                             <td class="action_td_btn3" style="cursor: pointer">
                                                 <a ><i class="fa fa-eye"[routerLink]="['/view-supplier-booking',item?.bookingId]"></i></a>
 
@@ -105,7 +115,7 @@
                                 </table>
                             </div>
                             <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
-                                *ngIf="listing?.length">
+                                *ngIf="totalItems > 10">
                                 <pagination-controls (pageChange)="pagination($event)"></pagination-controls>
                             </div>
 

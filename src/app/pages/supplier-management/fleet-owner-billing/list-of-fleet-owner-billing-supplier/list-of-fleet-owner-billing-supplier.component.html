@@ -6,42 +6,55 @@
                     <div class="global-table no-radius p0">
                         <div class="tab-content1">
                             <div class="tab-pane1">
-                                <div class="row">
-                                    <div class="col-lg-2 pr-0 mt-4">
-                                        <label>Invoice No</label><br>
-                                        <input class="selectBox form-control" type="text" placeholder="Invoice No">
-                                    </div>
-                                    <div class="col-lg-2 pr-0 mt-4">
-                                        <label>Supplier</label><br>
-                                        <select class="selectBox form-control">
-                                            <option>Supplier</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-2 pr-0 mt-4">
-                                        <label>Month</label><br>
-                                        <select class="selectBox form-control">
-                                            <option>Month</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-2 pr-0 mt-4">
-                                        <label>From Date</label><br>
-                                        <input type="date" class="selectBox form-control">
-                                    </div>
-                                    <div class="col-lg-2 pr-0 mt-4">
-                                        <label>To Date</label><br>
-                                        <input type="date" class="selectBox form-control">
-                                    </div>
-                                    <div class="col-lg-2 pr-0 mt-4">
-                                        <label>&nbsp;</label><br>
-                                        <button type="button" class="search-btn">Search</button>
-                                    </div>
+                              <div class="row">
+                                <div class="col-lg-1.5 pl-0 mt-4">
+                                  <label>Fleet Owner</label><br>
+                                  <select class="selectBox form-control" [(ngModel)]="fleetOwner">
+                                      <option value="">Fleet Owner</option>
+                                      <option *ngFor="let item of supplierNameArray"
+                                          [value]="item?.transpotarName">{{item?.transpotarName}}</option>
+                                  </select>
+                              </div>
+                                <div class="col-lg-1.5 pl-0 mt-4">
+                                    <label class="ml-2">Invoice</label><br>
+                                    <input type="text" (keypress)="service.numberOnly($event)" class="form-control" [(ngModel)]="InvoiceNoForSupplier" placeholder="Invoice No">
                                 </div>
-                                <div class="row  d-flex justify-content-end w_100 mt-3 mb-3">
-                                    <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green'
-                                        (click)="ExportToCsv()"></i>
-                                    <button type="button" class="search-btn">Reset</button>
+                                <div class="col-lg-1.5 pl-0 mt-4">
+                                    <label class="ml-2">Supplier</label><br>
+                                    <select class="selectBox form-control" [(ngModel)]="firstName">
+                                      <option value="">Supplier</option>
+                                      <option *ngFor="let item of supplierNameArray" [value]="item?.supplierName">
+                                       {{item?.supplierName}}</option>
+                                  </select>
+                                </div>
+                                <div class="col-lg-1.5 pl-0 mt-4">
+                                    <label class="ml-2">Month</label><br>
+                                    <select class="selectBox form-control" [(ngModel)]="months">
+                                      <option value="">Month</option>
+                                      <option *ngFor="let item of monthsArray" [value]="item.id">{{item.name}}
+                                      </option>
+                                  </select>
+                                </div>
+                                <div class="col-lg-2.5 pl-0 mt-4">
+                                    <label class="ml-2">From Date</label><br>
+                                    <input type="date" max="{{minAge | date:'yyyy-MM-dd'}}" name="formdate"
+                                [(ngModel)]="calender.formdate" (change)="formdate()"
+                                class="form-control">
+                                </div>
+                                <div class="col-lg-2.5 pl-0 mt-4">
+                                    <label class="ml-2">To Date</label><br>
+                                    <input type="date" name="todate" min="{{fromDate | date:'yyyy-MM-dd'}}"
+                                    (change)="todate()" [disabled]="!calender.formdate"
+                                    [(ngModel)]="calender.todate" class="form-control">
                                 </div>
 
+                            </div>
+                            <div class="row  d-flex justify-content-end w_100 mt-3 mb-3">
+                                <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green'
+                                    (click)="ExportToCsv()"></i>
+                                    <button type="button" class="search-btn"(click)="search()">Search</button>
+                                <button type="button" class="search-btn"(click)="reset()">Reset</button>
+                            </div>
 
                                 <div class="table-responsive">
                                     <table class="table table-bordered" aria-describedby="user list" id="pdfcontent">
@@ -50,6 +63,7 @@
                                                 <th scope="col">Invoice No</th>
                                                 <th scope="col">Invoice Date</th>
                                                 <th scope="col">Booking ID</th>
+                                                <th scope="col">Fleet Owner</th>
                                                 <th scope="col">Supplier</th>
                                                 <th scope="col">Material</th>
                                                 <th scope="col">Weight</th>
@@ -67,11 +81,11 @@
                                         </thead>
                                         <tbody>
                                             <tr
-                                                *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber,totalItems: totalRecords };let i = index ">
+                                                *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: currentPage,totalItems: totalItems };let i = index ">
                                                 <td>{{item?.inVoiceNoForSupplier || 'NA'}}</td>
                                                 <td>{{item?.inVoiceDateForSupplier |date}}</td>
                                                 <td>{{item?.bookingId || 'NA'}}</td>
-
+                                                  <td>{{item?.transpotarName|| 'N/A'}}</td>
                                                 <td>{{item?.supplierName || 'NA'}}</td>
                                                 <td>{{item?.material || 'NA'}}</td>
                                                 <td>{{item?.weight || 'NA'}}</td>
@@ -212,7 +226,7 @@
                                     </table>
                                 </div>
                                 <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
-                                    *ngIf="listing?.length">
+                                    *ngIf="totalItems > 10">
                                     <pagination-controls (pageChange)="pagination($event)"></pagination-controls>
                                 </div>
 

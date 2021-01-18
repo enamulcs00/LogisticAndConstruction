@@ -14,7 +14,9 @@ declare var kendo: any;
   styleUrls: ['./contact-us.component.css']
 })
 export class ContactUsComponent implements OnInit {
-
+  IsUpdate: boolean = false;
+  IsSave: boolean = false
+  IsEdit:boolean = true
   userForm: FormGroup;
   contactUsForm: FormGroup;
   listing: any = [];
@@ -23,7 +25,7 @@ export class ContactUsComponent implements OnInit {
   deleted: any;
   totalRecords: any
   pageNumber:number=1
-  itemsPerPage:number=20
+  itemsPerPage:number=10
   userid: number;
   userStatus: any;
   fromDate: any;
@@ -73,17 +75,15 @@ export class ContactUsComponent implements OnInit {
   }
 
 setEditContactDetails(){
+
   let url = `account/admin/set-edit-contact-Details`
   let obj =
   {
-    "contactDetailId": 0,
+
     "contactNo": this.contactUsForm.value.contactNo,
-     "createTime": this.date,
-     "deleted": true,
+
     "email": this.contactUsForm.value.emailId,
-     "isDeleted": true,
-     "isEnable": true,
-     "updateTime": this.date
+
   }
   this.service.showSpinner()
   this.service.post(url,obj).subscribe((res:any)=>{
@@ -105,6 +105,9 @@ else{
   )
 }
 EditContactUsDetails(){
+  this.IsUpdate = true;
+  this.IsSave = false
+  this.IsEdit = false
 this.contactUsForm.patchValue({
   emailId:this.listing.email,
   contactNo: this.listing.contactNo
@@ -119,6 +122,7 @@ getContactDetails(){
 this,this.service.hideSpinner()
 if(res.status == 200){
   this.listing = res.data[0];
+  console.log('contact-ID',this.listing.contactDetailId)
   this.service.toasterSucc(res.message)
 }
 else{
@@ -127,6 +131,39 @@ else{
   },err=>{
     this.service.toasterErr('Something went wrong')
   })
+}
+
+UpdateContact(){
+  let url = `account/admin/set-edit-contact-Details`
+  let obj =
+  {
+    "contactDetailId": this.listing.contactDetailId,
+    "contactNo": this.contactUsForm.value.contactNo,
+    "email": this.contactUsForm.value.emailId,
+
+
+
+  }
+  this.service.showSpinner()
+  this.service.post(url,obj).subscribe((res:any)=>{
+    console.log('This is contact Us',res)
+this,this.service.hideSpinner()
+this.contactUsForm.reset()
+if(res.status == 200){
+  this.IsUpdate = false
+  this.IsEdit = true
+  this.service.toasterSucc(res.message)
+  this.getContactDetails()
+}
+else{
+  this.service.toasterErr(res.message)
+  this.getContactDetails()
+}
+  },err=>{
+    this.service.toasterErr('Something went wrong')
+    this.getContactDetails()
+  }
+  )
 }
 
   //-----------------------------list api integration --------------------------------//
@@ -197,30 +234,30 @@ else{
         this.service.toasterSucc(this.deleted.message);
     //    this.getlist();
       }
-     }, err => {   
-       this.service.hideSpinner();  
-        if (err['status'] == '401') {  
-            this.service.onLogout();   
-           this.service.toasterErr('Unauthorized Access'); 
-         } 
-      else {    
-          this.service.toasterErr('Something Went Wrong');  
-        } 
+     }, err => {
+       this.service.hideSpinner();
+        if (err['status'] == '401') {
+            this.service.onLogout();
+           this.service.toasterErr('Unauthorized Access');
+         }
+      else {
+          this.service.toasterErr('Something Went Wrong');
+        }
      })
 
   }
 
   //-------------------------block api integration------------------------//
-  block(status , id){   
-     this.userid=id 
-       this.userstatus=status 
+  block(status , id){
+     this.userid=id
+       this.userstatus=status
     $('#block').modal('show')
-  } 
+  }
    blockUser(){
      this.service.showSpinner();
     var url = 'account/admin/user-management/user-status?ipAddress='+(localStorage.getItem('ipAddress'))+'&location='+(localStorage.getItem('location'))+ '&userIdForStatusUpdate='+(this.userid) + '&userStatus=' + (this.action);
-       this.service.post(url,'').subscribe((res:any)=>{    
-        if(res.status == 200){ 
+       this.service.post(url,'').subscribe((res:any)=>{
+        if(res.status == 200){
         this.service.hideSpinner()
            if (this.action == 'BLOCK') {
           $('#block').modal('hide');
@@ -230,19 +267,19 @@ else{
           $('#active').modal('hide');
           this.service.toasterSucc('User Activated Successfully');
         }
-      //  this.getlist()        
-          } 
-     }, err => {   
-         this.service.hideSpinner();  
-        if (err['status'] == '401') {  
-            this.service.onLogout();   
-           this.service.toasterErr('Unauthorized Access'); 
-         } 
-      else {    
-          this.service.toasterErr('Something Went Wrong');  
-        } 
+      //  this.getlist()
+          }
+     }, err => {
+         this.service.hideSpinner();
+        if (err['status'] == '401') {
+            this.service.onLogout();
+           this.service.toasterErr('Unauthorized Access');
+         }
+      else {
+          this.service.toasterErr('Something Went Wrong');
+        }
      })
-  } 
+  }
 
    //---------------------------------- Delete / Block Function--------------//
    openModal(action, userId) {
