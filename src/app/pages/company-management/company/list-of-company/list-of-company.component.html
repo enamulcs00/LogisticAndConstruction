@@ -13,17 +13,19 @@
                                         <!-- <select class="selectBox">
                                             <option>Select Company Name</option>
                                         </select> -->
-                                        <select id="CompanyName" class="form-control selectBox" (change)="searchLocation($event)" formControlName="companyName">
+                                        <select id="CompanyName" class="form-control selectBox"  formControlName="companyName">
                                             <option value="">Company name</option>
-                                            <option *ngFor="let company of companyNameArr" value={{company.id}}>{{company.name}}</option>
+                                            <option *ngFor="let company of companyNameArr" >{{company.name}}</option>
                                         </select>
                                     </div>
                                     <div class="col-lg-2 mt-4 pl-0">
                                         <label>Location</label><br>
-                                        <select class="form-control selectBox" formControlName="location">
+                                        <!-- <select class="form-control selectBox" formControlName="location">
                                             <option  value="">Location</option>
                                             <option *ngFor="let site of siteArr" value={{site.id}}>{{site.address}}</option>
-                                        </select>
+                                        </select> -->
+                                        <input type="text" id="Mobile" class="form-control selectBox"
+                                        placeholder="Location" formControlName="location" >
                                     </div>
                                     <div class="col-lg-2 mt-4 pl-0">
                                         <label>State</label><br>
@@ -104,8 +106,8 @@
                                                             class="fa fa-ban"></i></a>
                                                 </td>
                                             </tr> -->
-                                            <tr *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber,totalItems: totalRecords };let i = index ">
-                                                <td>{{i+1}}</td>
+                                            <tr *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: currentPage,totalItems: totalRecords };let i = index ">
+                                                <td>{{itemsPerPage*(this.currentPage-1)+i+1}}</td>
                                                 <td>{{item?.companyName}}</td>
                                                 <td>{{item?.baseLocationAddress}}</td>
                                                 <td>{{item?.phoneNo}}</td>

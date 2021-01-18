@@ -19,8 +19,8 @@ export class ListOfCompanyComponent implements OnInit {
   id: number;
   deleted: any;
   totalRecords: any
-  pageNumber:number=0
-  itemsPerPage:number=5
+  currentPage: number = 1
+  itemsPerPage: number = 5
   userid: number;
   userStatus: any;
   fromDate: any;
@@ -28,7 +28,6 @@ export class ListOfCompanyComponent implements OnInit {
   maxToDate: string;
   minToDate: any;
   toDate: any;
-  pageSize: any=5;
   action: any;
   userstatus: any;
   stateArr: any = [];
@@ -83,7 +82,7 @@ export class ListOfCompanyComponent implements OnInit {
   //-----------------------------list api integration --------------------------------//
   getCompanyList(){
     this.service.showSpinner()
-    var url="account/admin/filter-user-details?roleStatus="+'COMPANY'
+    var url="account/admin/filter-user-details?roleStatus="+'COMPANY' + '&page=' + (this.currentPage - 1) + '&pageSize='+this.itemsPerPage
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
@@ -147,34 +146,45 @@ export class ListOfCompanyComponent implements OnInit {
   }
  
   // ------------------------pagination -------------------------//
-  pagination(page){
-    this.totalRecords=[]
-    console.log('jh', page);
-    this.pageNumber=page;
-    console.log('jh', this.pageNumber);
-
+ 
+  pagination(page) {
+    this.currentPage = page;
     this.getCompanyList()
   }
+
   //------------------------------filter by search api integration ---------------------------------//
   search() {
    
     if(this.userForm.value.companyName && this.userForm.value.location && this.userForm.value.state && this.userForm.value.city && this.userForm.value.phoneNo){
       var url="account/admin/filter-user-details?roleStatus="+'COMPANY' + '&companyName='+this.userForm.value.companyName + '&siteLocation='+this.userForm.value.location
       + '&state='+this.userForm.value.state + '&city='+this.userForm.value.city + '&phoneNo='+this.userForm.value.phoneNo
+      + '&page=' + (this.currentPage - 1) + '&pageSize='+this.itemsPerPage
     }
     else if(this.userForm.value.companyName ){
       var url1="account/admin/filter-user-details?roleStatus="+'COMPANY' + '&companyName='+this.userForm.value.companyName
+      + '&page=' + (this.currentPage - 1) + '&pageSize='+this.itemsPerPage
+    }
+    else if(this.userForm.value.location){
+      var url2="account/admin/filter-user-details?roleStatus="+'COMPANY' + '&siteLocation='+this.userForm.value.location
+      + '&page=' + (this.currentPage - 1) + '&pageSize='+this.itemsPerPage
     }
     else if(this.userForm.value.companyName && this.userForm.value.location){
-      var url2="account/admin/filter-user-details?roleStatus="+'COMPANY' + '&companyName='+this.userForm.value.companyName + '&siteLocation='+this.userForm.value.location
+      var url3="account/admin/filter-user-details?roleStatus="+'COMPANY' + '&companyName='+this.userForm.value.companyName + '&siteLocation='+this.userForm.value.location
+      + '&page=' + (this.currentPage - 1) + '&pageSize='+this.itemsPerPage
+    }
+    else if(this.userForm.value.state){
+      var url4="account/admin/filter-user-details?roleStatus="+'COMPANY' + '&state='+this.userForm.value.state 
+      + '&page=' + (this.currentPage - 1) + '&pageSize='+this.itemsPerPage
     }
     else if(this.userForm.value.state && this.userForm.value.city){
-      var url3="account/admin/filter-user-details?roleStatus="+'COMPANY' + '&state='+this.userForm.value.state + '&city='+this.userForm.value.city
+      var url5="account/admin/filter-user-details?roleStatus="+'COMPANY' + '&state='+this.userForm.value.state + '&city='+this.userForm.value.city
+      + '&page=' + (this.currentPage - 1) + '&pageSize='+this.itemsPerPage
     }
     else if(this.userForm.value.phoneNo ){
-      var url4="account/admin/filter-user-details?roleStatus="+'COMPANY' + '&search='+this.userForm.value.phoneNo
+      var url6="account/admin/filter-user-details?roleStatus="+'COMPANY' + '&search='+this.userForm.value.phoneNo
+      + '&page=' + (this.currentPage - 1) + '&pageSize='+this.itemsPerPage
     }
-    this.service.get( url || url1 || url2 || url3 || url4).subscribe((res: any) => {
+    this.service.get( url || url1 || url2 || url3 || url4 || url5 || url6).subscribe((res: any) => {
       this.listing = res.data.list;
       console.log('kfg',this.listing);
       this.totalRecords = res.data.totalCount
@@ -251,10 +261,10 @@ export class ListOfCompanyComponent implements OnInit {
   
 
 //--------------------------------pageSize ---------------------------------//
-  showList(val) {
-    this.pageSize = val
-    this.resetForm()
-  }
+  // showList(val) {
+  //   this.pageSize = val
+  //   this.resetForm()
+  // }
 
 
   //----------------------------------export User---------------------------------//
