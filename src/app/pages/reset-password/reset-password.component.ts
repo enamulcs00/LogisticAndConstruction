@@ -13,7 +13,7 @@ export class ResetPasswordComponent implements OnInit {
   resetPasswordForm: FormGroup
   clientId: any;
   resetParamData: any;
-  roleArray: any = ['COMPANY', 'FLEET', 'SUPPLIER', 'DRIVER'];
+  roleArray: any = ['COMPANY', 'FLEET', 'SUPPLIER', 'DRIVER','USER'];
 
   constructor(
     private router: Router, public service: MainService, private activatedRoute: ActivatedRoute) {
@@ -70,6 +70,9 @@ export class ResetPasswordComponent implements OnInit {
             break;
           case 'DRIVER':
             this.router.navigate(['/list-of-driver'])
+            break;
+            case 'USER':
+            this.router.navigate(['/list-of-company-user'])
             break;
           default:
             this.router.navigate(['/dashboard'])

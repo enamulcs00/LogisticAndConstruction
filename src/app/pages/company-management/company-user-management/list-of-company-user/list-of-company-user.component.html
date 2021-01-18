@@ -144,7 +144,7 @@
                                                     <a><i class="fa fa-trash" (click)="deleteCompanyUser(item?.userId)"></i></a>
                                                     <a *ngIf="item?.userStatus == 'ACTIVE'" (click)="openModal('BLOCK',item?.userId)"><i class="fa fa-ban" style="color: green;"></i></a>
                                                     <a *ngIf="item?.userStatus == 'BLOCK'" (click)="openModal('ACTIVE',item?.userId)"><i class="fa fa-ban" style="color: red;"></i></a>
-                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword()"></i></a>
+                                                    <a><i class="fa fa-unlock-alt" (click)="resetPassword(item?.userId, item?.phoneNo, item?.email)"></i></a>
                                                 </td>
                                             </tr>
                                         

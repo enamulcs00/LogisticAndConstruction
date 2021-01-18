@@ -355,12 +355,20 @@ export class ListOfCompanyComponent implements OnInit {
   deleteCompany(id){
     this.router.navigate(['/delete-company',id])
   }
-  resetPassword(){
-    console.log("reset password calickw")
-    this.router.navigate(['/reset-password'])
-  }
+ 
   reset(){
     this.userForm.reset()
     this.getCompanyList();
+  }
+  resetPassword(userId, phoneNo, email) {
+    var data = {
+      role: 'COMPANY',
+      clientId: userId,
+      mobileNo: phoneNo,
+      email: email
+    }
+    let paramData = JSON.stringify(data)
+    console.log(paramData)
+    this.router.navigate(['/reset-password'], { queryParams: { paramData: paramData } })
   }
 }

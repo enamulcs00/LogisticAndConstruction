@@ -32,6 +32,7 @@ export class ListOfCompanyQuoteComponent implements OnInit {
   action: any;
   userstatus: any;
   supplierArr: any=[];
+  companyNameArr: any=[];
   constructor(
     private router: Router, public service: MainService
   ) {
@@ -45,6 +46,7 @@ export class ListOfCompanyQuoteComponent implements OnInit {
       'bookingId': new FormControl(''),
       'month': new FormControl(''),
       'supplier': new FormControl(''),
+      'companyName': new FormControl(''),
 
     })
     
@@ -54,6 +56,7 @@ export class ListOfCompanyQuoteComponent implements OnInit {
     this.dateValidation()
      this.getQuoteList();
      this.getSupplierList()
+     this.getCompanyNameList()
   }
 
   onFromChangeDate(){
@@ -87,6 +90,16 @@ export class ListOfCompanyQuoteComponent implements OnInit {
     })
   }
 
+  getCompanyNameList(){
+    this.service.showSpinner()
+    var url="account/admin/get-company-by-company-name"
+    this.service.get(url).subscribe((res:any)=>{
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+         this.companyNameArr = res['data'];
+      }   
+    })
+  }
   getSupplierList(){
     this.service.showSpinner()
     var url="account/get-supplier-name"
@@ -110,31 +123,35 @@ export class ListOfCompanyQuoteComponent implements OnInit {
     let startdate = Date.parse(this.userForm.value.startdate)
     let enddate = Date.parse(this.userForm.value.enddate)
     var search = this.userForm.value.searchText;
-    if( this.userForm.value.bookingId && this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.supplier && this.userForm.value.month){
+    if( this.userForm.value.bookingId && this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.supplier && this.userForm.value.month && this.userForm.value.companyName){
       var url="account/admin/filter-client-request-details?fromDate="+startdate+'&toDate='+enddate+'&months='+this.userForm.value.month + '&supplierName='+ this.userForm.value.supplier + '&quotesId=' + this.userForm.value.bookingId
+      + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage +'&companyName=' + this.userForm.value.companyName
+    }
+    else if(this.userForm.value.companyName){
+      var url1="account/admin/filter-client-request-details?companyName="+this.userForm.value.companyName
       + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage
     }
     else if(this.userForm.value.startdate && this.userForm.controls.enddate.value){
-      var url1="account/admin/filter-client-request-details?fromDate="+startdate+'&toDate='+enddate
+      var url2="account/admin/filter-client-request-details?fromDate="+startdate+'&toDate='+enddate
       + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage
     }
 
     else if(this.userForm.value.bookingId){
-      var url2="account/admin/filter-client-request-details?quotesId="+this.userForm.value.bookingId
+      var url3="account/admin/filter-client-request-details?quotesId="+this.userForm.value.bookingId
       + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage
 
     }
     else if(this.userForm.value.month){
-      var url3="account/admin/filter-client-request-details?months="+this.userForm.value.month
+      var url4="account/admin/filter-client-request-details?months="+this.userForm.value.month
       + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage
 
     }
     else if(this.userForm.value.supplier){
-      var url4="account/admin/filter-client-request-details?supplierName="+ this.userForm.value.supplier
+      var url5="account/admin/filter-client-request-details?supplierName="+ this.userForm.value.supplier
       + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage
 
     }
-    this.service.get( url || url1 || url2 ||url3 || url4).subscribe((res: any) => {
+    this.service.get( url || url1 || url2 ||url3 || url4 ||url5).subscribe((res: any) => {
       this.listing = res.data.list;
       console.log('kfg',this.listing);
       this.totalRecords = res.data.totalCount
