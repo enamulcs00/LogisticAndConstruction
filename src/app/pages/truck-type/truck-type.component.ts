@@ -130,8 +130,13 @@ export class TruckTypeComponent implements OnInit {
   }
   //------------------------------delete api integration ----------------------------------//
   deleteUser() {
-    var url = 'account/admin/user-management/delete-user-detail?userIdToDelete=' + (this.userid) + '&ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location'));
-    this.service.get(url).subscribe((res: any) => {
+    let apiReqData = {
+      truckTypeId: this.userid,
+      isDeleted: true
+    }
+    // var url = 'account/admin/user-management/delete-user-detail?userIdToDelete=' + (this.userid) + '&ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location'));
+    var url = 'account/admin/changeStatus-truckType?userIdToDelete=' + (this.userid);
+    this.service.post(url, apiReqData).subscribe((res: any) => {
       this.deleted = res
       if (this.deleted.ststus = 200) {
         $('#deleteModal').modal('hide')

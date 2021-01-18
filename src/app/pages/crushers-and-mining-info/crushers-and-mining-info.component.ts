@@ -65,7 +65,7 @@ export class CrushersAndMiningInfoComponent implements OnInit {
   // ------------ update creusher and mining --------------------- //
   updateCrusherAndMining() {
     var apiReq = {
-      contentIdd: this.data.staticId,
+      contentId: this.data.staticId,
       "pageKey": "crushers and mining",
       "pageData": this.data.pageData
     }
