@@ -107,8 +107,8 @@
                                                             class="fa fa-ban"></i></a>
                                                 </td>
                                             </tr> -->
-                                            <tr  *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: pageNumber,totalItems: totalRecords };let i = index ">
-                                                <td>{{i+1}}</td>
+                                            <tr  *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: currentPage,totalItems: totalRecords };let i = index ">
+                                                <td>{{itemsPerPage*(this.currentPage-1)+i+1}}</td>
                                                 <td>{{item?.inVoiceNoForCompany}}</td>
                                                 <td>{{item?.inVoiceDateForCompany}}</td>
                                                 <td>{{item?.bookingId}}</td>

@@ -20,8 +20,8 @@ export class ListOfCompanyBillingComponent implements OnInit {
   id: number;
   deleted: any;
   totalRecords: any
-  pageNumber:number=0
-  itemsPerPage:number=5
+  currentPage: number = 1
+  itemsPerPage: number = 10
   userid: number;
   userStatus: any;
   fromDate: any;
@@ -29,7 +29,6 @@ export class ListOfCompanyBillingComponent implements OnInit {
   maxToDate: string;
   minToDate: any;
   toDate: any;
-  pageSize: any=5;
   action: any;
   userstatus: any;
   supplierArr: any=[];
@@ -77,7 +76,7 @@ export class ListOfCompanyBillingComponent implements OnInit {
   //-----------------------------list api integration --------------------------------//
   getCompanyBillingList(){
     this.service.showSpinner()
-    var url="account/admin/filter-fleet-request-details?months=00"
+    var url="account/admin/filter-fleet-request-details?months=00"  + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
@@ -102,12 +101,9 @@ export class ListOfCompanyBillingComponent implements OnInit {
   }
 
   // ------------------------pagination -------------------------//
-  pagination(page){
-    this.totalRecords=[]
-    console.log('jh', page);
-    this.pageNumber=page;
-    console.log('jh', this.pageNumber);
-
+  
+  pagination(page) {
+    this.currentPage = page;
     this.getCompanyBillingList()
   }
   //------------------------------filter by search api integration ---------------------------------//
@@ -117,21 +113,26 @@ export class ListOfCompanyBillingComponent implements OnInit {
     var search = this.userForm.value.searchText;
     if( this.userForm.value.invoiceNo && this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.supplier && this.userForm.value.month){
       var url="account/admin/filter-fleet-request-details?fromDate="+startdate+'&toDate='+enddate+'&months='+this.userForm.value.month + '&supplierName='+ this.userForm.value.supplier + '&bookingId=' + this.userForm.value.invoiceNo+'&months='+ "00"
+      + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage
     }
     else if(this.userForm.value.startdate && this.userForm.controls.enddate.value){
       var url1="account/admin/filter-fleet-request-details?fromDate="+startdate+'&toDate='+enddate +'&months='+ "00"
+      + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage
     }
 
     else if(this.userForm.value.invoiceNo){
       var url2="account/admin/filter-fleet-request-details?bookingId="+this.userForm.value.invoiceNo+'&months='+ "00"
+      + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage
 
     }
     else if(this.userForm.value.month){
       var url3="account/admin/filter-fleet-request-details?months="+this.userForm.value.month
+      + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage
 
     }
     else if(this.userForm.value.supplier){
       var url4="account/admin/filter-fleet-request-details?supplierName="+ this.userForm.value.supplier+'&months='+ "00"
+      + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage
 
     }
     this.service.get( url || url1 || url2 ||url3 || url4).subscribe((res: any) => {
@@ -165,10 +166,10 @@ export class ListOfCompanyBillingComponent implements OnInit {
 
 
 //--------------------------------pageSize ---------------------------------//
-  showList(val) {
-    this.pageSize = val
-    this.resetForm()
-  }
+  // showList(val) {
+  //   this.pageSize = val
+  //   this.resetForm()
+  // }
 
 
  
