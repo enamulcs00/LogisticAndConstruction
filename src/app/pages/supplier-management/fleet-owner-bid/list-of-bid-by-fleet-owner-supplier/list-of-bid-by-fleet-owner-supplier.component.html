@@ -9,7 +9,7 @@
                                 <div class="row">
                                     <div class="col-lg-2 pr-0 mt-4">
                                         <label>Booking ID</label><br>
-                                        <input class="form-control" type="text" [(ngModel)]="BookingId" placeholder="Booking ID">
+                                        <input class="form-control"(keypress)="service.numberOnly($event)" type="text" [(ngModel)]="BookingId" placeholder="Booking ID">
                                     </div>
                                     <div class="col-lg-2 pr-0 mt-4">
                                         <label>Supplier</label><br>
@@ -27,13 +27,13 @@
                                           </option>
                                       </select>
                                     </div>
-                                    <div class="col-lg-2 pr-0 mt-4">
+                                    <div class="col-lg-3 pr-0 mt-4">
                                         <label>From Date</label><br>
                                         <input type="date" max="{{minAge | date:'yyyy-MM-dd'}}" name="formdate"
                                         [(ngModel)]="calender.formdate" (change)="formdate()"
                                         class="form-control datepicker" placeholder="Search by date">
                                     </div>
-                                    <div class="col-lg-2 pr-0 mt-4">
+                                    <div class="col-lg-3 pr-0 mt-4">
                                         <label>To Date</label><br>
                                         <input type="date" name="todate" min="{{fromDate | date:'yyyy-MM-dd'}}"
                                         (change)="todate()" [disabled]="!calender.formdate"

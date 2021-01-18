@@ -9,7 +9,7 @@
                                 <div class="row">
                                     <div class="col-lg-2 pr-0 mt-4">
                                         <label class="ml-3">Invoice No</label><br>
-                                        <input type="text" class="form-control" [(ngModel)]="InvoiceNoForSupplier" placeholder="Invoice No">
+                                        <input type="text" (keypress)="service.numberOnly($event)" class="form-control" [(ngModel)]="InvoiceNoForSupplier" placeholder="Invoice No">
                                     </div>
                                     <div class="col-lg-2 pr-0 mt-4">
                                         <label class="ml-5">Supplier</label><br>
@@ -27,13 +27,13 @@
                                           </option>
                                       </select>
                                     </div>
-                                    <div class="col-lg-2 pr-0 mt-4">
+                                    <div class="col-lg-3 pr-0 mt-4">
                                         <label class="ml-5">From Date</label><br>
                                         <input type="date" max="{{minAge | date:'yyyy-MM-dd'}}" name="formdate"
                                     [(ngModel)]="calender.formdate" (change)="formdate()"
                                     class="form-control datepicker" placeholder="Search by date">
                                     </div>
-                                    <div class="col-lg-2 pr-0 mt-4">
+                                    <div class="col-lg-3 pr-0 mt-4">
                                         <label class="ml-5">To Date</label><br>
                                         <input type="date" name="todate" min="{{fromDate | date:'yyyy-MM-dd'}}"
                                         (change)="todate()" [disabled]="!calender.formdate"
@@ -62,7 +62,7 @@
                                                 <th scope="col">Weight</th>
                                                 <th scope="col">Delivery Date</th>
                                                 <th scope="col">Location</th>
-                                                <th scope="col">User Name</th>
+                                                <!-- <th scope="col">User Name</th> -->
                                                 <th scope="col">Amount</th>
                                                 <th scope="col">PO Number</th>
                                                 <th scope="col">Vehicle Number</th>
@@ -89,7 +89,7 @@
                                                 <td>{{item?.deliveryDate | date}}</td>
 
                                                 <td>{{item?.location || 'NA'}}</td>
-                                                <td>{{item?.userName || 'NA'}}</td>
+                                                <!-- <td>{{item?.userName || 'NA'}}</td> -->
                                                 <td>{{item?.bidAmount || 'NA'}}</td>
                                                 <td>{{item?.poNumber || 'NA'}}</td>
                                                 <td>{{item?.truckNumber || 'NA'}}</td>

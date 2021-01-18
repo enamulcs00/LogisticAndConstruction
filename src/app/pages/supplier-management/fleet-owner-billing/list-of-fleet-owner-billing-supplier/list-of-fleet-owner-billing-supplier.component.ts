@@ -37,6 +37,7 @@ export class ListOfFleetOwnerBillingSupplierComponent implements OnInit {
   currentPage: number = 1
   itemsPerPage: number = 10
   totalItems: any
+  fleetOwner:any = ''
   months:any = ''
   fromDate: any = ''
   twoDate: any = ''
@@ -81,19 +82,20 @@ export class ListOfFleetOwnerBillingSupplierComponent implements OnInit {
 //----------------------date validation ----------------------//
 
   search() {
-    if (this.InvoiceNoForSupplier || this.firstName || this.months || this.twoDate || this.fromDate) {
+    if (this.InvoiceNoForSupplier || this.firstName || this.months || this.twoDate || this.fromDate || this.fleetOwner) {
       this.currentPage = 1;
       this.getlist()
     }
   }
   reset() {
-    if (this.InvoiceNoForSupplier || this.firstName || this.months || this.twoDate || this.fromDate) {
+    if (this.InvoiceNoForSupplier || this.firstName || this.months || this.twoDate || this.fromDate || this.fleetOwner) {
       this.InvoiceNoForSupplier = ''
       this.firstName = ''
       this.months = ''
 
       this.calender = { todate: '', formdate: '' }
       this.twoDate = ''
+      this.fleetOwner = ''
       this.fromDate = ''
       this.currentPage = 1
       setTimeout(() => {
@@ -116,7 +118,7 @@ export class ListOfFleetOwnerBillingSupplierComponent implements OnInit {
   getlist() {
     this.service.showSpinner()
     var url = `account/admin/filter-fleet-request-details?&page=${(this.currentPage - 1) + ('&pageSize=' + this.itemsPerPage)
-      + (this.InvoiceNoForSupplier ? ('&inVoiceNoForSupplier=' + this.InvoiceNoForSupplier) : '') + (this.firstName ? ('&supplierName=' + this.firstName) : '')
+      + (this.InvoiceNoForSupplier ? ('&inVoiceNoForSupplier=' + this.InvoiceNoForSupplier) : '') + (this.firstName ? ('&supplierName=' + this.firstName) : '') + (this.fleetOwner ? ('&transpotarName=' + this.fleetOwner) : '')
       + (this.months ? ('&months=' + this.months) : ('&months=00'))
       + (this.fromDate ? ('&fromDate=' + this.fromDate) : '') + (this.twoDate ? ('&toDate=' + this.twoDate) : '')}`
     this.service.get(url).subscribe((res: any) => {

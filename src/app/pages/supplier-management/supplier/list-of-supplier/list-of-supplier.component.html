@@ -46,7 +46,7 @@
                                          <option *ngFor="let item of supplierNameArray"
                                             [value]="item?.phoneNo">{{item?.phoneNo}}</option>
                                      </select> -->
-                                     <input type="text" class="form-control input-field"
+                                     <input type="text" class="form-control input-field"(keypress)="service.numberOnly($event)"
                                         placeholder="Mobile no" [(ngModel)]="phoneNo">
                                 </div>
                                 <!-- <div class="col-lg-2 pr-0 mt-4">

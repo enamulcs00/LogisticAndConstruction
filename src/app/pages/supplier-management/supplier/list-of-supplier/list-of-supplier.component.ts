@@ -97,7 +97,7 @@ export class ListOfSupplierComponent implements OnInit {
   getlist(){
 
 let url = `account/admin/filter-user-details?roleStatus=SUPPLIER&page=${(this.currentPage - 1) + ('&pageSize=' + this.itemsPerPage)
-+ (this.location ? ('&siteLocation=' + this.location) : '') + (this.firstName ? ('&firstName=' + this.firstName) : '')
++ (this.location ? ('&baseLocationAddress=' + this.location) : '') + (this.firstName ? ('&firstName=' + this.firstName) : '')
 + (this.state ? ('&state=' + this.state) : '') + (this.city ? ('&city=' + this.city) : '') + (this.phoneNo ? ('&phoneNo=' + this.phoneNo) : '')}`
     this.service.showSpinner()
 

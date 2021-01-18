@@ -18,7 +18,7 @@
                                 <div class="col-lg-2 pr-0 mt-4">
                                     <label class="ml-5">Supplier</label><br>
                                      <select class="selectBox form-control" [(ngModel)]="firstName">
-                                         <option>Supplier</option>
+                                         <option value="">Supplier</option>
                                          <option *ngFor="let item of supplierNameArray" [value]="item?.supplierName">
                                           {{item?.supplierName}}</option>
                                      </select>
@@ -31,18 +31,17 @@
                                       </option>
                                   </select>
                                 </div>
-                                <div class="col-lg-2 pr-0 mt-4">
+                                <div class="col-lg-3 pr-0 mt-4">
                                     <label class="ml-5">From Date</label><br>
                                     <input type="date" max="{{minAge | date:'yyyy-MM-dd'}}" name="formdate"
                                     [(ngModel)]="calender.formdate" (change)="formdate()"
-                                    class="form-control datepicker" placeholder="Search by date">
+                                    class="form-control">
                                 </div>
-                                <div class="col-lg-2 pr-0 mt-4">
+                                <div class="col-lg-3 pr-0 mt-4">
                                     <label class="ml-5">To Date</label><br>
                                     <input type="date" name="todate" min="{{fromDate | date:'yyyy-MM-dd'}}"
                                     (change)="todate()" [disabled]="!calender.formdate"
-                                    [(ngModel)]="calender.todate" class="form-control datepicker"
-                                    placeholder="Search by date">
+                                    [(ngModel)]="calender.todate" class="form-control">
                                 </div>
 
                             </div>
