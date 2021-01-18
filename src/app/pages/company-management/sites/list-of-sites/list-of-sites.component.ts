@@ -20,8 +20,8 @@ export class ListOfSitesComponent implements OnInit {
   id: number;
   deleted: any;
   totalRecords: any
-  pageNumber:number=0
-  itemsPerPage:number=5
+  currentPage: number = 1
+  itemsPerPage: number = 10
   userid: number;
   userStatus: any;
   fromDate: any;
@@ -29,7 +29,6 @@ export class ListOfSitesComponent implements OnInit {
   maxToDate: string;
   minToDate: any;
   toDate: any;
-  pageSize: any=5;
   action: any;
   userstatus: any;
   companyNameArr: any=[];
@@ -51,7 +50,7 @@ export class ListOfSitesComponent implements OnInit {
       'location': new FormControl(''),
       'state': new FormControl('', ),
       'city': new FormControl('', ),
-      'phoneNo': new FormControl('', [Validators.pattern(/^[1-9][0-9]{9,13}$/)]),
+      'email': new FormControl('', [Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,9}|[0-9]{1,3})(\]?)$/i)]),
     })
     
     let date = new Date()
@@ -84,7 +83,7 @@ export class ListOfSitesComponent implements OnInit {
   //-----------------------------list api integration --------------------------------//
   getSiteList(){
     this.service.showSpinner()
-    var url="account/admin/filter-SiteBy-admin"
+    var url="account/admin/filter-SiteBy-admin?page=" + (this.currentPage - 1) + '&pageSize='+this.itemsPerPage
     this.service.get(url).subscribe((res:any)=>{
       this.service.hideSpinner()
       if (res['status'] == 200) {
@@ -150,34 +149,41 @@ export class ListOfSitesComponent implements OnInit {
 
 
   // ------------------------pagination -------------------------//
-  pagination(page){
-    this.totalRecords=[]
-    console.log('jh', page);
-    this.pageNumber=page;
-    console.log('jh', this.pageNumber);
 
+  pagination(page) {
+    this.currentPage = page;
     this.getSiteList()
   }
+
   //------------------------------filter by search api integration ---------------------------------//
   search() {
    
     if(this.userForm.value.companyName && this.userForm.value.location && this.userForm.value.state && this.userForm.value.city && this.userForm.value.phoneNo){
-      var url="account/admin/filter-SiteBy-admin?roleStatus="+'COMPANY' + '&companyName='+this.userForm.value.companyName + '&siteLocation='+this.userForm.value.location
-      + '&state='+this.userForm.value.state + '&city='+this.userForm.value.city + '&phoneNo='+this.userForm.value.phoneNo
+      var url="account/admin/filter-SiteBy-admin?roleStatus="+'COMPANY' + '&companyId='+this.userForm.value.companyName + '&location='+this.userForm.value.location
+      + '&state='+this.userForm.value.state + '&city='+this.userForm.value.city + '&email='+this.userForm.value.email
+      + '&page=' + (this.currentPage - 1) + '&pageSize='+this.itemsPerPage
     }
     else if(this.userForm.value.companyName ){
-      var url1="account/admin/filter-SiteBy-admin?roleStatus="+'COMPANY' + '&companyName='+this.userForm.value.companyName
+      var url1="account/admin/filter-SiteBy-admin?roleStatus="+'COMPANY' + '&companyId='+this.userForm.value.companyName
+      + '&page=' + (this.currentPage - 1) + '&pageSize='+this.itemsPerPage
     }
     else if(this.userForm.value.companyName && this.userForm.value.location){
-      var url2="account/admin/filter-SiteBy-admin?roleStatus="+'COMPANY' + '&companyName='+this.userForm.value.companyName + '&siteLocation='+this.userForm.value.location
+      var url2="account/admin/filter-SiteBy-admin?roleStatus="+'COMPANY' + '&companyId='+this.userForm.value.companyName + '&location='+this.userForm.value.location
+      + '&page=' + (this.currentPage - 1) + '&pageSize='+this.itemsPerPage
     }
     else if(this.userForm.value.state && this.userForm.value.city){
       var url3="account/admin/filter-SiteBy-admin?roleStatus="+'COMPANY' + '&state='+this.userForm.value.state + '&city='+this.userForm.value.city
+      + '&page=' + (this.currentPage - 1) + '&pageSize='+this.itemsPerPage
     }
-    else if(this.userForm.value.phoneNo ){
-      var url4="account/admin/filter-SiteBy-admin?roleStatus="+'COMPANY' + '&search='+this.userForm.value.phoneNo
+    else if(this.userForm.value.email ){
+      var url4="account/admin/filter-SiteBy-admin?roleStatus="+'COMPANY' + '&email='+this.userForm.value.email
+      + '&page=' + (this.currentPage - 1) + '&pageSize='+this.itemsPerPage
     }
-    this.service.get( url || url1 || url2 || url3 || url4).subscribe((res: any) => {
+    else if(this.userForm.value.state ){
+      var url5="account/admin/filter-SiteBy-admin?roleStatus="+'COMPANY' + '&state='+this.userForm.value.state 
+      + '&page=' + (this.currentPage - 1) + '&pageSize='+this.itemsPerPage
+    }
+    this.service.get( url || url1 || url2 || url3 || url4 || url5).subscribe((res: any) => {
       this.listing = res.data.list;
       console.log('kfg',this.listing);
       this.totalRecords = res.data.totalCount
@@ -251,10 +257,10 @@ export class ListOfSitesComponent implements OnInit {
   }
 
 //--------------------------------pageSize ---------------------------------//
-  showList(val) {
-    this.pageSize = val
-    this.resetForm()
-  }
+  // showList(val) {
+  //   this.pageSize = val
+  //   this.resetForm()
+  // }
 
 
   //----------------------------------export User---------------------------------//
@@ -344,6 +350,7 @@ export class ListOfSitesComponent implements OnInit {
     this.router.navigate(['/delete-site', id])
   }
   reset(){
+    this.siteArr=[]
     this.userForm.reset()
     this.getSiteList();
   }

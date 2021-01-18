@@ -20,7 +20,7 @@ export class ListOfCompanyComponent implements OnInit {
   deleted: any;
   totalRecords: any
   currentPage: number = 1
-  itemsPerPage: number = 5
+  itemsPerPage: number = 10
   userid: number;
   userStatus: any;
   fromDate: any;
@@ -156,7 +156,7 @@ export class ListOfCompanyComponent implements OnInit {
   search() {
    
     if(this.userForm.value.companyName && this.userForm.value.location && this.userForm.value.state && this.userForm.value.city && this.userForm.value.phoneNo){
-      var url="account/admin/filter-user-details?roleStatus="+'COMPANY' + '&companyName='+this.userForm.value.companyName + '&siteLocation='+this.userForm.value.location
+      var url="account/admin/filter-user-details?roleStatus="+'COMPANY' + '&companyName='+this.userForm.value.companyName + '&baseLocationAddress='+this.userForm.value.location
       + '&state='+this.userForm.value.state + '&city='+this.userForm.value.city + '&phoneNo='+this.userForm.value.phoneNo
       + '&page=' + (this.currentPage - 1) + '&pageSize='+this.itemsPerPage
     }
@@ -165,11 +165,11 @@ export class ListOfCompanyComponent implements OnInit {
       + '&page=' + (this.currentPage - 1) + '&pageSize='+this.itemsPerPage
     }
     else if(this.userForm.value.location){
-      var url2="account/admin/filter-user-details?roleStatus="+'COMPANY' + '&siteLocation='+this.userForm.value.location
+      var url2="account/admin/filter-user-details?roleStatus="+'COMPANY' + '&baseLocationAddress='+this.userForm.value.location
       + '&page=' + (this.currentPage - 1) + '&pageSize='+this.itemsPerPage
     }
     else if(this.userForm.value.companyName && this.userForm.value.location){
-      var url3="account/admin/filter-user-details?roleStatus="+'COMPANY' + '&companyName='+this.userForm.value.companyName + '&siteLocation='+this.userForm.value.location
+      var url3="account/admin/filter-user-details?roleStatus="+'COMPANY' + '&companyName='+this.userForm.value.companyName + '&baseLocationAddress='+this.userForm.value.location
       + '&page=' + (this.currentPage - 1) + '&pageSize='+this.itemsPerPage
     }
     else if(this.userForm.value.state){
