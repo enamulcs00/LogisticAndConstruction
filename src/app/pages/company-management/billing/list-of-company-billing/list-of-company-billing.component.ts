@@ -32,6 +32,7 @@ export class ListOfCompanyBillingComponent implements OnInit {
   action: any;
   userstatus: any;
   supplierArr: any=[];
+  companyNameArr: any=[];
 
   constructor(
     private router: Router, public service: MainService
@@ -46,6 +47,7 @@ export class ListOfCompanyBillingComponent implements OnInit {
       'enddate': new FormControl('',),
       'month': new FormControl(''),
       'supplierName': new FormControl(''),
+      'companyName': new FormControl(''),
     })
     
     let date = new Date()
@@ -54,6 +56,7 @@ export class ListOfCompanyBillingComponent implements OnInit {
     this.dateValidation()
     this.getSupplierList()
      this.getCompanyBillingList();
+     this.getCompanyNameList()
   }
 
   onFromChangeDate(){
@@ -89,6 +92,17 @@ export class ListOfCompanyBillingComponent implements OnInit {
     })
   }
 
+  getCompanyNameList(){
+    this.service.showSpinner()
+    var url="account/admin/get-company-by-company-name"
+    this.service.get(url).subscribe((res:any)=>{
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+         this.companyNameArr = res['data'];
+      }   
+    })
+  }
+  
   getSupplierList(){
     this.service.showSpinner()
     var url="account/get-supplier-name"
@@ -111,9 +125,9 @@ export class ListOfCompanyBillingComponent implements OnInit {
     let startdate = Date.parse(this.userForm.value.startdate)
     let enddate = Date.parse(this.userForm.value.enddate)
     var search = this.userForm.value.searchText;
-    if( this.userForm.value.invoiceNo && this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.supplier && this.userForm.value.month){
+    if( this.userForm.value.invoiceNo && this.userForm.value.startdate && this.userForm.controls.enddate.value && this.userForm.value.supplier && this.userForm.value.month && this.userForm.value.companyName){
       var url="account/admin/filter-fleet-request-details?fromDate="+startdate+'&toDate='+enddate+'&months='+this.userForm.value.month + '&supplierName='+ this.userForm.value.supplier + '&bookingId=' + this.userForm.value.invoiceNo+'&months='+ "00"
-      + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage
+      + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage +'&companyName=' + this.userForm.value.companyName
     }
     else if(this.userForm.value.startdate && this.userForm.controls.enddate.value){
       var url1="account/admin/filter-fleet-request-details?fromDate="+startdate+'&toDate='+enddate +'&months='+ "00"
@@ -135,7 +149,12 @@ export class ListOfCompanyBillingComponent implements OnInit {
       + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage
 
     }
-    this.service.get( url || url1 || url2 ||url3 || url4).subscribe((res: any) => {
+    else if(this.userForm.value.companyName){
+      var url5="account/admin/filter-fleet-request-details?companyName="+ this.userForm.value.companyName+'&months='+ "00"
+      + '&page=' + (this.currentPage - 1) + '&pageSize=' + this.itemsPerPage
+
+    }
+    this.service.get( url || url1 || url2 ||url3 || url4 ||url5).subscribe((res: any) => {
       this.listing = res.data.list;
       console.log('kfg',this.listing);
       this.totalRecords = res.data.totalCount
