@@ -126,7 +126,7 @@
                                                 <td>{{item?.poNumber}}</td>
                                                 <td>{{item?.truckNumber}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye" (click)="userDetails(item?.quotesId,item?.supplierName)"></i></a>
+                                                    <a (click)="userDetails(item?.quotesId,item?.supplierName)"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                                 </td>
                                             </tr>
                                          
@@ -162,34 +162,7 @@
 
 <app-footer></app-footer>
 
-<!-- <div id = "pdfcontent">
-    <div class="upload-info more-content">
-        <p class="up-load head-ings">USER DETAILS</p>
-        <table>
-            <thead>
-                <tr>
-                    <th >S.No</th>
-                    <th >User Name</th>
-                    <th >Email</th>
-                    <th >User ID</th>
-                    <th >Phone Number</th>
-                    <th >Status</th>
-                    <th >Registration Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of listing">
-                    <td>{{item?.firstName}}{{item?.lastName}}</td>
-                    <td>{{item?.email}}</td>
-                    <td>{{item?.userId}}</td>
-                    <td>{{item?.phoneNo}}</td>
-                    <td>{{item?.userStatus}}</td>
-                    <td>{{item?.createTime | date:'medium'}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>       
-</div> -->
+
 
 
 

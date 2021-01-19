@@ -8,6 +8,10 @@ import { MainService } from 'src/app/provider/main.service';
   styleUrls: ['./view-supplier-billing.component.css']
 })
 export class ViewSupplierBillingComponent implements OnInit {
+  MapUrl = '';
+  weightSlipUrl = '';
+  selfiUrl = '';
+  InvoiceUrl = '';
 
   id:any;
   bookingItems:any=[];
@@ -29,6 +33,8 @@ export class ViewSupplierBillingComponent implements OnInit {
     console.log('Booking',this.bookingItems)
     this.service.hideSpinner()
     this.service.toasterSucc(res.message)
+    this.weightSlipUrl = this.bookingItems?.uploadSlip;
+    this.selfiUrl = this.bookingItems?.uploadSelfi
   }
   else {
     this.service.hideSpinner()

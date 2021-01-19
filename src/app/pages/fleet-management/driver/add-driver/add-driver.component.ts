@@ -25,9 +25,9 @@ export class AddDriverComponent implements OnInit {
       'aadharCardNo': new FormControl('', Validators.required),
       'companyName': new FormControl('', Validators.required),
       'drivingLicenceNo': new FormControl('', Validators.required),
-      'firstName': new FormControl('', Validators.required),
-      'lastName': new FormControl('', Validators.required),
-      'phoneNo': new FormControl('', Validators.required)
+      'firstName': new FormControl('',[Validators.required, Validators.pattern(/^[a-zA-Z ]*$/i)]),
+      'lastName': new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]*$/i)]),
+      'phoneNo': new FormControl('',[Validators.required, Validators.pattern(/^[1-9][0-9]{9,13}$/)])
     })
   }
 

@@ -33,9 +33,9 @@ export class EditDriverComponent implements OnInit {
       'aadharCardNo': new FormControl('', Validators.required),
       'companyName': new FormControl('', Validators.required),
       'drivingLicenceNo': new FormControl('', Validators.required),
-      'firstName': new FormControl('', Validators.required),
-      'lastName': new FormControl('', Validators.required),
-      'phoneNo': new FormControl('', Validators.required)
+      'firstName': new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]*$/i)]),
+      'lastName': new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z ]*$/i)]),
+      'phoneNo': new FormControl('', [Validators.required, Validators.pattern(/^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$/)])
     })
   }
 
@@ -82,26 +82,28 @@ export class EditDriverComponent implements OnInit {
     })
   }
 
+  
   // --------------------- edit driver ----------------- //
   editDriver() {
-    console.log("edit driver..")
-    // this.route.navigate(['/edit-driver', this.id])
-    let url = 'account/admin/edit-DriverByAdmin'
     let apiReqData = {
       aadharCardNo: this.editForm.value.aadharCardNo,
       // companyName: this.editForm.value.companyName,
       drivingLicenceNo: this.editForm.value.drivingLicenceNo,
       firstName: this.editForm.value.firstName,
       lastName: this.editForm.value.lastName,
-      phoneNo: this.editForm.value.phoneNo,
+      // phoneNo: this.editForm.value.phoneNo,
+      phoneNo: this.editForm.value.phoneNo.startsWith('+91') ? this.editForm.value.phoneNo : '+91' + this.editForm.value.phoneNo,
       suffixPhoneNo: this.editForm.value.phoneNo,
       roleStatus: "DRIVER",
       fkFleetId: this.editForm.value.companyName,
       "userDetailId": Number(this.id)
     }
+    let url = 'account/admin/edit-DriverByAdmin'
     console.log(apiReqData)
+    this.service.showSpinner()
     this.service.post(url, apiReqData).subscribe((res: any) => {
       console.log(res);
+      this.service.hideSpinner()
       if (res.status == 200) {
         this.service.toasterSucc('Driver updated successfully.')
         this.router.navigate(['/list-of-driver'])

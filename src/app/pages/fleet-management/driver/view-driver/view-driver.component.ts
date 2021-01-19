@@ -19,7 +19,7 @@ export class ViewDriverComponent implements OnInit {
       this.id = params.id
     })
   }
-  
+
   ngOnInit(): void {
     this.editFormValidation();
     this.getlist()
@@ -84,6 +84,10 @@ export class ViewDriverComponent implements OnInit {
 
   editDriver() {
     this.route.navigate(['/edit-driver', this.id])
+  }
+
+  back() {
+    this.route.navigate(['/list-of-driver'])
   }
 
 }

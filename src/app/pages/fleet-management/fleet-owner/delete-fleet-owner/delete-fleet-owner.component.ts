@@ -114,4 +114,8 @@ export class DeleteFleetOwnerComponent implements OnInit {
       }
     })
   }
+
+  cancel() {
+    this.router.navigate(['/list-of-fleet-owner'])
+  }
 }

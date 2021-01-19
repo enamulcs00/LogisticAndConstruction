@@ -42,6 +42,8 @@ export class AddFleetOwnerComponent implements OnInit {
     this.addFormValidation()
     this.getStateList()
     if (this.paramData) {
+      let state = this.paramData.state ? this.paramData.state : ''
+      this.patchCity(state)
       this.addForm.patchValue({
         'firstName': this.paramData.firstName ? this.paramData.firstName : '',
         'lastName': this.paramData.lastName ? this.paramData.lastName : '',
@@ -98,6 +100,25 @@ export class AddFleetOwnerComponent implements OnInit {
       this.service.hideSpinner()
       if (res['status'] == 200) {
         this.cityArr = res['data'];
+      }
+    })
+  }
+
+  // ----------- patch city when comes from unverified signup data page --------------- //
+  patchCity(value) {
+    console.log("city value", value)
+    this.service.showSpinner()
+    this.selectedState = value
+    var url = "account/get-cities-state-wise?stateName=" + this.selectedState
+    this.service.get(url).subscribe((res: any) => {
+      console.log(res)
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        // console.log(res.data.userDetail.city)
+        this.cityArr = res['data'];
+        this.addForm.patchValue({
+          'city': this.paramData.city ? this.paramData.city : ''
+        })
       }
     })
   }
@@ -189,7 +210,6 @@ export class AddFleetOwnerComponent implements OnInit {
   }
 
 
-  /** to call form data infoNotification */
   sendFormDataAadhaar(fileData) {
     let formdata = new FormData()
     formdata.append('file', fileData);
@@ -205,12 +225,9 @@ export class AddFleetOwnerComponent implements OnInit {
         // this.profile = (this.userData) ? this.userData : this.profile;
         // this.service.hideSpinner()
         this.service.toasterSucc(res['message'])
-
         console.log("upload data res=>>", res.data)
         this.aadharCardUrl = res.data
-
         console.log("aadhaar card->", this.aadharCardUrl)
-
       } else {
         this.service.hideSpinner()
         this.service.toasterErr(res.message)
@@ -220,11 +237,11 @@ export class AddFleetOwnerComponent implements OnInit {
       // this.service.toasterErr(res.message)
     });
   }
+
   sendFormDataPan(fileData) {
     let formdata = new FormData()
     formdata.append('file', fileData);
     this.service.showSpinner();
-
     // this.service.postApi('account/upload-file',formdata).subscribe(res => { 
     this.service.post('account/upload-file', formdata).subscribe((res: any) => {
       console.log(res)
@@ -235,12 +252,9 @@ export class AddFleetOwnerComponent implements OnInit {
         // this.profile = (this.userData) ? this.userData : this.profile;
         // this.service.hideSpinner()
         this.service.toasterSucc(res['message'])
-
         console.log("upload data res=>>", res.data)
         this.panCardUrl = res.data
         console.log("pan card->", this.panCardUrl)
-
-
       } else {
         this.service.hideSpinner()
         this.service.toasterErr(res.message)
@@ -250,11 +264,11 @@ export class AddFleetOwnerComponent implements OnInit {
       // this.service.toasterErr(res.message)
     });
   }
+
   sendFormDataGst(fileData) {
     let formdata = new FormData()
     formdata.append('file', fileData);
     this.service.showSpinner();
-
     // this.service.postApi('account/upload-file',formdata).subscribe(res => { 
     this.service.post('account/upload-file', formdata).subscribe((res: any) => {
       console.log(res)
@@ -265,12 +279,9 @@ export class AddFleetOwnerComponent implements OnInit {
         // this.profile = (this.userData) ? this.userData : this.profile;
         // this.service.hideSpinner()
         this.service.toasterSucc(res['message'])
-
         console.log("upload data res=>>", res.data)
         this.gstinUrl = res.data
-
         console.log("gst card->", this.gstinUrl)
-
       } else {
         this.service.hideSpinner()
         this.service.toasterErr(res.message)

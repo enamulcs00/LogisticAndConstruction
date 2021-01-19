@@ -15,10 +15,11 @@
                                 <div class="col-sm-4">
                                     <!-- <input type="text" id="Fname" class="form-control" placeholder="First name"
                                         formControlName="firstName"> -->
-                                        <select name="" id="" class="form-control"  formControlName="companyName">
-                                            <option value="">Fleet Owner Name</option>
-                                            <option *ngFor="let item of listing" [value]="item.userId">{{item.companyName}}</option>
-                                        </select>
+                                    <select name="" id="" class="form-control" formControlName="companyName">
+                                        <option value="">Fleet Owner Name</option>
+                                        <option *ngFor="let item of listing" [value]="item.userId">{{item.companyName}}
+                                        </option>
+                                    </select>
                                 </div>
                                 <label for="Lname" class="col-sm-2 col-form-label">Driver First Name</label>
                                 <div class="col-sm-4">
@@ -29,8 +30,8 @@
                             <div class="form-group row">
                                 <label for="Mobile" class="col-sm-2 col-form-label">Driver Last Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control"
-                                        placeholder="Driver Last Name" formControlName="lastName">
+                                    <input type="text" class="form-control" placeholder="Driver Last Name"
+                                        formControlName="lastName">
                                 </div>
                                 <label for="email" class="col-sm-2 col-form-label">Driver Mobile No.</label>
                                 <div class="col-sm-4">
@@ -47,17 +48,17 @@
                                 </div>
                                 <label for="comanyAddress" class="col-sm-2 col-form-label">Driver Aadhaar No.</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control"
-                                        placeholder="Driver Aadhaar No." formControlName="aadharCardNo">
+                                    <input type="text" class="form-control" placeholder="Driver Aadhaar No."
+                                        formControlName="aadharCardNo">
                                 </div>
                             </div>
                         </form>
                     </div>
                     <br>
                     <div class="head_flt_select">
-                        <div class="head_flt_select input-label" >
-                            <button type="submit" class="btn btn-theme"
-                                (click)="editDriver()">Edit</button>
+                        <div class="head_flt_select input-label">
+                            <button type="submit" class="btn btn-theme mr-3" (click)="back()">Back</button>
+                            <button type="submit" class="btn btn-theme" (click)="editDriver()">Edit</button>
                         </div>
                     </div>
 

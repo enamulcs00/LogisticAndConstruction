@@ -102,4 +102,7 @@ export class DeleteDriverComponent implements OnInit {
     })
   }
 
+  cancel() {
+    this.router.navigate(['/list-of-driver'])
+  }
 }

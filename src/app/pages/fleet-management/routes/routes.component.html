@@ -8,10 +8,6 @@
                             <div class="tab-pane1">
                                 <form [formGroup]="addRouteForm">
                                     <div class="row  d-flex justify-content-end w_100 mt-3">
-                                        <!-- <div class="col-lg-3 mt-5">
-                                        <input style="margin-left: -6%;" class="selectBox" type="text"
-                                            placeholder="Thermal Plant Name">
-                                    </div> -->
                                         <div class="col-lg-3 mt-5">
                                             <select id="city" class="form-control" formControlName="state"
                                                 (change)="searchCity($event)">
@@ -36,11 +32,7 @@
                                         <div class="col-lg-3 mt-5">
                                             <button type="button" class="search-btn"
                                                 style="margin-left: 40%;color: white;width: 66%;height: 101%;"
-                                                (click)="back()">Back</button>
-
-                                            <!-- <button type="button" class="search-btn"
-                                                style="margin-left: 40%;color: white;width: 66%;height: 101%;"
-                                                (click)="deleteRouteOfUser()">delete temp</button> -->
+                                                (click)="back()">Done</button>
                                         </div>
                                     </div>
                                 </form>
@@ -61,65 +53,14 @@
                                                 <td>{{id}}</td>
                                                 <td>{{item?.state}}</td>
                                                 <td>{{item?.cities}}</td>
-                                                <!-- <td>{{item?.userId}}</td> -->
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <!-- <a><i class="fa fa-eye"
-                                                            (click)="userDetails(item?.userId,item?.email)"></i></a> -->
-                                                    <a><i class="fa fa-trash"
-                                                            (click)="openModal('DELETE',item?.routeId)"></i></a>
-                                                    <!-- <a (click)="deleteRouteOfUser(item?.routeId)"><i
-                                                            class="fa fa-trash"></i></a> -->
-                                                    <!-- <a *ngIf="item?.userStatus == 'ACTIVE'"
-                                                        (click)="openModal('BLOCK',item?.userId)"><i class="fa fa-ban"
-                                                            style="color: green;"></i></a>
-                                                    <a *ngIf="item?.userStatus == 'BLOCK'"
-                                                        (click)="openModal('ACTIVE',item?.userId)"><i
-                                                            class="fa fa-ban"></i></a> -->
+                                                    <a (click)="openModal('DELETE',item?.routeId)"><i
+                                                            class="fa fa-trash" aria-hidden="true"></i></a>
                                                 </td>
                                             </tr>
 
-                                            <!-- <tr>
-                                                <td>1</td>
-                                                <td>Uttar Pradesh</td>
-                                                <td>Ghaziabad</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-trash"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Uttar Pradesh</td>
-                                                <td>murdabad</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-trash"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Uttar Pradesh</td>
-                                                <td>Ghaziabad</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-trash"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Uttar Pradesh</td>
-                                                <td>Ghaziabad</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-trash"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Uttar Pradesh</td>
-                                                <td>Ghaziabad</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-trash"></i></a>
-                                                </td>
-                                            </tr> -->
                                         </tbody>
-                                        <!-- <tbody *ngIf="listing?.length==0">
+                                        <tbody *ngIf="routeDataArray?.length == 0">
                                             <tr>
                                                 <td colspan="13" vertical-align="middle">
                                                     <div class="no-record">
@@ -129,57 +70,23 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                        </tbody> -->
+                                        </tbody>
                                     </table>
                                 </div>
                                 <!-- <div class="custom-pagination mt20 " style="display: flex; justify-content:flex-end"
                                     *ngIf="routeDataArray?.length">
                                     <pagination-controls (pageChange)="pagination($event)"></pagination-controls>
                                 </div> -->
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
-
     </div>
-
 </section>
 
 <app-footer></app-footer>
-
-<!-- <div id = "pdfcontent">
-    <div class="upload-info more-content">
-        <p class="up-load head-ings">USER DETAILS</p>
-        <table>
-            <thead>
-                <tr>
-                    <th >S.No</th>
-                    <th >User Name</th>
-                    <th >Email</th>
-                    <th >User ID</th>
-                    <th >Phone Number</th>
-                    <th >Status</th>
-                    <th >Registration Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of listing">
-                    <td>{{item?.firstName}}{{item?.lastName}}</td>
-                    <td>{{item?.email}}</td>
-                    <td>{{item?.userId}}</td>
-                    <td>{{item?.phoneNo}}</td>
-                    <td>{{item?.userStatus}}</td>
-                    <td>{{item?.createTime | date:'medium'}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>       
-</div> -->
-
-
 
 <!-- delete_modal Start -->
 <div class="modal fade global-modal reset-modal" id="deleteModal">

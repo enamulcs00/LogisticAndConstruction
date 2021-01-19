@@ -51,92 +51,46 @@
                             <div class="form-group row">
                                 <label for="state" class="col-sm-2 col-form-label">State</label>
                                 <div class="col-sm-4">
-                                    <!-- <select id="city" class="form-control" formControlName="state">
-                                        <option value="State">State</option>
-                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
-                                    </select> -->
                                     <input type="text" id="city" class="form-control" placeholder="Enter State name"
-                                    formControlName="state">
+                                        formControlName="state">
                                 </div>
                                 <label for="city" class="col-sm-2 col-form-label">City</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="city" class="form-control" placeholder="Enter city name"
                                         formControlName="city">
                                 </div>
-                         
+
                             </div>
                             <div class="form-group row">
                                 <label for="aadhar" class="col-sm-2 col-form-label">Aadhar No</label>
                                 <div class="col-sm-4 input-group">
                                     <input type="text" id="aadhar" class="form-control" placeholder="Enter aadhar no"
-                                         formControlName="aadharCardNo">
-                                    <!-- <div class="input-group-append">
-                                        <button class="btn" type="button"
-                                            style="background-color: green;">Validate</button>
-                                    </div> -->
-                                    <img *ngIf="aadharCardUrl" [src]="aadharCardUrl" alt="" class="view-img">  
-
+                                        formControlName="aadharCardNo">
+                                    <img *ngIf="aadharCardUrl" [src]="aadharCardUrl" alt="" class="view-img">
                                 </div>
                                 <label for="pan" class="col-sm-2 col-form-label">Pan Card</label>
                                 <div class="col-sm-4 input-group">
                                     <input type="text" id="pan" class="form-control" placeholder="Enter Pan no"
-                                         formControlName="panCardNo">
-                                    <!-- <div class="input-group-append">
-                                        <button class="btn" type="button"
-                                            style="background-color: green;">Validate</button>
-                                    </div> -->
-                                    <img *ngIf="panCardUrl" [src]="panCardUrl" alt="" class="view-img"> 
+                                        formControlName="panCardNo">
+                                    <img *ngIf="panCardUrl" [src]="panCardUrl" alt="" class="view-img">
 
                                 </div>
                             </div>
-
-                            <!-- <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"></label>
-                                <div class="col-sm-4">
-                                    <label for="AadharCard" class="btn btn-success btn-block btn-outlined">Upload Aadhar
-                                        Card</label>
-
-                                    <input type="file" id="AadharCard" accept="image/*" style="display: none"
-                                        class="form-control" (change)="uploadAadhaar($event)">
-                                </div>
-                                <label class="col-sm-2 col-form-label"></label>
-                                <div class="col-sm-4">
-                                    <label for="PanCard" class="btn btn-success btn-block btn-outlined">Upload Pan
-                                        Card</label>
-                                    <input type="file" id="PanCard" accept="image/*" style="display: none"
-                                        class="form-control" (change)="uplaodPan($event)">
-                                </div>
-                            </div> -->
 
                             <div class="form-group row">
                                 <label for="gst" class="col-sm-2 col-form-label">GISTN No</label>
                                 <div class="col-sm-4 input-group">
                                     <input type="text" id="gst" class="form-control" placeholder="Enter GISTN no"
-                                         formControlName="gstinNo">
-                                    <!-- <div class="input-group-append">
-                                        <button class="btn" type="button"
-                                            style="background-color: green;">Validate</button>
-                                    </div> -->
-                                    <img *ngIf="gstinUrl" [src]="gstinUrl" alt="" class="view-img"> 
-
+                                        formControlName="gstinNo">
+                                    <img *ngIf="gstinUrl" [src]="gstinUrl" alt="" class="view-img">
                                 </div>
                             </div>
-                            <!-- <div class="form-group row">
-                                <label class="col-sm-2 col-form-label"></label>
-                                <div class="col-sm-4">
-                                    <label for="gstfile" class="btn btn-success btn-block btn-outlined">GISTN
-                                        Copy</label>
-                                    <input type="file" id="gstfile" accept="image/*" style="display: none"
-                                        class="form-control" (change)="uplaodGst($event)">
-                                </div>
-                            </div> -->
                         </form>
                     </div>
                     <br>
                     <div class="head_flt_select">
-                        <div class="head_flt_select input-label" >
-                            <!-- <button  type="submit" class="btn btn-theme"
-                                style="width: 15%;margin-left: 40%;margin-bottom: 3%;" [routerLink]="['/list-of-fleet-owner']">Back</button> -->
+                        <div class="head_flt_select input-label">
+                            <button type="submit" class="btn btn-theme mr-3" (click)="cancel()">Cancel</button>
                             <button type="submit" class="btn btn-theme deleye-btn"
                                 (click)="deleteUser()">Delete</button>
                         </div>

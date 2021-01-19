@@ -92,4 +92,7 @@ export class DeleteCompanyComponent implements OnInit {
       })
     }
   
+    cancel(){
+      this.router.navigateByUrl('/list-of-companies')
+    }
 }

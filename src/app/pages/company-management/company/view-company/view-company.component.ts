@@ -78,5 +78,7 @@ export class ViewCompanyComponent implements OnInit {
     this.router.navigate(['/edit-company',this.userId])
   }
 
-  
+  back(){
+    this.router.navigateByUrl('/list-of-companies')
+  }
 }
