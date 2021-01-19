@@ -95,7 +95,7 @@ export class SidebarComponent implements OnInit {
     }
     // company
     if (this.currUrl == `list-of-companies`) {
-      this.currentText = 'List of Companies';
+      this.currentText = 'Companies';
     }
     if (this.currUrl == `add-company`) {
       this.currentText = 'Add New Company'
@@ -112,7 +112,7 @@ export class SidebarComponent implements OnInit {
 
     // site
     if (this.currUrl == `list-of-sites`) {
-      this.currentText = 'List of Sites';
+      this.currentText = 'Sites';
     }
     if (this.currUrl == `add-site`) {
       this.currentText = 'Add Site';
@@ -169,13 +169,13 @@ export class SidebarComponent implements OnInit {
 
     // ----------------- fleet owner ------------------------------ //
     if (this.currUrl == `list-of-fleet-owner`) {
-      this.currentText = 'List Of Fleet Owners';
+      this.currentText = 'Fleet Owners';
     }
     if (this.currUrl == `add-fleet-owner`) {
       this.currentText = 'Add New Fleet Owner';
     }
     if (this.currUrl == `routes`) {
-      this.currentText = 'Routes';
+      this.currentText = 'Add Routes';
     }
     if (this.currUrl == `view-fleet-owner`) {
       this.currentText = 'View Fleet Owner';
@@ -189,7 +189,7 @@ export class SidebarComponent implements OnInit {
 
     // ------------------ truck ------------------ //
     if (this.currUrl == `list-of-truck`) {
-      this.currentText = 'List Of Trucks';
+      this.currentText = 'Trucks';
     }
     if (this.currUrl == `add-truck`) {
       this.currentText = 'Add Truck';
@@ -226,7 +226,7 @@ export class SidebarComponent implements OnInit {
     }
     // ------------------ driver -------------- //
     if (this.currUrl == `list-of-driver`) {
-      this.currentText = 'Drivers List';
+      this.currentText = 'Drivers';
     }
     if (this.currUrl == `add-driver`) {
       this.currentText = 'Add Driver';
@@ -243,7 +243,7 @@ export class SidebarComponent implements OnInit {
 
     // ----------------- supplier ---------------- //
     if (this.currUrl == `list-of-supplier`) {
-      this.currentText = 'List Of Suppliers';
+      this.currentText = 'Suppliers';
     }
     if (this.currUrl == `add-supplier`) {
       this.currentText = 'Add Suppliers';
@@ -312,7 +312,7 @@ export class SidebarComponent implements OnInit {
 
     // material
     if (this.currUrl == `materials`) {
-      this.currentText = 'Materials';
+      this.currentText = 'Material';
     }
 
     // thermal plant
@@ -327,7 +327,7 @@ export class SidebarComponent implements OnInit {
 
     // signup data
     if (this.currUrl == `signup-data`) {
-      this.currentText = 'List Of Companies';
+      this.currentText = 'Companies';
     }
 
     // contact us

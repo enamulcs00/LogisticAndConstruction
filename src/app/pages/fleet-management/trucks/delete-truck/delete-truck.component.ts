@@ -18,12 +18,12 @@ export class DeleteTruckComponent implements OnInit {
   id: any;
   truckData: any;
 
-  constructor(private activatedRoute:ActivatedRoute,private router: Router, public service: MainService) {
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, public service: MainService) {
     this.activatedRoute.params.subscribe((params) => {
       console.log(params)
       this.id = params.id
     })
-   }
+  }
 
   ngOnInit(): void {
     this.editFormValidation();
@@ -81,7 +81,7 @@ export class DeleteTruckComponent implements OnInit {
     })
   }
 
-  getTruckDetail(){
+  getTruckDetail() {
     // this.service.showSpinner()
     // account/admin/get-truckByAdmin?truckId=1
     // var url="account/admin/user-management/filter-user-details?page="+(this.pageNumber-1) +`&pageSize=${this.pageSize}`
@@ -102,28 +102,31 @@ export class DeleteTruckComponent implements OnInit {
     })
   }
 
-    //------------------------------delete api integration ----------------------------------//
-    deleteTruck() {
-      // var url = 'account/admin/user-management/delete-user-detail?userIdToDelete=' + (this.userid) + '&ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location'));
-      var url = `account/admin/delete-truckByAdmin?truckId=${this.id}`
-      this.service.post(url, '').subscribe((res: any) => {
-        // this.deleted = res
-        if (res.ststus = 200) {
-          // $('#deleteModal').modal('hide')
-          this.service.toasterSucc(res.message);
-          // this.getlist();
-          this.router.navigate(['/list-of-truck'])
-        }
-      }, err => {
-        this.service.hideSpinner();
-        if (err['status'] == '401') {
-          this.service.onLogout();
-          this.service.toasterErr('Unauthorized Access');
-        }
-        else {
-          this.service.toasterErr('Something Went Wrong');
-        }
-      })
-  
-    }
+  //------------------------------delete api integration ----------------------------------//
+  deleteTruck() {
+    // var url = 'account/admin/user-management/delete-user-detail?userIdToDelete=' + (this.userid) + '&ipAddress=' + (localStorage.getItem('ipAddress')) + '&location=' + (localStorage.getItem('location'));
+    var url = `account/admin/delete-truckByAdmin?truckId=${this.id}`
+    this.service.post(url, '').subscribe((res: any) => {
+      // this.deleted = res
+      if (res.ststus = 200) {
+        // $('#deleteModal').modal('hide')
+        this.service.toasterSucc(res.message);
+        // this.getlist();
+        this.router.navigate(['/list-of-truck'])
+      }
+    }, err => {
+      this.service.hideSpinner();
+      if (err['status'] == '401') {
+        this.service.onLogout();
+        this.service.toasterErr('Unauthorized Access');
+      }
+      else {
+        this.service.toasterErr('Something Went Wrong');
+      }
+    })
+  }
+
+  cancel() {
+    this.router.navigate(['/list-of-truck'])
+  }
 }

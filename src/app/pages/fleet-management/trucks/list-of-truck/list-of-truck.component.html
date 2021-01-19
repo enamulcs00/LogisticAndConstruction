@@ -18,9 +18,6 @@
 
                                     <div class="col-lg-3  mt-4">
                                         <label>Truck No</label><br>
-                                        <!-- <select class="selectBox form-control">
-                                            <option>Truck No</option>
-                                        </select> -->
                                         <input type="text" class="form-control input-field" placeholder="Truck No"
                                             [(ngModel)]="registrationNo" maxlength="20">
                                     </div>
@@ -28,23 +25,12 @@
                                         <label>Truck Type</label><br>
                                         <select class="selectBox form-control" [(ngModel)]="typeOfTruck">
                                             <option value="">Truck Type</option>
-                                            <!-- <option *ngFor="let item of typeOfTruckArray" [value]="item?.typeOfTruck">
-                                                {{item?.typeOfTruck}}</option> -->
-                                                <option *ngFor="let item of typeOfTruckArray" [value]="item?.name">
-                                                    {{item?.name}}</option>
+                                            <option *ngFor="let item of typeOfTruckArray" [value]="item?.name">
+                                                {{item?.name}}</option>
                                         </select>
                                     </div>
-                                    <!-- <div class="col-lg-3  mt-4">
-                                    <label class="ml-5">City</label><br>
-                                     <select class="selectBox form-control">
-                                         <option>City</option>
-                                     </select>
-                                </div> -->
                                     <div class="col-lg-3 mt-4">
                                         <label>Mobile - Fleet Owner</label><br>
-                                        <!-- <select class="selectBox form-control">
-                                            <option>Fleet Owner Mobile</option>
-                                        </select> -->
                                         <input type="text" class="form-control input-field"
                                             placeholder="Fleet Owner Mobile" [(ngModel)]="fleetOnwerNo"
                                             (keypress)="service.numberOnly($event)" maxlength="20">
@@ -52,7 +38,7 @@
                                 </div>
                                 <div class="row  d-flex justify-content-end w_100 mt-3 mb-3">
                                     <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green; cursor: pointer;'
-                                        (click)="exportToCsv()"></i>
+                                        (click)="exportToCsv()" aria-hidden="true"></i>
                                     <button type="button" class="search-btn" (click)="search()">Search</button>
                                     <button type="button" class="search-btn" (click)="reset()">Reset</button>
                                     <button type="button" class="btn-add" (click)="addTruck()">Add</button>
@@ -79,9 +65,10 @@
                                                 <td>{{item?.fleetOnwerNo}}</td>
                                                 <td>{{item?.createTime | date:'medium'}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a (click)="viewTruck(item?.truckId)"><i class="fa fa-eye"></i></a>
-                                                    <a (click)="deleteTruck(item?.truckId)"><i
-                                                            class="fa fa-trash"></i></a>
+                                                    <a (click)="viewTruck(item?.truckId)"><i class="fa fa-eye"
+                                                            aria-hidden="true"></i></a>
+                                                    <a (click)="deleteTruck(item?.truckId)"><i class="fa fa-trash"
+                                                            aria-hidden="true"></i></a>
                                                 </td>
                                             </tr>
                                         </tbody>

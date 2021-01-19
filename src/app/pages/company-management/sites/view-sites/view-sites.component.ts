@@ -68,6 +68,11 @@ export class ViewSitesComponent implements OnInit {
     edit(){
       this.router.navigate(['/edit-site',this.userId])
     }
+
+    back(){
+      this.router.navigateByUrl('/list-of-sites')
+    }
+    
   }
 
 

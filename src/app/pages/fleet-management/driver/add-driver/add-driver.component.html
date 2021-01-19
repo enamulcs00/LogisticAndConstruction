@@ -13,18 +13,31 @@
                             <div class="form-group row">
                                 <label for="Fname" class="col-sm-2 col-form-label">Fleet Owner Name</label>
                                 <div class="col-sm-4">
-                                    <!-- <input type="text" id="Fname" class="form-control" placeholder="First name"
-                                        formControlName="firstName"> -->
                                     <select name="" id="" class="form-control" formControlName="companyName">
                                         <option value="">Fleet Owner Name</option>
                                         <option *ngFor="let item of listing" [value]="item.userId">{{item.companyName}}
                                         </option>
                                     </select>
+                                    <span class="error"
+                                        *ngIf="addForm.get('companyName').hasError('required') && (addForm.get('companyName').dirty || addForm.get('companyName').touched )"
+                                        class="error">
+                                        <p>*Please enter fleet owner name.</p>
+                                    </span>
                                 </div>
                                 <label for="Lname" class="col-sm-2 col-form-label">Driver First Name</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" placeholder="Driver First name"
                                         formControlName="firstName" maxlength="60">
+                                    <span class="error"
+                                        *ngIf="addForm.get('firstName').hasError('required') && (addForm.get('firstName').dirty || addForm.get('firstName').touched )"
+                                        class="error">
+                                        <p>*Please enter driver first name.</p>
+                                    </span>
+                                    <span class="error"
+                                        *ngIf="addForm.get('firstName').hasError('pattern') && addForm.get('firstName').dirty"
+                                        class="error">
+                                        <p> *Please enter valid driver first name.</p>
+                                    </span>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -32,11 +45,31 @@
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" placeholder="Driver Last Name"
                                         formControlName="lastName">
+                                    <span class="error"
+                                        *ngIf="addForm.get('lastName').hasError('required') && (addForm.get('lastName').dirty || addForm.get('lastName').touched )"
+                                        class="error">
+                                        <p>*Please enter driver last name.</p>
+                                    </span>
+                                    <span class="error"
+                                        *ngIf="addForm.get('lastName').hasError('pattern') && addForm.get('lastName').dirty"
+                                        class="error">
+                                        <p> *Please enter valid last first name.</p>
+                                    </span>
                                 </div>
                                 <label for="email" class="col-sm-2 col-form-label">Driver Mobile No.</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" placeholder="Driver Mobile No."
                                         formControlName="phoneNo" maxlength="20">
+                                    <span class="error"
+                                        *ngIf="addForm.get('phoneNo').hasError('required') && (addForm.get('phoneNo').dirty || addForm.get('phoneNo').touched )"
+                                        class="error">
+                                        <p> *Please enter driver mobile number.</p>
+                                    </span>
+                                    <span class="error"
+                                        *ngIf="addForm.get('phoneNo').hasError('pattern') && addForm.get('phoneNo').dirty"
+                                        class="error">
+                                        <p> *Please enter valid driver mobile number.</p>
+                                    </span>
                                 </div>
                             </div>
 
@@ -45,6 +78,11 @@
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" placeholder="Driver Licence No."
                                         formControlName="drivingLicenceNo" maxlength="20">
+                                    <span class="error"
+                                        *ngIf="addForm.get('drivingLicenceNo').hasError('required') && (addForm.get('drivingLicenceNo').dirty || addForm.get('drivingLicenceNo').touched )"
+                                        class="error">
+                                        <p>*Please enter driver licence number.</p>
+                                    </span>
                                 </div>
                                 <label for="comanyAddress" class="col-sm-2 col-form-label">Driver Aadhaar No.</label>
                                 <div class="col-sm-4">
@@ -52,7 +90,6 @@
                                         formControlName="aadharCardNo" maxlength="12">
                                 </div>
                             </div>
-
                         </form>
                     </div>
                     <br>

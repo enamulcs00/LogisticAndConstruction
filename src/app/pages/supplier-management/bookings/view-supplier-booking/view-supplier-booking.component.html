@@ -1,51 +1,50 @@
 <section>
-  <div class="container1440 mt-5" >
-<main class="middle-content" style="overflow-y: scroll; height: -webkit-fill-available;">
-  <div class="content-section">
-      <div class="order-view mt30 mrgn-0-auto">
+  <div class="container1440 mt-5">
+    <main class="middle-content">
+      <div class="content-section">
+        <div class="order-view mt30 mrgn-0-auto">
+            <form>
+              <div class="form-group row">
+                <label for="Sname" class="col-sm-2 col-form-label">Site Name</label>
+                <div class="col-sm-4">
+                  <label id="Sname" class="outup-label">{{bookingItems?.location|| 'NA'}}</label>
+                </div>
+                <label for="material" class="col-sm-2 col-form-label">Material</label>
+                <div class="col-sm-4">
+                  <label id="material" class="outup-label">{{bookingItems?.material|| 'NA'}}</label>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="Mobile" class="col-sm-2 col-form-label">Weight</label>
+                <div class="col-sm-4">
+                  <label id="Mobile" class="outup-label">{{bookingItems?.weight|| 'NA'}}</label>
+                </div>
+                <label for="email" class="col-sm-2 col-form-label">Booking Date</label>
+                <div class="col-sm-4">
+                  <label id="email" class="outup-label">{{bookingItems?.createTime | date:'medium'|| 'NA'}}</label>
+                </div>
+              </div>
 
-      <div>
-<form>
-  <div class="form-group row">
-    <label for="Sname" class="col-sm-2 col-form-label">Site Name</label>
-    <div class="col-sm-4">
-      <label id="Sname" class="outup-label">{{bookingItems?.location|| 'NA'}}</label>
-    </div>
-    <label for="material" class="col-sm-2 col-form-label">Material</label>
-    <div class="col-sm-4">
-      <label id="material" class="outup-label">{{bookingItems?.material|| 'NA'}}</label>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="Mobile" class="col-sm-2 col-form-label">Weight</label>
-    <div class="col-sm-4" >
-      <label id="Mobile" class="outup-label">{{bookingItems?.weight|| 'NA'}}</label>
-    </div>
-    <label for="email" class="col-sm-2 col-form-label">Booking Date</label>
-    <div class="col-sm-4">
-      <label id="email" class="outup-label">{{bookingItems?.createTime | date:'medium'|| 'NA'}}</label>
-    </div>
-  </div>
+              <div class="form-group row">
+                <label for="amount" class="col-sm-2 col-form-label">Amount</label>
+                <div class="col-sm-4">
+                  <label id="amount" class="outup-label">{{bookingItems?.bidAmount || 'NA'}}</label>
+                </div>
+                <label for="comanyAddress" class="col-sm-2 col-form-label">Invoice date</label>
+                <div class="col-sm-4">
+                  <label id="companyAddress"
+                    class="outup-label">{{bookingItems?.invoiceDateForSupplier | date:'medium' || 'NA' }}</label>
+                </div>
+              </div>
 
-  <div class="form-group row">
-    <label for="amount" class="col-sm-2 col-form-label">Amount</label>
-    <div class="col-sm-4">
-      <label id="amount" class="outup-label">{{bookingItems?.bidAmount || 'NA'}}</label>
-    </div>
-    <label for="comanyAddress" class="col-sm-2 col-form-label">Invoice date</label>
-    <div class="col-sm-4">
-      <label id="companyAddress" class="outup-label">{{bookingItems?.invoiceDateForSupplier | date:'medium' || 'NA' }}</label>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="city" class="col-sm-2 col-form-label">PO Number</label>
-    <div class="col-sm-4">
-      <label id="city" class="outup-label">{{bookingItems?.poNumber || 'NA'}}</label>
-    </div>
-    <label for="state" class="col-sm-2 col-form-label">Invoice Number</label>
-    <div class="col-sm-4">
-      <label id="state" class="outup-label">{{bookingItems?.invoiceNoForSupplier || 'NA'}}</label>
+              <div class="form-group row">
+                <label for="city" class="col-sm-2 col-form-label">PO Number</label>
+                <div class="col-sm-4">
+                  <label id="city" class="outup-label">{{bookingItems?.poNumber || 'NA'}}</label>
+                </div>
+                <label for="state" class="col-sm-2 col-form-label">Invoice Number</label>
+                <div class="col-sm-4">
+                  <label id="state" class="outup-label">{{bookingItems?.invoiceNoForSupplier || 'NA'}}</label>
 
     </div>
   </div>
@@ -106,12 +105,11 @@
           <div class="head_flt_select input-label" >
               <button  routerLink='/list-of-supplier-booking' type="submit" class="btn  btn-theme" >Back</button>
           </div>
-  </div>
 
+        </div>
+      </div>
+    </main>
   </div>
-  </div>
-</main>
-</div>
 
 </section>
 <app-footer></app-footer>

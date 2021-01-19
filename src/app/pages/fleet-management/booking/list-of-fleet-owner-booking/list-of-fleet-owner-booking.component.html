@@ -10,7 +10,6 @@
 
                                     <div class="col-lg-2 pr-0 mt-4">
                                         <label>Fleet Owner</label><br>
-                                        <!-- <input class="selectBox form-control" type="text" placeholder="Fleet Owner"> -->
                                         <select class="selectBox form-control" [(ngModel)]="companyName">
                                             <option value="">Select Fleet Owner</option>
                                             <option *ngFor="let item of fleetOnwerCompanyNameArray"
@@ -19,9 +18,6 @@
                                     </div>
                                     <div class="col-lg-2 pr-0 mt-4">
                                         <label>Supplier</label><br>
-                                        <!-- <select class="selectBox form-control">
-                                            <option>Supplier</option>
-                                        </select> -->
                                         <select class="selectBox form-control" [(ngModel)]="supplierName">
                                             <option value="">Select supplier</option>
                                             <option *ngFor="let item of supplierNameArraya" [value]="item?.companyName">
@@ -30,9 +26,6 @@
                                     </div>
                                     <div class="col-lg-2 pr-0 mt-4">
                                         <label>Month</label><br>
-                                        <!-- <select class="selectBox form-control">
-                                            <option>Month</option>
-                                        </select> -->
                                         <select class="selectBox form-control" [(ngModel)]="months">
                                             <option value="">Select Month</option>
                                             <option *ngFor="let item of monthsArray" [value]="item.id">{{item.name}}
@@ -41,14 +34,12 @@
                                     </div>
                                     <div class="col-lg-2 pr-0 mt-4">
                                         <label>From Date</label><br>
-                                        <!-- <input type="date" class="selectBox form-control"> -->
                                         <input type="date" max="{{minAge | date:'yyyy-MM-dd'}}" name="formdate"
                                             [(ngModel)]="calender.formdate" (change)="formdate()"
                                             class="form-control datepicker" placeholder="Search by date">
                                     </div>
                                     <div class="col-lg-2 pr-0 mt-4">
                                         <label>To Date</label><br>
-                                        <!-- <input type="date" class="selectBox form-control"> -->
                                         <input type="date" name="todate" min="{{fromDate | date:'yyyy-MM-dd'}}"
                                             (change)="todate()" [disabled]="!calender.formdate"
                                             [(ngModel)]="calender.todate" class="form-control datepicker"
@@ -106,8 +97,7 @@
                                                 <td>{{item?.driverMobileNo || 'N/A'}}</td>
                                                 <td>{{item?.routeId || 'N/A'}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye"
-                                                            (click)="viewBooking(item?.bookingId)"></i></a>
+                                                    <a (click)="viewBooking(item?.bookingId)"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -140,7 +130,3 @@
 </section>
 
 <app-footer></app-footer>
-
-<!-- missing keys
-route
- -->

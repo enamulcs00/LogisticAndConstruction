@@ -74,49 +74,27 @@
                             </div>
 
                             <div class="form-group row">
-                                <!-- <label for="CompanyName" class="col-sm-2 col-form-label">Fleet Owner Name</label> -->
                                 <label for="CompanyName" class="col-sm-2 col-form-label">Company Name</label>
                                 <div class="col-sm-4">
-                                    <!-- <input type="text" id="CompanyName" class="form-control"
-                                        placeholder="Fleet Owner name" formControlName="companyName" maxlength="60"> -->
                                     <input type="text" id="CompanyName" class="form-control" placeholder="Company name"
                                         formControlName="companyName" maxlength="60">
                                     <span class="error">
-                                        <!-- <p *ngIf="addForm.get('companyName').hasError('required') && (addForm.get('companyName').dirty || addForm.get('companyName').touched )"
-                                            class="error" padding>*Please enter Fleet Owner name.</p> -->
                                         <p *ngIf="addForm.get('companyName').hasError('required') && (addForm.get('companyName').dirty || addForm.get('companyName').touched )"
                                             class="error" padding>*Please enter company name.</p>
                                     </span>
                                 </div>
-                                <!-- <label for="comanyAddress" class="col-sm-2 col-form-label">Fleet Owner Address</label> -->
                                 <label for="comanyAddress" class="col-sm-2 col-form-label">Company Address</label>
                                 <div class="col-sm-4">
-                                    <!-- <input type="text" id="comanyAddress" class="form-control" placeholder="Fleet Owner Address" formControlName="baseLocationAddress"maxlength="60"> -->
                                     <input type="text" id="comanyAddress" class="form-control"
                                         placeholder="Company Address" formControlName="baseLocationAddress"
                                         maxlength="60">
                                     <span class="error">
-                                        <!-- <p *ngIf="addForm.get('baseLocationAddress').hasError('required') && (addForm.get('baseLocationAddress').dirty || addForm.get('baseLocationAddress').touched )"
-                                            class="error" padding>*Please enter Fleet Owner address.</p> -->
                                         <p *ngIf="addForm.get('baseLocationAddress').hasError('required') && (addForm.get('baseLocationAddress').dirty || addForm.get('baseLocationAddress').touched )"
                                             class="error" padding>*Please enter company address.</p>
                                     </span>
                                 </div>
                             </div>
 
-                            <!-- <div class="form-group row">
-                                <label for="city" class="col-sm-2 col-form-label">City</label>
-                                <div class="col-sm-4">
-                                    <input type="text" id="city" class="form-control" placeholder="Enter city name" formControlName="city">
-                                </div>
-                                <label for="state" class="col-sm-2 col-form-label">State</label>
-                                <div class="col-sm-4">
-                                    <select id="city" class="form-control" formControlName="state">
-                                        <option value="State">State</option>
-                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
-                                    </select>
-                                </div>
-                            </div> -->
                             <div class="form-group row">
                                 <label for="state" class="col-sm-2 col-form-label">State</label>
                                 <div class="col-sm-4">
@@ -126,7 +104,6 @@
                                         <option *ngFor="let state of stateArr" [value]="state?.name">{{state?.name}}
                                         </option>
                                     </select>
-
                                 </div>
                                 <label for="city" class="col-sm-2 col-form-label">City</label>
                                 <div class="col-sm-4">
@@ -145,19 +122,8 @@
                                         formControlName="aadharCardNo" maxlength="12">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
-                                            style="background-color: green;     height: 38px;     z-index: 0;">Validate</button>
+                                            style="background-color: green; height: 38px; z-index: 0;">Validate</button>
                                     </div>
-
-                                    <!-- <span class="error">
-                                        <p *ngIf="addForm.get('aadharCardNo').hasError('required') && (addForm.get('aadharCardNo').dirty || addForm.get('aadharCardNo').touched )"
-                                            class="error" padding>*Please enter Aadhar number.</p>
-                                    </span>
-                                    <span class="error" *ngIf="addForm.get('aadharCardNo').hasError('pattern')" class="error">
-                                        <p> *Please enter valid aadhar number.</p>                                      
-                                     </span>
-                                     <span class="error" *ngIf="addForm.get('aadharCardNo').hasError('minlength')" class="error">
-                                        <p> *Please enter valid 12 digits aadhar number.</p>                                      
-                                     </span> -->
                                 </div>
                                 <label for="pan" class="col-sm-2 col-form-label">Pan Card</label>
                                 <div class="col-sm-4 input-group">
@@ -165,15 +131,8 @@
                                         formControlName="panCardNo" maxlength="20">
                                     <div class="input-group-append">
                                         <button class="btn" type="button"
-                                            style="background-color: green;     height: 38px;     z-index: 0;">Validate</button>
+                                            style="background-color: green; height: 38px; z-index: 0;">Validate</button>
                                     </div>
-                                    <!-- <span class="error">
-                                        <p *ngIf="addForm.get('panCardNo').hasError('required') && (addForm.get('panCardNo').dirty || addForm.get('panCardNo').touched )"
-                                            class="error" padding>*Please enter PAN number.</p>
-                                    </span>
-                                     <span class="error" *ngIf="addForm.get('panCardNo').hasError('minlength')" class="error">
-                                        <p> *Please enter valid 10 digits PAN number.</p>                                      
-                                     </span> -->
                                 </div>
                             </div>
 
@@ -182,12 +141,9 @@
                                 <div class="col-sm-4">
                                     <label for="AadharCard" class="btn btn-success btn-block btn-outlined">Upload Aadhar
                                         Card</label>
-                                    <!-- <input type="file" (change)="handleInputChange($event)" class="hidden" accept=".png, .jpg, .jpeg" /> -->
-
                                     <input type="file" id="AadharCard" accept="image/*" style="display: none"
                                         class="form-control" (change)="uploadAadhaar($event)">
                                     <img [src]="aadharCardUrl" alt="">
-
                                 </div>
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-4">
@@ -196,7 +152,6 @@
                                     <input type="file" id="PanCard" accept="image/*" style="display: none"
                                         class="form-control" (change)="uplaodPan($event)">
                                     <img [src]="panCardUrl" alt="">
-
                                 </div>
                             </div>
 
@@ -209,21 +164,7 @@
                                         <button class="btn" type="button"
                                             style="background-color: green;     height: 38px;     z-index: 0;">Validate</button>
                                     </div>
-                                    <!-- <span class="error">
-                                        <p *ngIf="addForm.get('gstinNo').hasError('required') && (addForm.get('gstinNo').dirty || addForm.get('gstinNo').touched )"
-                                            class="error" padding>*Please enter GSTIN number.</p>
-                                    </span> -->
                                 </div>
-                                <!-- <label for="gst" class="col-sm-2 col-form-label">Specialized Routes</label>
-                                <div class="col-sm-4 input-group">
-                                    <textarea type="text" id="gst" class="form-control" placeholder="Specialized Routes" rows="4"
-                                        formControlName="gstinNo"></textarea>
-
-                                    <div class="input-group-append">
-                                        <button class="btn" type="button"
-                                            style="background-color: green;     height: 38px;     z-index: 0;" (click)="addRoutes()">Add</button>
-                                    </div>
-                                </div> -->
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"></label>
@@ -233,7 +174,6 @@
                                     <input type="file" id="gstfile" accept="image/*" style="display: none"
                                         class="form-control" (change)="uplaodGst($event)">
                                     <img [src]="gstinUrl" alt="">
-
                                 </div>
                             </div>
                         </form>
@@ -241,13 +181,10 @@
                     <br>
                     <div class="head_flt_select">
                         <div class="head_flt_select input-label">
-                            <!-- <button  type="submit" class="btn btn-theme"
-                                (click)="submitForm()">Save</button> -->
                             <button type="submit" class="btn btn-theme" [disabled]="addForm.invalid"
                                 (click)="submitForm()">Next Step</button>
                         </div>
                     </div>
-
                 </div>
             </div>
         </main>

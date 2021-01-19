@@ -10,7 +10,8 @@
                                     <div class="col-lg-2 pr-0 mt-4">
                                         <label>Invoice No</label><br>
                                         <input class="selectBox form-control" type="text" placeholder="Invoice No"
-                                            [(ngModel)]="inVoiceNoForSupplier" (keypress)="service.numberOnly($event)" maxlength="60">
+                                            [(ngModel)]="inVoiceNoForSupplier" (keypress)="service.numberOnly($event)"
+                                            maxlength="60">
                                     </div>
                                     <div class="col-lg-2 pr-0 mt-4">
                                         <label>Supplier</label><br>
@@ -96,8 +97,8 @@
                                                 <td>{{item?.driverMobileNo || 'N/A'}}</td>
                                                 <td>{{item?.routeId || 'N/A'}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye"
-                                                            (click)="viewBilling(item?.bookingId)"></i></a>
+                                                    <a (click)="viewBilling(item?.bookingId)"><i class="fa fa-eye"
+                                                            aria-hidden="true"></i></a>
                                                 </td>
                                             </tr>
                                         </tbody>

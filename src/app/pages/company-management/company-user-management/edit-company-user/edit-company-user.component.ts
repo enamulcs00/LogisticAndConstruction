@@ -118,4 +118,7 @@ export class EditCompanyUserComponent implements OnInit {
     })
   }
 
+  cancel(){
+    this.router.navigateByUrl('/list-of-company-user')
+  }
 }

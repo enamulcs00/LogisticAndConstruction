@@ -43,8 +43,8 @@
 
                                 </div>
                                 <div class="row  d-flex justify-content-end w_100 mt-3 mb-3">
-                                    <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green'
-                                        (click)="ExportToCsv()"></i>
+                                    <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green; cursor: pointer;'
+                                        (click)="ExportToCsv()" aria-hidden="true"></i>
                                         <button type="button" class="search-btn"(click)="search()">Search</button>
                                     <button type="button" class="search-btn"(click)="reset()">Reset</button>
                                 </div>
@@ -99,10 +99,7 @@
                                                 <td>{{item?.routeId || 'NA'}}</td>
 
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye"
-                                                      [routerLink]="['/view-supplier-billing',item?.bookingId]"></i></a>
-
-
+                                                    <a [routerLink]="['/view-supplier-billing',item?.bookingId]"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                                 </td>
                                             </tr>
                                         </tbody>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router ,ActivatedRoute} from '@angular/router';
 import { MainService } from 'src/app/provider/main.service';
 
 @Component({
@@ -16,12 +16,57 @@ export class AddCompanyComponent implements OnInit {
   aadharimageUrl: any;
   panimageUrl: any;
   gstimageUrl: any;
+  paramData: any;
 
-  constructor(private router: Router, public service: MainService) { }
+  constructor(private router: Router, public service: MainService,private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.paramData = this.router.getCurrentNavigation().extras.state.paramData;
+        console.log(this.paramData)
+      }
+    });
+   }
 
   ngOnInit(): void {
     this.addCompanyFormValidation()
+    if (this.paramData) {
+      let state = this.paramData.state ? this.paramData.state : ''
+      this.patchCity(state)
+      this.addCompanyForm.patchValue({
+        'firstName': this.paramData.firstName ? this.paramData.firstName : '',
+        'lastName': this.paramData.lastName ? this.paramData.lastName : '',
+        'phoneNo': this.paramData.phoneNo ? this.paramData.phoneNo : '',
+        'email': this.paramData.email ? this.paramData.email : '',
+        'companyName': this.paramData.companyName ? this.paramData.companyName : '',
+        'companyAddress': this.paramData.baseLocationAddress ? this.paramData.baseLocationAddress : '',
+        'city': this.paramData.city ? this.paramData.city : '',
+        'state': this.paramData.state ? this.paramData.state : '',
+        'aadhaarNo': this.paramData.aadharCardNo ? this.paramData.aadharCardNo : '',
+        'panCard': this.paramData.panCardNo ? this.paramData.panCardNo : '',
+        'gstNo': this.paramData.gstInNo ? this.paramData.gstInNo : '',
+      })
+      this.addCompanyForm.disable()
+    }
+   
     this.getStateList()
+  }
+
+  patchCity(value) {
+    console.log("city value", value)
+    this.service.showSpinner()
+    this.selectedState = value
+    var url = "account/get-cities-state-wise?stateName=" + this.selectedState
+    this.service.get(url).subscribe((res: any) => {
+      console.log(res)
+      this.service.hideSpinner()
+      if (res['status'] == 200) {
+        // console.log(res.data.userDetail.city)
+        this.cityArr = res['data'];
+        this.addCompanyForm.patchValue({
+          'city': this.paramData.city ? this.paramData.city : '',
+        })
+      }
+    })
   }
 
   // add form validation
@@ -154,7 +199,8 @@ export class AddCompanyComponent implements OnInit {
       "panCardNo": this.addCompanyForm.value.panCard,
       "panCardUrl": this.panimageUrl,
       "password": "string",
-      "phoneNo": '+91' + this.addCompanyForm.value.phoneNo,
+      // "phoneNo": '+91' + this.addCompanyForm.value.phoneNo,
+      "phoneNo": this.addCompanyForm.value.phoneNo.startsWith('+91') ? this.addCompanyForm.value.phoneNo : '+91' + this.addCompanyForm.value.phoneNo,
       "pnWithoutCountryCode": this.addCompanyForm.value.phoneNo,
       "randomId": "string",
       "roleStatus": "COMPANY",
@@ -167,6 +213,9 @@ export class AddCompanyComponent implements OnInit {
         }
       ],
       "webUrl": "string"
+    }
+    if (this.paramData) {
+      apiReqData['idForValidateData'] = this.paramData.userId
     }
     console.log("data", apiReqData)
     this.service.showSpinner()

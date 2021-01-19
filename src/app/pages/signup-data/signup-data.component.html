@@ -9,9 +9,6 @@
                                 <div class="row">
                                     <div class="col-lg-2 pr-0 mt-4">
                                         <label>Company Name</label><br>
-                                        <!-- <select class="selectBox form-control">
-                                            <option>Select Company Name</option>
-                                        </select> -->
                                         <select class="selectBox form-control" [(ngModel)]="companyName">
                                             <option value="">Select Fleet Owner</option>
                                             <option *ngFor="let item of fleetOnwerCompanyNameArray"
@@ -20,16 +17,8 @@
                                     </div>
                                     <div class="col-lg-2 pr-0 mt-4">
                                         <label>Location</label><br>
-                                        <!-- <select class="selectBox form-control">
-                                            <option>Location</option>
-                                        </select> -->
-                                        <!-- <select class="selectBox form-control" [(ngModel)]="siteLocation">
-                                            <option value="">Location</option>
-                                            <option *ngFor="let item of siteLocationArray" [value]="item?.siteLocation">
-                                                {{item?.siteLocation}}</option>
-                                        </select> -->
                                         <input type="text" id="Mobile" class="form-control selectBox"
-                                        placeholder="Location" [(ngModel)]="siteLocation" >
+                                            placeholder="Location" [(ngModel)]="siteLocation">
                                     </div>
                                     <div class="col-lg-2 pr-0 mt-4">
                                         <label>State</label><br>
@@ -64,7 +53,6 @@
                                         (click)="exportToCsv()"></i>
 
                                     <button type="button" class="search-btn" (click)="reset()">Reset</button>
-                                    <!-- <button type="button" class="btn-add" (click)="addCompany()">Add</button> -->
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table table-bordered" aria-describedby="user list" id="pdfcontent">
@@ -89,8 +77,6 @@
                                         <tbody>
                                             <tr
                                                 *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: currentPage,totalItems: totalItems };let i = index ">
-                                                <!-- <td>{{itemsPerPage*(this.pageNumber-1)+i+1}}</td> -->
-
                                                 <td>{{item?.companyName || 'N/A'}}</td>
                                                 <td>{{item?.role.role || 'N/A'}}</td>
                                                 <td>{{item?.baseLocationAddress || 'N/A'}}</td>
@@ -105,10 +91,6 @@
                                                 <td>{{item?.gstInNo || 'N/A'}}</td>
                                                 <td>{{item?.createTime | date:'medium' || 'N/A'}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <!-- <button class="btn-validate"
-                                                        (click)="acceptReject('ACTIVE', item.userId)">Accept</button>
-                                                    <button class="btn-reject"
-                                                        (click)="acceptReject('DELETED', item.userId)">Reject</button> -->
                                                     <button class="btn-validate"
                                                         (click)="accept(item.role.role, item)">Accept</button>
                                                     <button class="btn-reject"
@@ -146,10 +128,3 @@
 </section>
 
 <app-footer></app-footer>
-
-
-
-
-<!-- missing keys
-Spl. Routes
--->
