@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MainService } from 'src/app/provider/main.service';
-// import { ngxCsv } from 'ngx-csv/ngx-csv';
+ import { ngxCsv } from 'ngx-csv/ngx-csv';
 // import { ExportToCsv } from 'export-to-csv';
 
 declare var $: any
@@ -265,37 +265,38 @@ export class ListOfSupplierBillingComponent implements OnInit {
   }
   // ----------------------------------------export CSV
   ExportToCsv(){
-    this.service.showSpinner()
-    setTimeout( r => {
-      this.service.hideSpinner()
-    },3000)
-    let listingArr=[]
-    this.listing.forEach((element,ind )=> {
-      let obj ={}
-      obj ={
-        "S no": ind + 1,
-        "UserName": element.firstName + '' + element.lastName ? element.lastName : '',
-        "EmailID":  element.email ? element.email : 'N/A',
-        "UserID": element.userId ? element.userId : 'N/A',
-        "PhoneNumber": String(element.phoneNo) ? String(element.phoneNo) : 'N/A',
-        "Status": element.userStatus == 'ACTIVE' ? 'ACTIVE' : 'INACTIVE',
-        "Registration Date": String(element.createTime) ? String(element.createTime).slice(0, 10) : 'N/A',
-      }
-      listingArr.push(obj)
-    });
-    const options = {
-      fieldSeparator: ',',
-      quoteStrings: '"',
-      decimalSeparator: '.',
-      showLabels: true,
-      showTitle: true,
-      title: 'Candidate Details CSV',
-      useTextFile: false,
-      useBom: true,
-      useKeysAsHeaders: true,
-    };
-    // const csvExporter = new ExportToCsv(options);
-    //  csvExporter.generateCsv(listingArr);
+    let dataArr = [];
+  this.listing.forEach((element, ind) => {
+    let obj = {
+      "Invoice No": element.inVoiceNoForSupplier  ? element.inVoiceNoForSupplier : 'N/A',
+      "Invoice date": String(element.inVoiceDateForSupplier)  ? String(element.inVoiceDateForSupplier).slice(0,10) : 'N/A',
+      "Supplier Name": element.supplierName  ? element.supplierName : 'N/A',
+      "Weight": element.weight ? element.weight : 'N/A',
+
+      "Material": element.material ? element.material : 'N/A',
+      "Amount": element.bidAmount ? element.bidAmount : 'N/A',
+      "PoNumber": element.poNumber ? element.poNumber : 'N/A',
+      "Driver name": element.driverName ? element.drivername : 'N/A',
+      "Driver Mobile No": element.driverMobileNo ? element.driverMobileNo : 'N/A',
+      "Vehicle No": element.truckNumber ? element.truckNumber : 'N/A',
+      "Vehicle Type": element.truckType ? element.truckType : 'N/A',
+      "Date Of Delivery": String(element.deliveryDate) ? String(element.deliveryDate).slice(0, 10) : 'N/A',
+    }
+    dataArr.push(obj)
+  })
+  const options = {
+    fieldSeparator: ',',
+    quoteStrings: '"',
+    decimalSeparator: '.',
+    showLabels: true,
+    showTitle: true,
+    title: 'Billing list of Supplier',
+    useTextFile: false,
+    useBom: true,
+    useKeysAsHeaders: true,
+    headers: ["Billing List","Invoice No","Invoice date" ,"Supplier Name", "Weight", "Material", "Amount", "PO-Number","Driver Name", "Driver Mobile", "Vehicle No","Vehicle Type","Date Of Delivery"]
+  };
+  new ngxCsv(dataArr, 'Billing list of suplier', options);
   }
 
   //--------------------------------export pdf ----------------------------------------
