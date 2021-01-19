@@ -8,6 +8,10 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./view-fleet-owner-billing-supplier.component.css']
 })
 export class ViewFleetOwnerBillingSupplierComponent implements OnInit {
+  MapUrl = '';
+  weightSlipUrl = '';
+  selfiUrl = '';
+  InvoiceUrl = '';
   id:any;
   bookingItems:any=[];
     constructor(private actroute:ActivatedRoute, private service:MainService,private router:Router) {
@@ -28,6 +32,8 @@ export class ViewFleetOwnerBillingSupplierComponent implements OnInit {
     console.log('Booking',this.bookingItems)
     this.service.hideSpinner()
     this.service.toasterSucc(res.message)
+    this.weightSlipUrl = this.bookingItems?.uploadSlip;
+    this.selfiUrl = this.bookingItems?.uploadSelfi
   }
   else {
     this.service.hideSpinner()
