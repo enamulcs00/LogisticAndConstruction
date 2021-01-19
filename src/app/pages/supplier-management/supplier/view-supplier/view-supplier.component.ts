@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-supplier.component.css']
 })
 export class ViewSupplierComponent implements OnInit {
+
 id:any;
 ViewSupplierForm: FormGroup
 listing: any = [];
@@ -49,9 +50,9 @@ console.log('View Response',res.data)
       if (res['status'] == 200) {
         this.service.toasterSucc(res.message)
         this.listing = res.data;
-        this.aadharCardUrl = res.data.userDetail.aadharCardUrl ? res.data.userDetail.aadharCardUrl : 'https://images.app.goo.gl/8DASmk93XpRTLdsG9';
-        this.panCardUrl = res.data.userDetail.panCardUrl ? res.data.userDetail.panCardUrl : 'https://images.app.goo.gl/aDwPDsFSsVwxKQiq5'
-        this.gstinUrl = res.data.userDetail.gstinUrl ? res.data.userDetail.gstinUrl : 'https://images.app.goo.gl/sCaxYXNT8VM47Ahq6'
+        this.aadharCardUrl = res.data.userDetail.aadharCardUrl
+        this.panCardUrl = res.data.userDetail.panCardUrl
+        this.gstinUrl = res.data.userDetail.gstinUrl
         console.log('This is image pack',this.listing.userDetail)
         this.totalRecords = res.data.totalCount
         this.ViewSupplierForm.patchValue({
