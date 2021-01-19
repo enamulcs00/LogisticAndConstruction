@@ -73,27 +73,12 @@
                                 </div>
                             </div>
 
-                            <!-- <div class="form-group row">
-                                <label for="CompanyName" class="col-sm-2 col-form-label">Fleet Owner Name</label>
-                                <div class="col-sm-4">
-                                    <input type="text" id="CompanyName" class="form-control" placeholder="Company name"
-                                        formControlName="companyName">
-                                </div>
-                                <label for="comanyAddress" class="col-sm-2 col-form-label">Fleet Owner Address</label>
-                                <div class="col-sm-4">
-                                    <input type="text" id="comanyAddress" class="form-control"
-                                        placeholder="Company Address" formControlName="baseLocationAddress">
-                                </div>
-                            </div> -->
-
                             <div class="form-group row">
                                 <label for="CompanyName" class="col-sm-2 col-form-label">Company Name</label>
                                 <div class="col-sm-4">
                                     <input type="text" id="CompanyName" class="form-control" placeholder="Company name"
                                         formControlName="companyName" maxlength="60">
                                     <span class="error">
-                                        <!-- <p *ngIf="editForm.get('companyName').hasError('required') && (editForm.get('companyName').dirty || editForm.get('companyName').touched )"
-                                                class="error" padding>*Please enter Fleet Owner name.</p> -->
                                         <p *ngIf="editForm.get('companyName').hasError('required') && (editForm.get('companyName').dirty || editForm.get('companyName').touched )"
                                             class="error" padding>*Please enter company name.</p>
                                     </span>
@@ -104,8 +89,6 @@
                                         placeholder="Company Address" formControlName="baseLocationAddress"
                                         maxlength="60">
                                     <span class="error">
-                                        <!-- <p *ngIf="editForm.get('baseLocationAddress').hasError('required') && (editForm.get('baseLocationAddress').dirty || editForm.get('baseLocationAddress').touched )"
-                                                class="error" padding>*Please enter Fleet Owner address.</p> -->
                                         <p *ngIf="editForm.get('baseLocationAddress').hasError('required') && (editForm.get('baseLocationAddress').dirty || editForm.get('baseLocationAddress').touched )"
                                             class="error" padding>*Please enter company address.</p>
                                     </span>
@@ -116,10 +99,6 @@
                             <div class="form-group row">
                                 <label for="state" class="col-sm-2 col-form-label">State</label>
                                 <div class="col-sm-4">
-                                    <!-- <select id="city" class="form-control" formControlName="state">
-                                        <option value="State">State</option>
-                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
-                                    </select> -->
                                     <select id="city" class="form-control" formControlName="state"
                                         (change)="searchCity($event)">
                                         <option value="">State</option>
@@ -129,8 +108,6 @@
                                 </div>
                                 <label for="city" class="col-sm-2 col-form-label">City</label>
                                 <div class="col-sm-4">
-                                    <!-- <input type="text" id="city" class="form-control" placeholder="Enter city name"
-                                        formControlName="city"> -->
                                     <select id="city" class="form-control" formControlName="city">
                                         <option value="">City</option>
                                         <option *ngFor="let city of cityArr" [value]="city?.name">{{city?.name}}
@@ -211,8 +188,7 @@
                     <br>
                     <div class="head_flt_select">
                         <div class="head_flt_select input-label">
-                            <button type="submit" class="btn btn-theme mr-3"
-                                [routerLink]="['/list-of-fleet-owner']">Cancel</button>
+                            <button type="submit" class="btn btn-theme mr-3" (click)="cancel()">Cancel</button>
                             <button type="submit" class="btn btn-theme" (click)="editFleetOwner()">Update</button>
                         </div>
                     </div>

@@ -77,4 +77,7 @@ deleteCompanyUser(){
     } 
   })
 }
+cancel(){
+  this.router.navigateByUrl('/list-of-company-user')
+}
 }

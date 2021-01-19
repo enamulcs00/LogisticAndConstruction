@@ -13,29 +13,63 @@
                             <div class="form-group row">
                                 <label for="Fname" class="col-sm-2 col-form-label">Fleet Owner Name</label>
                                 <div class="col-sm-4">
-                                    <!-- <input type="text" id="Fname" class="form-control" placeholder="First name"
-                                        formControlName="firstName"> -->
-                                        <select name="" id="" class="form-control"  formControlName="companyName">
-                                            <option value="">Fleet Owner Name</option>
-                                            <option *ngFor="let item of listing" [value]="item.userId">{{item.companyName}}</option>
-                                        </select>
+                                    <select name="" id="" class="form-control" formControlName="companyName">
+                                        <option value="">Fleet Owner Name</option>
+                                        <option *ngFor="let item of listing" [value]="item.userId">{{item.companyName}}
+                                        </option>
+                                    </select>
+                                    <span class="error"
+                                        *ngIf="editForm.get('companyName').hasError('required') && (editForm.get('companyName').dirty || editForm.get('companyName').touched )"
+                                        class="error">
+                                        <p>*Please enter fleet owner name.</p>
+                                    </span>
                                 </div>
                                 <label for="Lname" class="col-sm-2 col-form-label">Driver First Name</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" placeholder="Driver First name"
                                         formControlName="firstName" maxlength="60">
+                                    <span class="error"
+                                        *ngIf="editForm.get('firstName').hasError('required') && (editForm.get('firstName').dirty || editForm.get('firstName').touched )"
+                                        class="error">
+                                        <p>*Please enter driver first name.</p>
+                                    </span>
+                                    <span class="error"
+                                        *ngIf="editForm.get('firstName').hasError('pattern') && editForm.get('firstName').dirty"
+                                        class="error">
+                                        <p> *Please enter valid driver first name.</p>
+                                    </span>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="Mobile" class="col-sm-2 col-form-label">Driver Last Name</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control"
-                                        placeholder="Driver Last Name" formControlName="lastName" maxlength="60">
+                                    <input type="text" class="form-control" placeholder="Driver Last Name"
+                                        formControlName="lastName" maxlength="60">
+                                    <span class="error"
+                                        *ngIf="editForm.get('lastName').hasError('required') && (editForm.get('lastName').dirty || editForm.get('lastName').touched )"
+                                        class="error">
+                                        <p>*Please enter driver last name.</p>
+                                    </span>
+                                    <span class="error"
+                                        *ngIf="editForm.get('lastName').hasError('pattern') && editForm.get('lastName').dirty"
+                                        class="error">
+                                        <p> *Please enter valid last first name.</p>
+                                    </span>
                                 </div>
                                 <label for="email" class="col-sm-2 col-form-label">Driver Mobile No.</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" placeholder="Driver Mobile No."
-                                        formControlName="phoneNo">
+                                        formControlName="phoneNo" maxlength="20">
+                                    <span class="error"
+                                        *ngIf="editForm.get('phoneNo').hasError('required') && (editForm.get('phoneNo').dirty || editForm.get('phoneNo').touched )"
+                                        class="error">
+                                        <p> *Please enter driver mobile number.</p>
+                                    </span>
+                                    <span class="error"
+                                        *ngIf="editForm.get('phoneNo').hasError('pattern') && editForm.get('phoneNo').dirty"
+                                        class="error">
+                                        <p> *Please enter valid driver mobile number.</p>
+                                    </span>
                                 </div>
                             </div>
 
@@ -44,22 +78,26 @@
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" placeholder="Driver Licence No."
                                         formControlName="drivingLicenceNo" maxlength="20">
+                                    <span class="error"
+                                        *ngIf="editForm.get('drivingLicenceNo').hasError('required') && (editForm.get('drivingLicenceNo').dirty || editForm.get('drivingLicenceNo').touched )"
+                                        class="error">
+                                        <p>*Please enter driver licence number.</p>
+                                    </span>
                                 </div>
                                 <label for="comanyAddress" class="col-sm-2 col-form-label">Driver Aadhaar No.</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control"
-                                        placeholder="Driver Aadhaar No." formControlName="aadharCardNo" maxlength="12">
+                                    <input type="text" class="form-control" placeholder="Driver Aadhaar No."
+                                        formControlName="aadharCardNo" maxlength="12">
                                 </div>
                             </div>
                         </form>
                     </div>
                     <br>
                     <div class="head_flt_select">
-                        <div class="head_flt_select input-label" >
+                        <div class="head_flt_select input-label">
+                            <button type="submit" class="btn btn-theme mr-3" (click)="cancel()">Cancel</button>
                             <button type="submit" class="btn btn-theme" [disabled]="editForm.invalid"
                                 (click)="editDriver()">Update</button>
-                                <button type="submit" class="btn btn-theme ml-3"
-                                (click)="cancel()">Cancel</button>
                         </div>
                     </div>
 

@@ -199,7 +199,8 @@ export class AddCompanyComponent implements OnInit {
       "panCardNo": this.addCompanyForm.value.panCard,
       "panCardUrl": this.panimageUrl,
       "password": "string",
-      "phoneNo": '+91' + this.addCompanyForm.value.phoneNo,
+      // "phoneNo": '+91' + this.addCompanyForm.value.phoneNo,
+      "phoneNo": this.addCompanyForm.value.phoneNo.startsWith('+91') ? this.addCompanyForm.value.phoneNo : '+91' + this.addCompanyForm.value.phoneNo,
       "pnWithoutCountryCode": this.addCompanyForm.value.phoneNo,
       "randomId": "string",
       "roleStatus": "COMPANY",
@@ -212,6 +213,9 @@ export class AddCompanyComponent implements OnInit {
         }
       ],
       "webUrl": "string"
+    }
+    if (this.paramData) {
+      apiReqData['idForValidateData'] = this.paramData.userId
     }
     console.log("data", apiReqData)
     this.service.showSpinner()

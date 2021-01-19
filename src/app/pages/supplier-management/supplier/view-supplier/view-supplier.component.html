@@ -1,70 +1,71 @@
+<section>
+  <div class="container1440 mt-5">
+    <main class="middle-content" style="overflow-y: scroll; height: -webkit-fill-available;">
+      <div class="content-section">
 
-<main class="middle-content" style="overflow-y: scroll; height: -webkit-fill-available;">
-    <div class="content-section">
-
-        <div class="page_title_block pL0 pR0">
-            <h1 class="page_title" style="color:#26272d">VIEW USER TRADING DETAIL</h1>
-        </div>
+        <!-- <div class="page_title_block pL0 pR0">
+      <h1 class="page_title" style="color:#26272d">VIEW USER TRADING DETAIL</h1>
+    </div> -->
         <div class="order-view mt30 mrgn-0-auto">
 
-        <div>
-  <form [formGroup]="ViewSupplierForm">
-    <div class="form-group row">
-      <label for="Fname" class="col-sm-2 col-form-label">First Name</label>
-      <div class="col-sm-4">
-        <input type="text" id="Fname" class="form-control" formControlName="firstName" readonly>
-      </div>
-      <label for="Lname" class="col-sm-2 col-form-label">Last Name</label>
-      <div class="col-sm-4">
-        <input type="text" id="Lname" class="form-control" formControlName="lastName" readonly>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="Mobile" class="col-sm-2 col-form-label">Mobile No</label>
-      <div class="col-sm-4">
-        <input type="text" id="Mobile" class="form-control" formControlName="phoneNo" readonly>
-      </div>
-      <label for="email" class="col-sm-2 col-form-label">Email ID</label>
-      <div class="col-sm-4">
-        <input type="text" id="email" class="form-control" formControlName="email" readonly>
-      </div>
-    </div>
+          <div>
+            <form [formGroup]="ViewSupplierForm">
+              <div class="form-group row">
+                <label for="Fname" class="col-sm-2 col-form-label">First Name</label>
+                <div class="col-sm-4">
+                  <input type="text" id="Fname" class="form-control" formControlName="firstName" readonly>
+                </div>
+                <label for="Lname" class="col-sm-2 col-form-label">Last Name</label>
+                <div class="col-sm-4">
+                  <input type="text" id="Lname" class="form-control" formControlName="lastName" readonly>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="Mobile" class="col-sm-2 col-form-label">Mobile No</label>
+                <div class="col-sm-4">
+                  <input type="text" id="Mobile" class="form-control" formControlName="phoneNo" readonly>
+                </div>
+                <label for="email" class="col-sm-2 col-form-label">Email ID</label>
+                <div class="col-sm-4">
+                  <input type="text" id="email" class="form-control" formControlName="email" readonly>
+                </div>
+              </div>
 
-    <div class="form-group row">
-      <label for="CompanyName" class="col-sm-2 col-form-label">Company Name</label>
-      <div class="col-sm-4">
-        <input type="text" id="CompanyName" class="form-control" formControlName="companyName" readonly>
-      </div>
-      <label for="comanyAddress" class="col-sm-2 col-form-label">Company Address</label>
-      <div class="col-sm-4">
-        <input type="text" id="comanyAddress" class="form-control"formControlName="companyAddress" readonly>
-      </div>
-    </div>
+              <div class="form-group row">
+                <label for="CompanyName" class="col-sm-2 col-form-label">Company Name</label>
+                <div class="col-sm-4">
+                  <input type="text" id="CompanyName" class="form-control" formControlName="companyName" readonly>
+                </div>
+                <label for="comanyAddress" class="col-sm-2 col-form-label">Company Address</label>
+                <div class="col-sm-4">
+                  <input type="text" id="comanyAddress" class="form-control" formControlName="companyAddress" readonly>
+                </div>
+              </div>
 
-    <div class="form-group row">
-      <label for="city" class="col-sm-2 col-form-label">City</label>
-      <div class="col-sm-4">
-        <input type="text" id="city" class="form-control"formControlName="cityName" readonly>
-      </div>
-      <label for="state" class="col-sm-2 col-form-label">State</label>
-      <div class="col-sm-4">
-        <input type="text" id="state" class="form-control" readonly formControlName="stateName">
+              <div class="form-group row">
+                <label for="city" class="col-sm-2 col-form-label">City</label>
+                <div class="col-sm-4">
+                  <input type="text" id="city" class="form-control" formControlName="cityName" readonly>
+                </div>
+                <label for="state" class="col-sm-2 col-form-label">State</label>
+                <div class="col-sm-4">
+                  <input type="text" id="state" class="form-control" readonly formControlName="stateName">
 
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="aadhar" class="col-sm-2 col-form-label">Aadhar No</label>
-      <div class="col-sm-4">
-        <input type="text" id="aadhar" class="form-control" formControlName="AadharNo" readonly>
-        <img [src]="aadharCardUrl" alt="" class="view-img">
-      </div>
-      <label for="pan" class="col-sm-2 col-form-label">Pan Card</label>
-      <div class="col-sm-4">
-        <input type="text" id="pan" class="form-control" formControlName="PanNumber" readonly>
-        <img [src]="panCardUrl" alt="" class="view-img">
-      </div>
-    </div>
-    <!-- <div class="form-group row">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="aadhar" class="col-sm-2 col-form-label">Aadhar No</label>
+                <div class="col-sm-4">
+                  <input type="text" id="aadhar" class="form-control" formControlName="AadharNo" readonly>
+                  <img [src]="aadharCardUrl" alt="" class="view-img">
+                </div>
+                <label for="pan" class="col-sm-2 col-form-label">Pan Card</label>
+                <div class="col-sm-4">
+                  <input type="text" id="pan" class="form-control" formControlName="PanNumber" readonly>
+                  <img [src]="panCardUrl" alt="" class="view-img">
+                </div>
+              </div>
+              <!-- <div class="form-group row">
       <label class="col-sm-2 col-form-label"></label>
       <div class="col-sm-4">
         <label for="AadharCard" class="btn btn-success btn-block btn-outlined">Upload Aadhar Card</label>
@@ -76,33 +77,33 @@
         <input type="file" id="PanCard" accept="image/*" style="display: none" class="form-control">
       </div>
     </div> -->
-    <div class="form-group row">
-      <label for="gst" class="col-sm-2 col-form-label">GISTN No</label>
-      <div class="col-sm-4">
-        <input type="text" id="gst" class="form-control" formControlName="gstNumber" readonly>
-        <img [src]="gstinUrl" alt="" class="view-img">
-      </div>
-    </div>
-    <!-- <div class="form-group row">
+              <div class="form-group row">
+                <label for="gst" class="col-sm-2 col-form-label">GISTN No</label>
+                <div class="col-sm-4">
+                  <input type="text" id="gst" class="form-control" formControlName="gstNumber" readonly>
+                  <img [src]="gstinUrl" alt="" class="view-img">
+                </div>
+              </div>
+              <!-- <div class="form-group row">
       <label class="col-sm-2 col-form-label"></label>
       <div class="col-sm-4">
         <label for="AadharCard" class="btn btn-success btn-block btn-outlined">GISTN Copy</label>
   <input type="file" id="AadharCard" accept="image/*" style="display: none" class="form-control">
             </div>
     </div> -->
-  </form>
-        </div>
-        <br>
-        <div class="head_flt_select">
-          <div class="head_flt_select input-label text-center">
-              <button  type="submit" class="btn btn-theme mr-3"
-                 [routerLink]="['/list-of-supplier']">Back</button>
-                  <button  type="submit" class="btn btn-theme"
-                 (click)="editSupplier()">Edit</button>
+            </form>
           </div>
-      </div>
+          <br>
+          <div class="head_flt_select">
+            <div class="head_flt_select input-label text-center">
+              <button type="submit" class="btn btn-theme mr-3" [routerLink]="['/list-of-supplier']">Back</button>
+              <button type="submit" class="btn btn-theme" (click)="editSupplier()">Edit</button>
+            </div>
+          </div>
 
-    </div>
-    </div>
-  </main>
-  <app-footer></app-footer>
+        </div>
+      </div>
+    </main>
+  </div>
+</section>
+<app-footer></app-footer>

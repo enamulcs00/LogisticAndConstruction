@@ -18,7 +18,7 @@
                                     <div class="col-lg-2 pl-0 mt-4">
                                         <label>First Name</label><br>
                                         <input type="text" class="form-control input-field" placeholder="First Name"
-                                            [(ngModel)]="firstName">
+                                            [(ngModel)]="firstName" maxlength="60">
                                     </div>
                                     <div class="col-lg-2 pl-0 mt-4">
                                         <label>State</label><br>
@@ -40,9 +40,7 @@
                                     </div>
                                     <div class="col-lg-2 pl-0 mt-4">
                                         <label>Mobile</label><br>
-                                        <!-- <input type="text" class="form-control input-field" placeholder="Mobile"
-                                            [(ngModel)]="phoneNo" (keypress)="service.numberOnly($event)" maxlength="20"> -->
-                                            <input type="text" class="form-control input-field" placeholder="Mobile"
+                                        <input type="text" class="form-control input-field" placeholder="Mobile"
                                             [(ngModel)]="phoneNo" maxlength="20">
                                     </div>
                                     <div class="col-lg-2 pl-0 mt-4">
@@ -87,20 +85,19 @@
                                                 <td>{{item?.gstInNo || 'N/A'}}</td>
                                                 <td>{{item?.createTime | date:'medium' || 'N/A'}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a (click)="viewFleetOwner(item?.userId)"><i
-                                                            class="fa fa-eye"></i></a>
-                                                    <!-- <a><i class="fa fa-trash"
-                                                            (click)="openModal('DELETE',item?.userId)"></i></a> -->
-                                                    <a (click)="deleteFleetOwner(item?.userId)"><i
-                                                            class="fa fa-trash"></i></a>
+                                                    <a (click)="viewFleetOwner(item?.userId)"><i class="fa fa-eye"
+                                                            aria-hidden="true"></i></a>
+                                                    <a (click)="deleteFleetOwner(item?.userId)"><i class="fa fa-trash"
+                                                            aria-hidden="true"></i></a>
                                                     <a *ngIf="item?.userStatus == 'ACTIVE'"
                                                         (click)="openModal('BLOCK',item?.userId)"><i class="fa fa-ban"
-                                                            style="color: green;"></i></a>
+                                                            style="color: green;" aria-hidden="true"></i></a>
                                                     <a *ngIf="item?.userStatus == 'BLOCK'"
-                                                        (click)="openModal('ACTIVE',item?.userId)"><i
-                                                            class="fa fa-ban"></i></a>
-                                                    <a (click)="resetPassword(item?.userId, item?.phoneNo, item?.email)"><i
-                                                            class="fa fa-unlock-alt"></i></a>
+                                                        (click)="openModal('ACTIVE',item?.userId)"><i class="fa fa-ban"
+                                                            aria-hidden="true"></i></a>
+                                                    <a
+                                                        (click)="resetPassword(item?.userId, item?.phoneNo, item?.email)"><i
+                                                            class="fa fa-unlock-alt" aria-hidden="true"></i></a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -143,19 +140,15 @@
                 <div>
                     <div class="modal-body">
                         <h3 style="text-align: center;font-size: 20px; ">Block User </h3>
-
-                        <!-- <h3 *ngIf="userStatus=='ACTIVE'" style="text-align: center; ">Unblock  </h3>
-                        <h3  *ngIf="userStatus=='BLOCK'" style="text-align: center; ">Block  </h3> -->
                         <hr>
                         <button type="button" class="close" data-dismiss="modal"
                             style="margin-top: -85px;">&times;</button>
                         <div class="text-center modal_flax_height d-flex align-items-center justify-content-center">
                             <div class="w-100">
                                 <p style="font-size: 18px;">Are you sure you want to block <br> this user?</p>
-                                <!-- <p  *ngIf="userStatus=='ACTIVE'" style="font-size: 25px;">Are you sure you want to unblock?</p>
-                                <p  *ngIf="userStatus=='BLOCK'" style="font-size: 25px;">Are you sure you want to block?</p> -->
                                 <div class="mt-4">
-                                    <button type="submit" class="btn  btn-theme mr-2 " (click)="blockUser()">Yes</button>
+                                    <button type="submit" class="btn  btn-theme mr-2 "
+                                        (click)="blockUser()">Yes</button>
                                     <button type="button" class="btn  btn-theme" data-dismiss="modal"
                                         style="width: 25%;">No</button>
                                 </div>
@@ -182,10 +175,9 @@
                         <div class="text-center modal_flax_height d-flex align-items-center justify-content-center">
                             <div class="w-100">
                                 <p style="font-size: 18px;">Are you sure you want to active <br> this user?</p>
-                                <div  class="mt-4">
+                                <div class="mt-4">
                                     <button type="submit" class="btn  btn-theme mr-2" (click)="blockUser()">Yes</button>
-                                    <button type="button" class="btn  btn-theme"
-                                        data-dismiss="modal">No</button>
+                                    <button type="button" class="btn  btn-theme" data-dismiss="modal">No</button>
                                 </div>
                             </div>
                         </div>

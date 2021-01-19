@@ -2,40 +2,32 @@
     <div class="container1440 mt-5">
         <main class="middle-content" style="overflow-y: scroll; height: -webkit-fill-available;">
             <div class="content-section">
-
-                <!-- <div class="page_title_block pL0 pR0">
-                    <h1 class="page_title" style="color:#26272d">VIEW USER TRADING DETAIL</h1>
-                </div> -->
                 <div class="order-view mt30 mrgn-0-auto">
-
                     <div>
                         <form [formGroup]="editForm">
                             <div class="form-group row">
-                                <!-- <label for="Fname" class="col-sm-2 col-form-label">Fleet Owner ID</label> -->
                                 <label for="Fname" class="col-sm-2 col-form-label">Fleet Owner Name</label>
                                 <div class="col-sm-4">
-                                    <!-- <input type="text" id="Fname" class="form-control" placeholder="Fleet Owner ID"
-                                        formControlName="fleetOnwerNo"> -->
-                                        <select name="" id="" class="form-control"  formControlName="fleetOnwerNo">
-                                            <option value="">Fleet Owner Name</option>
-                                            <option *ngFor="let item of listing" [value]="item.userId">{{item.companyName}}</option>
-                                        </select>
+                                    <select name="" id="" class="form-control" formControlName="fleetOnwerNo">
+                                        <option value="">Fleet Owner Name</option>
+                                        <option *ngFor="let item of listing" [value]="item.userId">{{item.companyName}}
+                                        </option>
+                                    </select>
                                 </div>
                                 <label for="Lname" class="col-sm-2 col-form-label">Truck Type</label>
                                 <div class="col-sm-4">
-                                    <!-- <input type="text" class="form-control" placeholder="Driver First name"
-                                        formControlName="typeOfTruck"> -->
-                                        <select name="" id="" class="form-control"  formControlName="typeOfTruck">
-                                            <option value="">Truck Type</option>
-                                            <option *ngFor="let item of listingTruckType" [value]="item.name">{{item.name}}</option>
-                                        </select>
+                                    <select name="" id="" class="form-control" formControlName="typeOfTruck">
+                                        <option value="">Truck Type</option>
+                                        <option *ngFor="let item of listingTruckType" [value]="item.name">{{item.name}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="Mobile" class="col-sm-2 col-form-label">Truck Number</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control"
-                                        placeholder="Truck Number" formControlName="registrationNo">
+                                    <input type="text" class="form-control" placeholder="Truck Number"
+                                        formControlName="registrationNo">
                                 </div>
                                 <label for="email" class="col-sm-2 col-form-label">Description</label>
                                 <div class="col-sm-4">
@@ -48,7 +40,9 @@
                     <br>
                     <div class="head_flt_select">
                         <div class="head_flt_select input-label">
-                            <button type="submit" class="btn btn-theme deleye-btn"[disabled]="editForm.invalid" (click)="deleteTruck()">Delete</button>
+                            <button type="submit" class="btn btn-theme mr-3" (click)="cancel()">Cancel</button>
+                            <button type="submit" class="btn btn-theme deleye-btn" [disabled]="editForm.invalid"
+                                (click)="deleteTruck()">Delete</button>
                         </div>
                     </div>
 

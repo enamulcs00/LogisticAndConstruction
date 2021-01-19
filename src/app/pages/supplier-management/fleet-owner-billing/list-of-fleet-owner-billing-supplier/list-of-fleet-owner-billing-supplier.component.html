@@ -6,55 +6,56 @@
                     <div class="global-table no-radius p0">
                         <div class="tab-content1">
                             <div class="tab-pane1">
-                              <div class="row">
-                                <div class="col-lg-1.5 pl-0 mt-4">
-                                  <label>Fleet Owner</label><br>
-                                  <select class="selectBox form-control" [(ngModel)]="fleetOwner">
-                                      <option value="">Fleet Owner</option>
-                                      <option *ngFor="let item of supplierNameArray"
-                                          [value]="item?.transpotarName">{{item?.transpotarName}}</option>
-                                  </select>
-                              </div>
-                                <div class="col-lg-1.5 pl-0 mt-4">
-                                    <label class="ml-3">Invoice</label><br>
-                                    <input type="text" (keypress)="service.numberOnly($event)" class="form-control" style="margin: 1px;" [(ngModel)]="InvoiceNoForSupplier" placeholder="Invoice No">
-                                </div>
-                                <div class="col-lg-1.5 pl-0 mt-4">
-                                    <label class="ml-3">Supplier</label><br>
-                                    <select class="selectBox form-control" [(ngModel)]="firstName">
-                                      <option value="">Supplier</option>
-                                      <option *ngFor="let item of supplierNameArray" [value]="item?.supplierName">
-                                       {{item?.supplierName}}</option>
-                                  </select>
-                                </div>
-                                <div class="col-lg-1.5 pl-0 mt-4">
-                                    <label class="ml-2">Month</label><br>
-                                    <select class="selectBox form-control" [(ngModel)]="months">
-                                      <option value="">Month</option>
-                                      <option *ngFor="let item of monthsArray" [value]="item.id">{{item.name}}
-                                      </option>
-                                  </select>
-                                </div>
-                                <div class="col-lg-2.5 pl-0 mt-4">
-                                    <label class="ml-2">From Date</label><br>
-                                    <input type="date" max="{{minAge | date:'yyyy-MM-dd'}}" name="formdate"
-                                [(ngModel)]="calender.formdate" (change)="formdate()"
-                                class="form-control">
-                                </div>
-                                <div class="col-lg-2.5 pl-0 mt-4">
-                                    <label class="ml-2">To Date</label><br>
-                                    <input type="date" name="todate" min="{{fromDate | date:'yyyy-MM-dd'}}"
-                                    (change)="todate()" [disabled]="!calender.formdate"
-                                    [(ngModel)]="calender.todate" class="form-control">
-                                </div>
+                                <div class="row">
+                                    <div class="col-lg-1.5 pl-0 mt-4">
+                                        <label>Fleet Owner</label><br>
+                                        <select class="selectBox form-control" [(ngModel)]="fleetOwner">
+                                            <option value="">Fleet Owner</option>
+                                            <option *ngFor="let item of supplierNameArray"
+                                                [value]="item?.transpotarName">{{item?.transpotarName}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-1.5 pl-0 mt-4">
+                                        <label class="ml-3">Invoice</label><br>
+                                        <input type="text" (keypress)="service.numberOnly($event)" class="form-control"
+                                            style="margin: 1px;" [(ngModel)]="InvoiceNoForSupplier"
+                                            placeholder="Invoice No">
+                                    </div>
+                                    <div class="col-lg-1.5 pl-0 mt-4">
+                                        <label class="ml-3">Supplier</label><br>
+                                        <select class="selectBox form-control" [(ngModel)]="firstName">
+                                            <option value="">Supplier</option>
+                                            <option *ngFor="let item of supplierNameArray" [value]="item?.supplierName">
+                                                {{item?.supplierName}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-1.5 pl-0 mt-4">
+                                        <label class="ml-2">Month</label><br>
+                                        <select class="selectBox form-control" [(ngModel)]="months">
+                                            <option value="">Month</option>
+                                            <option *ngFor="let item of monthsArray" [value]="item.id">{{item.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2.5 pl-0 mt-4">
+                                        <label class="ml-2">From Date</label><br>
+                                        <input type="date" max="{{minAge | date:'yyyy-MM-dd'}}" name="formdate"
+                                            [(ngModel)]="calender.formdate" (change)="formdate()" class="form-control">
+                                    </div>
+                                    <div class="col-lg-2.5 pl-0 mt-4">
+                                        <label class="ml-2">To Date</label><br>
+                                        <input type="date" name="todate" min="{{fromDate | date:'yyyy-MM-dd'}}"
+                                            (change)="todate()" [disabled]="!calender.formdate"
+                                            [(ngModel)]="calender.todate" class="form-control">
+                                    </div>
 
-                            </div>
-                            <div class="row  d-flex justify-content-end w_100 mt-3 mb-3">
-                                <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green'
-                                    (click)="ExportToCsv()"></i>
-                                    <button type="button" class="search-btn"(click)="search()">Search</button>
-                                <button type="button" class="search-btn"(click)="reset()">Reset</button>
-                            </div>
+                                </div>
+                                <div class="row  d-flex justify-content-end w_100 mt-3 mb-3">
+                                    <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green; cursor: pointer;'
+                                        (click)="ExportToCsv()" aria-hidden="true"></i>
+                                    <button type="button" class="search-btn" (click)="search()">Search</button>
+                                    <button type="button" class="search-btn" (click)="reset()">Reset</button>
+                                </div>
 
                                 <div class="table-responsive">
                                     <table class="table table-bordered" aria-describedby="user list" id="pdfcontent">
@@ -85,7 +86,7 @@
                                                 <td>{{item?.inVoiceNoForSupplier || 'NA'}}</td>
                                                 <td>{{item?.inVoiceDateForSupplier |date}}</td>
                                                 <td>{{item?.bookingId || 'NA'}}</td>
-                                                  <td>{{item?.transpotarName|| 'N/A'}}</td>
+                                                <td>{{item?.transpotarName|| 'N/A'}}</td>
                                                 <td>{{item?.supplierName || 'NA'}}</td>
                                                 <td>{{item?.material || 'NA'}}</td>
                                                 <td>{{item?.weight || 'NA'}}</td>
@@ -99,118 +100,11 @@
                                                 <td>{{item?.driverMobileNo || 'NA'}}</td>
                                                 <td>{{item?.routeId || 'NA'}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye"
-                                                      [routerLink]="['/view-fleet-owner-billing-supplier',item?.bookingId]"></i></a>
-                                                    <!-- <a><i class="fa fa-trash"
-                                                            (click)="openModal('DELETE',item?.userId)"></i></a>
-                                                    <a *ngIf="item?.userStatus == 'ACTIVE'"
-                                                        (click)="openModal('BLOCK',item?.userId)"><i class="fa fa-ban"
-                                                            style="color: green;"></i></a>
-                                                    <a *ngIf="item?.userStatus == 'BLOCK'"
-                                                        (click)="openModal('ACTIVE',item?.userId)"><i
-                                                            class="fa fa-ban"></i></a> -->
+                                                    <a
+                                                        [routerLink]="['/view-fleet-owner-billing-supplier',item?.bookingId]"><i
+                                                            class="fa fa-eye" aria-hidden="true"></i></a>
                                                 </td>
                                             </tr>
-                                            <!-- <tr>
-                                                <td>K-262535</td>
-                                                <td>21 Dec 2020</td>
-                                                <td>1111111</td>
-                                                <td>Arihant</td>
-                                                <td>Iron Rods 20mm</td>
-                                                <td>23 tn</td>
-                                                <td>21 Dec 2020</td>
-                                                <td>L&T Manesar</td>
-                                                <td>Rs. 2,50,000</td>
-                                                <td>W2425252525</td>
-                                                <td>HR 23 H 4356</td>
-                                                <td>10 wheel 25 tn</td>
-                                                <td>Ram Kumar</td>
-                                                <td>9877272727</td>
-                                                <td>2568</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye" (click)="viewBooking()"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>K-262535</td>
-                                                <td>21 Dec 2020</td>
-                                                <td>1111111</td>
-                                                <td>Arihant</td>
-                                                <td>Iron Rods 20mm</td>
-                                                <td>23 tn</td>
-                                                <td>21 Dec 2020</td>
-                                                <td>L&T Manesar</td>
-                                                <td>Rs. 2,50,000</td>
-                                                <td>W2425252525</td>
-                                                <td>HR 23 H 4356</td>
-                                                <td>10 wheel 25 tn</td>
-                                                <td>Ram Kumar</td>
-                                                <td>9877272727</td>
-                                                <td>2568</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye" (click)="viewBooking()"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>K-262535</td>
-                                                <td>21 Dec 2020</td>
-                                                <td>1111111</td>
-                                                <td>Arihant</td>
-                                                <td>Iron Rods 20mm</td>
-                                                <td>23 tn</td>
-                                                <td>21 Dec 2020</td>
-                                                <td>L&T Manesar</td>
-                                                <td>Rs. 2,50,000</td>
-                                                <td>W2425252525</td>
-                                                <td>HR 23 H 4356</td>
-                                                <td>10 wheel 25 tn</td>
-                                                <td>Ram Kumar</td>
-                                                <td>9877272727</td>
-                                                <td>2568</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye" (click)="viewBooking()"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>K-262535</td>
-                                                <td>21 Dec 2020</td>
-                                                <td>1111111</td>
-                                                <td>Arihant</td>
-                                                <td>Iron Rods 20mm</td>
-                                                <td>23 tn</td>
-                                                <td>21 Dec 2020</td>
-                                                <td>L&T Manesar</td>
-                                                <td>Rs. 2,50,000</td>
-                                                <td>W2425252525</td>
-                                                <td>HR 23 H 4356</td>
-                                                <td>10 wheel 25 tn</td>
-                                                <td>Ram Kumar</td>
-                                                <td>9877272727</td>
-                                                <td>2568</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye" (click)="viewBooking()"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>K-262535</td>
-                                                <td>21 Dec 2020</td>
-                                                <td>1111111</td>
-                                                <td>Arihant</td>
-                                                <td>Iron Rods 20mm</td>
-                                                <td>23 tn</td>
-                                                <td>21 Dec 2020</td>
-                                                <td>L&T Manesar</td>
-                                                <td>Rs. 2,50,000</td>
-                                                <td>W2425252525</td>
-                                                <td>HR 23 H 4356</td>
-                                                <td>10 wheel 25 tn</td>
-                                                <td>Ram Kumar</td>
-                                                <td>9877272727</td>
-                                                <td>2568</td>
-                                                <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye" (click)="viewBooking()"></i></a>
-                                                </td>
-                                            </tr> -->
                                         </tbody>
                                         <tbody *ngIf="listing?.length==0">
                                             <tr>
@@ -242,35 +136,4 @@
 </section>
 
 <app-footer></app-footer>
-
-<!-- <div id = "pdfcontent">
-    <div class="upload-info more-content">
-        <p class="up-load head-ings">USER DETAILS</p>
-        <table>
-            <thead>
-                <tr>
-                    <th >S.No</th>
-                    <th >User Name</th>
-                    <th >Email</th>
-                    <th >User ID</th>
-                    <th >Phone Number</th>
-                    <th >Status</th>
-                    <th >Registration Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of listing">
-                    <td>{{item?.firstName}}{{item?.lastName}}</td>
-                    <td>{{item?.email}}</td>
-                    <td>{{item?.userId}}</td>
-                    <td>{{item?.phoneNo}}</td>
-                    <td>{{item?.userStatus}}</td>
-                    <td>{{item?.createTime | date:'medium'}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div> -->
-
-
 

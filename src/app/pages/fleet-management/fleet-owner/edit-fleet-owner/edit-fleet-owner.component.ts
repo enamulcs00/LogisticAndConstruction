@@ -316,4 +316,8 @@ export class EditFleetOwnerComponent implements OnInit {
     })
   }
 
+  cancel() {
+    this.router.navigate(['/list-of-fleet-owner'])
+  }
+  
 }

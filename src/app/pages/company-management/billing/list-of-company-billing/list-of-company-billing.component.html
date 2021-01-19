@@ -7,68 +7,72 @@
                         <div class="tab-content1">
                             <div class="tab-pane1">
                                 <form [formGroup]="userForm">
-                                <div class="row">
-                                    <div class="col-lg-2 pl-0 mt-4">
-                                        <label>Company Name</label><br>
-                                        <!-- <select class="selectBox">
+                                    <div class="row">
+                                        <div class="col-lg-2 pl-0 mt-4">
+                                            <label>Company Name</label><br>
+                                            <!-- <select class="selectBox">
                                             <option>Select Company Name</option>
                                         </select> -->
-                                        <select id="CompanyName" class="form-control selectBox"  formControlName="companyName">
-                                            <option value="">Company name</option>
-                                            <option *ngFor="let company of companyNameArr" >{{company.name}}</option>
-                                        </select>
+                                            <select id="CompanyName" class="form-control selectBox"
+                                                formControlName="companyName">
+                                                <option value="">Company name</option>
+                                                <option *ngFor="let company of companyNameArr">{{company.name}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-2 pl-0 mt-4">
+                                            <label>Invoice No</label><br>
+                                            <input class="selectBox form-control" type="text" placeholder="Invoice No"
+                                                formControlName="invoiceNo">
+                                        </div>
+                                        <div class="col-lg-2 pl-0 mt-4">
+                                            <label>Supplier</label><br>
+                                            <select id="city" class="selectBox form-control"
+                                                formControlName="supplierName" placeholder="Supplier">
+                                                <!-- <option value="city">select</option> -->
+                                                <option *ngFor="let supplier of supplierArr">{{supplier.name}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-2 pl-0 mt-4">
+                                            <label>Month</label><br>
+                                            <select class="selectBox form-control" formControlName="month"
+                                                placeholder="month">
+                                                <option value="">Month</option>
+                                                <option value="01">January</option>
+                                                <option value="02">February</option>
+                                                <option value="03">March</option>
+                                                <option value="04">April</option>
+                                                <option value="05">May</option>
+                                                <option value="06">June</option>
+                                                <option value="07">July</option>
+                                                <option value="08">August</option>
+                                                <option value="09">September</option>
+                                                <option value="10">October</option>
+                                                <option value="11">November</option>
+                                                <option value="12">December</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-2 pl-0 mt-4">
+                                            <label>From Date</label><br>
+                                            <input type="date" class="selectBox form-control"
+                                                formControlName="startdate">
+                                        </div>
+                                        <div class="col-lg-2 pl-0 mt-4">
+                                            <label>To Date</label><br>
+                                            <input type="date" class="selectBox form-control" formControlName="enddate">
+                                        </div>
+                                        <div class="col-lg-2 mt-4 p-0">
+                                            <label>&nbsp;</label><br>
+                                            <button type="button" class="search-btn" (click)="search()">Search</button>
+                                            <!-- <button type="button" class="search-btn">Reset</button> -->
+                                        </div>
                                     </div>
-                                    <div class="col-lg-2 pl-0 mt-4">
-                                        <label>Invoice No</label><br>
-                                        <input class="selectBox form-control" type="text" placeholder="Invoice No" formControlName="invoiceNo">
+                                    <div class="row  d-flex justify-content-end w_100 mt-3 mb-3">
+                                        <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green'
+                                            (click)="ExportToCsv()"></i>
+                                        <!-- <button type="button" class="search-btn">Search</button> -->
+                                        <button type="button" class="search-btn" (click)="reset()">Reset</button>
                                     </div>
-                                    <div class="col-lg-2 pl-0 mt-4">
-                                        <label>Supplier</label><br>
-                                        <select id="city" class="selectBox form-control" formControlName="supplierName" placeholder="Supplier">
-                                            <!-- <option value="city">select</option> -->
-                                            <option *ngFor="let supplier of supplierArr">{{supplier.name}}</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-2 pl-0 mt-4">
-                                        <label>Month</label><br>
-                                        <select class="selectBox form-control" formControlName="month" placeholder="month">
-                                            <option value="">Month</option>
-                                            <option value="01">January</option>
-                                            <option value="02">February</option>
-                                            <option value="03">March</option>
-                                            <option value="04">April</option>
-                                            <option value="05">May</option>
-                                            <option value="06">June</option>
-                                            <option value="07">July</option>
-                                            <option value="08">August</option>
-                                            <option value="09">September</option>
-                                            <option value="10">October</option>
-                                            <option value="11">November</option>
-                                            <option value="12">December</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-2 pl-0 mt-4">
-                                        <label>From Date</label><br>
-                                        <input type="date" class="selectBox form-control" formControlName="startdate"
-                                        >
-                                    </div>
-                                    <div class="col-lg-2 pl-0 mt-4">
-                                        <label>To Date</label><br>
-                                        <input type="date" class="selectBox form-control" formControlName="enddate">
-                                    </div>
-                                    <div class="col-lg-2 mt-4 p-0">
-                                        <label>&nbsp;</label><br>
-                                        <button type="button" class="search-btn" (click)="search()">Search</button>
-                                        <!-- <button type="button" class="search-btn">Reset</button> -->
-                                    </div>
-                                </div>
-                                <div class="row  d-flex justify-content-end w_100 mt-3 mb-3">
-                                    <i class='fas fa-file-csv mr-1' style='font-size:35px;color:green'
-                                        (click)="ExportToCsv()"></i>
-                                    <!-- <button type="button" class="search-btn">Search</button> -->
-                                    <button type="button" class="search-btn" (click)="reset()">Reset</button>
-                                </div>
-                            </form>
+                                </form>
 
 
                                 <div class="table-responsive">
@@ -118,7 +122,8 @@
                                                             class="fa fa-ban"></i></a>
                                                 </td>
                                             </tr> -->
-                                            <tr  *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: currentPage,totalItems: totalRecords };let i = index ">
+                                            <tr
+                                                *ngFor="let item of listing| paginate: { itemsPerPage: itemsPerPage,currentPage: currentPage,totalItems: totalRecords };let i = index ">
                                                 <td>{{itemsPerPage*(this.currentPage-1)+i+1}}</td>
                                                 <td>{{item?.companyName}}</td>
                                                 <td>{{item?.inVoiceNoForCompany}}</td>
@@ -137,7 +142,8 @@
                                                 <td>{{item?.driverMobileNo}}</td>
                                                 <td>{{item?.routeId}}</td>
                                                 <td class="action_td_btn3" style="cursor: pointer">
-                                                    <a><i class="fa fa-eye" (click)="billingDetails(item?.bookingId)"></i></a>
+                                                    <a (click)="billingDetails(item?.bookingId)"><i class="fa fa-eye"
+                                                            aria-hidden="true"></i></a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -171,35 +177,4 @@
 </section>
 
 <app-footer></app-footer>
-
-<!-- <div id = "pdfcontent">
-    <div class="upload-info more-content">
-        <p class="up-load head-ings">USER DETAILS</p>
-        <table>
-            <thead>
-                <tr>
-                    <th >S.No</th>
-                    <th >User Name</th>
-                    <th >Email</th>
-                    <th >User ID</th>
-                    <th >Phone Number</th>
-                    <th >Status</th>
-                    <th >Registration Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of listing">
-                    <td>{{item?.firstName}}{{item?.lastName}}</td>
-                    <td>{{item?.email}}</td>
-                    <td>{{item?.userId}}</td>
-                    <td>{{item?.phoneNo}}</td>
-                    <td>{{item?.userStatus}}</td>
-                    <td>{{item?.createTime | date:'medium'}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>       
-</div> -->
-
-
 

@@ -101,4 +101,7 @@ export class ViewTruckComponent implements OnInit {
     this.router.navigate(['/edit-truck', this.id])
   }
 
+  back() {
+    this.router.navigate(['/list-of-truck'])
+  }
 }
