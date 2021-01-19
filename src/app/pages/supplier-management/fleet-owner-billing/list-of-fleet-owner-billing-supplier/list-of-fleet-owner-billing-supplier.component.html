@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="col-lg-2.5 pl-0 mt-4">
                                     <label class="ml-2">From Date</label><br>
-                                    <input type="date" max="{{minAge | date:'yyyy-MM-dd'}}" name="formdate"
+                                    <input type="date" max="{{minAge | date:'yyyy-MM-dd'}}" name="formdate" [max]="service.getToday()"
                                 [(ngModel)]="calender.formdate" (change)="formdate()"
                                 class="form-control">
                                 </div>

@@ -129,7 +129,12 @@ export class MainService {
       event.preventDefault()
     }
   }
+//Get Today Date//
+getToday(): string {
 
+  return new Date().toISOString().split('T')[0]
+
+  }
   AlphabetOnly(event) {
     let pattAlpha = /^([a-zA-Z ])*$/;
     let resultAlpha = pattAlpha.test(event.key);

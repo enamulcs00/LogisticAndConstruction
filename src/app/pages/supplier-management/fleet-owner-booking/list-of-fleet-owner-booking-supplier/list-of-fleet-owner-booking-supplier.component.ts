@@ -282,7 +282,7 @@ export class ListOfFleetOwnerBookingSupplierComponent implements OnInit {
       useKeysAsHeaders: true,
       headers: ["fleet owner", "BidId", "Fleet owner", "Supplier", "Material", "Weight","Location", "Amount", "Delevery Date","Driver Name", "Driver Mobile","Vehicle Number","Vehicle Type","Route Id" ]
     };
-    new ngxCsv(dataArr, 'fleet owner', options);
+    new ngxCsv(dataArr, 'fleet Owner Booking Details', options);
   }
 
   //--------------------------------export pdf ----------------------------------------

@@ -300,7 +300,7 @@ export class ListOfFleetOwnerBillingSupplierComponent implements OnInit {
       useKeysAsHeaders: true,
       headers: ["fleet Billing", "Invoice No", "Invoice Date", "Supplier", "Material", "Weight","Location", "Amount", "Delevery Date","Driver Name", "Driver Mobile","Vehicle Number","Vehicle Type","Route Id" ]
     };
-    new ngxCsv(dataArr, 'fleet Billing', options);
+    new ngxCsv(dataArr, 'fleet Owner Billing', options);
   }
   //--------------------------------export pdf ----------------------------------------
 
