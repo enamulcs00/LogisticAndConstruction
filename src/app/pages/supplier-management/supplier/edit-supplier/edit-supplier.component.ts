@@ -211,7 +211,7 @@ export class EditSupplierComponent implements OnInit {
         // console.log(res.data.userDetail.city)
         this.cityArr = res['data'];
         this.editForm.patchValue({
-          'city': this.editData.userDetail.city ? this.editData.userDetail.city : ''
+          'city': this.listing?.userDetail.city ? this.listing?.userDetail.city : ''
         })
       }
     })
