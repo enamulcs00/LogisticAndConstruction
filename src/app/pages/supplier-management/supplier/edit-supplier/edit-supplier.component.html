@@ -9,38 +9,88 @@
               <div class="order-view mt30 mrgn-0-auto">
 
                   <div>
-                      <form [formGroup]="editForm">
+                      <form [formGroup]="editForm" #f="ngForm">
                           <div class="form-group row">
                               <label for="Fname" class="col-sm-2 col-form-label">First Name</label>
                               <div class="col-sm-4">
                                   <input type="text" id="Fname" class="form-control" placeholder="First name" formControlName="firstName">
-                              </div>
+                                  <div class="text-danger">
+                                    <span
+                                        *ngIf="editForm.get('firstName').hasError('required') && (editForm.get('firstName').dirty || editForm.get('firstName').touched)">
+                                        *Please enter first name.
+                                    </span>
+
+                                </div>
+                                </div>
                               <label for="Lname" class="col-sm-2 col-form-label">Last Name</label>
                               <div class="col-sm-4">
                                   <input type="text" id="Lname" class="form-control" placeholder="Last name" formControlName="lastName">
-                              </div>
+                                  <div class="text-danger">
+                                    <span
+                                        *ngIf="editForm.get('lastName').hasError('required') && (editForm.get('lastName').dirty || editForm.get('lastName').touched)">
+                                        *Please enter last name.
+                                    </span>
+
+                                </div>
+                                </div>
                           </div>
                           <div class="form-group row">
                               <label for="Mobile" class="col-sm-2 col-form-label">Mobile No</label>
                               <div class="col-sm-4">
                                   <input type="text" id="Mobile" class="form-control"
                                       placeholder="Enter Mobile Number" formControlName="phoneNo">
+                                      <div class="text-danger">
+                                        <span
+                                            *ngIf="editForm.get('phoneNo').hasError('required') && (editForm.get('phoneNo').dirty || editForm.get('phoneNo').touched)">
+                                            *Please enter mobile number.
+                                        </span>
+                                        <span
+                                            *ngIf="editForm.get('phoneNo').hasError('pattern') && (editForm.get('phoneNo').dirty || f.submitted)">
+                                            *Please enter valid mobile number.
+                                        </span>
+
+                                    </div>
                               </div>
                               <label for="email" class="col-sm-2 col-form-label">Email ID</label>
                               <div class="col-sm-4">
                                   <input type="text" id="email" class="form-control" placeholder="Enter mail Id" formControlName="email">
-                              </div>
+                                  <div class="text-danger">
+                                    <span
+                                        *ngIf="editForm.get('email').hasError('required') && (editForm.get('email').dirty || editForm.get('email').touched)">
+                                        *Please enter mail Id.
+                                    </span>
+                                    <span
+                                        *ngIf="editForm.get('email').hasError('pattern') && (editForm.get('email').dirty || f.submitted)">
+                                        *Please enter valid mail Id.
+                                    </span>
+
+                                </div>
+                                </div>
                           </div>
 
                           <div class="form-group row">
                               <label for="CompanyName" class="col-sm-2 col-form-label">Company Name</label>
                               <div class="col-sm-4">
                                   <input type="text" id="CompanyName" class="form-control" placeholder="Company name" formControlName="companyName">
-                              </div>
+                                  <div class="text-danger">
+                                    <span
+                                        *ngIf="editForm.get('companyName').hasError('required') && (editForm.get('companyName').dirty || editForm.get('companyName').touched)">
+                                        *Please enter company name.
+                                    </span>
+
+                                </div>
+                                </div>
                               <label for="comanyAddress" class="col-sm-2 col-form-label">Company Address</label>
                               <div class="col-sm-4">
                                   <input type="text" id="comanyAddress" class="form-control"
                                       placeholder="Company Address" formControlName="baseLocationAddress">
+                                      <div class="text-danger">
+                                        <span
+                                            *ngIf="editForm.get('baseLocationAddress').hasError('required') && (editForm.get('baseLocationAddress').dirty || editForm.get('baseLocationAddress').touched)">
+                                            *Please enter company address.
+                                        </span>
+
+                                    </div>
                               </div>
                           </div>
 
@@ -73,6 +123,18 @@
                                       <button class="btn" type="button"
                                           style="background-color: green;     height: 38px;     z-index: 0;">Validate</button>
                                   </div>
+                                  <div class="text-danger">
+
+                                    <span
+                                        *ngIf="editForm.get('aadharCardNo').hasError('required') && (editForm.get('aadharCardNo').dirty || editForm.get('aadharCardNo').touched)">
+                                        *Please Enter 12 Aadhar number.
+                                    </span>
+                                    <span
+                                        *ngIf="editForm.get('aadharCardNo').hasError('pattern') && (editForm.get('aadharCardNo').dirty || f.submitted)">
+                                        *Please enter valid Aadhar number and give a space after each four digit.
+                                    </span>
+
+                                </div>
                               </div>
                               <label for="pan" class="col-sm-2 col-form-label">Pan Card</label>
                               <div class="col-sm-4 input-group">
@@ -82,6 +144,18 @@
                                       <button class="btn" type="button"
                                           style="background-color: green;     height: 38px;     z-index: 0;">Validate</button>
                                   </div>
+                                  <div class="text-danger">
+
+                                    <span
+                                        *ngIf="editForm.get('panCardNo').hasError('required') && (editForm.get('panCardNo').dirty || editForm.get('panCardNo').touched)">
+                                        *Please Enter 10 digit pan card number.
+                                    </span>
+                                    <span
+                                        *ngIf="editForm.get('panCardNo').hasError('pattern') && (editForm.get('panCardNo').dirty || f.submitted)">
+                                        *Please enter valid Pan number.
+                                    </span>
+
+                                </div>
                               </div>
                           </div>
 
@@ -114,6 +188,18 @@
                                       <button class="btn" type="button"
                                           style="background-color: green;     height: 38px;     z-index: 0;">Validate</button>
                                   </div>
+                                  <div class="text-danger">
+
+                                    <span
+                                        *ngIf="editForm.get('gstinNumber').hasError('required') && (editForm.get('gstinNumber').dirty || editForm.get('gstinNumber').touched)">
+                                        *Please Enter 15 digit gst number.
+                                    </span>
+                                    <span
+                                        *ngIf="editForm.get('gstinNumber').hasError('pattern') && (editForm.get('gstinNumber').dirty || f.submitted)">
+                                        *Please enter valid GST number.
+                                    </span>
+
+                                </div>
                               </div>
                           </div>
                           <div class="form-group row">
